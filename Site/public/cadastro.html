@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Legends Marvel | Cadastro</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="css/cadastro.css" />
+    <link
+    rel="shortcut icon"
+    href="assets/imgs/android-chrome-512x512.png"
+    type="image/x-icon"
+  />
+  </head>
+
+  <body>
+    <section class="main-container">
+      <!-- Formulário de Cadastro -->
+      <div class="container_form" id="registrationform">
+        <div id="cardErro">
+          <span
+            style="color: #f01f1a; font-size: 18px; text-align: center"
+            id="mensagem_erro"
+          ></span>
+        </div>
+        <h2>Cadastre-se, <span style="color: #f01f1a">Herói!</span></h2>
+
+        <div class="div_nome">
+          <label>Nome completo</label>
+          <input
+            type="text"
+            id="nome_input"
+            placeholder="Seu nome completo"
+            required
+          />
+          <span class="error-message" id="nomeError"></span>
+        </div>
+
+        <div class="div_email">
+          <label>Email</label>
+          <input
+            type="email"
+            id="email_input"
+            placeholder="Seu email completo"
+            required
+          />
+          <span class="error-message" id="emailError"></span>
+        </div>
+
+        <div class="div_senha">
+          <label>Senha</label>
+          <input
+            type="password"
+            id="senha_input"
+            placeholder="Deve ter no mínimo 8 caracteres"
+            required
+          />
+          <span class="error-message" id="senhaError"></span>
+        </div>
+
+        <div class="div_confirmar_senha">
+          <label>Confirme sua senha</label>
+          <input
+            type="password"
+            id="confirmacao_senha_input"
+            placeholder="Deve ter no mínimo 8 caracteres"
+            required
+          />
+          <span class="error-message" id="senhaConfirmacaoError"></span>
+        </div>
+
+        <div class="div_select">
+          <label>Qual é o seu herói favorito?</label>
+          <select id="heroi_select" required>
+            <option value="" disabled selected>Selecione o herói</option>
+            <option value="Wolverine">Wolverine</option>
+            <option value="Homem de Ferro">Homem de Ferro</option>
+            <option value="Homem-Aranha">Homem-Aranha</option>
+            <option value="Capitão América">Capitão América</option>
+          </select>
+          <span class="error-message" id="heroiFavError"></span>
+        </div>
+
+        <button class="button" type="submit" onclick="cadastrar()">
+          Cadastre-se
+        </button>
+        <br />
+        <p>Já tem uma conta? <a href="login.html">Login</a></p>
+      </div>
+
+      <!-- Imagem de Fundo -->
+      <div class="container_img">
+        <a href="index.html"
+          ><img src="assets/imgs/background1.jpg" alt="Imagem de fundo"
+        /></a>
+      </div>
+    </section>
+  </body>
+</html>
+
+<script>
+  function cadastrar() {
+    // aguardar();
+
+    //Recupere o valor da nova input pelo nome do id
+    // Agora vá para o método fetch logo abaixo
+    var nomeVar = nome_input.value;
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+    var confirmacaoSenhaVar = confirmacao_senha_input.value;
+    var selectVar = heroi_select.value;
+
+    const numeros = /[0-9]/;
+
+    // Verificando se há algum campo em branco
+    if (
+      nomeVar == "" ||
+      emailVar == "" ||
+      senhaVar == "" ||
+      confirmacaoSenhaVar == "" ||
+      selectVar == ""
+    ) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Preencha todos os campos",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "Preencha todos os campos";
+
+      return false;
+    } else if (nomeVar.length < 3 || nomeVar.length > 50) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O nome deve ter entre 3 e 50 caracteres",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O nome deve ter entre 3 e 50 caracteres";
+
+      return false;
+    } else if (numeros.test(nomeVar) == true) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O nome não pode conter numeros",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O nome não pode conter numeros";
+
+      return false;
+    } else if (emailVar.indexOf("@") == -1) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O email deve conter @",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O email deve conter @";
+
+      return false;
+    } else if (emailVar.indexOf(".com") == -1) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O email deve conter .com",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O email deve conter .com";
+
+      return false;
+    } else if (senhaVar.length < 8) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "A senha deve conter pelo menos 8 caracteres",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button",
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "A senha deve conter pelo menos 8 caracteres";
+
+      return false;
+    } else if (senhaVar.indexOf("@") == -1 && senhaVar.indexOf("$") == -1) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "A senha deve conter pelo menos @ ou $",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "A senha deve conter pelo menos @ ou $";
+
+      return false;
+    } else if (!numeros.test(senhaVar)) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "A senha deve conter numeros",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "A senha deve conter numeros";
+
+      return false;
+    } else if (senhaVar != confirmacaoSenhaVar) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "As senhas devem ser iguais",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "As senhas devem ser iguais";
+
+      return false;
+    } else {
+      setInterval(sumirMensagem, 2000);
+    }
+
+    // Enviando o valor da nova input
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        nomeServer: nomeVar,
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+        selectServer: selectVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+          Swal.fire({
+            title: "Sucesso!",
+            text: "Usuário cadastrado!",
+            icon: "success",
+            showConfirmButton: false,
+            color: "#f01f1a",
+          });
+          cardErro.style.display = "block";
+
+          mensagem_erro.innerHTML =
+            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
+
+          setTimeout(function() {
+            window.location = "login.html";
+          }, "2000");
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+
+    return false;
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>

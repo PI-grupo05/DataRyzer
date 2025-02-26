@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Legends Marvel | Login</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/sessao.js"></script>
+    <link
+    rel="shortcut icon"
+    href="assets/imgs/android-chrome-512x512.png"
+    type="image/x-icon"
+  />
+
+    <link rel="stylesheet" href="css/login.css" />
+  </head>
+
+  <body>
+    <section class="main-container">
+      <!-- Imagem à esquerda com link para a homepage -->
+      <div class="container_img">
+        <a href="index.html">
+          <img src="assets/imgs/background2.jpg" alt="Background Marvel" />
+        </a>
+      </div>
+
+      <div class="container_form">
+        <div id="cardErro">
+          <span
+            style="color: #f01f1a; font-size: 18px"
+            id="mensagem_erro"
+          ></span>
+        </div>
+
+        <h2>Acesse sua conta, <span class="title">Lenda!</span></h2>
+        <div class="div_email">
+          <label for="email">Email</label>
+          <input
+            type="email"
+            id="email_input"
+            placeholder="Seu email"
+            required
+          />
+        </div>
+        <div class="div_senha">
+          <label>Senha</label>
+          <div class="input_container">
+            <input
+              type="password"
+              id="senha_input"
+              placeholder="Sua senha"
+              required
+            />
+            <img
+              onclick="aparecerSenha()"
+              id="olho"
+              src="https://img.icons8.com/?size=100&id=WBtbqQY9mcdJ&format=png&color=FFFFFF"
+              alt="Mostrar senha"
+              class="input_icon"
+            />
+          </div>
+        </div>
+        <br />
+        <button class="button" onclick="entrar()">Entrar</button>
+        <br />
+        <p>
+          Não tem uma conta?
+          <a href="cadastro.html">Cadastre-se!</a>
+        </p>
+      </div>
+    </section>
+  </body>
+</html>
+
+<script>
+  function entrar() {
+    /* aguardar(); */
+
+    var emailVar = email_input.value;
+    var senhaVar = senha_input.value;
+
+    if (emailVar == "" || senhaVar == "") {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Preencha todos os campos",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button", // Classe personalizada para o botão
+        },
+      });
+
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "Preencha todos os campos";
+
+      return false;
+    } else {
+      setInterval(sumirMensagem, 2000);
+    }
+
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
+
+    fetch("/usuarios/autenticar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        emailServer: emailVar,
+        senhaServer: senhaVar,
+      }),
+    })
+      .then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+
+        if (resposta.ok) {
+          Swal.fire({
+            title: "Sucesso!",
+            text: "Login autenticado!",
+            icon: "success",
+            showConfirmButton: false,
+            color: "#f01f1a",
+          });
+          console.log(resposta);
+
+          resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.id;
+
+            setTimeout(function () {
+              console.log(resposta);
+              window.location = "./dash.html";
+            }, 2000); // apenas para exibir o loading
+          });
+        } else {
+          console.log("Houve um erro ao tentar realizar o login!");
+          Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Email ou senha incorretos!",
+            color: "#f01f1a",
+            customClass: {
+              confirmButton: "custom-button",
+            },
+          });
+          cardErro.style.display = "flex";
+          mensagem_erro.innerHTML = "Email ou senha incorretos!";
+
+          resposta.text().then((texto) => {
+            console.error(texto);
+          });
+        }
+      })
+      .catch(function (erro) {
+        console.log(erro);
+      });
+
+    return false;
+  }
+  function aparecerSenha() {
+    const senha = document.getElementById("senha_input");
+    const olho = document.getElementById("olho");
+
+    if (senha.type === "password") {
+      senha.type = "text";
+      olho.src =
+        "https://img.icons8.com/?size=100&id=121539&format=png&color=FFFFFF";
+    } else {
+      senha.type = "password"; // Oculta a senha
+      olho.src =
+        "https://img.icons8.com/?size=100&id=WBtbqQY9mcdJ&format=png&color=FFFFFF";
+    }
+  }
+
+  function sumirMensagem() {
+    cardErro.style.display = "none";
+  }
+</script>
