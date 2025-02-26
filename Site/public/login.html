@@ -4,8 +4,9 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css">
 
-    <title>Legends Marvel | Login</title>
+    <title>DataRyzer | Login</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/sessao.js"></script>
     <link
@@ -18,59 +19,29 @@
   </head>
 
   <body>
-    <section class="main-container">
-      <!-- Imagem à esquerda com link para a homepage -->
-      <div class="container_img">
-        <a href="index.html">
-          <img src="assets/imgs/background2.jpg" alt="Background Marvel" />
-        </a>
-      </div>
-
-      <div class="container_form">
-        <div id="cardErro">
-          <span
-            style="color: #f01f1a; font-size: 18px"
-            id="mensagem_erro"
-          ></span>
+    <div class="login-page">
+      <div class="background">
+        <div class="logo">
+          <img id="logo" src="./assets/imgs/logoData-White.png" alt="logo-DataRyzer">
         </div>
-
-        <h2>Acesse sua conta, <span class="title">Lenda!</span></h2>
-        <div class="div_email">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email_input"
-            placeholder="Seu email"
-            required
-          />
         </div>
-        <div class="div_senha">
-          <label>Senha</label>
-          <div class="input_container">
-            <input
-              type="password"
-              id="senha_input"
-              placeholder="Sua senha"
-              required
-            />
-            <img
-              onclick="aparecerSenha()"
-              id="olho"
-              src="https://img.icons8.com/?size=100&id=WBtbqQY9mcdJ&format=png&color=FFFFFF"
-              alt="Mostrar senha"
-              class="input_icon"
-            />
-          </div>
+        <div class="login">
+          <form class="container-form">
+            <h2 class="login-title">Login</h2>
+            <label for="email">E-mail</label>
+            <div class="input-email">
+              <input id="email_input" type="email" placeholder="Seu email">
+            </div>
+            <label for="senha">Senha</label>
+            <div class="input-senha">
+              <input type="password" id="senha-input" placeholder="Sua senha">
+            </div>
+            <a href="">Esqueceu sua senha?</a>
+      
+            <button type="button" class="button" id="button">Entrar</button>
+          </form>
         </div>
-        <br />
-        <button class="button" onclick="entrar()">Entrar</button>
-        <br />
-        <p>
-          Não tem uma conta?
-          <a href="cadastro.html">Cadastre-se!</a>
-        </p>
-      </div>
-    </section>
+    </div>
   </body>
 </html>
 

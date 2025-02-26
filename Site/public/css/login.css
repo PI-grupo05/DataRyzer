@@ -1,0 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
+  font-family: "Montserrat", serif;
+  font-style: normal;
+
+}
+  .login-page{
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(to bottom, #00CC99, #6600FF);
+    
+  }
+.background{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 70.30vw; 
+  background: linear-gradient(to bottom, #00CC99, #6600FF);
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+}
+.logo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  width: 65%;
+  height: 65%;
+  padding: 0;
+  margin: 0;
+}
+.login-title{
+  text-align: center;
+  font-size: 3.450rem;
+  font-weight: 400;
+  background: linear-gradient(to bottom, #00CC99, #6600FF);
+  -webkit-background-clip: text; 
+  color: transparent; 
+
+  
+  
+}
+
+
+.login{
+ display: flex;
+ justify-content: center;
+  background-color: white;
+  width: 30%;
+  border: 1px solid transparent;
+  border-top-left-radius: 32px;
+  border-bottom-left-radius: 32px;
+}
+.container-form{
+  padding: 60px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+   
+
+}
