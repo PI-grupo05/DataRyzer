@@ -1,0 +1,143 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    user-select: none;
+    font-family: "Montserrat", serif;
+    font-style: normal;
+  
+  }
+
+@media only screen and (min-width: 800px) { 
+    body {
+        width: 100%;
+        height: 00px;
+        box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    }
+
+    .section-info {
+        display: flex;
+        height: 100vh;
+        background: linear-gradient(to bottom, #00CC99, #6600FF);
+    }
+
+    .background{
+        display: flex;
+        flex-wrap: wrap;
+        height: 100vh;
+        width: 70.30vw; 
+        background: linear-gradient(to bottom, #00CC99, #6600FF);
+        justify-content: center;
+        align-items: center;
+        padding: 40px;
+    }
+
+    .img-home {
+        width: 30px;
+        height: 30px;
+        position: relative;
+        bottom: 170px;
+        right: 45px;
+        cursor: pointer;
+    }
+
+    .container {
+        display: flex;
+        justify-content: center;
+         background-color: white;
+         width: 40%;
+         border: 1px solid transparent;
+         border-top-right-radius: 32px;
+         border-bottom-right-radius: 32px;
+         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    }
+
+    .container h1 {
+        text-align: left;
+        font-size: 2.250rem;
+        font-weight: 400;
+        background: linear-gradient(to bottom, #00CC99, #6600FF);
+        -webkit-background-clip: text; 
+        color: transparent; 
+    }
+
+    .container p {
+        color: #555;
+        margin-bottom: 20px;
+    }
+
+    .container-form {
+        padding: 60px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .container label {
+        font-size: 1rem;
+        text-align: left;
+        color: #333;
+    }
+
+    .container input {
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 7px 7px 0px 0px;
+        font-size: 0.7rem;
+        width: 380px;
+        border-bottom: 3px solid black;
+    }
+
+    .container button {
+        gap: 10px;
+        width: 51.9vh;
+        height: 7vh;
+        background-color: white;
+        border: 2px solid #1E1E1E;
+        border-radius: 6px;
+        margin-top: 4vh;
+        cursor: pointer;
+    }
+
+    .container button:hover {
+        background-color: #0056b3;
+    }
+
+    .alternative-option{
+        color: #555;
+        margin-top: 20px;
+    }
+
+    .alternative-option{
+        font-size: 0.8rem;
+    }
+
+    .alternative-option a {
+        color: #007bff;
+        text-decoration: none;
+    }
+
+    .alternative-option a:hover {
+        text-decoration: underline;
+    }
+
+    .textos-info{
+        position: relative;
+         bottom: 60px;
+    }
+
+    .link-recuperar{
+        cursor: pointer;
+    }
+}
+
+
+@media only screen and (max-width: 800px) {
+    .img-home {
+        width: 5%;
+        height: 3%;
+    }
+}
