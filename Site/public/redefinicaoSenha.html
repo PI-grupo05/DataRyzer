@@ -5,25 +5,25 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Redefinição de senha</title>
-    <link rel="stylesheet" href="style/redefinicaoSenha.css">
+    <link rel="stylesheet" href="css/redefinicaoSenha.css">
 </head>
 
 <body>
     <section class="section-info">
         <div class="container">
             <form class="container-form">
-            <img src="imgs/homePNG.png" class="img-home">
+            <img src="assets/imgs/homePNG.png" class="img-home">
            <span class="textos-info"> 
             <h1>Redefinição de <br>
                 senha</h1>
             <p id="p_informe">Informe o e-mail de cadastro <br>
                 para recuperação da sua senha</p></span>
                 <label for="email">E-mail</label>
-                <input type="email" class="input-email" id="email" placeholder="Digite seu email" required>
+                <input type="email" class="input-email" id="p_input_Email" placeholder="Digite seu email" required>
 
-                <button type="submit">Enviar e-mail de recuperação</button>        
+                <button type="submit" id="p_envia">Enviar e-mail de recuperação</button>        
 
-            <p class="alternative-option">Não possui acesso ao e-mail? <a onclick="mudarParaTelefone()" class="link-recuperar">Recupere com o telefone</a></p>
+            <p class="alternative-option" id="p_muda">Não possui o e-mail? <a onclick="mudarParaTelefone()" class="link-recuperar">Recupere com o telefone</a></p>
         </form>
 
         <div class="Background">
@@ -37,10 +37,21 @@
 
 </html>
 <script>
-    function mudarParaTelefone(){
-        let informe = p_informe;
+    function mudarParaTelefone() {
+            const p_informe = document.getElementById("p_informe");
+            const p_envia = document.getElementById("p_envia");
+            const p_muda = document.getElementById("p_muda");
+            const input_Email = document.getElementById("p_input_Email")
 
-        if(informe == "Informe o e-mail de cadastro <br> para recuperação da sua senha")
-
-    }
+            // Compara o conteúdo do parágrafo
+            if (p_informe.innerHTML.trim() === "Informe o e-mail de cadastro <br> para recuperação da sua senha") {
+                p_informe.innerHTML = "Informe o telefone de cadastro <br> para recuperação da sua senha";
+                p_muda.innerHTML = `Recuperar com o <a onclick="mudarParaTelefone()" class="link-recuperar">E-mail`
+                input_Email.placeholder = `Digite seu Telefone` 
+            } else {
+                p_informe.innerHTML = "Informe o e-mail de cadastro <br> para recuperação da sua senha";
+                 p_muda.innerHTML = `Não possui o e-mail? <a onclick="mudarParaTelefone()" class="link-recuperar">Recupere com o telefone`
+                
+            }
+        }
 </script>
