@@ -24,21 +24,21 @@
           <img id="logo" src="./assets/imgs/logoData-White.png" alt="logo-DataRyzer">
         </div>
         </div>
-        <span class="home"><img src="./assets/imgs/icons8-casa-50.png" alt="" width="25px" height="25px"></span>
+        <span class="home"><img src="./assets/imgs/homePNG.png" alt="" width="25px" height="25px"></span>
         <div class="login">
           <form class="container-form">
             <h2 class="login-title">Login</h2>
             <label for="email">E-mail</label>
             <div class="input-email">
-              <input id="email_input" type="email" placeholder="Seu email">
+              <input id="email_input" type="email" placeholder="Seu email" required>
             </div>
             <label for="senha">Senha</label>
             <div class="input-senha">
-              <input type="password" id="senha-input" placeholder="Sua senha">
+              <input type="password" id="senha_input" placeholder="Sua senha" required>
             </div>
             <span class="esqueceu-senha"><a href="">Esqueceu sua senha?</a></span>
       
-            <button type="button" class="button" id="button">Entrar</button>
+            <button type="button" class="button" id="button" onclick="entrar()">Entrar</button>
             <hr>
             <span class="cadastre-se">Não possui cadastro? <a href="">Cadastre-se</a></span>
           </form>
@@ -61,7 +61,7 @@
         text: "Preencha todos os campos",
         color: "#f01f1a",
         customClass: {
-          confirmButton: "custom-button", // Classe personalizada para o botão
+          confirmButton: "custom-button", 
         },
       });
 

@@ -12,18 +12,19 @@
   .login-page{
     display: flex;
     height: 100vh;
-    background: linear-gradient(to bottom, #00CC99, #6600FF);
+    background: linear-gradient(to bottom, #070226, #321ec6 );
+   
     
   }
 .background{
   display: flex;
   flex-wrap: wrap;
   height: 100vh;
-  width: 70.30vw; 
-  background: linear-gradient(to bottom, #00CC99, #6600FF);
+  width: 70%; 
+  background: linear-gradient(to bottom, #070226, #321ec6 );
   justify-content: center;
   align-items: center;
-  padding: 40px;
+  padding: 2.5vw;
 }
 .logo{
   width: 100%;
@@ -48,9 +49,9 @@
 }
 .login-title{
   text-align: center;
-  font-size: 3.450rem;
+  font-size: 3.5rem;
   font-weight: 400;
-  background: linear-gradient(to bottom, #00CC99, #6600FF);
+  background: linear-gradient(to bottom, #070226, #321ec6 );
   -webkit-background-clip: text; 
   color: transparent; 
 
@@ -64,19 +65,19 @@
   width: 30%;
   height: 100vh;
   border: 1px solid transparent;
-  border-top-left-radius: 32px;
-  border-bottom-left-radius: 32px;
-  padding: 20px 10px;
+  border-top-left-radius: 2vw;
+  border-bottom-left-radius: 2vw;
+  padding: 2vw 1vw;
   
 }
 .home img{
   position: relative;
-  left: 60px;
-  top: 30px;
+  left: 4vw;  
+  top: 4vh;
 }
 .login .login-title{
   text-align: left;
-  margin-bottom: 60px;
+  margin-bottom: 6vh;
 }
 .container-form{
   display: flex;
@@ -84,39 +85,39 @@
   justify-content: center;
   flex-wrap: wrap;
   width: 65%;
-  margin-bottom: 50px;  
+  margin-bottom: 5vh;  
 
 }
 .container-form label{
   text-align: left;
-  font-size: 13px;
-  font-weight: 300;
+  font-size: 0.8125rem;
+  font-weight: 400;
   color: black;
   display: block;
-  margin-bottom: 2px;
+  margin-bottom: 0.2vw
 }
 .input-email,
 .input-senha {
   display: flex;
   border: 1px solid black;
-  border-top-left-radius: 8px;
-  border-top-right-radius: 8px;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
   border-bottom: solid 3px black;
   width: 100%;
-  padding: 5px;
+  padding: 0,25rem;
   transition: border 0.4s ease;
 }
 .input-email{
-  margin-bottom: 20px;
+  margin-bottom: 2vh; 
 
 }
 input{
-  width: 100%;
+   width: 100%;
   border: 0;
-  padding: 4px;
+  padding: 0.5rem;  
   background: none;
   outline: none;
-  font-size: 13px;
+  font-size: 0.8125rem;
 
 }
 .input-email:hover,
@@ -128,30 +129,30 @@ input{
 
 
 input::placeholder{
-  font-size: 10px;
+  font-size: 0.6rem;
 
 
 }
 .container-form a{
   text-align: left;
-  font-size: 13px;
+  font-size: 0.8125rem;
   color: black;
-  margin-top: 20px;
+  margin-top: 2vh;
   transition: all 0.4s ease;
 }
 .container-form a:hover{
   font-weight: 400;
-  background: linear-gradient(to bottom, #00CC99, #6600FF);
+  background: linear-gradient(to bottom, #070226, #321ec6 );
   -webkit-background-clip: text; 
   color: transparent; 
   
 }
 hr{
-  margin-top: 12px;
+  margin-top: 2vh;
 
 }
 .esqueceu-senha{
-  margin: 12px 0   ;
+  margin: 2vh 0;
 
 }
 .cadastre-se{
@@ -161,19 +162,13 @@ hr{
   color: black;
   
 }
-/* .container-form a {
-  transition: color 0.3s ease;
-  text-align: center;
-  margin-top: 20px; 
-  font-size: 13px;
-  color: black;
-} */
+
 .button{
   width: 100%;
-  padding: 10px 20px;
+   padding: 0.625rem 1.25rem;
   background-color: transparent;
   color: black;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 600;
   border: 2px solid black;
   border-radius: 6px;
@@ -185,6 +180,32 @@ hr{
   color: #ffff;
   border: 2px solid transparent;
   transform:translateY(-3px);
+
+}
+
+@media (max-width: 600px) {
+
+  .login-page {
+    flex-direction: column; 
+  }
+  
+  .background {
+    display: none;
+  }
+  
+  .login {
+    width: 100%; 
+    padding: 2vw; 
+  }
+  
+ 
+  .home img{
+    position: relative;
+    left: 8vw;  
+    top: 8vh;
+ 
+  }
   
 
 }
+
