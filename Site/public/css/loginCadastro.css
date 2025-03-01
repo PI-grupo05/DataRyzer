@@ -96,8 +96,10 @@
   display: block;
   margin-bottom: 0.2vw
 }
+.input-nome,
 .input-email,
-.input-senha {
+.input-senha, 
+.input-confirmar-senha{
   display: flex;
   border: 1px solid black;
   border-top-left-radius: 0.5vw;
@@ -120,8 +122,10 @@ input{
   font-size: 0.8125rem;
 
 }
+.input-nome:hover,
 .input-email:hover,
-.input-senha:hover {
+.input-senha:hover,
+.input-confirmar-senha:hover{
   border-top: 1px solid white;
   border-left: 1px solid white ;
   border-right:1px solid white ;
