@@ -4,100 +4,57 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/login.css">
 
-    <title>Legends Marvel | Cadastro</title>
+    <title>DataRyzer | Cadastro</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <link rel="stylesheet" href="css/cadastro.css" />
+    <script src="./js/sessao.js"></script>
     <link
-    rel="shortcut icon"
-    href="assets/imgs/android-chrome-512x512.png"
-    type="image/x-icon"
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
   />
+
+    <link rel="stylesheet" href="css/login.css" />
   </head>
 
   <body>
-    <section class="main-container">
-      <!-- Formulário de Cadastro -->
-      <div class="container_form" id="registrationform">
-        <div id="cardErro">
-          <span
-            style="color: #f01f1a; font-size: 18px; text-align: center"
-            id="mensagem_erro"
-          ></span>
+    <div class="login-page">
+      <div class="background">
+        <div class="logo">
+          <img id="logo" src="./assets/imgs/logoData-White.png" alt="logo-DataRyzer">
         </div>
-        <h2>Cadastre-se, <span style="color: #f01f1a">Herói!</span></h2>
-
-        <div class="div_nome">
-          <label>Nome completo</label>
-          <input
-            type="text"
-            id="nome_input"
-            placeholder="Seu nome completo"
-            required
-          />
-          <span class="error-message" id="nomeError"></span>
         </div>
+        <span class="home"><img src="./assets/imgs/homePNG.png" alt="" width="25px" height="25px"></span>
+        <div class="login">
+          <form class="container-form">
+            <h2 class="login-title">Cadastro</h2>
+            
+            <label for="nome">Nome</label>
+            <div class="input-nome">
+              <input id="nome_input" type="text" placeholder="Seu nome" required>
+            </div>
 
-        <div class="div_email">
-          <label>Email</label>
-          <input
-            type="email"
-            id="email_input"
-            placeholder="Seu email completo"
-            required
-          />
-          <span class="error-message" id="emailError"></span>
+            <label for="email">E-mail</label>
+            <div class="input-email">
+              <input id="email_input" type="email" placeholder="Seu email" required>
+            </div>
+
+            <label for="senha">Senha</label>
+            <div class="input-senha">
+              <input type="password" id="senha_input" placeholder="Sua senha" required>
+            </div>
+
+            <label for="confirmar_senha">Confirme sua senha</label>
+            <div class="input-confirmar-senha">
+              <input type="password" id="confirmar_senha_input" placeholder="Confirme sua senha" required>
+            </div>
+
+            <button type="button" class="button" id="button" onclick="cadastrar()">Cadastrar</button>
+            <hr>
+            <span class="ja-cadastrado">Já é cadastrado? <a href="login.html">Faça login</a></span>
+          </form>
         </div>
-
-        <div class="div_senha">
-          <label>Senha</label>
-          <input
-            type="password"
-            id="senha_input"
-            placeholder="Deve ter no mínimo 8 caracteres"
-            required
-          />
-          <span class="error-message" id="senhaError"></span>
-        </div>
-
-        <div class="div_confirmar_senha">
-          <label>Confirme sua senha</label>
-          <input
-            type="password"
-            id="confirmacao_senha_input"
-            placeholder="Deve ter no mínimo 8 caracteres"
-            required
-          />
-          <span class="error-message" id="senhaConfirmacaoError"></span>
-        </div>
-
-        <div class="div_select">
-          <label>Qual é o seu herói favorito?</label>
-          <select id="heroi_select" required>
-            <option value="" disabled selected>Selecione o herói</option>
-            <option value="Wolverine">Wolverine</option>
-            <option value="Homem de Ferro">Homem de Ferro</option>
-            <option value="Homem-Aranha">Homem-Aranha</option>
-            <option value="Capitão América">Capitão América</option>
-          </select>
-          <span class="error-message" id="heroiFavError"></span>
-        </div>
-
-        <button class="button" type="submit" onclick="cadastrar()">
-          Cadastre-se
-        </button>
-        <br />
-        <p>Já tem uma conta? <a href="login.html">Login</a></p>
-      </div>
-
-      <!-- Imagem de Fundo -->
-      <div class="container_img">
-        <a href="index.html"
-          ><img src="assets/imgs/background1.jpg" alt="Imagem de fundo"
-        /></a>
-      </div>
-    </section>
+    </div>
   </body>
 </html>
 
