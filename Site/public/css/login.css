@@ -1,0 +1,230 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+*{
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
+  font-family: "Montserrat", serif;
+  font-style: normal;
+
+}
+  .login-page{
+    display: flex;
+    height: 100vh;
+    background: linear-gradient(to bottom, #070226, #321ec6 );
+   
+    
+  }
+.background{
+  display: flex;
+  flex-wrap: wrap;
+  height: 100vh;
+  width: 70%; 
+  background: linear-gradient(to bottom, #070226, #321ec6 );
+  justify-content: center;
+  align-items: center;
+  padding: 2.5vw;
+}
+.logo{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo img{
+  width: 65%;
+  height: 65%;
+  padding: 0;
+  margin: 0;
+  transition: all 0.4s ease;
+  
+}
+.logo img:hover{
+  width: 70%;
+  height: 70%;
+  padding: 0;
+  margin: 0;
+  
+}
+.login-title{
+  text-align: center;
+  font-size: 3.5rem;
+  font-weight: 400;
+  background: linear-gradient(to bottom, #070226, #321ec6 );
+  -webkit-background-clip: text; 
+  color: transparent; 
+
+}
+
+
+.login{
+ display: flex;
+ justify-content: center;
+  background-color: white;
+  width: 30%;
+  height: 100vh;
+  border: 1px solid transparent;
+  border-top-left-radius: 2vw;
+  border-bottom-left-radius: 2vw;
+  padding: 2vw 1vw;
+  
+}
+.home img{
+  position: relative;
+  left: 2vw;  
+  top: 4vh;
+  transition: all 0.4s ease;
+ 
+}
+.home{
+  height: 0;
+  width: 0;
+}
+.login .login-title{
+  text-align: left;
+  margin-bottom: 6vh;
+}
+.container-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 65%;
+  margin-bottom: 5vh;  
+
+}
+.container-form label{
+  text-align: left;
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: black;
+  display: block;
+  margin-bottom: 0.2vw
+}
+.input-email,
+.input-senha {
+  display: flex;
+  border: 1px solid black;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
+  border-bottom: solid 3px black;
+  width: 100%;
+  padding: 0,25rem;
+  transition: border 0.4s ease;
+}
+.input-email{
+  margin-bottom: 2vh; 
+
+}
+input{
+   width: 100%;
+  border: 0;
+  padding: 0.5rem;  
+  background: none;
+  outline: none;
+  font-size: 0.8125rem;
+
+}
+.input-email:hover,
+.input-senha:hover {
+  border-top: 1px solid white;
+  border-left: 1px solid white ;
+  border-right:1px solid white ;
+}
+.home img:hover{
+  width: 30px;
+  height: 30px;
+ 
+
+}
+
+
+input::placeholder{
+  font-size: 0.6rem;
+
+
+}
+.container-form a{
+  text-align: left;
+  font-size: 0.8125rem;
+  color: black;
+  margin-top: 2vh;
+  transition: all 0.4s ease;
+}
+.container-form a:hover{
+  font-weight: 400;
+  background: linear-gradient(to bottom, #070226, #321ec6 );
+  -webkit-background-clip: text; 
+  color: transparent; 
+  
+}
+hr{
+  margin-top: 2vh;
+
+}
+.esqueceu-senha{
+  margin: 2vh 0;
+
+}
+.cadastre-se{
+  margin-top: 10px;
+  text-align: center;
+  font-size: 13px;
+  color: black;
+  
+}
+
+.button{
+  width: 100%;
+   padding: 0.625rem 1.25rem;
+  background-color: transparent;
+  color: black;
+  font-size: 1.2rem;
+  font-weight: 600;
+  border: 2px solid black;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.4s ease-in;
+}
+.button:hover{
+  background-color: black;
+  color: #ffff;
+  border: 2px solid transparent;
+  transform:translateY(-3px);
+
+}
+
+@media (max-width: 600px) {
+
+  .login .login-title{
+    text-align: center;
+  }
+
+  .login-page {
+    flex-direction: column; 
+  }
+  
+  .background {
+    display: none;
+  }
+  
+  .login {
+    width: 100%; 
+    padding: 2vw; 
+  }
+  
+ 
+  .home img{
+    position: relative;
+    left: 8vw;  
+    top: 8vh;
+ 
+  }
+  .home{
+    height: 0;
+  }
+  
+
+}
+
