@@ -14,7 +14,7 @@
             <form class="container-form">
             <img src="assets/imgs/homePNG.png" class="img-home">
            <span class="textos-info"> 
-            <h1>Redefinição de <br>
+            <h1>Redefinição de
                 senha</h1>
             <p id="p_informe">Informe o e-mail de cadastro <br>
                 para recuperação da sua senha</p></span>
@@ -22,8 +22,6 @@
                 <input type="email" class="input-email" id="p_input_Email" placeholder="Digite seu email" required>
 
                 <button type="submit" id="p_envia">Enviar e-mail de recuperação</button>        
-
-            <p class="alternative-option" id="p_muda">Não possui o e-mail? <a onclick="mudarParaTelefone()" class="link-recuperar">Recupere com o telefone</a></p>
         </form>
 
         <div class="Background">
@@ -36,22 +34,3 @@
 </body>
 
 </html>
-<script>
-    function mudarParaTelefone() {
-            const p_informe = document.getElementById("p_informe");
-            const p_envia = document.getElementById("p_envia");
-            const p_muda = document.getElementById("p_muda");
-            const input_Email = document.getElementById("p_input_Email")
-
-            // Compara o conteúdo do parágrafo
-            if (p_informe.innerHTML.trim() === "Informe o e-mail de cadastro <br> para recuperação da sua senha") {
-                p_informe.innerHTML = "Informe o telefone de cadastro <br> para recuperação da sua senha";
-                p_muda.innerHTML = `Recuperar com o <a onclick="mudarParaTelefone()" class="link-recuperar">E-mail`
-                input_Email.placeholder = `Digite seu Telefone` 
-            } else {
-                p_informe.innerHTML = "Informe o e-mail de cadastro <br> para recuperação da sua senha";
-                 p_muda.innerHTML = `Não possui o e-mail? <a onclick="mudarParaTelefone()" class="link-recuperar">Recupere com o telefone`
-                
-            }
-        }
-</script>

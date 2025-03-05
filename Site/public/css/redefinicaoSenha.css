@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-*{
+* {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
@@ -8,10 +8,10 @@
     user-select: none;
     font-family: "Montserrat", serif;
     font-style: normal;
-  
-  }
 
-@media only screen and (min-width: 800px) { 
+}
+
+@media only screen and (min-width: 800px) {
     body {
         width: 100%;
         height: 00px;
@@ -21,23 +21,23 @@
     .section-info {
         display: flex;
         height: 100vh;
-        background: linear-gradient(to bottom, #00CC99, #6600FF);
+        background: linear-gradient(to bottom, #070226, #321ec6);
     }
 
-    .background{
+    .background {
         display: flex;
         flex-wrap: wrap;
         height: 100vh;
-        width: 70.30vw; 
-        background: linear-gradient(to bottom, #00CC99, #6600FF);
+        width: 70.30vw;
+        background: linear-gradient(to bottom, #070226, #321ec6);
         justify-content: center;
         align-items: center;
         padding: 40px;
     }
 
     .img-home {
-        width: 30px;
-        height: 30px;
+        width: 25px;
+        height: 25px;
         position: relative;
         bottom: 170px;
         right: 45px;
@@ -47,21 +47,21 @@
     .container {
         display: flex;
         justify-content: center;
-         background-color: white;
-         width: 40%;
-         border: 1px solid transparent;
-         border-top-right-radius: 32px;
-         border-bottom-right-radius: 32px;
-         box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+        background-color: white;
+        width: 40%;
+        border: 1px solid transparent;
+        border-top-right-radius: 32px;
+        border-bottom-right-radius: 32px;
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
     }
 
     .container h1 {
         text-align: left;
         font-size: 2.250rem;
         font-weight: 400;
-        background: linear-gradient(to bottom, #00CC99, #6600FF);
-        -webkit-background-clip: text; 
-        color: transparent; 
+        background: linear-gradient(to bottom, #070226, #321ec6);
+        -webkit-background-clip: text;
+        color: transparent;
     }
 
     .container p {
@@ -100,38 +100,47 @@
         border-radius: 6px;
         margin-top: 4vh;
         cursor: pointer;
+        font-size: 1.2rem;
+        font-weight: 600;
+        transition: all 0.4s ease-in;
     }
 
     .container button:hover {
-        background-color: #0056b3;
+        background-color: black;
+        color: #ffff;
+        border: 2px solid transparent;
+        transform:translateY(-3px);
     }
 
-    .alternative-option{
-        color: #555;
-        margin-top: 20px;
-    }
-
-    .alternative-option{
-        font-size: 0.8rem;
-    }
-
-    .alternative-option a {
-        color: #007bff;
-        text-decoration: none;
-    }
-
-    .alternative-option a:hover {
-        text-decoration: underline;
-    }
-
-    .textos-info{
+    .textos-info {
         position: relative;
-         bottom: 60px;
+        bottom: 60px;
     }
 
-    .link-recuperar{
+    .link-recuperar {
         cursor: pointer;
     }
+
+    input:hover {
+        border-top: 1px solid white;
+        border-left: 1px solid white;
+        border-right: 1px solid white;
+    }
+
+    input::placeholder {
+        font-size: 0.6rem;
+    }
+
+    input{
+        width: 100%;
+       border: 0;
+       padding: 0.5rem;  
+       background: none;
+       outline: none;
+       font-size: 0.8125rem;
+     
+     }
+
 }
 
 
