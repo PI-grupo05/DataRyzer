@@ -117,13 +117,18 @@
   margin-bottom: 2vh; 
 
 }
+.input-senha{
+  position: relative;
+
+}
 input{
-   width: 100%;
+  width: 100%;
   border: 0;
   padding: 0.5rem;  
   background: none;
   outline: none;
   font-size: 0.8125rem;
+  padding-right: 1.3em;
 
 }
 .input-email:hover,
@@ -227,4 +232,22 @@ hr{
   
 
 }
+.custom-button{
+  background-color: #321ec6;
+  transition: all .3s ease;
+  
+}
+.custom-button:hover{
+  background-color: #070226;
+}
+.input-icon{
+  position: absolute; 
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  cursor: pointer;
+  width:20px;
+  height: 20px;
+}
+
 

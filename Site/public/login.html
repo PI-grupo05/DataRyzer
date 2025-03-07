@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./css/login.css">
+    
 
     <title>DataRyzer | Login</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -33,8 +34,9 @@
               <input id="email_input" type="email" placeholder="Seu email" required>
             </div>
             <label for="senha">Senha</label>
-            <div class="input-senha">
-              <input type="password" id="senha_input" placeholder="Sua senha" required>
+            <div class="input-senha" >
+              <input type="password" id="senha_input" placeholder="Sua senha"  required>
+              <img onclick="aparecerSenha()" id="icon_olho" class="input-icon" src="./assets/imgs/icons8-olho-64.png" width="20px" height="20px" alt="">
             </div>
             <span class="esqueceu-senha"><a href="redefinicaoSenha.html">Esqueceu sua senha?</a></span>
       
@@ -43,6 +45,7 @@
             <span class="cadastre-se">Não possui cadastro? <a href="cadastro.html">Cadastre-se</a></span>
           </form>
         </div>
+        
     </div>
   </body>
 </html>
@@ -54,22 +57,35 @@
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
 
+    const numeros = /[0-9]/;
+
     if (emailVar == "" || senhaVar == "") {
       Swal.fire({
         icon: "error",
         title: "Oops...",
         text: "Preencha todos os campos",
-        color: "#f01f1a",
+        color: "#070226",
         customClass: {
           confirmButton: "custom-button", 
         },
       });
 
-      cardErro.style.display = "flex";
-      mensagem_erro.innerHTML = "Preencha todos os campos";
+      
 
       return false;
-    } else {
+    } else if (emailVar.indexOf("@")) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Email ou senha inválidos!",
+        color: "#070226",
+        customClass: {
+          confirmButton: "custom-button", 
+        },
+      });
+      
+      return false
+    }{
       setInterval(sumirMensagem, 2000);
     }
 
@@ -114,17 +130,15 @@
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
           Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "Email ou senha incorretos!",
-            color: "#f01f1a",
-            customClass: {
-              confirmButton: "custom-button",
-            },
-          });
-          cardErro.style.display = "flex";
-          mensagem_erro.innerHTML = "Email ou senha incorretos!";
-
+        icon: "error",
+        title: "Oops...",
+        text: "Email ou senha inválidos!",
+        color: "#070226",
+        customClass: {
+          confirmButton: "custom-button", 
+        },
+      });
+        
           resposta.text().then((texto) => {
             console.error(texto);
           });
@@ -138,20 +152,18 @@
   }
   function aparecerSenha() {
     const senha = document.getElementById("senha_input");
-    const olho = document.getElementById("olho");
+    const olho = document.getElementById("icon_olho");
 
     if (senha.type === "password") {
       senha.type = "text";
       olho.src =
-        "https://img.icons8.com/?size=100&id=121539&format=png&color=FFFFFF";
+        "assets/imgs/icons8-olho-64.png";
     } else {
-      senha.type = "password"; // Oculta a senha
+      senha.type = "password"; 
       olho.src =
-        "https://img.icons8.com/?size=100&id=WBtbqQY9mcdJ&format=png&color=FFFFFF";
+        "assets/imgs/icons8-olho-fechado-24.png";
     }
   }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
+ 
 </script>
