@@ -1,0 +1,152 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+    /*background-color: #160C5F;*/
+    background: rgb(7,2,38);
+background: linear-gradient(0deg, rgba(7,2,38,1) 0%, rgba(50,30,198,1) 100%);
+}
+
+.conheca {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 8rem 2rem 8rem;
+    margin: 0;
+    /*background-color: #160C5F;*/
+    background-color: rgba(50,30,198,0.0);
+    
+}
+
+.texto_conheca {
+    flex: 1 1 45%;
+    max-width: 45%;
+}
+
+.texto_conheca h2 {
+    font-size: 2rem;
+    color: #fdfdfd;
+    margin-bottom: 1rem;
+}
+
+.texto_conheca p {
+    margin-bottom: 1rem;
+    color: #ddd;
+}
+
+.texto_conheca button {
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    color: #fff;
+    background-color: #160C5F;
+    border: 2px solid white;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.texto_conheca button:hover {
+    background-color: #22148c;
+}
+
+.imagem_conheca {
+    flex: 1 1 45%;
+    max-width: 45%;
+    text-align: center;
+    /*background-color: #160C5F;*/
+    background-color: rgba(50,30,198,0.0);
+    padding: 2rem;
+    border-radius: 8px;
+}
+
+.avaliacao_tema {
+    color: #fdfdfd;
+    display: grid;
+    justify-items: center;
+}
+.avaliacao_tema img{
+    width: 40px;
+    height: 40px;
+}
+
+.avaliacoes {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 2rem 8rem 2rem 8rem;
+    /*background-color: #160C5F;*/
+    background-color: rgba(50,30,198,0.0);
+}
+
+.av1,
+.av2,
+.av3 {
+    flex: 1 1 45%;
+    max-width: 25%;
+}
+
+.card1,
+.card2,
+.card3 {
+    background-color: #321EC6;
+    padding: 1.5rem;
+    text-align: center;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.card1 p,
+.card2 p,
+.card3 p {
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+    color: #ffffff;
+}
+
+.card1 img,
+.card2 img,
+.card3 img {
+    vertical-align: middle;
+    margin: 0 0.5rem;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    color: white;
+}
+
+.perfil_nome {
+    color: white;
+}
+
+
+
+
+
+@media (max-width: 768px) {
+    .conheca {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .texto_conheca,
+    .imagem_conheca {
+        max-width: 100%;
+    }
+    .imagem_conheca img{
+        width: 100%;
+    }
+
+    .avaliacoes {
+        flex-direction: column;
+    }
+
+    .av1,
+    .av2,
+    .av3 {
+        max-width: 100%;
+    }
+}
