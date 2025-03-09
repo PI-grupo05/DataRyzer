@@ -222,6 +222,12 @@ header img{
     justify-content: center;
     align-items: center;
   }
+  #bannerSobre h1{
+    width: 50%;
+  }
+  #bannerSobre img{
+    width: 100%;
+  }
   #bannerSobre p{
     width: 50%;
   }
