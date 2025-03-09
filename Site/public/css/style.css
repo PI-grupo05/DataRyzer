@@ -35,6 +35,10 @@ body {
   border-bottom: 2px solid #e4dddd;
 }
 
+#logoMenu, #botaoMenu, #loginMobile{
+  display: none;
+}
+
 .nav {
   display: flex;
   height: 4rem;
@@ -42,12 +46,8 @@ body {
   justify-content: space-between;
 }
 
-.nav__logo {
-  font-family: "Mohave";
-  font-weight: 500;
-  font-style: normal;
-  color: black;
-  font-size: 32px;
+header img{
+  width: 10%;
 }
 
 .nav__menu {
@@ -150,16 +150,6 @@ body {
   color: #321EC6;
 }
 
-#bannerSobre text{
-  font-size: 150%;
- 
-}
-
-#bannerSobre img{
-  width: 15%;
-
-}
-
 #bannerSobre p{
   width: 25%;
   font-size: 150%;
@@ -171,17 +161,17 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   color: white;
 }
 
 #bannerHistoria h1{
-  margin-top: 2%;
+  margin-bottom: 5%;
 }
 
 #historiaCartoes{
   display: flex;
-  margin-top: 10%;
-  height: 40%;
+  height: 50%;
   width: 94%;
   gap: 5%;
 }
@@ -193,7 +183,55 @@ body {
   align-items: center;
   justify-content: space-evenly;
   background-color: #321EC6;
-  border: 1px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  height: 100%;
+}
+
+@media(max-width: 800px){
+  body{
+    font-size: 80%;
+  }
+  #logoPc, #loginPc, .nav__menu{
+    display: none;
+  }
+  .logo{
+    width: 25%;
+  }
+  #logoMenu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #botaoMenu{
+    display: flex;
+    align-self: end;
+    width: 8%;
+    cursor: pointer;
+  }
+  #loginMobile{
+    display: block;
+  }
+  nav, .nav__list{
+    flex-direction: column;
+    align-items: center;
+  }
+  #bannerSobre{
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  #bannerSobre p{
+    width: 50%;
+  }
+  #bannerHistoria{
+    justify-content: start;
+  }
+  #bannerHistoria h1{
+    margin-top: 5%;
+  }
+  #historiaCartoes{
+    flex-direction: column;
+  }
 }

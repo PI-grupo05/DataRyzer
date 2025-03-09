@@ -9,11 +9,17 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
     />
+    <script src="./js/index.js"></script>
   </head>
   <body>
     <header class="header" id="header">
       <nav class="nav container">
-        <a href="#" class="nav__logo">DATARYZER</a>
+        <img class="logo" id="logoPc" src="./assets/imgs/logoPreto.png" alt="">
+        <div id="logoMenu">
+          <img onclick="abrirMenu()" id="botaoMenu" src="./assets/imgs/iconeMenu.png" alt="">
+          <img class="logo" src="./assets/imgs/logoPreto.png" alt="">
+          <btn class="nav__login" id="loginMobile">Login</btn>
+        </div>
         <div class="nav__menu">
           <ul class="nav__list">
             <li>
@@ -23,23 +29,23 @@
             </li>
             <li>
               <a href="#" class="nav__link"
-                > <span>About Us</span></a
+                > <span>Sobre nós</span></a
               >
             </li>
             <li>
               <a href="#" class="nav__link"
-                > <span>Projects</span></a
+                > <span>Projeto</span></a
               >
             </li>
             <li>
               <a href="#" class="nav__link"
-                > <span>Contact</span></a
+                > <span>Contato</span></a
               >
             </li>
            
           </ul>
         </div>
-        <btn class="nav__login">Login</btn>
+        <btn class="nav__login" id="loginPc">Login</btn>
       </nav>
     </header>
     <div id="bannerPrincipal">
@@ -48,8 +54,7 @@
     <div id="bannerSobre">
       <h1>
         Sobre a<br> 
-        <text class="nav__logo">DATARYZER</text>
-        <img src="./assets/imgs/iconeRaio.png" alt="">
+        <img src="./assets/imgs/logoPreto.png" alt="">
       </h1>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eius inventore illum sed rem assumenda corporis, eveniet, cum voluptatibus, dolore minima ipsum perferendis reprehenderit commodi quasi doloremque maxime esse cumque vero.
