@@ -1,24 +1,20 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    color: #333;
-    line-height: 1.6;
-    /*background-color: #160C5F;*/
-    background: rgb(7,2,38);
-background: linear-gradient(0deg, rgba(7,2,38,1) 0%, rgba(50,30,198,1) 100%);
+#projetoAvaliacao{
+    height: 200%;
+    width: 100%;
 }
 
 .conheca {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     align-items: center;
     padding: 2rem 8rem 2rem 8rem;
     margin: 0;
     /*background-color: #160C5F;*/
-    background-color: rgba(50,30,198,0.0);
-    
+    background-color: rgba(50,30,198,1);
+    min-height: 50%;
+    width: 100%;
 }
+
 
 .texto_conheca {
     flex: 1 1 45%;
@@ -52,13 +48,23 @@ background: linear-gradient(0deg, rgba(7,2,38,1) 0%, rgba(50,30,198,1) 100%);
 }
 
 .imagem_conheca {
-    flex: 1 1 45%;
-    max-width: 45%;
-    text-align: center;
+    width: 50%;
     /*background-color: #160C5F;*/
     background-color: rgba(50,30,198,0.0);
     padding: 2rem;
     border-radius: 8px;
+}
+
+.imagem_conheca img{
+    width: 100%;
+}
+
+#bannerAvaliacao{
+    background: linear-gradient(0deg, rgba(7,2,38,1) 0%, rgba(50,30,198,1) 100%);
+    min-height: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .avaliacao_tema {
@@ -73,7 +79,6 @@ background: linear-gradient(0deg, rgba(7,2,38,1) 0%, rgba(50,30,198,1) 100%);
 
 .avaliacoes {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
     gap: 1rem;
     padding: 2rem 8rem 2rem 8rem;
@@ -124,23 +129,33 @@ background: linear-gradient(0deg, rgba(7,2,38,1) 0%, rgba(50,30,198,1) 100%);
 
 
 
-
-
-@media (max-width: 768px) {
-    .conheca {
+@media (max-width: 800px) {
+    .conheca{
         flex-direction: column;
-        text-align: center;
     }
-
-    .texto_conheca,
-    .imagem_conheca {
+    .texto_conheca{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
         max-width: 100%;
+        text-align: center;
+        font-size: 120%;
+        height: 50%;
+    }
+    .imagem_conheca{
+        height: 50%;
+        width: 100%;
     }
     .imagem_conheca img{
         width: 100%;
     }
 
-    .avaliacoes {
+    .avaliacao_tema{
+        height: 5%;
+    }
+    .avaliacoes{
+        height: 90%;
         flex-direction: column;
     }
 

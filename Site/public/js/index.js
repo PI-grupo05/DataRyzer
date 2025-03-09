@@ -6,7 +6,7 @@ function abrirMenu(){
     if(menuFechado == true){
         menu[0].style.display = 'flex'
         header[0].style.transition = '0.5s'
-        header[0].style.height = '35%'
+        header[0].style.height = '45%'
         menuFechado = false
     }else{
         menu[0].style.display = 'none'
