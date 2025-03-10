@@ -1,0 +1,313 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  background-color: white;
+}
+
+.container {
+  max-width: 100%;
+  margin-inline: 1.5rem;
+}
+
+section{
+    height: 100dvh;
+    width: 100%;
+  }
+  
+  .contate_nos_container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    height: 100%;
+    width: 100%;
+  
+  }
+  
+  .text_contatos{
+    width: 35%;
+  }
+  
+  
+  .text_contatos h1{
+    font-size: 3.5rem;
+    font-weight: 300;
+    background: linear-gradient(90deg, #0B0942, #321EC6);
+    background-clip: text;
+    color: transparent;
+  }
+  
+  
+  .text_contatos p{
+    font-size: 28px;
+    text-align: justify;
+  }
+  
+  
+  .input_contatos{
+  
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+  
+  .inputs{
+      margin: 5px;
+      margin-bottom: 0.9rem;
+      padding:5%;
+      border: 1px solid #000;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: 3px solid #000; 
+  }
+  
+  .mensagem{
+    height: 200px;  
+  }
+  
+  .input_contatos span{
+    margin-left: 2%;
+  }
+  
+  .enviar{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .enviar button{
+    margin-top: 25px;
+    height: 60px;
+    width: 50%;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 3px solid #000;
+    font-weight: bolder;
+    cursor: pointer;
+    
+  }
+  
+  
+  
+  .container_localization_main{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 65%;
+    background-image: url(../assets/imgs/mapa.svg);
+  }
+  
+  .container_localization_main h1{
+    color: #fff;
+    font-size: 42px;
+  }
+  .container_localization_main p{
+    color: #fff ;
+    font-size: 32px;
+  }
+  
+  .conteiner_company_team_title {
+    font-size: 60px;
+    font-weight: bolder;
+    font-style: normal;
+  }
+  
+  footer{
+    background: linear-gradient(90deg, #321EC6, #0B0942);
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  
+  .footer_left{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+  }
+  
+  .footer_mid{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    gap: 30px;
+  }
+  
+  .footer_mid p{
+    width: 50%;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .footer_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+  }
+  
+  .sumario{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .sumario a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  
+  
+  
+  @media (max-width: 1224px){
+    .text_contatos h1{
+      font-size: 2.8rem;
+    }
+  
+    .text_contatos p{
+      font-size: 1.4rem;
+    }
+  
+  }
+  
+  @media (max-width: 1024px){
+  
+    section{
+      height: 100dvh;
+    }
+  
+  
+    .contate_nos_container {
+      flex-direction: column;
+      gap: 4rem;
+    }
+  
+    .input_contatos{
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  
+    .text_contatos h1{
+      text-align: center;
+      margin-bottom: 10px;
+    }
+  
+    .text_contatos{
+      gap: 20px;
+      width: 80%;
+      margin-top: 20px;
+    }
+  
+    .enviar button{
+      width: 98%;
+    }
+  
+    section{
+      height: auto;
+    }
+  
+  
+    .container_localization_main{
+      flex-direction: column;
+      text-align: center;
+      padding: 10%;
+    }
+    
+    .container_localization_main h1{
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+    .container_localization_main p{
+      font-size: 20px;
+    }
+    
+    .conteiner_company_team_title {
+      font-size: 15px;
+    }
+    
+    footer{
+      padding-top: 30px;
+      padding-bottom: 30px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 24px;
+    }
+    
+    
+    .footer_left{
+      width: 100%; 
+      justify-content: left;
+    }
+    
+    .footer_mid{
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      width: 100%;
+      gap: 30px;
+    }
+    
+    .footer_mid p{
+      width: 100%;
+      text-align: left;
+      color: #fff;
+    }
+    
+    .footer_right{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: left;
+      width: 100%;
+    }
+    
+    .sumario{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      width: 100%;
+    }
+    
+  
+    .sumario a{
+      color: #fff;
+      text-decoration: none;
+    }
+  
+  }
