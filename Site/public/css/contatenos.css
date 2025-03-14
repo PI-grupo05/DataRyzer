@@ -45,7 +45,7 @@ section{
   
   
   .text_contatos h1{
-    font-size: 3.5rem;
+    font-size: 4vw;
     font-weight: 300;
     background: linear-gradient(90deg, #0B0942, #321EC6);
     background-clip: text;
@@ -54,14 +54,14 @@ section{
   
   
   .text_contatos p{
-    font-size: 28px;
+    font-size: 1.5vw;
     text-align: justify;
   }
   
   
   .input_contatos{
   
-    width: 40%;
+    width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -69,6 +69,7 @@ section{
   
   
   .inputs{
+      width: 100%;
       margin: 5px;
       margin-bottom: 0.9rem;
       padding:5%;
@@ -102,9 +103,16 @@ section{
     border: 3px solid #000;
     font-weight: bolder;
     cursor: pointer;
-    
+    transition: all 0.4s ease;
   }
   
+  .enviar button:hover {
+    transform:translateY(-2px);
+    border: 1px solid transparent;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+}
   
   
   .container_localization_main{
@@ -190,26 +198,24 @@ section{
   
   
   
-  
-  @media (max-width: 1224px){
-    .text_contatos h1{
-      font-size: 2.8rem;
-    }
-  
-    .text_contatos p{
-      font-size: 1.4rem;
-    }
-  
-  }
-  
   @media (max-width: 1024px){
+
+    .text_contatos p{
+      font-size: 20px;
+    }
+
+    .text_contatos h1{
+      font-size: 40px;
+    }
   
     section{
-      height: 100dvh;
+      height: auto;
+      padding-top:8% ;
     }
   
   
     .contate_nos_container {
+      height: 100vh;
       flex-direction: column;
       gap: 4rem;
     }
@@ -222,6 +228,7 @@ section{
     .text_contatos h1{
       text-align: center;
       margin-bottom: 10px;
+      margin-top: 40px;
     }
   
     .text_contatos{

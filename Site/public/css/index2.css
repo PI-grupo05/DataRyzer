@@ -1,3 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
+
+
 #projetoAvaliacao{
     height: 200%;
     width: 100%;
@@ -21,13 +25,15 @@
     max-width: 45%;
 }
 
-.texto_conheca h2 {
-    font-size: 2rem;
+.texto_conheca h1 {      
+    font-size: 3.0rem;
+    font-weight: 300;
     color: #fdfdfd;
     margin-bottom: 1rem;
 }
 
 .texto_conheca p {
+    font-size: 1.8vw;
     margin-bottom: 1rem;
     color: #ddd;
 }
@@ -44,7 +50,9 @@
 }
 
 .texto_conheca button:hover {
-    background-color: #22148c;
+    background-color: #fff;
+    color: #160C5F;
+    border: 2px solid #160C5F;
 }
 
 .imagem_conheca {
@@ -71,6 +79,7 @@
     color: #fdfdfd;
     display: grid;
     justify-items: center;
+    margin-bottom: 5%;
 }
 .avaliacao_tema img{
     width: 40px;
@@ -91,13 +100,15 @@
 .av3 {
     flex: 1 1 45%;
     max-width: 25%;
+    align-items: stretch;
+    display: flex;
 }
 
 .card1,
 .card2,
 .card3 {
     background-color: #321EC6;
-    padding: 1.5rem;
+    padding: 2rem;
     text-align: center;
     border-radius: 8px;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -130,6 +141,12 @@
 
 
 @media (max-width: 800px) {
+    .texto_conheca p{
+        font-size: 20px ;
+    }
+    .texto_conheca h2{
+        font-size: 2rem ;
+    }
     .conheca{
         flex-direction: column;
     }
