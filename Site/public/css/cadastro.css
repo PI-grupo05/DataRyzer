@@ -62,7 +62,7 @@
  display: flex;
  justify-content: center;
   background-color: white;
-  width: 30%;
+  width: 35%;
   height: 100vh;
   border: 1px solid transparent;
   border-top-left-radius: 2vw;
@@ -76,8 +76,8 @@
   top: 4vh;
 }
 .login .login-title{
-  text-align: left;
-  margin-bottom: 6vh;
+  text-align: center;
+  margin-bottom: 4vh;
 }
 .container-form{
   display: flex;
@@ -88,6 +88,24 @@
   margin-bottom: 5vh;  
 
 }
+.home{
+  height: 0;
+  width: 0;
+}
+.home img{
+  position: relative;
+  left: 2vw;  
+  top: 4vh;
+  transition: all 0.4s ease;
+ 
+}
+.home img:hover{
+  width: 30px;
+  height: 30px;
+ 
+
+}
+
 .container-form label{
   text-align: left;
   font-size: 0.8125rem;
@@ -108,11 +126,9 @@
   width: 100%;
   padding: 0,25rem;
   transition: border 0.4s ease;
-}
-.input-email{
   margin-bottom: 2vh; 
-
 }
+
 input{
    width: 100%;
   border: 0;
@@ -159,12 +175,13 @@ hr{
   margin: 2vh 0;
 
 }
-.cadastre-se{
+.ja-cadastrado{
   margin-top: 10px;
   text-align: center;
   font-size: 13px;
   color: black;
   
+
 }
 
 .button{

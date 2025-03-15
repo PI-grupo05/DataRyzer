@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="css/style.css" />
-    <link rel="stylesheet" href="css/index2.css">
     <link rel="stylesheet" href="css/contatenos.css">
     <link
       rel="stylesheet"
@@ -20,7 +19,7 @@
         <div id="logoMenu">
           <img onclick="abrirMenu()" id="botaoMenu" src="./assets/imgs/iconeMenu.png" alt="">
           <img class="logo" src="./assets/imgs/logoPreto.png" alt="">
-          <btn class="nav__login" id="loginMobile">Login</btn>
+          <btn  class="nav__login" id="loginMobile">Login</btn>
         </div>
         <div class="nav__menu">
           <ul class="nav__list">
@@ -45,14 +44,14 @@
               >
             </li>
             <li>
-              <a href="#" class="nav__link"
+              <a href="#contate_nos" class="nav__link"
                 > <span>Contato</span></a
               >
             </li>
            
           </ul>
         </div>
-        <btn class="nav__login" id="loginPc">Login</btn>
+        <btn onclick="abrirLogin()" class="nav__login" id="loginPc">Login</btn>
       </nav>
     </header>
     <div id="bannerPrincipal">
@@ -99,7 +98,7 @@
       <div class="conheca">
         <div class="texto_conheca">
             <h1>Conheça o projeto</h1>
-            <p>O Dataryzer oferece soluções inovadoras para otimizar a gestão e análise de dados no setor elétrico, promovendo eficiência, transparência e melhor tomada de decisões.
+            <p>A Dataryzer oferece soluções inovadoras para otimizar a gestão e análise de dados no setor elétrico, promovendo eficiência, transparência e melhor tomada de decisões.
             </p>
                   <button>Saiba mais</button>
         </div>
@@ -110,7 +109,7 @@
       </div>
       <div id="bannerAvaliacao">
         <div class="avaliacao_tema"> 
-            <h1><img src="assets/imgs/reveja.png" alt=""> AVALIAÇÕES <img src="assets/imgs/reveja.png" alt=""> </h1>
+            <h1 class="title-avaliacao">Avaliações</h1>
         </div>
         <div class="avaliacoes">
             
@@ -149,7 +148,7 @@
               <span>Email</span>
               <input class="inputs" type="email" placeholder="Digite seu email">
               <span>Mensagem</span>
-              <input class="inputs mensagem" type="text" placeholder="Digite sua mensagem">
+              <input class="inputs mensagem" type="text"  >
               <div class="enviar">
                   <button>Enviar</button>
               </div>
@@ -158,7 +157,7 @@
   </section>
   <section  id="localizacao">
           <div class="container_localization_main" id="mapa">
-              <img src="./assets/imgs/maps.svg" alt="">
+          
               <h1 class="conteiner_company_team_title">Onde estamos localizados?</h1>
               <p class="conteiner_company_team_title">Rua Haddock Lobo, 595 - Cerqueira César, São Paulo -
                   SP,01414-001</p>

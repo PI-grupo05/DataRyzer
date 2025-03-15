@@ -6,11 +6,14 @@ function abrirMenu(){
     if(menuFechado == true){
         menu[0].style.display = 'flex'
         header[0].style.transition = '0.5s'
-        header[0].style.height = '45%'
+        header[0].style.height = '30%'
         menuFechado = false
     }else{
         menu[0].style.display = 'none'
         header[0].style.height = '10%'
         menuFechado = true
     }
+}
+function abrirLogin(){
+    window.location.href = "login.html"
 }

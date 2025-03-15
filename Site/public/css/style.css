@@ -17,8 +17,6 @@ html, body {
 body {
   font-family: "Montserrat", sans-serif;
   font-size: 1rem;
-  background-color: white;
-  
 }
 
 .container {
@@ -77,10 +75,14 @@ header img{
   font-size: 1.1rem;
   
 }
+.nav__link a p {
+
+}
 
 .nav__link span{
   transition: margin 0.4s ease;
   position: relative;
+  font-weight: 400;
   
 }
 
@@ -91,7 +93,7 @@ header img{
   bottom: -3px;
   height: 2px;
   width: 0;
-  background-color: #e4dddd;
+  background-color: #000;
   transition: width .4s ease;
 }
 .nav__link span:hover::after{
@@ -161,10 +163,11 @@ header img{
 #bannerSobre p{
   width: 38%;
   font-size: 1.4rem;
+  
 }
 
 #bannerHistoria{
-  background: linear-gradient(#070226, #321EC6);
+  background: linear-gradient(to bottom, #070226, #321ec6 );
   min-height: 100%;
   display: flex;
   flex-direction: column;
@@ -175,7 +178,8 @@ header img{
 
 #bannerHistoria h1{
   font-size: 3.0rem;
-  margin-bottom: 5%;
+  margin-bottom: 7%;
+  margin-top: 5%;
 }
 
 #historiaCartoes{
@@ -197,6 +201,7 @@ header img{
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   border-top-left-radius: 20px;
   border-bottom-right-radius: 20px;
+  border: 1px #fff solid;
   flex: 1; 
   gap: 10px;
 }
@@ -266,3 +271,512 @@ header img{
     gap: 15px;
   }
 }
+
+
+/*Sobre o projeto*/
+#projetoAvaliacao {
+  min-height: 120vh; /* Garante que a div sempre cubra toda a tela */
+  padding-bottom: 50px; /* Mantém um espaço para a .conheca */
+}
+
+.conheca {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 6rem 2rem 6rem;
+  background-color: #321EC6;
+  height: 100%;
+  width: 100%;
+  gap: 100px;
+
+  
+}
+
+
+.texto_conheca {
+  flex: 1 1 45%;
+  max-width: 45%;
+}
+
+.texto_conheca h1 {      
+  font-size: 3.0rem;
+  font-weight: 300;
+  color: #fdfdfd;
+  margin-bottom: 1rem;
+}
+
+.texto_conheca p {
+  font-size: 1.5vw;
+  margin-bottom: 1rem;
+  color: #ddd;
+}
+
+.texto_conheca button {
+  margin-top: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: transparent;
+  border: 1px solid #fff ;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.texto_conheca button:hover {
+  background-color: #070226;
+  color: white;
+  border: 1px solid #fff;
+}
+
+.imagem_conheca {
+  width: 50%;
+  margin-left: 6rem;
+  margin-top: 4rem;
+ 
+}
+
+.imagem_conheca img{
+  width: 100%;
+  height: 100%;
+}
+.title-avaliacao{
+  
+  font-size: 3.0rem;
+}
+
+#bannerAvaliacao{
+  background: linear-gradient(to top, #070226, #321ec6 );
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  
+}
+
+.avaliacao_tema {
+  color: #fdfdfd;
+  justify-items: center;
+  margin-bottom: 3%;
+  margin-top: 7%;
+}
+
+.avaliacoes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding: 2rem 6rem 2rem 6rem;
+  margin-bottom: 100px;
+ 
+}
+
+.av1,
+.av2,
+.av3 {
+  flex: 1 1 45%;
+  max-width: 25%;
+  align-items: stretch;
+  display: flex;
+}
+
+.card1,
+.card2,
+.card3 {
+
+  background-color: #321EC6;
+  padding: 2rem;
+  text-align: center;
+  border: 1px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.card1 p,
+.card2 p,
+.card3 p {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.card1 img,
+.card2 img,
+.card3 img {
+  vertical-align: middle;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  color: white;
+}
+
+.perfil_nome {
+  color: white;
+}
+
+
+
+@media (max-width: 800px) {
+  .texto_conheca p{
+      font-size: 20px ;
+  }
+  .texto_conheca h2{
+      font-size: 2rem ;
+  }
+  .conheca{
+      flex-direction: column;
+  }
+  .texto_conheca{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      text-align: center;
+      font-size: 120%;
+      height: 50%;
+  }
+  .imagem_conheca{
+      height: 50%;
+      width: 100%;
+  }
+  .imagem_conheca img{
+      width: 100%;
+  }
+
+  .avaliacao_tema{
+      height: 5%;
+  }
+  .avaliacoes{
+      height: 90%;
+      flex-direction: column;
+  }
+
+  .av1,
+  .av2,
+  .av3 {
+      max-width: 100%;
+  }
+}
+/*aréa contate-nos*/
+.container {
+  max-width: 100%;
+  margin-inline: 1.5rem;
+}
+
+#contate_nos, #localizacao{
+    height: 100dvh;
+    width: 100%;
+  }
+  #contate_nos {
+    display: flex;
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column; 
+    padding: 4rem 2rem; 
+  }  
+
+  .contate_nos_container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    height: 100%;
+    width: 100%;
+  
+  }
+  
+  .text_contatos {
+    max-width: 600px; 
+    margin-bottom: 2rem; 
+  }
+  
+  
+  .text_contatos h1{
+    font-size: 4vw;
+    font-weight: 300;
+    background: linear-gradient(90deg, #0B0942, #321EC6);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem; /
+  }
+  
+  
+  .text_contatos p{
+    font-size: 1.5vw;
+    text-align: justify;
+    margin-bottom: 30px;
+  }
+  .input_contatos{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  
+
+  .inputs{
+      width: 100%;
+      margin: 5px;
+      margin-bottom: 0.9rem;
+      padding:3%;
+      border: 1px solid #000;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: 3px solid #000; 
+      transition: border 0.4s ease;
+  }
+  .inputs:hover{
+    border-top: 1px solid white;
+  border-left: 1px solid white ;
+  border-right:1px solid white ;
+  }
+  
+  .mensagem{
+    height: 200px;  
+  }
+  
+  .input_contatos span{
+    margin-left: 2%;
+  }
+  
+  .enviar{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .enviar button{
+    margin-top: 25px;
+    height: 60px;
+    width: 50%;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 3px solid #000;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-size: 1.2rem;
+  }
+  
+  .enviar button:hover {
+    transform:translateY(-2px);
+    border: 1px solid transparent;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+}
+  
+  
+  .container_localization_main{
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100vh;
+    background-image: url(../assets/imgs/mapa.png);
+   background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  .container_localization_main h1{
+    color: #fff;
+    font-size: 42px;
+  }
+  .container_localization_main p{
+    color: #fff ;
+    font-size: 32px;
+  }
+  
+  .conteiner_company_team_title {
+    font-size: 60px;
+    font-weight: bolder;
+    font-style: normal;
+  }
+  
+  footer{
+    background: linear-gradient(90deg, #321EC6, #0B0942);
+    width: 100%;
+    height: 35%;
+    display: flex;
+    flex-direction: row;
+  }
+  
+  
+  .footer_left{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+  }
+  
+  .footer_mid{
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 60%;
+    gap: 30px;
+  }
+  
+  .footer_mid p{
+    width: 50%;
+    text-align: center;
+    color: #fff;
+  }
+  
+  .footer_right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: 20%;
+  }
+  
+  .sumario{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+    width: 100%;
+  }
+  
+  .sumario a{
+    color: #fff;
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  
+  
+  @media (max-width: 1024px){
+
+    .text_contatos p{
+      font-size: 20px;
+    }
+
+    .text_contatos h1{
+      font-size: 40px;
+    }
+  
+    section{
+      height: auto;
+      padding-top:8% ;
+    }
+  
+  
+    .contate_nos_container {
+      height: 100vh;
+      flex-direction: column;
+      gap: 4rem;
+    }
+  
+    .input_contatos{
+      width: 80%;
+      margin-bottom: 20px;
+    }
+  
+    .text_contatos h1{
+      text-align: center;
+      margin-bottom: 10px;
+      margin-top: 40px;
+    }
+  
+    .text_contatos{
+      gap: 20px;
+      width: 80%;
+      margin-top: 20px;
+    }
+  
+    .enviar button{
+      width: 98%;
+    }
+  
+    section{
+      height: auto;
+    }
+  
+  
+    .container_localization_main{
+      flex-direction: column;
+      text-align: center;
+      padding: 10%;
+    }
+    
+    .container_localization_main h1{
+      font-size: 25px;
+      margin-bottom: 10px;
+    }
+    .container_localization_main p{
+      font-size: 20px;
+    }
+    
+    .conteiner_company_team_title {
+      font-size: 15px;
+    }
+    
+    footer{
+      padding-top: 30px;
+      padding-bottom: 30px;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      padding: 24px;
+    }
+    
+    
+    .footer_left{
+      width: 100%; 
+      justify-content: left;
+    }
+    
+    .footer_mid{
+      font-size: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: left;
+      width: 100%;
+      gap: 30px;
+    }
+    
+    .footer_mid p{
+      width: 100%;
+      text-align: left;
+      color: #fff;
+    }
+    
+    .footer_right{
+      display: flex;
+      flex-direction: column;
+      justify-content: space-around;
+      align-items: left;
+      width: 100%;
+    }
+    
+    .sumario{
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      width: 100%;
+    }
+    
+  
+    .sumario a{
+      color: #fff;
+      text-decoration: none;
+    }
+  
+  }

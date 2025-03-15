@@ -11,6 +11,8 @@
 
 }
 
+
+
 @media only screen and (min-width: 800px) {
     body {
         width: 100%;
@@ -34,20 +36,30 @@
         align-items: center;
         padding: 40px;
     }
+   
 
-    .img-home {
-        width: 25px;
-        height: 25px;
+    .home img{
         position: relative;
-        bottom: 170px;
-        right: 45px;
-        cursor: pointer;
-    }
-
+        left: -4vw;  
+        top: -25vh;
+        transition: all 0.4s ease;
+       
+      }
+      .home{
+        height: 0;
+        width: 0;
+      }
+      .home img:hover{
+        width: 30px;
+        height: 30px;
+       
+      
+      }
     .container {
         display: flex;
         justify-content: center;
         background-color: white;
+        align-items: center;
         width: 40%;
         border: 1px solid transparent;
         border-top-right-radius: 32px;
@@ -56,7 +68,7 @@
     }
 
     .container h1 {
-        text-align: left;
+        text-align: center;
         font-size: 2.250rem;
         font-weight: 400;
         background: linear-gradient(to bottom, #070226, #321ec6);
@@ -70,7 +82,7 @@
     }
 
     .container-form {
-        padding: 60px;
+       
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -84,17 +96,18 @@
 
     .container input {
         padding: 10px;
-        border: 1px solid #ccc;
+        border: 1px solid black;
         border-radius: 7px 7px 0px 0px;
         font-size: 0.7rem;
-        width: 380px;
+        width: 100%;
         border-bottom: 3px solid black;
+        margin-bottom: 20px;
     }
 
     .container button {
         gap: 10px;
-        width: 51.9vh;
-        height: 7vh;
+        width: 100%;
+        padding: 0.625rem 1.25rem;
         background-color: white;
         border: 2px solid #1E1E1E;
         border-radius: 6px;
