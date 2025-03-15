@@ -1,24 +1,6 @@
 var usuarioModel = require("../models/usuarioModel");
 
 
-function coletarTotalUsuarios(req, res) {
-    usuarioModel.coletarTotalUsuarios()
-    .then(function (resultadoTotalUsuarios) {
-        if (resultadoTotalUsuarios.length > 0) {
-            console.log("Dados coletados:", resultadoTotalUsuarios);
-            res.status(200).json({
-                totalUsuarios: resultadoTotalUsuarios[0].totalUsuarios,
-            });
-        } else {
-            res.status(204).send("Nenhum resultado encontrado!");
-        }
-    })
-    .catch(function (erro) {
-        console.error("Erro ao coletar dados:", erro);
-        res.status(500).send("Erro no servidor");
-    });
-}
-
 function autenticar(req, res)  {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
@@ -99,5 +81,5 @@ function cadastrar(req, res) {
 module.exports = {
     autenticar,
     cadastrar,
-    coletarTotalUsuarios
+    
 }
