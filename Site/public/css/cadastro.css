@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
-*{
+
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -7,226 +8,250 @@
   user-select: none;
   font-family: "Montserrat", serif;
   font-style: normal;
-
 }
-  .login-page{
-    display: flex;
-    height: 100vh;
-    background: linear-gradient(to bottom, #070226, #321ec6 );
-   
-    
-  }
-.background{
+
+.login-page {
+  display: flex;
+  min-height: 100vh;
+  background: linear-gradient(to bottom, #070226, #321ec6);
+}
+
+.background {
   display: flex;
   flex-wrap: wrap;
-  height: 100vh;
   width: 70%; 
-  background: linear-gradient(to bottom, #070226, #321ec6 );
+  background: linear-gradient(to bottom, #070226, #321ec6);
   justify-content: center;
   align-items: center;
   padding: 2.5vw;
 }
-.logo{
+
+.logo {
   width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 }
-.logo img{
+
+.logo img {
   width: 65%;
-  height: 65%;
-  padding: 0;
-  margin: 0;
+  height: auto;
   transition: all 0.4s ease;
-  
 }
-.logo img:hover{
+
+.logo img:hover {
   width: 70%;
-  height: 70%;
-  padding: 0;
-  margin: 0;
-  
+  height: auto;
 }
-.login-title{
+
+.login-title {
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 3.5rem; 
   font-weight: 400;
-  background: linear-gradient(to bottom, #070226, #321ec6 );
-  -webkit-background-clip: text; 
-  color: transparent; 
-
+  background: linear-gradient(to bottom, #070226, #321ec6);
+  -webkit-background-clip: text;
+  color: transparent;
 }
 
-
-.login{
- display: flex;
- justify-content: center;
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   background-color: white;
-  width: 35%;
-  height: 100vh;
-  border: 1px solid transparent;
+  width: 35%; 
+  min-height: 100vh;
   border-top-left-radius: 2vw;
   border-bottom-left-radius: 2vw;
-  padding: 2vw 1vw;
-  
+  padding: 2vw;
 }
-.home img{
+
+.home img {
   position: relative;
-  left: 4vw;  
+  left: 4vw;
   top: 4vh;
+  transition: all 0.4s ease;
 }
-.login .login-title{
-  text-align: center;
-  margin-bottom: 4vh;
+
+.home img:hover {
+  width: 30px;
+  height: 30px;
 }
-.container-form{
+
+.container-form {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  flex-wrap: wrap;
-  width: 65%;
-  margin-bottom: 5vh;  
-
-}
-.home{
-  height: 0;
-  width: 0;
-}
-.home img{
-  position: relative;
-  left: 2vw;  
-  top: 4vh;
-  transition: all 0.4s ease;
- 
-}
-.home img:hover{
-  width: 30px;
-  height: 30px;
- 
-
+  width: 65%; 
+  margin-bottom: 5vh;
 }
 
-.container-form label{
+.container-form label {
   text-align: left;
-  font-size: 0.8125rem;
+  font-size: 0.8125rem; 
   font-weight: 400;
   color: black;
-  display: block;
-  margin-bottom: 0.2vw
+  margin-bottom: 0.2vw;
 }
+
 .input-nome,
 .input-email,
-.input-senha, 
-.input-confirmar-senha{
+.input-senha,
+.input-confirmar-senha {
   display: flex;
   border: 1px solid black;
   border-top-left-radius: 0.5vw;
   border-top-right-radius: 0.5vw;
   border-bottom: solid 3px black;
   width: 100%;
-  padding: 0,25rem;
+  padding: 0.25rem;
   transition: border 0.4s ease;
-  margin-bottom: 2vh; 
+  margin-bottom: 2vh;
 }
 
-input{
-   width: 100%;
+input {
+  width: 100%;
   border: 0;
-  padding: 0.5rem;  
+  padding: 0.5rem;
   background: none;
   outline: none;
-  font-size: 0.8125rem;
-
+  font-size: 0.8125rem; 
 }
+
 .input-nome:hover,
 .input-email:hover,
 .input-senha:hover,
-.input-confirmar-senha:hover{
+.input-confirmar-senha:hover {
   border-top: 1px solid white;
-  border-left: 1px solid white ;
-  border-right:1px solid white ;
+  border-left: 1px solid white;
+  border-right: 1px solid white;
 }
 
-
-input::placeholder{
-  font-size: 0.6rem;
-
-
+input::placeholder {
+  font-size: 0.6rem; 
 }
-.container-form a{
+
+.container-form a {
   text-align: left;
-  font-size: 0.8125rem;
+  font-size: 0.8125rem; 
   color: black;
   margin-top: 2vh;
   transition: all 0.4s ease;
 }
-.container-form a:hover{
+
+.container-form a:hover {
   font-weight: 400;
-  background: linear-gradient(to bottom, #070226, #321ec6 );
-  -webkit-background-clip: text; 
-  color: transparent; 
-  
+  background: linear-gradient(to bottom, #070226, #321ec6);
+  -webkit-background-clip: text;
+  color: transparent;
 }
-hr{
+
+hr {
   margin-top: 2vh;
-
 }
-.esqueceu-senha{
-  margin: 2vh 0;
 
-}
-.ja-cadastrado{
+.ja-cadastrado {
   margin-top: 10px;
   text-align: center;
-  font-size: 13px;
+  font-size: 13px; 
   color: black;
-  
-
 }
 
-.button{
+.button {
   width: 100%;
-   padding: 0.625rem 1.25rem;
+  padding: 0.625rem 1.25rem;
   background-color: transparent;
   color: black;
-  font-size: 1.2rem;
+  font-size: 1.2rem; 
   font-weight: 600;
   border: 2px solid black;
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.4s ease-in;
 }
-.button:hover{
+
+.button:hover {
   background-color: black;
   color: #ffff;
   border: 2px solid transparent;
-  transform:translateY(-3px);
-
+  transform: translateY(-3px);
 }
 
-@media (max-width: 600px) {
 
+@media (max-width: 768px) {
   .login-page {
-    flex-direction: column; 
+    flex-direction: column;
   }
-  
+
   .background {
     display: none;
   }
-  
-  .login {
-    width: 100%; 
-    padding: 2vw; 
-  }
-  
- 
-  .home img{
-    position: relative;
-    left: 8vw;  
-    top: 8vh;
- 
-  }
-  
 
+  .login {
+    width: 100%;
+    border-radius: 0;
+    padding: 2rem; 
+  }
+
+  .home img {
+    left: 8vw;
+    top: 8vh;
+  }
+
+  .login-title {
+    font-size: 3rem; 
+  }
+
+  .container-form {
+    width: 80%; 
+  }
+
+  input {
+    font-size: 0.875rem; 
+  }
+
+  input::placeholder {
+    font-size: 0.75rem; 
+  }
+
+  .button {
+    font-size: 1rem; 
+  }
 }
 
+
+@media (max-width: 600px) {
+  .login-title {
+    font-size: 2.5rem;
+  }
+
+  .container-form {
+    width: 90%; 
+  }
+
+  .container-form label {
+    font-size: 0.875rem; 
+  }
+
+  .button {
+    font-size: 0.875rem; 
+  }
+}
+
+
+@media (max-width: 480px) {
+  .login-title {
+    font-size: 2rem; 
+  }
+
+  .container-form {
+    width: 95%; 
+  }
+
+  .container-form label {
+    font-size: 0.8125rem; 
+  }
+
+  .button {
+    font-size: 0.8125rem; 
+  }
+}
