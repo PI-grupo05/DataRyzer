@@ -13,6 +13,7 @@ public class Main {
         // importa os métodos da classe Frases
         String [] mensagens = Frases.pegarMensagens();
         String [] labels = Frases.pegarLabels();
+        String[] cores = Frases.pegarCores();
 
         // Cria um "formatador" para exibir a data e hora no padrão "dd/MM/yyyy HH:mm:ss"
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss");
@@ -33,7 +34,7 @@ public class Main {
             i = (i + 1) % mensagens.length;
             // percorre a lista e a reseta
 
-            System.out.println("[" + formattedDateTime + "] [" + label + "] " + mensagem);
+            System.out.println("[" + formattedDateTime + "] " + cores[i] + "[" + label + "]" + "\u001B[0m " + mensagem);
             // pega horário atual do sistema em milissegundos.
             Long start = System.currentTimeMillis();
             //Long tipo whapper, tipo de dado que armazena valores inteiros grandes

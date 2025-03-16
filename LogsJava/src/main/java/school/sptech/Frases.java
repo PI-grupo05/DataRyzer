@@ -27,4 +27,22 @@ public class Frases {
                 "INFORMACAO", "RASTREIO", "INFORMACAO", "ALERTA", "ERRO"
         };
     }
+
+    static String[] pegarCores() {
+        return new String[]{
+                "\u001B[32m", // Verde (INFORMACAO)
+                "\u001B[31m", // Vermelho (ALERTA)
+                "\u001B[36m", // Ciano (RASTREIO)
+                "\u001B[32m", // Verde (INFORMACAO)
+                "\u001B[31m", // Vermelho (ALERTA)
+                "\u001B[31m", // Vermelho (FATAL)
+                "\u001B[33m", // Amarelo (ALERTA)
+                "\u001B[31m", // Vermelho (ALERTA)
+                "\u001B[32m", // Verde (INFORMACAO)
+                "\u001B[36m", // Ciano (RASTREIO)
+                "\u001B[32m", // Verde (INFORMACAO)
+                "\u001B[31m", // Vermelho (ALERTA)
+                "\u001B[31m"  // Vermelho (ERRO)
+        };
+    }
 }
