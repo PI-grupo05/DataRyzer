@@ -4,45 +4,49 @@ public class Frases {
 
     static String[] pegarMensagens() {
         return new String[]{
-                "Sistema de monitoramento de interrupções de energia iniciado com sucesso.",
-                "Alerta: Interrupção de energia detectada na região Oeste. Concessionária responsável: 'X'.",
-                "Duração estimada da interrupção: 2 horas. Equipe técnica foi notificada.",
-                "Energia restaurada na região Oeste. Concessionária responsável: 'X'.",
-                "Atenção: Interrupção prolongada na região Nordeste. Investigação em andamento.",
-                "Erro crítico: Falha no sistema de monitoramento de quedas de energia.",
-                "Aviso: Variação instável na tensão elétrica detectada na região Sul.",
-                "Nova queda de energia registrada na região Central. Técnicos a caminho.",
-                "Aviso: Manutenção programada na rede elétrica da região Norte. Possíveis oscilações.",
-                "Sistema de backup ativado devido a falha na distribuição de energia.",
-                "Relatório gerado: Média de tempo de restauração nas últimas 24 horas: 3 horas e 15 minutos.",
-                "Alerta: Sobrecarga na rede identificada na região Sudeste. Monitoramento intensificado.",
-                "Falha na comunicação com sensores remotos. Verificação necessária."
+            "Cadastro realizado: Usuário ID 102 - Nome: Ana Souza - Email: ana.souza@example.com"
+                    ,
+                    "Falha no cadastro: Email já cadastrado - Email: ana.souza@example.com"
+                    ,
+                    "Login realizado: Usuário ID 103 - Email: joao.silva@example.com"
+                    ,
+                    "Falha no login: Senha incorreta - Email: maria.joaquina@example.com"
+                    ,
+                    "Tentativa de login suspeita: IP: 192.168.1.150 - Email: hacker@fake.com"
+                    ,
+                    "Conexão estabelecida: Usuário ID 103 - IP: 192.168.1.103"
+                    ,
+                    " Acesso negado: Permissão insuficiente para acessar a página Admin Dashboard - Usuário ID 102"
+                    ,
+                    "Erro interno do servidor: Código 500 - Usuário ID 102 ao acessar Página de Configurações"
+                    ,
+                    "Atualização de senha concluída: Usuário ID 102"
+                    ,
+                    "Tentativa de cadastro com CPF inválido: Usuário ID não gerado - CPF: 000.000.000-00"
         };
     }
 
     static String[] pegarLabels() {
         return new String[]{
-                "INFORMACAO", "ALERTA", "RASTREIO", "INFORMACAO",
-                "ALERTA", "FATAL", "ALERTA", "ALERTA",
-                "INFORMACAO", "RASTREIO", "INFORMACAO", "ALERTA", "ERRO"
+                "INFORMACAO","ERRO","INFORMACAO",
+                "ERRO","ALERTA","INFORMACAO",
+                "ERRO","ERRO","INFORMACAO","ERRO"
         };
     }
 
     static String[] pegarCores() {
         return new String[]{
-                "\u001B[32m", // Verde (INFORMACAO)
-                "\u001B[31m", // Vermelho (ALERTA)
-                "\u001B[36m", // Ciano (RASTREIO)
-                "\u001B[32m", // Verde (INFORMACAO)
-                "\u001B[31m", // Vermelho (ALERTA)
-                "\u001B[31m", // Vermelho (FATAL)
+                "\u001B[32m", // Verde (INFORMAÇÃO)
+                "\u001B[31m", // Vermelho (ERRO)
+                "\u001B[32m", // Verde (INFORMAÇÃO)
+                "\u001B[31m", // Vermelho (ERRO)
                 "\u001B[33m", // Amarelo (ALERTA)
-                "\u001B[31m", // Vermelho (ALERTA)
-                "\u001B[32m", // Verde (INFORMACAO)
-                "\u001B[36m", // Ciano (RASTREIO)
-                "\u001B[32m", // Verde (INFORMACAO)
-                "\u001B[31m", // Vermelho (ALERTA)
+                "\u001B[32m", // Verde (INFORMAÇÃO)
+                "\u001B[31m", // Vermelho (ERRO)
+                "\u001B[31m", // Vermelho (ERRO)
+                "\u001B[32m", // Verde (INFORMAÇÃO)
                 "\u001B[31m"  // Vermelho (ERRO)
+
         };
     }
 }
