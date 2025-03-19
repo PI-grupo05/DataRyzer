@@ -27,14 +27,15 @@ public class Main {
             LocalDateTime now = LocalDateTime.now();
             String formattedDateTime = now.format(formatter);
             // Formata a data e hora atuais usando o formatador!!!!
-            String dataFormatada = LocalDateTime.now().format(formatter);
+           // String dataFormatada = LocalDateTime.now().format(formatter);
             String label = labels[i]; //index para percorrer o array
             String mensagem = mensagens[i];
+
+            System.out.println("[" + formattedDateTime + "] " + cores[i] + "[" + label + "]" + "\u001B[0m " + mensagem);
 
             i = (i + 1) % mensagens.length;
             // percorre a lista e a reseta
 
-            System.out.println("[" + formattedDateTime + "] " + cores[i] + "[" + label + "]" + "\u001B[0m " + mensagem);
             // pega horário atual do sistema em milissegundos.
             Long start = System.currentTimeMillis();
             //Long tipo whapper, tipo de dado que armazena valores inteiros grandes
