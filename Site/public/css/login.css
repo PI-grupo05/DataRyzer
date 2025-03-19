@@ -108,7 +108,7 @@
   border-top-right-radius: 0.5vw;
   border-bottom: solid 3px black;
   width: 100%;
-  padding: 0,25rem;
+  padding: 0.125rem;
   transition: border 0.4s ease;
 }
 .input-email{
