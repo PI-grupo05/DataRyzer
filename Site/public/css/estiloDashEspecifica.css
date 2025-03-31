@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
+
+body{
+    margin: 0;
+    height: 100%;
+    width: 100%;
+    background-color: #E9E9E9;
+    font-family: "Mohave";
+}
+
+#secaoUsuario{
+    display: flex;
+    justify-content: end;
+    gap: 20px;
+}
+
+#dadosUsuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#tipos h2{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+}
+
+#cartoes{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cartao{
+    background-color: white;
+    display: flex;
+    padding: 1%;
+}
+
+.cartaoInformacao{
+    text-align: center;
+}
+
+.cartaoInformacao h2{
+    color: #7F7F7F;
+    font-size: 200%;
+}
+
+.cartaoInformacao b{
+    font-size: 250%;
+}
