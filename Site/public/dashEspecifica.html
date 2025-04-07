@@ -4,42 +4,92 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <title>Document</title>
 </head>
 <body>
-    <section id="secaoUsuario">
-        <img src="./assets/imgs/iconeUsuario.png" alt="">
-        <div id="dadosUsuario">
-            <span>Usuario</span>
-            <span>Cargo</span>
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>                
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Empresas</span>
+            </a>
         </div>
-    </section>
-    <h1>Interrupções Mensais</h1>
-    <section id="tipos">
-        <h2>Tipos</h2>
-        <section id="cartoes">
-            <div class="cartao">
-                <img src="./assets/imgs/iconeMeioAmbiente.png" alt="">
-                <div class="cartaoInformacao">
-                    <h2>Meio Ambiente</h2>
-                    <b>50%</b>
-                </div>
-            </div>
-            <div class="cartao">
-                <img src="./assets//imgs/iconePergunta.png" alt="">
-                <div class="cartaoInformacao">
-                    <h2>Não Classificado</h2>
-                    <b>30%</b>
-                </div>
-            </div>
-            <div class="cartao">
-                <img src="./assets/imgs/iconeSistema.png" alt="">
-                <div class="cartaoInformacao">
-                    <h2>Sistema</h2>
-                    <b>20%</b>
+        <a id="botaoSair" href="">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
                 </div>
             </div>
         </section>
-    </section>
+        <h1>Interrupções Mensais</h1>
+        <section id="tipos">
+            <h2 class="drop-shadow">Tipos</h2>
+            <section id="cartoes">
+                <div class="cartao drop-shadow">
+                    <img src="./assets/imgs/iconeMeioAmbiente.png" alt="">
+                    <div class="metricaTexto">
+                        <h2>Meio Ambiente</h2>
+                        <b>50%</b>
+                    </div>
+                </div>
+                <div class="cartao drop-shadow">
+                    <img src="./assets//imgs/iconePergunta.png" alt="">
+                    <div class="metricaTexto">
+                        <h2>Não Classificado</h2>
+                        <b>30%</b>
+                    </div>
+                </div>
+                <div class="cartao drop-shadow">
+                    <img src="./assets//imgs/iconeSistema.png" alt="">
+                    <div class="metricaTexto">
+                        <h2>Sistema</h2>
+                        <b>20%</b>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section id="secaoGraficos">
+            <div class="drop-shadow">
+                <canvas id="graficoConteudo"></canvas>
+            </div>
+            <div id="metricas">
+                <div class="metricaTexto drop-shadow">
+                    <h2>Maior índice de interrupções</h2>
+                    <b>20%</b>
+                </div>
+                <div class="metricaTexto drop-shadow">
+                    <h2>Cidade</h2>
+                    <b>...</b>
+                </div>
+            </div>
+            <div class="drop-shadow">
+                <canvas id="graficoConteudo2" width="300" height="250"></canvas>
+            </div>
+        </section>
+    </div>
 </body>
 </html>
+<script src="./js/dashEspecifica.js"></script>
