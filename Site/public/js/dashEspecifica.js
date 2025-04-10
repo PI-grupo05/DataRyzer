@@ -6,14 +6,14 @@ function abrirMenu(){
   const containerConteudo = document.getElementById('containerConteudo')
 
   if(menuAberto == true){
-    botaoMenu.style.transform = "scaleX(-1)"
+    botaoMenu.style.transform = "scaleX(1)"
     menuLateral.style.width = "0%"
     menuLateral.style.fontSize = "0%"
     containerConteudo.style.width = "100%"
     menuAberto = false
   }
   else{
-    botaoMenu.style.transform = "scaleX(1)"
+    botaoMenu.style.transform = "scaleX(-1)"
     menuLateral.style.width = "20%"
     menuLateral.style.fontSize = "100%"
     containerConteudo.style.width = "80%"
@@ -22,14 +22,13 @@ function abrirMenu(){
 }
 
 
-const ctx = document.getElementById('graficoConteudo');
+const ctx = document.getElementById('graficoLinha');
 
 var myChart = new Chart(ctx, {
   type: 'line',
   data: {
-    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
+    labels: ['03/04', '04/04', '05/04', '06/04', '07/04', '08/04'],
     datasets: [{
-      label: '# of Votes',
       data: [10, 5, 3, 5, 2, 3],
       borderWidth: 3,
       borderColor: "#8D34F9"
@@ -47,7 +46,7 @@ var myChart = new Chart(ctx, {
       },
       title: {
         display: true,
-        text: 'Quedas ao longo dos anos',
+        text: 'Quedas nos últimos dias',
         font:{
           size: 18,
         },
@@ -57,36 +56,55 @@ var myChart = new Chart(ctx, {
   }
 });
 
-const ctx2 = document.getElementById('graficoConteudo2');
+const ctx2 = document.getElementById('graficoBarra');
 
 var myChart = new Chart(ctx2, {
-  type: 'doughnut',
+  type: 'bar',
   data: {
-    labels: ['2020', '2021', '2022', '2023', '2024', '2025'],
-    datasets: [{
-      label: '# of Votes',
-      data: [10, 5, 3, 5, 2, 3],
-      borderWidth: 3,
-      borderColor: "#8D34F9",
-      circumference: 180,
-      rotation: 270
-    }]
+    labels: ['Meio Ambiente', 'Não Classificado', 'Sistema'],
+    datasets: [
+      {
+      label: 'Mês Atual',
+      data: [45, 42, 45],
+      backgroundColor: "#5A6ACF"
+    },
+    {
+      label: 'Mês Passado',
+      data: [35, 32, 35],
+      backgroundColor: "#c4c2c2"
+    },
+  ]
   },
   options: {
     scales: {
+      y:{
+        display: false,
+        grid:{
+          display: false
+        }
+      },
+      x:{
+        grid:{
+          display: false
+        }
+      }
     },
     plugins: {
-      legend: {
-        display: false
+      datalabels: {
+        color: '#fff',
+        font:{
+          size: 18,
+        }
       },
       title: {
         display: true,
-        text: 'Quedas ao longo dos anos',
+        text: 'Interrupções por motivo',
         font:{
           size: 18,
         },
         align: 'center'
       }
     }
-  }
+  },
+  plugins: [ChartDataLabels]
 });

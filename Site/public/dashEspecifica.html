@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <title>Document</title>
 </head>
 <body>
@@ -44,49 +45,43 @@
                 </div>
             </div>
         </section>
-        <h1>Interrupções Mensais</h1>
-        <section id="tipos">
-            <h2 class="drop-shadow">Tipos</h2>
+        <h1>Interrupções do Mês</h1>
+        <section id="metricas">
             <section id="cartoes">
                 <div class="cartao drop-shadow">
-                    <img src="./assets/imgs/iconeMeioAmbiente.png" alt="">
                     <div class="metricaTexto">
-                        <h2>Meio Ambiente</h2>
-                        <b>50%</b>
+                        <h2>Maior índice de quedas</h2>
+                        <b>10 | 03/04</b>
+                        <p class="metricaNegativa">
+                            +5
+                            <img src="./assets/imgs/trianguloNegativo.png" alt="">
+                        </p>
                     </div>
                 </div>
                 <div class="cartao drop-shadow">
-                    <img src="./assets//imgs/iconePergunta.png" alt="">
                     <div class="metricaTexto">
-                        <h2>Não Classificado</h2>
-                        <b>30%</b>
+                        <h2>Duração média</h2>
+                        <b>45 min</b>
+                        <p class="metricaPositiva">
+                            -15 min
+                            <img src="./assets/imgs/trianguloPositivo.png" alt="">
+                        </p>
                     </div>
                 </div>
                 <div class="cartao drop-shadow">
-                    <img src="./assets//imgs/iconeSistema.png" alt="">
                     <div class="metricaTexto">
-                        <h2>Sistema</h2>
-                        <b>20%</b>
+                        <h2>Média de quedas</h2>
+                        <b>5</b>
                     </div>
                 </div>
             </section>
         </section>
         <section id="secaoGraficos">
-            <div class="drop-shadow">
-                <canvas id="graficoConteudo"></canvas>
+            <div class="grafico drop-shadow">
+                <canvas id="graficoLinha"></canvas>
             </div>
-            <div id="metricas">
-                <div class="metricaTexto drop-shadow">
-                    <h2>Maior índice de interrupções</h2>
-                    <b>20%</b>
-                </div>
-                <div class="metricaTexto drop-shadow">
-                    <h2>Cidade</h2>
-                    <b>...</b>
-                </div>
-            </div>
-            <div class="drop-shadow">
-                <canvas id="graficoConteudo2" width="300" height="250"></canvas>
+            <div class="grafico drop-shadow">
+                <canvas id="graficoBarra"></canvas>
             </div>
         </section>
     </div>
