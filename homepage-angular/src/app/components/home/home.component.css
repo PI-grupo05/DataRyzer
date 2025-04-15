@@ -2,7 +2,7 @@
 .bannerPrincipal{
   display: flex;
   align-items: center;
-  background-image: url('../../../assets/imgs/bannerPrincipal.png');
+  background-image: url('../../../assets/bannerPrincipal.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
