@@ -8,8 +8,23 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-  logarPc(){
-
-  }
-
+   menuFechado: boolean = true
+/*
+ abrirMenu(){
+    const menu = document.getElementsByClassName('nav__menu')
+    const header = document.getElementsByClassName('header')
+    if(this.menuFechado == true){
+        menu[0].style.display = 'flex'
+        header[0].style.transition = '0.5s'
+        header[0].style.height = '30%'
+        this.menuFechado = false
+    }else{
+        menu[0].style.display = 'none'
+        header[0].style.height = '10%'
+        this.menuFechado = true
+    }
+}
+ abrirLogin(){
+    window.location.href = "login.html"
+} */
 }

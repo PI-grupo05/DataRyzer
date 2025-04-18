@@ -96,3 +96,33 @@ header img{
   cursor: pointer;
 
 }
+
+@media(max-width: 800px){
+  body{
+    font-size: 80%;
+  }
+  #logoPc, #loginPc, .nav__menu{
+    display: none;
+  }
+  .logo{
+    width: 30%;
+  }
+  #logoMenu{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  #botaoMenu{
+    display: flex;
+    align-self: end;
+    width: 8%;
+    cursor: pointer;
+  }
+  #loginMobile{
+    display: block;
+  }
+  nav, .nav__list{
+    flex-direction: column;
+    align-items: center;
+  }
+}
