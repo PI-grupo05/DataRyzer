@@ -48,7 +48,9 @@ function cadastrar(req, res) {
     var nome = req.body.nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
-   var select = req.body.selectServer;
+    var telefone = req.body.telefoneServer;
+    var codigoAssociacao = req.body.codigoAssociacaoServer;
+    var tipoUsuario = req.body.tipoUsuarioServer;
 
     // Faça as validações dos valores
     if (nome == undefined) {
@@ -57,24 +59,31 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
-    }  else {
-
+    }  else if(telefone == undefined){
+        res.status(400).send("Seu telefone está undefined");
+    }else if(codigoAssociacao == undefined){
+        res.status(400).send("Seu codigo está undefined");
+    }else if(tipoUsuario == undefined){
+        res.status(400).send("Tipo de usuario undefined")
+    }else{
+        
+    
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, select)
-            .then(
-                function (resultado) {
-                    res.json(resultado);
+        usuarioModel.cadastrar(nome, email, senha, telefone, codigoAssociacao, tipoUsuario)
+            .then(function (resultado) {
+                res.json(resultado);
+            })
+            .catch(function (erro) {
+                console.log("\nHouve um erro ao realizar o cadastro!");
+                console.log(erro);
+    
+                // Verifica se o erro foi causado por código inválido
+                if (erro === "Código de associação inválido") {
+                    res.status(400).json({ erro: "Código de associação inválido" });
+                } else {
+                    res.status(500).json({ erro: erro.sqlMessage || "Erro ao cadastrar" });
                 }
-            ).catch(
-                function (erro) {
-                    console.log(erro);
-                    console.log(
-                        "\nHouve um erro ao realizar o cadastro! Erro: ",
-                        erro.sqlMessage
-                    );
-                    res.status(500).json(erro.sqlMessage);
-                }
-            );
+            });
     }
 }
 

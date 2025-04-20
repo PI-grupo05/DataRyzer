@@ -47,7 +47,15 @@
             <label for="confirmar_senha">Confirme sua senha</label>
             <div class="input-confirmar-senha">
               <input type="password" id="confirmar_senha_input" placeholder="Confirme sua senha" required>
-            </div> <br>
+            </div>
+            <label for="telefone">Telefone</label>
+            <div class="input-confirmar-senha">
+              <input type="tel" id="telefone_input" placeholder="XXXX-XXXX" required>
+            </div>
+            <label for="codigo_associacao">Codigo de associação</label>
+            <div class="input-confirmar-senha">
+              <input type="password" id="codigo_associacao_input" placeholder="Ex: 12324" required>
+            </div>
 
             <button type="button" class="button" id="button" onclick="cadastrar()">Cadastrar</button>
             <hr>
@@ -67,8 +75,10 @@
     var nomeVar = nome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
-    var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var selectVar = heroi_select.value;
+    var confirmacaoSenhaVar = confirmar_senha_input.value;
+    var telefoneVar = telefone_input.value;
+    var codigoAssociacaoVar = codigo_associacao_input.value;
+    var tipoUsuarioVar = 'MASTER';
 
     const numeros = /[0-9]/;
 
@@ -78,7 +88,8 @@
       emailVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      selectVar == ""
+      telefoneVar == "" ||
+      codigoAssociacaoVar == ""
     ) {
       Swal.fire({
         icon: "error",
@@ -205,56 +216,91 @@
       mensagem_erro.innerHTML = "As senhas devem ser iguais";
 
       return false;
-    } else {
-      setInterval(sumirMensagem, 2000);
+    } else if (telefoneVar.length < 10 || telefoneVar.length > 15) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O telefone deve ter entre 10 e 15 dígitos",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button",
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O telefone deve ter entre 10 e 15 dígitos";
+    }else if (codigoAssociacaoVar.length == 0) {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "O código de associação deve ser preenchido",
+        color: "#f01f1a",
+        customClass: {
+          confirmButton: "custom-button",
+        },
+      });
+      cardErro.style.display = "flex";
+      mensagem_erro.innerHTML = "O código de associação deve ser preenchido";
     }
 
+
     // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        selectServer: selectVar,
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+  fetch("/usuarios/cadastrar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      nomeServer: nomeVar,
+      emailServer: emailVar,
+      senhaServer: senhaVar,
+      telefoneServer: telefoneVar,
+      codigoAssociacaoServer: codigoAssociacaoVar,
+      tipoUsuarioServer: tipoUsuarioVar
+    }),
+  })
+  .then(function (resposta) {
+    console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-          Swal.fire({
-            title: "Sucesso!",
-            text: "Usuário cadastrado!",
-            icon: "success",
-            showConfirmButton: false,
-            color: "#f01f1a",
-          });
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(function() {
-            window.location = "login.html";
-          }, "2000");
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
+    if (resposta.ok) {
+      Swal.fire({
+        title: "Sucesso!",
+        text: "Usuário cadastrado!",
+        icon: "success",
+        showConfirmButton: false,
+        color: "#f01f1a",
       });
+
+
+      setTimeout(function () {
+        window.location = "login.html";
+      }, 2000);
+    } else {
+      throw "Houve um erro ao tentar realizar o cadastro!";
+    }
+  })
+  .catch(function (resposta) {
+    console.log(`#ERRO: ${resposta}`);
+
+    // Verifica se o erro é sobre o código de associação inválido
+    if (resposta && resposta.erro && resposta.erro === "Código de associação inválido") {
+      Swal.fire({
+        title: "Erro!",
+        text: "O código de associação informado é inválido. Tente novamente.",
+        icon: "error",
+        color: "#f01f1a",
+      });
+    } else {
+      // Caso seja outro erro
+      Swal.fire({
+        title: "Erro!",
+        text: resposta || "Houve um erro inesperado. Tente novamente.",
+        icon: "error",
+        color: "#f01f1a",
+      });
+    }
+  });
 
     return false;
   }
 
-  function sumirMensagem() {
-    cardErro.style.display = "none";
-  }
 </script>

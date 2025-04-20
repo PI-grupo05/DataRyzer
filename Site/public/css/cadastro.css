@@ -86,7 +86,7 @@
   justify-content: center;
   flex-wrap: wrap;
   width: 65%;
-  margin-bottom: 5vh;  
+  margin-bottom: 1vh;  
 
 }
 .home{
@@ -181,8 +181,6 @@ hr{
   text-align: center;
   font-size: 13px;
   color: black;
-  
-
 }
 
 .button{
