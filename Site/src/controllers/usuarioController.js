@@ -21,12 +21,14 @@ function autenticar(req, res)  {
                         console.log(resultadoAutenticar);
                         
                         res.json({
-                            id: resultadoAutenticar[0].id,
-                            email: resultadoAutenticar[0].email,
+                            id_usuario: resultadoAutenticar[0].id_usuario,
                             nome: resultadoAutenticar[0].nome,
-                            senha: resultadoAutenticar[0].senha
+                            tipo_usuario: resultadoAutenticar[0].tipo_usuario,
+                            telefone: resultadoAutenticar[0].telefone,
+                            email: resultadoAutenticar[0].email,
+                            fk_cidade: resultadoAutenticar[0].fk_cidade
                         })
-             
+                        // id_usuario, nome, tipo_usuario, telefone, email, fk_cidade, fk_distribuidora
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {

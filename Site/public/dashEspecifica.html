@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <title>Document</title>
+</head>
+<body>
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>                
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Empresas</span>
+            </a>
+        </div>
+        <a id="botaoSair" href="">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <h1>Interrupções do Mês</h1>
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="cartao drop-shadow">
+                    <div class="metricaTexto">
+                        <h2>Maior índice de quedas</h2>
+                        <b>10 | 03/04</b>
+                        <p class="metricaNegativa">
+                            +5
+                            <img src="./assets/imgs/trianguloNegativo.png" alt="">
+                        </p>
+                    </div>
+                </div>
+                <div class="cartao drop-shadow">
+                    <div class="metricaTexto">
+                        <h2>Duração média</h2>
+                        <b>45 min</b>
+                        <p class="metricaPositiva">
+                            -15 min
+                            <img src="./assets/imgs/trianguloPositivo.png" alt="">
+                        </p>
+                    </div>
+                </div>
+                <div class="cartao drop-shadow">
+                    <div class="metricaTexto">
+                        <h2>Média de quedas</h2>
+                        <b>5</b>
+                    </div>
+                </div>
+            </section>
+        </section>
+        <section id="secaoGraficos">
+            <div class="grafico drop-shadow">
+                <canvas id="graficoLinha"></canvas>
+            </div>
+            <div class="grafico drop-shadow">
+                <canvas id="graficoBarra"></canvas>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+<script src="./js/dashEspecifica.js"></script>
