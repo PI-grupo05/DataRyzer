@@ -1,0 +1,14 @@
+FROM mysql:latest
+
+
+# Define as variáveis de ambiente esperadas pela imagem oficial do MySQL
+ENV MYSQL_ROOT_PASSWORD=41465490Fe*
+ENV MYSQL_DATABASE=dataryzer
+
+# Copia scripts de inicialização
+COPY ./Site/src/database/dataryzer.sql /docker-entrypoint-initdb.d/
+
+# Exponha a porta padrão do MySQL
+EXPOSE 3306
+
+

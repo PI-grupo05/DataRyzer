@@ -1,0 +1,16 @@
+FROM node:18
+
+WORKDIR /app
+
+# 1. Copia apenas os arquivos de configuração e dependências
+COPY ./Site/ . ./
+
+# 2. Instala as dependências (incluindo o pacote dotenv para gerenciar variáveis)
+RUN npm install && npm install dotenv
+
+
+# 4. Expõe a porta configurada no .env (8080)
+EXPOSE 8080
+
+# 5. Comando de inicialização
+CMD ["npm", "start"]
