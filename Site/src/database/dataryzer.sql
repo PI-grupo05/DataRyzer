@@ -10,9 +10,12 @@ sigla				char(2) not null,
 codigo_associacao_master 	varchar(10) default (substring(replace(uuid(), '-', ''), 1, 10)) -- gera um codigo aleatorio de ate 10 caracteres para que seja a senha para o usuario criar sua conta no nosso site.
 );
 
+INSERT INTO distribuidora (cnpj, nome, sigla)
+VALUES ('11111', 'ieba', 'tl');
+
 create table grupo (
 id_grupo            int primary key auto_increment,
-nome                varchar (10) not null,
+nome                varchar (10) not null
 );
 
 
@@ -21,7 +24,7 @@ id_cidade			int primary key auto_increment not null,
 nome				varchar(50) not null,
 fk_distribuidora    int not null,
 fk_grupo            int,
-constraint fk_distribuidora_cidade foreign key (fk_distribuidora) references distribuidora(id_distribuidora)
+constraint fk_distribuidora_cidade foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
 constraint fk_grupo_cidade foreign key (fk_grupo) references grupo(id_grupo)
 );
 
@@ -30,8 +33,8 @@ create table filtro(
 id_filtro           int primary key auto_increment,
 nome                varchar (10) not null,
 data_inicio         date not null,
-data_fim            date not null,
-)
+data_fim            date not null
+);
 
 create table usuario(
 id_usuario			int primary key auto_increment not null,
@@ -44,7 +47,7 @@ fk_cidade 			int,
 fk_distribuidora 	int not null,
 fk_filtro           int,
 constraint fk_cidade_usuario foreign key (fk_cidade) references cidade(id_cidade),
-constraint fk_distribuidora_usuario foreign key (fk_distribuidora) references distribuidora(id_distribuidora)
+constraint fk_distribuidora_usuario foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
 constraint fk_filtro_usuario foreign key (fk_filtro) references filtro(id_filtro)
 );
 
@@ -83,14 +86,13 @@ constraint fk_distribuidora_cidade_notificacao foreign key (fk_distribuidora) re
 );
 
 
-
-
-
 create table log(
 idLog 				int primary key auto_increment not null,
 mensagem			varchar(100),
 data_hora 			datetime not null,
 tipo_processo		varchar(45) not null
 );
+
+
 
 
