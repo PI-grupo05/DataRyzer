@@ -7,11 +7,11 @@ id_distribuidora	int primary key auto_increment not null,
 cnpj				varchar(50) not null,
 nome				varchar(50) not null,
 sigla				char(2) not null,
-codigo_associacao_master 	varchar(10) default (substring(replace(uuid(), '-', ''), 1, 10)) -- gera um codigo aleatorio de ate 10 caracteres para que seja a senha para o usuario criar sua conta no nosso site.
+codigo_associacao_master 	varchar(10) 
 );
 
-INSERT INTO distribuidora (cnpj, nome, sigla)
-VALUES ('11111', 'ieba', 'tl');
+INSERT INTO distribuidora (cnpj, nome, sigla, codigo_associacao_master)
+VALUES ('11111', 'ieba', 'tl', '123');
 
 create table grupo (
 id_grupo            int primary key auto_increment,

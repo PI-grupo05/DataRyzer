@@ -2,7 +2,7 @@ FROM mysql:latest
 
 
 # Define as variáveis de ambiente esperadas pela imagem oficial do MySQL
-ENV MYSQL_ROOT_PASSWORD=41465490Fe*
+ENV MYSQL_ROOT_PASSWORD=SENHA_BANCO
 ENV MYSQL_DATABASE=dataryzer
 
 # Copia scripts de inicialização

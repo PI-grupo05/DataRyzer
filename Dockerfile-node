@@ -5,6 +5,8 @@ WORKDIR /app
 # 1. Copia apenas os arquivos de configuração e dependências
 COPY ./Site/ . ./
 
+WORKDIR /app/Site
+
 # 2. Instala as dependências (incluindo o pacote dotenv para gerenciar variáveis)
 RUN npm install && npm install dotenv
 
