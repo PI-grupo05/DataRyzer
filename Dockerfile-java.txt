@@ -1,0 +1,25 @@
+FROM openjdk:21-jdk-slim
+
+# Instala cron
+RUN apt-get update && apt-get install -y cron
+
+# Diretório de trabalho
+WORKDIR /app
+
+# Copia todo o projeto para dentro do container
+COPY . .
+
+# Compila o projeto com maven wrapper
+RUN ./mvnw package
+
+# Copia o JAR gerado para um local fixo
+RUN cp target/LogsJava-1.0-SNAPSHOT.jar /app/app.jar
+
+# Criandoo o script que será chamado pelo cron
+RUN echo '*/15 * * * * root java -jar /app/app.jar >> /app/logs.txt 2>&1' > /etc/cron.d/run-jar-cron
+
+# Dando permissão e ativa cron
+RUN chmod 0644 /etc/cron.d/run-jar-cron && crontab /etc/cron.d/run-jar-cron
+
+# Comando de entrada: inicia o cron
+CMD ["cron", "-f"]
