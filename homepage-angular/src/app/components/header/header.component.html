@@ -1,0 +1,41 @@
+<header [ngClass]="menuFechado ? 'header' : 'header-aberto'" class="header" id="header">
+  <nav class="nav container">
+    <img
+      class="logo"
+      id="logoPc"
+      src="logoPreto.png"
+      alt="Logo"
+    />
+    <div id="logoMenu">
+      <img (click)="abrirMenu()" id="botaoMenu"  alt="" [src]="menuFechado ? 'iconeMenu.png' : 'close.png'" />
+      <img class="logo" src="logoPreto.png" alt="" />
+      <button class="nav__login" id="loginMobile">Login</button>
+    </div>
+    <div [ngClass]="menuFechado ? 'nav__menu' : 'nav__menu-aberto'" class="nav__menu">
+      <img id="botaoMenu"/>
+      <ul class="nav__list">
+        <li>
+          <a href="#bannerSobre" class="nav__link"> <span>Sobre Nós</span></a>
+        </li>
+        <li>
+          <a href="#bannerHistoria" class="nav__link"> <span>Historia</span></a>
+        </li>
+        <li>
+          <a href="#projetoAvaliacao" class="nav__link">
+            <span>Projeto</span></a
+          >
+        </li>
+        <li>
+          <a href="#bannerAvaliacao" class="nav__link">
+            <span>Avaliações</span></a
+          >
+        </li>
+        <li>
+          <a href="#contate_nos" class="nav__link"> <span>Contato</span></a>
+        </li>
+      </ul>
+      <button style="visibility: hidden;" class="nav__login" id="loginMobile">Login</button>
+    </div>
+    <button class="nav__login" id="loginPc">Login</button>
+  </nav>
+</header>
