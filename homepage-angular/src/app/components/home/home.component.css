@@ -1,0 +1,529 @@
+/* HomeComponent CSS */
+.bannerPrincipal{
+  display: flex;
+  align-items: center;
+  background-image: url('../../../assets/teste05.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-weight: bold;
+  font-size: 300%;
+  height: 91.7%;
+}
+
+.bannerPrincipal p{
+  width: 40%;
+  margin-left: 5%;
+}
+
+.bannerSobre{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4%;
+  gap: 20%;
+  height: 100%;
+}
+
+.bannerSobre h1{
+  text-align: center;
+  font-size: 4vw;
+  color: #321EC6;
+  width: 35%;
+}
+
+.bannerSobre h1 img{
+  width: 100%;
+}
+
+.bannerSobre p{
+  font-weight: 500;
+  width: 38%;
+  font-size: 1.4rem;
+
+}
+.DNA {
+  color: transparent;
+  display: inline;
+  font-weight: bold;
+  color: transparent;
+  -webkit-text-stroke: 2px #fff;
+  background: transparent;
+}
+
+#bannerHistoria{
+  background: linear-gradient(to bottom, #070226, #321ec6 );
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+#bannerHistoria h1{
+  font-size: 3.0rem;
+  margin-bottom: 7%;
+  margin-top: 5%;
+}
+#historiaCartoes{
+  display: flex;
+  height: 50%;
+  width: 94%;
+  gap: 5%;
+  align-items: stretch;
+}
+.cartao{
+  text-align: center;
+  padding: 2.5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: #321EC6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border: 2px #fff solid;
+  flex: 1;
+  font-weight: 500;
+  gap: 10px;
+}
+
+/* Sobre o projeto */
+#projetoAvaliacao {
+  min-height: 120vh; /* Garante que a div sempre cubra toda a tela */
+
+}
+
+.conheca {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 6rem 2rem 6rem;
+  background-color: #321EC6;
+  height: 100%;
+  width: 100%;
+  gap: 100px;
+
+
+}
+
+
+.texto_conheca {
+  flex: 1 1 45%;
+  max-width: 45%;
+}
+
+.texto_conheca h1 {
+  font-weight: 600;
+  font-size: 3.0rem;
+  color: #fdfdfd;
+  margin-bottom: 1rem;
+}
+
+.texto_conheca p {
+  font-weight: 500;
+  font-size: 1.5vw;
+  margin-bottom: 1rem;
+  color: #ddd;
+}
+
+.texto_conheca button {
+  margin-top: 5px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: #fff;
+  background-color: transparent;
+  border: 2px solid #fff ;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.texto_conheca button:hover {
+  background-color: #070226;
+  color: white;
+  border: 2px solid #fff;
+}
+
+.imagem_conheca {
+  width: 50%;
+  margin-left: 6rem;
+  margin-top: 4rem;
+
+}
+
+.imagem_conheca img{
+  width: 100%;
+  height: 100%;
+}
+.title-avaliacao{
+
+  font-size: 3.0rem;
+}
+
+#bannerAvaliacao{
+  background: linear-gradient(to top, #070226, #321ec6 );
+  width: 100%;
+  height: 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+}
+
+.avaliacao_tema {
+  color: #fdfdfd;
+  justify-items: center;
+  margin-bottom: 3%;
+  margin-top: 7%;
+}
+
+.avaliacoes {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  padding: 2rem 6rem 2rem 6rem;
+  margin-bottom: 100px;
+
+}
+
+.av1,
+.av2,
+.av3 {
+  flex: 1 1 45%;
+  max-width: 25%;
+  align-items: stretch;
+  display: flex;
+}
+
+.card1,
+.card2,
+.card3 {
+
+  background-color: #321EC6;
+  padding: 2rem;
+  text-align: center;
+  border: 2px solid white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.card1 p,
+.card2 p,
+.card3 p {
+  font-weight: 500;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.card1 img,
+.card2 img,
+.card3 img {
+  vertical-align: middle;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  color: white;
+}
+
+.perfil_nome {
+  color: white;
+}
+ .estrelas{
+  height: 10px;
+  width: 100%;
+ }
+
+ /* Contate-nos */
+ .container {
+  max-width: 100%;
+  margin-inline: 1.5rem;
+}
+
+#contate_nos{
+    height: 90dvh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4rem 2rem;
+  }
+
+  #localizacao{
+    height: 75dvh;
+    width: 100%;
+  }
+
+  .contate_nos_container{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content:space-around;
+    height: 100%;
+    width: 100%;
+
+  }
+
+  .text_contatos {
+    max-width: 600px;
+    margin-bottom: 2rem;
+  }
+
+
+  .text_contatos h1{
+    font-weight: 400;
+    font-size: 4vw;
+    background: linear-gradient(90deg, #0B0942, #321EC6);
+    background-clip: text;
+    color: transparent;
+    margin-bottom: 1rem;
+  }
+
+
+  .text_contatos p{
+    font-weight: 500;
+    font-size: 1.5vw;
+    text-align: justify;
+    margin-bottom: 30px;
+  }
+  .input_contatos{
+    width: 30%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+
+  .inputs{
+      width: 100%;
+      margin: 5px;
+      margin-bottom: 0.9rem;
+      padding:3%;
+      border: 1px solid #000;
+      border-top-left-radius: 8px;
+      border-top-right-radius: 8px;
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+      border-bottom: 3px solid #000;
+      transition: border 0.4s ease;
+  }
+  .inputs:hover{
+    border-top: 1px solid white;
+  border-left: 1px solid white ;
+  border-right:1px solid white ;
+  }
+
+  .mensagem{
+    height: 200px;
+  }
+
+  .input_contatos span{
+    margin-left: 2%;
+  }
+
+  .enviar{
+    display: flex;
+    justify-content: center;
+  }
+
+  .enviar button{
+    margin-top: 25px;
+    height: 60px;
+    width: 50%;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 3px solid #000;
+    font-weight: bolder;
+    cursor: pointer;
+    transition: all 0.4s ease;
+    font-size: 1.2rem;
+  }
+
+  .enviar button:hover {
+    transform:translateY(-2px);
+    border: 1px solid transparent;
+    background-color: black;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+@media(max-width: 800px){
+  body{
+    font-size: 80%;
+  }
+  .bannerPrincipal p {
+
+    font-size: 75%;
+
+  }
+
+  #projetoAvaliacao {
+    min-height: 120vh; /* Garante que a div sempre cubra toda a tela */
+     /* Mantém um espaço para a .conheca */
+  }
+
+  @media (max-width: 1224px) {
+    .bannerSobre p{
+
+      font-size: 1.2rem;
+    }
+  }
+
+  .bannerSobre{
+    gap: 5%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  .bannerSobre h1{
+    width: 50%;
+    font-size: 10vw;
+
+  }
+  .bannerSobre img{
+    width: 100%;
+  }
+  .bannerSobre p{
+    width: 90%;
+    text-align: center;
+  }
+  #bannerHistoria{
+    justify-content: start;
+  }
+  #bannerHistoria h1{
+    margin-top: 5%;
+  }
+  #historiaCartoes{
+    flex-direction: column;
+    gap: 20px;
+  }
+
+
+
+
+}
+
+
+@media (max-width: 800px) {
+  .texto_conheca p{
+      font-size: 20px ;
+  }
+  .texto_conheca h2{
+      font-size: 2rem ;
+  }
+  .conheca{
+      gap: 15px;
+      flex-direction: column;
+  }
+  .conheca h1{
+      font-size: 2.5rem;
+      margin-top: 4%;
+  }
+  .texto_conheca{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      max-width: 100%;
+      text-align: center;
+      font-size: 120%;
+      height: 50%;
+  }
+  .imagem_conheca{
+      height: 50%;
+      width: 100%;
+  }
+  .imagem_conheca img{
+      width: 100%;
+  }
+
+  .avaliacao_tema{
+      height: 5%;
+  }
+  .avaliacoes{
+      padding: 2rem 4rem 2rem 4rem;
+      height: 90%;
+      flex-direction: column;
+      margin-bottom: 0%;
+      gap: 2rem;
+  }
+  .perfil_nome{
+    margin-top: 1rem;
+    font-weight: 600;
+      font-size: 0.92rem;
+    display: block;
+  }
+
+  .av1,
+  .av2,
+  .av3 {
+      max-width: 100%;
+  }
+}
+
+
+@media (max-width: 1024px){
+
+  .text_contatos p{
+    font-size: 20px;
+  }
+
+  .text_contatos h1{
+    font-size: 40px;
+  }
+
+  #contate_nos{
+    padding:2rem 2rem;
+    height: 115vh;
+  }
+  .contate_nos_container {
+    justify-content: initial;
+    height: 100%;
+    flex-direction: column;
+  }
+
+  .input_contatos{
+    width: 80%;
+    margin-bottom: 30px;
+  }
+
+  .text_contatos h1{
+    text-align: center;
+    margin-bottom: 15px;
+  }
+
+  .text_contatos{
+
+    gap: 20px;
+    width: 80%;
+    margin-top: 20px;
+  }
+
+  .enviar button{
+    width: 98%;
+    margin-bottom: 20%;
+  }
+
+  section{
+    height: auto;
+  }
+  .imagem_conheca{
+    display: flex;
+    flex-direction: column;
+    margin-left: 0px;
+    margin-bottom: 2rem;
+  }
+}
+
