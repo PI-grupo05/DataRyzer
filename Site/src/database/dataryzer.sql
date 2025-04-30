@@ -1,4 +1,4 @@
-create database dataryzer;
+
 use dataryzer;
 
 -- MODELAGEM BASICA, SEM RELACIONAMENTO COM AS TABELAS 
@@ -92,7 +92,5 @@ mensagem			varchar(100),
 data_hora 			datetime not null,
 tipo_processo		varchar(45) not null
 );
-
-
 
 
