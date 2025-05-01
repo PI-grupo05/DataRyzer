@@ -1,31 +1,5 @@
 /* HomeComponent CSS */
-.bannerPrincipal{
-  display: flex;
-  align-items: center;
-  background-image: url('../../../assets/bannerCyty.png');
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #fff;
-  font-weight: bold;
-  font-size: 300%;
-  height: 91.7%;
-}
 
-.bannerPrincipal p{
-  width: 40%;
-  margin-left: 5%;
-}
-
-.bannerSobre{
-  background-color: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 4%;
-  gap: 20%;
-  height: 100%;
-}
 
 .bannerSobre h1{
   text-align: center;
@@ -357,17 +331,6 @@
     color: #fff;
     cursor: pointer;
   }
-
-
-.custom-button{
-  background-color: #321ec6;
-  transition: all .3s ease;
-
-}
-.custom-button:hover{
-  background-color: #070226;
-}
-
 
 @media(max-width: 800px){
   body{

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, Inject, NgZone, PLATFORM_ID } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import emailjs, { EmailJSResponseStatus } from '@emailjs/browser';
 import Swal from 'sweetalert2';
@@ -25,6 +25,8 @@ export class HomeComponent {
     const altura = window.innerHeight;
     document.documentElement.style.setProperty('--altura-visivel', `${altura}px`);
   }; */
+
+  constructor(private ngZone: NgZone) {}
 
   public sendEmail(e: Event) {
     e.preventDefault();
@@ -60,56 +62,45 @@ export class HomeComponent {
       return;
     }
 
-    emailjs
-      .sendForm('service_2a852nm', 'template_bl480xa', e.target as HTMLFormElement, {
-        publicKey: 'DkVEvnrwnzAtxgxoM',
-      })
-      .then(
-        () => {
-          console.log('SUCCESS!');
-          Swal.fire({
-            title: 'Sucesso!',
-            text: 'Mensagem enviada!',
-            icon: 'success',
-            showConfirmButton: false,
-            color: '#f01f1a',
-          });
-        },
-        (error) => {
-          console.log('FAILED...', (error as EmailJSResponseStatus).text);
-          this.showError('Erro ao enviar mensagem');
-        }
-      );
+    this.ngZone.runOutsideAngular(() =>{
+      emailjs
+        .sendForm('service_2a852nm', 'template_bl480xa', e.target as HTMLFormElement, {
+          publicKey: 'DkVEvnrwnzAtxgxoM',
+        })
+        .then(
+          () => {
+            console.log('SUCCESS!');
+            Swal.fire({
+              title: 'Sucesso!',
+              text: 'Mensagem enviada!',
+              icon: 'success',
+              showConfirmButton: false,
+              color: '#f01f1a',
+
+              didOpen: () => {
+                document.body.classList.remove('swal2-height-auto');
+              }
+            });
+          },
+          (error) => {
+            console.log('FAILED...', (error as EmailJSResponseStatus).text);
+            this.showError('Erro ao enviar mensagem');
+          }
+        );
+    });
   }
 
   private showError(message: string) { // pop up de erro
-    Swal.fire({
-      icon: 'error',
-      title: 'Oops...',
-      text: message,
-      color: '#070226',
-      customClass: {
-        confirmButton: 'custom-button',
-      },
-      scrollbarPadding: true, // Adiciona o padding para evitar o scroll
-
-      didOpen: () => {
-        // Impede que o usuário role a página enquanto o modal do SweetAlert2 estiver aberto
-        document.body.style.overflow = 'hidden';
-
-        // Seleciona o container do SweetAlert2
-        const swalContainer = document.querySelector('.swal2-container');
-
-        if (swalContainer) {
-          // Garante que o modal fique sempre por cima de todos os outros elementos (z-index alto)
-          swalContainer.setAttribute('style', 'z-index: 9999 !important');
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: message,
+        color: '#070226',
+  
+        didOpen: () => {
+          document.body.classList.remove('swal2-height-auto')
         }
-      },
-      willClose: () => {
-        // Restaura a rolagem da página após o modal ser fechado
-        document.body.style.overflow = '';
-      }
-      // obs: não resolveu
+  
     });
   }
 }
