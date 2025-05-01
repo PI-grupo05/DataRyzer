@@ -2,7 +2,7 @@
 .bannerPrincipal{
   display: flex;
   align-items: center;
-  background-image: url('../../../assets/teste05.png');
+  background-image: url('../../../assets/bannerCyty.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -251,18 +251,13 @@
 }
 
 #contate_nos{
-    height: 90dvh;
+    height: calc(var(--vh, 1vh) * 100);
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 4rem 2rem;
-  }
-
-  #localizacao{
-    height: 75dvh;
-    width: 100%;
+    padding: 2rem 0.5rem;
   }
 
   .contate_nos_container{
@@ -297,13 +292,12 @@
     text-align: justify;
     margin-bottom: 30px;
   }
-  .input_contatos{
+  .contact-form{
     width: 30%;
     display: flex;
     flex-direction: column;
     justify-content: center;
   }
-
 
   .inputs{
       width: 100%;
@@ -328,7 +322,7 @@
     height: 200px;
   }
 
-  .input_contatos span{
+  .contact-form label{
     margin-left: 2%;
   }
 
@@ -356,6 +350,22 @@
     background-color: black;
     color: #fff;
     cursor: pointer;
+}
+  .enviar button:active {
+    transform: translateY(2px);
+    background-color: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+
+.custom-button{
+  background-color: #321ec6;
+  transition: all .3s ease;
+
+}
+.custom-button:hover{
+  background-color: #070226;
 }
 
 
@@ -486,17 +496,17 @@
 
   #contate_nos{
     padding:2rem 2rem;
-    height: 115vh;
+    height: 120%;
   }
+
   .contate_nos_container {
     justify-content: initial;
     height: 100%;
     flex-direction: column;
   }
 
-  .input_contatos{
+  .contact-form{
     width: 80%;
-    margin-bottom: 30px;
   }
 
   .text_contatos h1{
@@ -516,8 +526,8 @@
     margin-bottom: 20%;
   }
 
-  section{
-    height: auto;
+  .contate_nos{
+    height: 100%;
   }
   .imagem_conheca{
     display: flex;
