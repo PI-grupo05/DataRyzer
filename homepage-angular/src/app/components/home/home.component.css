@@ -2,7 +2,7 @@
 .bannerPrincipal{
   display: flex;
   align-items: center;
-  background-image: url('../../../assets/bannerCyty.png');
+  background-image: url('../../../assets/teste4banner.png');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -50,7 +50,7 @@
   align-items: center;
   padding: 4%;
   gap: 20%;
-  height: 100%;
+  height: 90%;
 }
 
 /* No seu styles.css ou arquivo de estilos global */
