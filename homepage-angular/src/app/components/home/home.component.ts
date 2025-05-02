@@ -62,37 +62,35 @@ export class HomeComponent {
       return;
     }
 
-    this.ngZone.runOutsideAngular(() =>{
-      emailjs
-        .sendForm('service_2a852nm', 'template_pgiqnvo', e.target as HTMLFormElement, {
-          publicKey: 'DkVEvnrwnzAtxgxoM',
-        })
-        .then(
-          () => {
-            console.log('SUCCESS!');
 
-            Swal.fire({
-              title: 'Sucesso!',
-              text: 'Mensagem enviada!',
-              icon: 'success',
-              showConfirmButton: false,
-              color: '#070226',
+    emailjs
+      .sendForm('service_2a852nm', 'template_pgiqnvo', e.target as HTMLFormElement, {
+        publicKey: 'DkVEvnrwnzAtxgxoM',
+      })
+      .then(
+        () => {
+          console.log('SUCCESS!');
 
-              didOpen: () => {
-                document.body.classList.remove('swal2-height-auto');
-              }
-            });
+          Swal.fire({
+            title: 'Sucesso!',
+            text: 'Mensagem enviada!',
+            icon: 'success',
+            showConfirmButton: false,
+            color: '#070226',
+            heightAuto: false,
+            scrollbarPadding: false,
 
-            setTimeout(() => {
-              Swal.close();
-            }, 2000);
-          },
-          (error) => {
-            console.log('FAILED...', (error as EmailJSResponseStatus).text);
-            this.showError('Erro ao enviar mensagem');
-          }
-        );
-    });
+          });
+
+          setTimeout(() => {
+            Swal.close();
+          }, 2000);
+        },
+        (error) => {
+          console.log('FAILED...', (error as EmailJSResponseStatus).text);
+          this.showError('Erro ao enviar mensagem');
+        }
+      );
   }
 
   private showError(message: string) { // pop up de erro
@@ -104,11 +102,8 @@ export class HomeComponent {
         customClass: {
           confirmButton: "custom-button",
         },
-
-        didOpen: () => {
-          document.body.classList.remove('swal2-height-auto')
-        }
-
+        heightAuto: false,
+        scrollbarPadding: false,
     });
   }
 }
