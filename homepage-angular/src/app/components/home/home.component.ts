@@ -57,30 +57,35 @@ export class HomeComponent {
       return;
     }
 
-    if (message.length > 100) {
+    if (message.length > 200) {
       this.showError('A mensagem deve ter no máximo 100 caracteres');
       return;
     }
 
     this.ngZone.runOutsideAngular(() =>{
       emailjs
-        .sendForm('service_2a852nm', 'template_bl480xa', e.target as HTMLFormElement, {
+        .sendForm('service_2a852nm', 'template_pgiqnvo', e.target as HTMLFormElement, {
           publicKey: 'DkVEvnrwnzAtxgxoM',
         })
         .then(
           () => {
             console.log('SUCCESS!');
+
             Swal.fire({
               title: 'Sucesso!',
               text: 'Mensagem enviada!',
               icon: 'success',
               showConfirmButton: false,
-              color: '#f01f1a',
+              color: '#070226',
 
               didOpen: () => {
                 document.body.classList.remove('swal2-height-auto');
               }
             });
+
+            setTimeout(() => {
+              Swal.close();
+            }, 2000);
           },
           (error) => {
             console.log('FAILED...', (error as EmailJSResponseStatus).text);
@@ -96,11 +101,14 @@ export class HomeComponent {
         title: 'Oops...',
         text: message,
         color: '#070226',
-  
+        customClass: {
+          confirmButton: "custom-button",
+        },
+
         didOpen: () => {
           document.body.classList.remove('swal2-height-auto')
         }
-  
+
     });
   }
 }

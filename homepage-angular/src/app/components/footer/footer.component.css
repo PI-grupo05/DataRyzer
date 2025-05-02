@@ -22,11 +22,13 @@
 }
 .container_localization_main h1{
   color: #fff;
-  font-size: 42px;
+  font-size: 2.7rem;
+  font-weight: 500;
 }
 .container_localization_main p{
   color: #fff ;
-  font-size: 32px;
+  font-weight: 400;
+  font-size: 1.5rem;
 }
 
 .conteiner_company_team_title {

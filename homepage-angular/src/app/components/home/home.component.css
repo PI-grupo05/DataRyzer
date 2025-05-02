@@ -1,11 +1,71 @@
 /* HomeComponent CSS */
+.bannerPrincipal{
+  display: flex;
+  align-items: center;
+  background-image: url('../../../assets/bannerCyty.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #fff;
+  font-weight: 500;
+  font-size: 300%;
+  height: 91.7%;
+}
+
+.title{
+  width: 42%;
+
+}
+
+.insights{
+  font-style: normal;
+  font-size: 3rem;
+  display: inline;
+  font-weight: bold;
+  -webkit-text-stroke: 0.5px #fff;
+  color: transparent;
+  background: linear-gradient(90deg, #0B0942, #321EC6);
+  background-clip: text;
+}
+.title-banner{
+  margin-left: 4%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+
+}
+.sub-title{
+  margin-top: 1rem;
+  font-size: 1.4rem;
+  color: #fff;
+  font-weight: 400;
+  width: 50%;
+}
+
+.bannerSobre{
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4%;
+  gap: 20%;
+  height: 100%;
+}
+
+/* No seu styles.css ou arquivo de estilos global */
 
 
 .bannerSobre h1{
+  font-weight: 500;
   text-align: center;
   font-size: 4vw;
-  color: #321EC6;
   width: 35%;
+}
+.bannerSobre h1 span{
+  color: transparent;
+  background: linear-gradient(90deg, #0B0942, #321EC6);
+  background-clip: text;
 }
 
 .bannerSobre h1 img{
@@ -22,8 +82,7 @@
   color: transparent;
   display: inline;
   font-weight: bold;
-  color: transparent;
-  -webkit-text-stroke: 2px #fff;
+  -webkit-text-stroke: 0.5px #fff;
   background: transparent;
 }
 
@@ -38,7 +97,8 @@
 }
 
 #bannerHistoria h1{
-  font-size: 3.0rem;
+  font-size: 3rem;
+  font-weight: 500;
   margin-bottom: 7%;
   margin-top: 5%;
 }
@@ -82,9 +142,7 @@
   width: 100%;
   gap: 100px;
 
-
 }
-
 
 .texto_conheca {
   flex: 1 1 45%;
@@ -92,7 +150,7 @@
 }
 
 .texto_conheca h1 {
-  font-weight: 600;
+  font-weight: 500;
   font-size: 3.0rem;
   color: #fdfdfd;
   margin-bottom: 1rem;
@@ -135,7 +193,7 @@
   height: 100%;
 }
 .title-avaliacao{
-
+  font-weight: 500;
   font-size: 3.0rem;
 }
 
@@ -225,13 +283,13 @@
 }
 
 #contate_nos{
-    height: calc(var(--vh, 1vh) * 100);
+    height: 90%;
     width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 2rem 0.5rem;
+    padding: 4rem 2rem;
   }
 
   .contate_nos_container{
@@ -246,12 +304,11 @@
 
   .text_contatos {
     max-width: 600px;
-    margin-bottom: 2rem;
   }
 
 
   .text_contatos h1{
-    font-weight: 400;
+    font-weight: 500;
     font-size: 4vw;
     background: linear-gradient(90deg, #0B0942, #321EC6);
     background-clip: text;
@@ -336,11 +393,18 @@
   body{
     font-size: 80%;
   }
-  .bannerPrincipal p {
+    .title{
+      font-size: 2.2rem;
+      width: 70%;
+    }
+    .insights{
+      font-size: 2.2rem;
+    }
+    .sub-title{
+      font-size: 1.2rem;
+      width: 100%;
+    }
 
-    font-size: 75%;
-
-  }
 
   #projetoAvaliacao {
     min-height: 120vh; /* Garante que a div sempre cubra toda a tela */
@@ -458,7 +522,7 @@
   }
 
   #contate_nos{
-    padding:2rem 2rem;
+    padding: 2rem 0.5rem;
     height: 120%;
   }
 
@@ -478,10 +542,10 @@
   }
 
   .text_contatos{
-
     gap: 20px;
     width: 80%;
-    margin-top: 20px;
+    margin-top: 2rem;
+    margin-bottom: 2rem;
   }
 
   .enviar button{
