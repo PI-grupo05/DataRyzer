@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve --host 0.0.0.0", 
-    "build": "ng build",gitgit 
+    "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:homepage-angular": "node dist/homepage-angular/server/server.mjs"
