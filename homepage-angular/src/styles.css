@@ -28,4 +28,12 @@ body {
   --cor-branco: #fff
 }
 
+.swal2-confirm.custom-button {
+  background-color:  #070226 !important;
+  transition: all 0.3s ease;
 
+}
+
+.swal2-confirm.custom-button:hover {
+  background-color: #321ec6 !important;
+}

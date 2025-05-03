@@ -1,9 +1,12 @@
 <div class="bannerPrincipal">
-  <p>Transformando quedas de energia em insights poderosos.</p>
+  <div class="title-banner">
+    <p class="title">Transformando quedas de energia em <i class="insights">insights</i> poderosos.</p>
+    <p class="sub-title">Da interrupção à inovação: dados que impulsionam ações e fortalecem a tomada de decisão no setor elétrico.</p>
+  </div>
 </div>
 <div id="bannerSobre" class="bannerSobre">
   <h1>
-    Sobre a<br />
+    <span>Sobre a</span><br />
     <img src="logoPreto.png" alt="Logo" />
   </h1>
   <p>
@@ -82,11 +85,9 @@
             acessar os dados em tempo real e tomar decisões mais rápidas e
             assertivas. A funcionalidade dos dashboards interativos nos permitiu
             identificar falhas e otimizar o desempenho de forma significativa.
-  
           </p>
           <div class="avaliador">
-            <img src="do-utilizador.png" alt="" /><strong
-              class="perfil_nome"
+            <img src="do-utilizador.png" alt="" /><strong class="perfil_nome"
               >Guilherme Roveri</strong
             >
           </div>
@@ -116,8 +117,7 @@
             clientes.
           </p>
           <div class="avaliador">
-            <img src="do-utilizador.png" alt="" /><strong
-              class="perfil_nome"
+            <img src="do-utilizador.png" alt="" /><strong class="perfil_nome"
               >Artur Duarte</strong
             >
           </div>
@@ -126,23 +126,28 @@
     </div>
   </div>
 </div>
-<section id="contate_nos">
+<div id="contate_nos">
   <div class="contate_nos_container">
-      <div class="text_contatos">
-          <h1>Entre em contato</h1>
-          <p>Estamos à disposição para esclarecer suas dúvidas e ajudar no que for preciso. Não hesite em nos chamar!</p>
-      </div>
-      <div class="input_contatos">
-          <span>Nome</span>
-          <input class="inputs" type="text" placeholder="Digite seu nome">
-          <span>Email</span>
-          <input class="inputs" type="email" placeholder="Digite seu email">
-          <span>Mensagem</span>
-          <input class="inputs mensagem" type="text"  >
-          <div class="enviar">
-              <button>Enviar</button>
-          </div>
-      </div>
-  </div>
-</section>
+    <div class="text_contatos">
+      <h1>Entre em contato</h1>
+      <p>
+        Estamos à disposição para esclarecer suas dúvidas e ajudar no que for
+        preciso. Não hesite em nos chamar!
+      </p>
+    </div>
+    <form class="contact-form" (submit)="sendEmail($event)">
+      <label>Nome</label>
+      <input class="inputs" id="input_name" name="user_name" type="text" placeholder="Digite seu nome" >
 
+      <label>Email</label>
+      <input class="inputs" id="input_email" name="user_email"  placeholder="Digite seu email" >
+
+      <label>Mensagem</label>
+      <textarea class="inputs mensagem" id="input_message" name="message" placeholder="Digite sua mensagem" ></textarea>
+
+      <div class="enviar">
+        <button type="submit">Enviar</button>
+      </div>
+    </form>
+  </div>
+</div>
