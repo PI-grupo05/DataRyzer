@@ -10,14 +10,11 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
    menuFechado: boolean = true;
    
-
-
     abrirMenu(){
-
       this.menuFechado = !this.menuFechado;
     }
 
     abrirLogin(){
-        window.location.href = "login.html"
+      window.location.href = "http://34.202.174.0:8080/login.html";
     }
 }

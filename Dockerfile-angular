@@ -1,0 +1,22 @@
+FROM node:latest
+
+# Instala o Angular CLI globalmente
+RUN npm install -g @angular/cli
+
+# Define o diretório de trabalho
+WORKDIR /app
+
+# Copia o conteúdo da pasta do projeto Angular para dentro do container
+COPY ./homepage-angular/ ./homepage-angular
+
+# Define o diretório de trabalho como o da aplicação Angular
+WORKDIR /app/homepage-angular
+
+# Instala as dependências
+RUN npm install
+
+# Expõe a porta padrão do Angular
+EXPOSE 4200
+
+# Inicia o servidor Angular
+CMD ["ng", "serve", "--host", "0.0.0.0"]
