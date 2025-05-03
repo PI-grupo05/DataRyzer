@@ -29,7 +29,7 @@
                 <span>Empresas</span>
             </a>
         </div>
-        <a id="botaoSair" href="">
+        <a id="botaoSair" onclick="siteAngular">
             <img src="./assets/imgs/iconeSair.png" alt="">
             Sair
         </a>
@@ -87,4 +87,10 @@
     </div>
 </body>
 </html>
-<script src="./js/dashEspecifica.js"></script>
+<script src="./js/dashEspecifica.js">
+   function sair() {
+    sessionStorage.clear(); // Limpa toda a sessão do usuário
+    window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
+    }
+
+</script>
