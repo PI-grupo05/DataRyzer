@@ -64,8 +64,8 @@ export class HomeComponent {
 
 
     emailjs
-      .sendForm('service_2a852nm', 'template_pgiqnvo', e.target as HTMLFormElement, {
-        publicKey: 'DkVEvnrwnzAtxgxoM',
+      .sendForm('service_3prs1pl', 'template_2kq0lgw', e.target as HTMLFormElement, {
+        publicKey: 'NIMvV6gaPTo4BCT14',
       })
       .then(
         () => {
