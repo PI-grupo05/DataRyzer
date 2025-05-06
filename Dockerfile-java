@@ -4,6 +4,6 @@ RUN apt-get update && apt-get install -y cron
 
 WORKDIR /projects
 
-COPY ./teste.jar ./
+COPY ./interrupcao_leitor.jar ./
 
-CMD ["java", "-jar", "teste.jar"]
+CMD ["java", "-jar", "interrupcao_leitor.jar"]
