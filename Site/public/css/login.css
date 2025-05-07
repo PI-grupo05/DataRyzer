@@ -75,9 +75,8 @@
 .login .login-title{
   text-align: center;
   margin-bottom: 6vh;
- 
   font-size: 3.5rem;
-  font-weight: 400;
+  font-weight: 500;
   background: linear-gradient(to bottom, #070226, #321ec6 );
   -webkit-background-clip: text; 
   color: transparent; 

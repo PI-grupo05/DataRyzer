@@ -51,13 +51,11 @@
 .login-title{
   text-align: center;
   font-size: 3.5rem;
-  font-weight: 400;
+  font-weight: 500;
   background: linear-gradient(to bottom, #070226, #321ec6 );
   -webkit-background-clip: text; 
   color: transparent; 
-
 }
-
 
 .login{
  display: flex;
@@ -78,7 +76,7 @@
 }
 .login .login-title{
   text-align: center;
-  margin-bottom: 4vh;
+  margin-bottom: 2vh;
 }
 .container-form{
   display: flex;
@@ -194,6 +192,7 @@ hr{
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.4s ease-in;
+  margin-top: 1.5vh;
 }
 .button:hover{
   background-color: black;
