@@ -1,6 +1,5 @@
 
-
-	
+	drop database if exists dataryzer;
 	use dataryzer;
 
 	-- MODELAGEM BASICA, SEM RELACIONAMENTO COM AS TABELAS 
@@ -57,6 +56,7 @@
 	constraint fk_filtro_usuario foreign key (fk_filtro) references filtro(id_filtro)
 	);
 
+	select * from usuario;
 
 	create table motivo(
 	id_motivo			int primary key auto_increment,
