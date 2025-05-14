@@ -7,11 +7,11 @@
     <script src="./js/sessao.js"></script>
     <title>Bem vindo</title>
 </head>
-<body onload="validarSessao()">
+<body onload="validarSessao() ,verificarTipoUsuario()">
     <section id="cabecalho">
         <img id="logoEmpresa" src="./assets/imgs/logoData-White.png" alt="">
         <div id="campoUsuario">
-            <span>Acessar perfil</span>
+            <span id="nomeUsuario">Acessar perfil</span>
             <img src="./assets/imgs/iconeUsuario.png" alt="">
         </div>
     </section>
@@ -38,8 +38,10 @@
         </div>
     </section>
     <footer>
-        <img src="./assets/imgs/iconeSair.png" alt="">
-        <span>Sair</span>
+        <div id="botaoSair">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            <span onclick="limparSessao()">Sair</span>
+        </div>
     </footer>
 </body>
 </html>
