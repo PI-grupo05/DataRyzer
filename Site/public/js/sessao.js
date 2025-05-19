@@ -38,7 +38,7 @@ function verificarTipoUsuario(){
                         </div>
                         <div id="opcao">
                             <img src="./assets/imgs/iconeCidades.png" alt="">
-                            <h2>Cidades</h2>
+                            <h2>Unidades Consumidoras</h2>
                         </div>
                             `
     }
