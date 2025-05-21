@@ -24,7 +24,34 @@ function cidadeMaiorTempoInterrupcao() {
     return database.executar(instrucaoSql);
 }
 
+function interrupcoesPorCidade() {
+    const instrucaoSql = `
+        SELECT c.nome AS cidade, COUNT(i.id_interrupcao) AS total_interrupcoes
+        FROM interrupcao i
+        JOIN cidade c ON i.fk_cidade = c.id_cidade
+        GROUP BY c.nome
+        ORDER BY total_interrupcoes DESC
+        LIMIT 5;
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function duracaoMediaInterrupcoes() {
+    const instrucaoSql = `
+        SELECT c.nome AS cidade, AVG(i.duracao) AS duracao_media
+        FROM interrupcao i
+        JOIN cidade c ON i.fk_cidade = c.id_cidade
+        GROUP BY c.nome
+        ORDER BY duracao_media DESC
+        LIMIT 5;
+    `;
+    return database.executar(instrucaoSql);
+}
+
+
 module.exports = {
     cidadeMaisAfetada,
-    cidadeMaiorTempoInterrupcao
+    cidadeMaiorTempoInterrupcao,
+    interrupcoesPorCidade,
+    duracaoMediaInterrupcoes
 };

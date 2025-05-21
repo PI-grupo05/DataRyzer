@@ -22,7 +22,31 @@ function obterCidadeMaiorTempoInterrupcao(req, res) {
         });
 }
 
+function obterInterrupcoesPorCidade(req, res) {
+    kpiDashGeralModel.interrupcoesPorCidade()
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function obterDuracaoMediaInterrupcoes(req, res) {
+    kpiDashGeralModel.duracaoMediaInterrupcoes()
+        .then(resultado => {
+            res.json(resultado);
+        })
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 module.exports = {
     obterCidadeMaisAfetada,
-    obterCidadeMaiorTempoInterrupcao
+    obterCidadeMaiorTempoInterrupcao,
+    obterInterrupcoesPorCidade,
+    obterDuracaoMediaInterrupcoes
 };
