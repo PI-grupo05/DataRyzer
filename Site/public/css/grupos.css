@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+}
+
+.container-group{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid red;
+  width: 400px;
+  height: 300px;
+
+}
+.grups{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
