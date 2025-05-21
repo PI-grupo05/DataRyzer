@@ -65,7 +65,8 @@ function duracaoMediaPorCidade() {
         SELECT c.nome AS cidade, ROUND(AVG(i.duracao), 2) AS media_duracao
         FROM interrupcao i
         JOIN cidade c ON i.fk_cidade = c.id_cidade
-        GROUP BY c.id_cidade;
+        GROUP BY c.id_cidade
+        LIMIT 5;
          
     `;
     return database.executar(instrucaoSql);

@@ -529,7 +529,7 @@ function carregarGraficos() {
         .then(response => response.json())
         .then(data => {
             const labels = data.map(item => item.cidade);
-            const valores = data.map(item => item.duracao_media);
+            const valores = data.map(item => item.media_duracao); 
 
             new Chart(document.getElementById('graficoBarra2'), {
                 type: 'bar',
@@ -576,12 +576,11 @@ function carregarGraficos() {
 }
 
 
-// Após carregar os gráficos de barra
 fetch('/kpiDashGeral/volume-por-motivo')
     .then(response => response.json())
     .then(data => {
         const labels = data.map(item => item.motivo);
-        const valores = data.map(item => item.total_interrupcoes);
+        const valores = data.map(item => item.total); 
 
         new Chart(document.getElementById('graficoLinha'), {
             type: 'line',
@@ -604,19 +603,19 @@ fetch('/kpiDashGeral/volume-por-motivo')
                         font: { size: 16 }
                     },
                     legend: {
-                        display: false
+                        display: true
                     },
                     datalabels: {
                         anchor: 'end',
                         align: 'top',
-                        font: { weight: 'bold' },
-                        formatter: (value) => value
+                        formatter: value => value,
+                        font: { weight: 'bold' }
                     }
                 },
                 scales: {
                     y: {
                         beginAtZero: true,
-                        title: { display: true, text: 'Quantidade de Quedas' }
+                        title: { display: true, text: 'Quedas' }
                     },
                     x: {
                         title: { display: true, text: 'Motivos' }
@@ -627,6 +626,7 @@ fetch('/kpiDashGeral/volume-por-motivo')
         });
     })
     .catch(error => console.error('Erro ao carregar gráfico de linha:', error));
+
 
 document.addEventListener('DOMContentLoaded', function () {
     atualizarKPIs();
