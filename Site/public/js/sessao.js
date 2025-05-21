@@ -28,16 +28,16 @@ function verificarTipoUsuario(){
                             <img src="./assets/imgs/iconeGrupos.png" alt="">
                             <h2>Grupos</h2>
                         </div>
-                        <div id="opcao">
-                            <img src="./assets/imgs/iconeDashboard.png" alt="">
+                        <div onclick="window.location = '../dashGeral.html'" id="opcao">
+                            <img  src="./assets/imgs/iconeDashboard.png" alt="">
                             <h2>Dashboard Geral</h2>
                         </div>
-                        <div id="opcao">
+                        <div onclick="window.location = '../historico_interrupcao.html'"  id="opcao">
                             <img src="./assets/imgs/iconeHistorico.png" alt="">
                             <h2>Histórico</h2>
                         </div>
-                        <div id="opcao">
-                            <img src="./assets/imgs/iconeCidades.png" alt="">
+                        <div onclick="window.location = '../unidadeConsumidora.html'" id="opcao">
+                            < img src="./assets/imgs/iconeCidades.png"  alt="">
                             <h2>Unidades Consumidoras</h2>
                         </div>
                             `
@@ -50,8 +50,8 @@ function verificarTipoUsuario(){
                             <img src="./assets/imgs/iconeDashboard.png" alt="">
                             <h2>Dashboard Especifico</h2>
                         </div>
-                        <div id="opcao">
-                            <img src="./assets/imgs/iconeHistorico.png" alt="">
+                        <div onclick="window.location = '../unidadeConsumidora.html'" id="opcao">
+                            <img  src="./assets/imgs/iconeHistorico.png" alt="">
                             <h2>Histórico</h2>
                         </div>
                             `
