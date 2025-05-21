@@ -49,9 +49,35 @@ function duracaoMediaInterrupcoes() {
 }
 
 
+function volumeInterrupcoesPorMotivo() {
+    const instrucaoSql = `
+        SELECT m.nome AS motivo, COUNT(i.id_interrupcao) AS total
+        FROM interrupcao i
+        JOIN motivo m ON i.fk_motivo = m.id_motivo
+        GROUP BY m.id_motivo;
+         
+    `;
+    return database.executar(instrucaoSql);
+}
+
+function duracaoMediaPorCidade() {
+    const instrucaoSql = `
+        SELECT c.nome AS cidade, ROUND(AVG(i.duracao), 2) AS media_duracao
+        FROM interrupcao i
+        JOIN cidade c ON i.fk_cidade = c.id_cidade
+        GROUP BY c.id_cidade;
+         
+    `;
+    return database.executar(instrucaoSql);
+}
+
+
+
 module.exports = {
     cidadeMaisAfetada,
     cidadeMaiorTempoInterrupcao,
     interrupcoesPorCidade,
-    duracaoMediaInterrupcoes
+    duracaoMediaInterrupcoes,
+    volumeInterrupcoesPorMotivo,
+    duracaoMediaPorCidade
 };

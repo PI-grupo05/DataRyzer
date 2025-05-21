@@ -44,9 +44,31 @@ function obterDuracaoMediaInterrupcoes(req, res) {
         });
 }
 
+
+function obterVolumeInterrupcoesPorMotivo(req, res) {
+    kpiDashGeralModel.volumeInterrupcoesPorMotivo()
+        .then(resultado => res.json(resultado))
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+function obterDuracaoMediaPorCidade(req, res) {
+    kpiDashGeralModel.duracaoMediaPorCidade()
+        .then(resultado => res.json(resultado))
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
+
 module.exports = {
     obterCidadeMaisAfetada,
     obterCidadeMaiorTempoInterrupcao,
     obterInterrupcoesPorCidade,
-    obterDuracaoMediaInterrupcoes
+    obterDuracaoMediaInterrupcoes,
+    obterVolumeInterrupcoesPorMotivo,
+    obterDuracaoMediaPorCidade
 };

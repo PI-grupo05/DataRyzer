@@ -11,4 +11,8 @@ router.get("/cidade-maior-tempo-interrupcao", kpiDashGeralController.obterCidade
 router.get("/interrupcoes-por-cidade", kpiDashGeralController.obterInterrupcoesPorCidade);
 router.get("/duracao-media-interrupcoes", kpiDashGeralController.obterDuracaoMediaInterrupcoes);
 
+router.get("/volume-por-motivo", kpiDashGeralController.obterVolumeInterrupcoesPorMotivo);
+router.get("/duracao-media-por-cidade", kpiDashGeralController.obterDuracaoMediaPorCidade);
+
+
 module.exports = router;
