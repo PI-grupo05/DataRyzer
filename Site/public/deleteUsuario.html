@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="css/deleteUsuario.css">
+    <script src="js/dashEspecifica.js"></script>
+    <title>Deletar Usuário</title>
+</head>
+<body>
+     <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>                
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Empresas</span>
+            </a>
+        </div>
+        <a id="botaoSair" onclick="siteAngular">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <section id="secaoInformacoes">
+            <h1>INFORMAÇÕES USUÁRIO</h1>
+            <div id="campos">
+                <div id="campoEsquerdo">
+                    <img src="./assets/imgs/diretor.png" alt="">
+                    <label for="input_nome">Nome</label>
+                    <input id="input_nome" type="text">
+                </div>
+                <div id="campoDireito">
+                    <label for="input_email">Email</label>
+                    <input id="input_email" type="text"><br><br>
+                    <label for="input_empresa">Empresa</label>
+                    <input id="input_empresa" type="text"><br><br>
+                    <label for="input_telefone">Telefone</label>
+                    <input  id="input_telefone" type="text">
+                </div>
+            </div>
+        </section>
+        <div id="secaoBotoes">
+            <button id="botaoCancelar">CANCELAR</button>
+            <button id="botaoDeletar">DELETAR</button>
+        </div>
+    </div>
+</body>
+</html>
