@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <link rel="stylesheet" href="./css/unidadeConsumidora.css">
+    <title>Unidade</title>
+</head>
+<body>
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>                
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Empresas</span>
+            </a>
+        </div>
+        <a id="botaoSair" onclick="siteAngular">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img style="transform: scaleX(-1);" id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <h1><form class="procurar">
+  <input class="procura" type="text" name="search" placeholder="Search.."> <button class="procurarb"></button>
+</form></h1>
+<!-- Aqui começa os codigo -->
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="cartao drop-shadow">
+                    <input class="empresaBotao" type="button" value="EMPRESA X">                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                       <input class="empresaBotao" type="button" value="EMPRESA X">
+                        
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                    
+                </div>
+            </section>
+        </section>
+
+        <!--Mais 4 a baixo-->
+         <section id="metricas">
+            <section id="cartoes">
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                        
+                        
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                        
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                    
+                </div>
+            </section>
+        </section>
+        <!--Mais 4 a baixo-->
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                        
+                        
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                        
+                    
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                
+                </div>
+                <div class="cartao drop-shadow">
+                    
+                        <input class="empresaBotao" type="button" value="EMPRESA X">
+                    
+                </div>
+            </section>
+        </section>
+        
+    </div>
+</body>
+</html>
+<script src="./js/dashEspecifica.js">
+   function sair() {
+    sessionStorage.clear(); // Limpa toda a sessão do usuário
+    window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
+    }
+
+</script>
