@@ -25,19 +25,22 @@ function criarGrupo() {
   spanNome.textContent = nome;
   spanNome.className = "nomeGrupo";
 
+  const btnDivGrupo = document.createElement("div");
+  btnDivGrupo.className = "div-btns"
+
   const btnCidades = document.createElement("button");
   btnCidades.className = "btn-cidades";
-  btnCidades.textContent = "Gerenciar cidades";
+  btnCidades.textContent = "Gerenciar unidades";
   btnCidades.addEventListener("click", () => gerenciarCidade());
 
   const btnEditar = document.createElement("button");
   btnEditar.className = "btn-editar";
-  btnEditar.textContent = "edit";
+  btnEditar.innerHTML = `<img src="assets/imgs/icons8-lápis-100.png" alt="Editar" width="25px" height="25px">`;
   btnEditar.addEventListener("click", () => editarGrupo(grupo));
 
   const btnExcluir = document.createElement("button");
   btnExcluir.className = "btn-excluir";
-  btnExcluir.textContent = "X";
+  btnExcluir.innerHTML = `<img src="assets/imgs/icons8-lixeira-60.png" alt="Editar" width="25px" height="25px"> `;
   btnExcluir.addEventListener("click", () => excluirGrupo(grupo));
 
   //adicionando os filhos ao pai
@@ -45,6 +48,11 @@ function criarGrupo() {
   grupo.appendChild(btnCidades);
   grupo.appendChild(btnEditar);
   grupo.appendChild(btnExcluir);
+  grupo.appendChild(btnDivGrupo);
+
+  btnDivGrupo.appendChild(btnCidades);
+  btnDivGrupo.appendChild(btnEditar);
+  btnDivGrupo.appendChild(btnExcluir);
 
   //adicionando o grupo a lista de grupos
   listarGrupos.appendChild(grupo);
