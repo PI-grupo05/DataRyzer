@@ -27,25 +27,16 @@
 					<img src="./assets/imgs/iconeEmpresas.png" alt="">
 					<span>Unidades Consumidoras</span>
 				</a>
+				<a href="./historico_interrupcao.html">
+					<img src="./assets/imgs/historico_icon.png" alt="">
+					<span>historico de interrupções</span>
+				</a>
 			</div>
 			<a id="botaoSair" onclick="sair()">
 				<img src="./assets/imgs/iconeSair.png" alt="">
 				Sair
 			</a>
 		</div>
-
-		<!-- <aside class="sidebar">
-			<header class="logo">DATARYZER</header>
-			<nav>
-				<a href="#"><span>&#127968;</span>Dashboard</a>
-				<a href="#"><span>&#128100;</span>Perfil</a>
-				<a href="#"><span>&#128276;</span>Notificações</a>
-				<a href="#"><span>&#128196;</span>Empresas</a>
-			</nav>
-			<div class="logout">
-				<a href="#"><span>&#128682;</span>Sair</a>
-			</div>
-		</aside> -->
 
 		<main class="main">
 			<section class="header" role="banner">
@@ -71,7 +62,7 @@
 					placeholder="Buscar..."
 					aria-label="Buscar por campo selecionado"
 				/>
-				<button type="submit" aria-label="Pesquisar">&#128269;</button>
+				<button type="submit" aria-label="Pesquisar"><img class="lupinha" url="./assets/imgs/lupa.png" alt=""></button>
 			</form>
 
 			<table>
@@ -110,10 +101,33 @@
 		</main>
 	</body>
 </html>
-<script src="./js/historico.js">
+<script src="/env.js"></script>
+<script src="./js/dashEspecifica.js"></script>
+<script>
 	function sair() {
-	 sessionStorage.clear(); // Limpa toda a sessão do usuário
-	 window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
-	 }
- 
- </script>
+		sessionStorage.clear(); // Limpa toda a sessão do usuário
+		window.location.href = `http://${window.APP_HOST}:8080/login.html`;; // Redireciona para a tela de login
+	}
+
+
+
+  	fetch(`/historico/buscarHistorico/${sessionStorage.FK_DISTRIBUIDORA}`, { 
+		method: 'GET',
+		cache: 'no-store'
+	})
+	.then(function (response) {
+		if (response.ok) {
+			response.json().then(function (resposta) {
+				console.log(`Dados recebidos de historico no front: ${JSON.stringify(resposta)}`);
+			});
+		} else {
+			console.error('Nenhum dado encontrado ou erro na API');
+		}
+    })
+	.catch(function (error) {
+        console.error(`Erro na obtenção dos dados p/ historico: ${error.message}`);
+    });
+
+</script>
+
+

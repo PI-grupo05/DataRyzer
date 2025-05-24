@@ -18,3 +18,5 @@ function abrirMenu(){
     menuAberto = true
   }
 }
+
+

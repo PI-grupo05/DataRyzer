@@ -2,7 +2,7 @@ var historicoModel = require("../models/historicoModel");
 
 function buscarHistorico(req, res) {
 
-    var idUnidadeConsumidora = req.params.idUnidadeConsumidora
+    var idUnidadeConsumidora = req.params.distribuidora
 
     console.log("Pegando as ultimas interrupções em controllers.")
 

@@ -49,7 +49,7 @@
     </div>
   </body>
 </html>
-
+<script src="/env.js"></script>
 <script>
   function entrar() {
     /* aguardar(); */
@@ -121,11 +121,12 @@
             sessionStorage.ID_USUARIO = json.id_usuario;
             sessionStorage.TIPO_USUARIO = json.tipo_usuario;
             sessionStorage.TELEFONE = json.telefone;
-            sessionStorage.FK_CIDADE = json.fk_cidade;
+            sessionStorage.FK_UNIDADE_CONSUMIDORA = json.fk_unidade_consumidora;
+            sessionStorage.FK_DISTRIBUIDORA = json.fk_distribuidora
 
             setTimeout(function () {
               console.log(resposta);
-              window.location = "./telaPosLogin.html";
+              window.location = "./historico_interrupcao.html";
             }, 2000); // apenas para exibir o loading
           });
         } else {
@@ -167,6 +168,6 @@
   }
 
   function siteAngular() {
-    window.location.href = "http://34.202.174.0:4200";
+    window.location.href = `http://${window.APP_HOST}:4200`;
   }
 </script>

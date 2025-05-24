@@ -9,14 +9,14 @@
     <title>Dashboard de Interrupções</title>
 </head>
 <body>
-       <div id="menuLateral">
+    <div id="menuLateral">
         <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
         <div id="menuLateralSecoes">
             <a href="">
                 <img src="./assets/imgs/iconeDash.png" alt="">
                 <span>Dashboard</span>
             </a>
-            <a href="">
+            <a href="./perfil">
                 <img src="./assets/imgs/iconePerfil.png" alt="">
                 <span>Perfil</span>
             </a>
@@ -24,37 +24,37 @@
                 <img src="./assets/imgs/iconeNotificacao.png" alt="">
                 <span>Notificações</span>                
             </a>
-            <a href="">
+            <a href="./unidadeConsumidora.html">
                 <img src="./assets/imgs/iconeEmpresas.png" alt="">
-                <span>Empresas</span>
+                <span>UnidadeConsumidora</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="" />
+                <span>historico de interrupções</span>
             </a>
         </div>
-        <a id="botaoSair" onclick="siteAngular">
+        <a id="botaoSair" href="">
             <img src="./assets/imgs/iconeSair.png" alt="">
             Sair
         </a>
     </div>
-
+    
     <div id="containerConteudo">
+        <section id="cabecalho">
+    <div id="botaoData" onclick="toggleDatePicker()">
+        Data
+    </div>
+    <input type="date" id="seletorData" style="display: none;" onchange="filtrarPorData()">
+</section>
 
-       
-
-
+        
         <div id="conteudoPrincipal">
-
-            <select class="botaoData" id="botaoData">
-                <option value="Data">Data</option>
-                <option value="Mês">Mês</option>
-                <option value="Bimestre">Bimestre</option>
-                <option value="Semestre">Semestre</option>
-                <option value="Ano">Ano</option>
-            </select>
-
+           
+            <section id="metricas">
                 <section id="cartoes">
                     <div class="cartao drop-shadow cidade-mais-afetada-quedas">
                         <div class="metricaTexto">
-                            <h2 class="textoKPI">Cidade mais afetada <br>
-                            (quedas)</h2>
+                            <h2>Cidade mais afetada</h2>
                             <div class="kpi-value" id="cidade-mais-quedas">Carregando...</div>
                             <p class="metricaNegativa">
                                 +5
@@ -64,7 +64,7 @@
                     </div>
                     <div class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal">
                         <div class="metricaTexto">
-                            <h2 class="textoKPI">Cidade com maior tempo de interrupção</h2>
+                            <h2>Cidade com maior tempo</h2>
                             <div class="kpi-value" id="cidade-maior-tempo">Carregando...</div>
                             <p class="metricaPositiva">
                                 -15 min
@@ -74,13 +74,14 @@
                     </div>
                     <div class="cartao drop-shadow">
                         <div class="metricaTexto">
-
+                            
                         </div>
                     </div>
                 </section>
+            </section>
             <section id="secaoGraficos">
                 <div class="grafico drop-shadow">
-                    <canvas  id="graficoLinha" height="180"></canvas>
+                    <canvas id="graficoLinha" height="180"></canvas>
                 </div>
             </section>
             <section id="secaoGraficosBarra">
@@ -92,56 +93,53 @@
                 </div>
             </section>
             <section class="secaoMotivosQuedas">
-
+                
             </section>
         </div>
-
-        <div id="lateralDireita">
-            <div id="secaoUsuario">
-                <img src="./assets/imgs/iconeUsuario.png" alt="">
-                <div id="dadosUsuario">
-                    <span>Usuario</span>
-                    <span>Cargo</span>
-                </div>
-            </div>
+    </div>
     
-            <div class="card-status drop-shadow">
-                <div class="info-card">
-                    <div class="evening">
-                        <h3>Motivos das quedas</h3><br><br>
-                        <img src="./caminho/para/sua/imagem.jpg" alt="Descrição da Imagem" class="imagem-arredondada">
-                        <div class="causas">Causas</div>
-                        <div class="_32">32%</div>
-                        <div class="causas">Causas</div>
-                        <div class="_32">32%</div>
-                        <div class="causas">Causas</div>
-                        <div class="_32">32%</div>
-                    </div>
+  
+    <div id="lateralDireita">
+        <div id="secaoUsuario">
+            <img src="./assets/imgs/iconeUsuario.png" alt="">
+            <div id="dadosUsuario">
+                <span>Usuario</span>
+                <span>Cargo</span>
+            </div>
+        </div>
+        
+        <div class="card-status drop-shadow">
+            <div class="info-card">
+                <div class="evening">
+                   <h3>Motivos das quedas</h3><br><br>
+                 <img src="./caminho/para/sua/imagem.jpg" alt="Descrição da Imagem" class="imagem-arredondada">
+                    <div class="causas">Causas</div>
+                    <div class="_32">32%</div>
+                    <div class="causas">Causas</div>
+                    <div class="_32">32%</div>
+                    <div class="causas">Causas</div>
+                    <div class="_32">32%</div>
                 </div>
             </div>
         </div>
     </div>
 
 
-  
-
-
 </body>
-
 </html>
-
-
+    
+ 
 
 
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
 
-    html {
+    html{
         height: 100%;
         width: 100%;
     }
 
-    body {
+    body{
         width: 100%;
         height: 100%;
         margin: 0;
@@ -151,29 +149,37 @@
         position: relative;
     }
 
-    #logo {
+    #menuLateral{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        width: 20%;
+        background: linear-gradient(to bottom, #070226, #321ec6 );
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        transition: 0.5s;
+        z-index: 2;
+    }
+
+    #logo{
         width: 80%;
     }
 
-    .grafico-barra{
-        width: 30vh;
-        height: 35vh;
-    }
-
-    #menuLateralSecoes {
+    #menuLateralSecoes{
         display: flex;
         flex-direction: column;
         align-items: start;
         gap: 50px;
     }
 
-    #menuLateralSecoes,
-    #menuLateral a,
-    #menuLateralSecoes img {
+    #menuLateralSecoes, #menuLateral a, #menuLateralSecoes img{
         width: 50%;
     }
 
-    #menuLateral a {
+    #menuLateral a{
         display: flex;
         font-weight: 500;
         align-items: center;
@@ -182,95 +188,87 @@
         gap: 10px;
     }
 
-    #botaoSair,
-    #botaoSair img {
+    #botaoSair, #botaoSair img{
         width: 30%;
     }
 
-    #containerConteudo {
-        position: relative;
-        width: 100%;
+    #containerConteudo{
+        margin: 1%;
+        margin-inline: 5%;
+        width: 60%;
+        transition: 0.5s;
+        flex-grow: 1;
     }
 
     #conteudoPrincipal {
         width: 100%;
-        position: absolute;
-        right: 3vh;
-        top: 7vh;
     }
 
-    #containerConteudo h1 {
+    #containerConteudo h1{
         margin-top: 0;
     }
 
-    #cabecalho {
+    #cabecalho{
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    #botaoMenu {
+    #botaoMenu{
         transform: scaleX(1);
         width: 40px;
         height: 40px;
     }
 
+   
+
+
+#botaoData {
+    background-color: white; 
+    color: rgb(0, 0, 0); 
+    padding: 10px 15px; 
+    border-radius: 5px; 
+    cursor: pointer; 
+    text-align: center; 
+    width: fit-content; 
+ 
+}
+
+#botaoData:hover {
+    background-color: #070226; 
+}
 
 
 
-    #botaoData {
-        position: absolute;
-        display: flex;
-        background-color: white;
-        color: rgb(0, 0, 0);
-        border-radius: 5px;
-        cursor: pointer;
-        justify-content: center;
-        align-items: center;
-        width: 11vh;
-        height: 4vh;
-        transition: 200ms;
-        
-    }
+  #lateralDireita #secaoUsuario {
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    gap: 10px; 
+    margin-bottom: 30px;
+    width: 100%;
+}
+#lateralDireita #secaoUsuario img {
+    width: 80px;
+    height: 80px; 
+}
+#lateralDireita #dadosUsuario {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    text-align: left; 
+}
 
-    #botaoData:hover {
-    border-color: aliceblue;
-    }
-
-
-
-    #secaoUsuario {
-        position: absolute;
-        left: 141vh;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-    }
-    
-    #secaoUsuario img {
-        width: 60px;
-        height: 60px;
-    }
-
-    #lateralDireita #dadosUsuario {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-    }
-
-    .cartoes .h2{
-        font-size: 2vh;
-    }
-
+   
     .card-status {
-        width: 26vh;
-        height: 83.5vh;
-        /* border-radius: 10px; */
-        background-color: #f5f5f5;
-        text-align: center;
-        left: 140vh;
-        top:12vh;
+       
+    height: 500px;
+    width: 140px;
+    padding: 20px;
+    /* border-radius: 10px; */
+    background-color: #f5f5f5;
+    text-align: center;
+
     }
 
     .card-status h3 {
@@ -286,47 +284,52 @@
         font-size: 16px;
     }
 
-  
+    #metricas{
+        margin-bottom: 2%;
+    }
 
-    .metricaNegativa {
+    .metricaNegativa{
         color: red;
         margin: 0;
     }
 
-    .metricaPositiva {
+    .metricaPositiva{
         color: green;
         margin: 0;
     }
 
-    #cartoes {
+    h2{
+        margin-top: 0;
+        text-align: center;
+    }
+
+    #cartoes{
         display: flex;
         justify-content: space-between;
-        margin-top: 5vh;
-        width: 90%;
     }
 
-    .drop-shadow {
+    .drop-shadow{
         background-color: white;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.10);
     }
 
-    section#graficos {
+    section#graficos{
         width: 100%;
     }
 
-    .cartao {
+    .cartao{
         display: flex;
         justify-content: space-around;
         align-items: center;
         width: 30%;
-        height: 15vh;
+        height: 100px;
     }
 
-    .cartao img {
+    .cartao img{
         width: 5%;
     }
 
-    .metricaTexto {
+    .metricaTexto{
         text-align: center;
         height: 100%;
         display: flex;
@@ -334,40 +337,48 @@
         justify-content: space-evenly;
     }
 
-    .metricaTexto h2 {
+    .metricaTexto h2{
         color: #7F7F7F;
         font-size: 1.8vw;
         margin: 0
     }
 
-    .metricaTexto b {
+    .metricaTexto b{
         font-size: 2vw;
     }
 
-    #secaoGraficos {
+    #secaoGraficos{
         display: flex;
         align-items: center;
         justify-content: space-between;
-        width: 90%;
+        width: 100%;
     }
 
-    .grafico {
-        margin-top: 3vh;
+    .grafico{
         width: 100%;
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
-        height: 28vh;
     }
 
+    .grafico-linha{
+        width: 100%;
+        height: 180px;
+    }
+
+    #graficoLinha, #graficoBarra1, #graficoBarra2 {
+        width: 100%;
+        height: 250px;
+    }
 
     /* Estilo para a seção dos gráficos de barras */
     #secaoGraficosBarra {
         display: flex;
         justify-content: space-between;
-        width: 90%;
-        gap: 10px;
-    }   
+        width: 100%;
+        margin-top: 20px;
+        gap: 20px;
+    }
 
     .grafico-barra {
         width: 48%;
@@ -413,35 +424,36 @@
     #secaoMotivos {
         display: flex;
         flex-direction: column;
-        width: 300px;
+        width: 300px;   
     }
 
-    #secaoMotivosQuedas .box {
+    #secaoMotivosQuedas .box{
         display: flex;
         width: 400px;
         height: 200px;
         background-color: #070226;
     }
 
-    
 
     .imagem-arredondada {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-        object-fit: cover;
-        margin-bottom: 10px;
-    }
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    object-fit: cover; 
+    margin-bottom: 10px; 
+}
 
-    .card-status{
-        position: absolute;
-    }
 </style>
 
+<script src="/env.js"></script>
+<script src="./js/dashEspecifica.js">
+  function sair() {
+      sessionStorage.clear(); // Limpa toda a sessão do usuário
+      window.location.href = `http://${window.APP_HOST}:8080/login.html`;; // Redireciona para a tela de login
+  }
+</script>
+
 <script>
-
-
-
 function atualizarKPIs() {
     fetch('/kpiDashGeral/cidade-mais-afetada') 
         .then(response => response.json())
@@ -628,9 +640,6 @@ fetch('/kpiDashGeral/volume-por-motivo')
 document.addEventListener('DOMContentLoaded', function () {
     atualizarKPIs();
     carregarGraficos();
-
-  
-
 });
 </script>
 
