@@ -8,7 +8,7 @@
     <script src="js/dashEspecifica.js"></script>
     <title>Deletar Usuário</title>
 </head>
-<body>
+<body onload="pegarDadosDiretor()">
      <div id="menuLateral">
         <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
         <div id="menuLateralSecoes">
@@ -70,3 +70,35 @@
     </div>
 </body>
 </html>
+
+<script>
+    function pegarDadosDiretor(){
+        fetch("/usuarios/pegarDadosDiretor", {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarDadosDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                sessionStorage.DIRETOR = json.diretor;
+                sessionStorage.EMAIL = json.email;
+                sessionStorage.DISTRIBUIDORA = json.distribuidora;
+                sessionStorage.TELEFONE = json.telefone;
+            });
+            } else {
+                console.log("Houve um erro ao tentar pegar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+</script>

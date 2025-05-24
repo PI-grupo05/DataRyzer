@@ -1,6 +1,36 @@
 var usuarioModel = require("../models/usuarioModel");
 
 
+function pegarDadosDiretor(req,res){
+    usuarioModel.pegarDadosDiretor()
+       .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); // transforma JSON em String
+
+                if (resultado.length == 1) {
+                    console.log(resultado);
+                    
+                    res.json({
+                        diretor: resultado[0].diretor,
+                        email: resultado[0].email,
+                        distribuidora: resultado[0].distribuidora,
+                        telefone: resultado[0].telefone,
+                    })
+                } else {
+                    res.status(403).send("Diretor não encontrado");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar ao pegar os dados do diretor! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
 function autenticar(req, res)  {
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;

@@ -12,6 +12,8 @@ router.post("/autenticar", function (req, res) {
     usuarioController.autenticar(req, res);
 });
 
-
+router.get("/pegarDadosDiretor", function (req,res) {
+    usuarioController.pegarDadosDiretor(req,res);
+});
 
 module.exports = router;
