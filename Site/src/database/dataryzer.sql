@@ -1,6 +1,5 @@
 
-
-	
+	drop database if exists dataryzer;
 	use dataryzer;
 
 	-- MODELAGEM BASICA, SEM RELACIONAMENTO COM AS TABELAS 
@@ -22,18 +21,16 @@
 	nome                varchar (10) not null
 	);
 
-
-	create table cidade(
-	id_cidade			int primary key auto_increment not null,
-	nome				varchar(50) not null,
-	fk_distribuidora    int,
-	fk_grupo            int,
-	constraint fk_distribuidora_cidade foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
-	constraint fk_grupo_cidade foreign key (fk_grupo) references grupo(id_grupo)
+	create table unidade_consumidora(
+		id_unidade_consumidora	int primary key auto_increment not null,
+		nome				varchar(50) not null,
+		fk_distribuidora    int,
+		fk_grupo            int,
+		constraint fk_distribuidora_unidade_consumidora foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
+		constraint fk_grupo_unidade_consumidora foreign key (fk_grupo) references grupo(id_grupo)
 	);
 
-	select * from cidade;
-
+	select * from unidade_consumidora;
 
 	create table filtro(
 	id_filtro           int primary key auto_increment,
@@ -49,14 +46,15 @@
 	telefone			varchar(15) not null,
 	email				varchar(50) not null,
 	senha				varchar(50) not null,
-	fk_cidade 			int,
+	fk_unidade_consumidora int,
 	fk_distribuidora 	int not null,
 	fk_filtro           int,
-	constraint fk_cidade_usuario foreign key (fk_cidade) references cidade(id_cidade),
+	constraint fk_unidade_consumidora_usuario foreign key (fk_unidade_consumidora) references unidade_consumidora(id_unidade_consumidora),
 	constraint fk_distribuidora_usuario foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
 	constraint fk_filtro_usuario foreign key (fk_filtro) references filtro(id_filtro)
 	);
 
+	select * from usuario;
 
 	create table motivo(
 	id_motivo			int primary key auto_increment,
@@ -70,10 +68,10 @@
 	dt_inicio			datetime not null,
 	dt_fim				datetime not null,
 	duracao INT GENERATED ALWAYS AS (TIMESTAMPDIFF(MINUTE, dt_inicio, dt_fim)) STORED,
-	fk_cidade 			int not null,
+	fk_unidade_consumidora int not null,
 	fk_motivo 			int not null,
-	constraint pk_interrupcao primary key(id_interrupcao, fk_cidade, fk_motivo),
-	constraint fk_cidade_interrupcao foreign key (fk_cidade) references cidade(id_cidade),
+	constraint pk_interrupcao primary key(id_interrupcao, fk_unidade_consumidora, fk_motivo),
+	constraint fk_unidade_consumidora_interrupcao foreign key (fk_unidade_consumidora) references unidade_consumidora(id_unidade_consumidora),
 	constraint fk_motivo_interrupcao foreign key (fk_motivo) references motivo(id_motivo)
 	);
 
@@ -84,11 +82,11 @@
 	data_hora 			datetime not null,
 	tipo 				varchar(45) not null,
 	mensagem			varchar(45) not null,
-	fk_cidade			int not null,
+	fk_unidade_consumidora int not null,
 	fk_distribuidora	int not null,
-	constraint pk_notificacao primary key(id_notificacao, fk_cidade, fk_distribuidora),
-	constraint fk_cidade_notificacao foreign key (fk_cidade) references cidade(id_cidade),
-	constraint fk_distribuidora_cidade_notificacao foreign key (fk_distribuidora) references distribuidora(id_distribuidora)
+	constraint pk_notificacao primary key(id_notificacao, fk_unidade_consumidora, fk_distribuidora),
+	constraint fk_unidade_consumidora_notificacao foreign key (fk_unidade_consumidora) references unidade_consumidora(id_unidade_consumidora),
+	constraint fk_distribuidora_notificacao foreign key (fk_distribuidora) references distribuidora(id_distribuidora)
 	);
 
 
@@ -100,4 +98,4 @@
     mensagem			varchar(255) not null,
     mensagem_log		varchar(255) not null
     );
-     -- fim tabela log
+-- fim tabela log

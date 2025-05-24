@@ -1,5 +1,5 @@
-var ambiente_processo = 'producao';
-// var ambiente_processo = "desenvolvimento";
+// var ambiente_processo = 'producao';
+var ambiente_processo = "desenvolvimento";
 
 var caminho_env = ambiente_processo === "producao" ? ".env" : ".env.dev";
 // Acima, temos o uso do operador ternário para definir o caminho do arquivo .env
@@ -13,11 +13,24 @@ var path = require("path");
 var PORTA_APP = process.env.APP_PORT;
 var HOST_APP = process.env.APP_HOST;
 
+var mensagemDev = `${HOST_APP}:${PORTA_APP}`
+var mensagemProd = HOST_APP
+
+
+if(ambiente_processo == "desenvolvimento") {
+  var mensagem = mensagemDev
+}else if(ambiente_processo == "producao") {
+  var mensagem = mensagemProd
+}
+ 
+
+
 var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var kpiRouter = require("./src/routes/kpiDashGeral");
+var historicoRouter = require("./src/routes/historico");
 
 
 app.use(express.json());
@@ -28,8 +41,15 @@ app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
+app.use("/historico", historicoRouter);
 app.use("/kpiDashGeral", kpiRouter);  // rota da kpi da dsh
 
+
+
+app.get('/env.js', (req, res) => {
+  res.set('Content-Type', 'application/javascript');
+  res.send(`window.APP_HOST = "${HOST_APP}";`);
+});
 
 app.listen(PORTA_APP, function () {
   console.log(`
@@ -41,7 +61,7 @@ app.listen(PORTA_APP, function () {
     ### ###  ##       ##  ##            ## ##    ##  ##     ##     ##  ##             ####      ##     ##      
     ##   ##  ######   #####             ####     ##  ##     ##     ##  ##              ##      ####    ######  
     \n\n\n                                                                                                 
-    Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${HOST_APP}:${PORTA_APP} :. \n\n
+    Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar .: http://${mensagem} :. \n\n
     Você está rodando sua aplicação em ambiente de .:${process.env.AMBIENTE_PROCESSO}:. \n\n
     \tSe .:desenvolvimento:. você está se conectando ao banco local. \n
     \tSe .:producao:. você está se conectando ao banco remoto. \n\n

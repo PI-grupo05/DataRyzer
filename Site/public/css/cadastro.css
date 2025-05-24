@@ -76,7 +76,6 @@
 }
 .login .login-title{
   text-align: center;
-  margin-bottom: 2vh;
 }
 .container-form{
   display: flex;
@@ -101,8 +100,6 @@
 .home img:hover{
   width: 30px;
   height: 30px;
- 
-
 }
 
 .container-form label{
@@ -175,7 +172,7 @@ hr{
 
 }
 .ja-cadastrado{
-  margin-top: 10px;
+  margin-top: 8px;
   text-align: center;
   font-size: 13px;
   color: black;
@@ -192,7 +189,7 @@ hr{
   border-radius: 6px;
   cursor: pointer;
   transition: all 0.4s ease-in;
-  margin-top: 1.5vh;
+  margin-top: 0.2vh;
 }
 .button:hover{
   background-color: black;
