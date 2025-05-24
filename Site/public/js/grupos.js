@@ -1,24 +1,91 @@
 let limiteGrupos = 0;
 
 function criarGrupo() {
-  const listarGrupos = document.getElementById("list-groups");
   if (limiteGrupos == 3) {
-    console.log("Só pode 3 grupos");
+    Swal.fire({
+      icon: "warning",
+      title: "Oops...",
+      text: "Você já atingiu o limite de grupos (3)!",
+    });
     return;
-    //adidicioanr validações em nomes*
   }
-
   let nome = document.getElementById("nome-grupo").value;
+  const idUsuario = sessionStorage.ID_USUARIO;
 
   if (!nome.trim()) {
-    console.log("nome vazio");
+    Swal.fire({
+      icon: "warning",
+      title: "Oops...",
+      text: "Você não digitou o nome do grupo!",
+    });
+    return;
+  } else if (nome.length > 20) {
+    Swal.fire({
+      icon: "warning",
+      title: "Oops...",
+      text: "O nome do grupo não pode ultrapassar 20 caracteres!",
+    });
     return;
   }
-  // criando elementos html que referenciam um grupo criado
 
+  fetch("/grupos/criar", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ nome, idUsuario }),
+  })
+    .then((response) => {
+      if (!response.ok) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "Erro ao criar grupo!",
+        });
+        throw new Error("Erro na resposta do servidor");
+      }
+      return response.json();
+    })
+    .then((data) => {
+      console.log("Resposta do backend ao criar grupo:", data);
+      if (data.error) {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: data.error,
+        });
+        return;
+      }
+      if (data.ok) {
+        criarGrupoNaTela(nome, data.idGrupo);
+        limiteGrupos++;
+      } else {
+        Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: data.error,
+        });
+      }
+    })
+    .catch((error) => {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Erro ao criar grupo!",
+      });
+    });
+
+  document.getElementById("nome-grupo").value = "";
+}
+
+function criarGrupoNaTela(nome, idGrupo) {
+  const listarGrupos = document.getElementById("list-groups");
+
+  // criando elementos html que referenciam um grupo criado
   // pai
   const grupo = document.createElement("div");
   grupo.className = "group";
+  grupo.setAttribute("data-id", idGrupo);
 
   // filhos
   const spanNome = document.createElement("span");
@@ -26,7 +93,7 @@ function criarGrupo() {
   spanNome.className = "nomeGrupo";
 
   const btnDivGrupo = document.createElement("div");
-  btnDivGrupo.className = "div-btns"
+  btnDivGrupo.className = "div-btns";
 
   const btnCidades = document.createElement("button");
   btnCidades.className = "btn-cidades";
@@ -56,10 +123,26 @@ function criarGrupo() {
 
   //adicionando o grupo a lista de grupos
   listarGrupos.appendChild(grupo);
+}
 
-  limiteGrupos++;
+function carregarGruposDoUsuario() {
+  const idUsuario = sessionStorage.ID_USUARIO;
 
-  document.getElementById("nome-grupo").value = "";
+  fetch(`/grupos/listar/${idUsuario}`)
+    .then((res) => res.json())
+    .then((grupos) => {
+      grupos.forEach((grupo) => {
+        criarGrupoNaTela(grupo.nome, grupo.id);
+      });
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar grupos:", err);
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Erro ao carregar grupos existentes!",
+      });
+    });
 }
 
 function excluirGrupo(grupo) {
@@ -71,6 +154,11 @@ function excluirGrupo(grupo) {
 function editarGrupo(grupo) {
   const spanNome = grupo.querySelector("span");
   const nomeAtual = spanNome.textContent;
+  const idGrupo = grupo.getAttribute("data-id");
+  console.log("ID do grupo para edição:", idGrupo);
+  console.log(grupo);
+
+  console.log("ID do grupo para edição:", idGrupo);
 
   if (grupo.querySelector("input")) {
     console.log("ja exitse um input");
@@ -90,11 +178,56 @@ function editarGrupo(grupo) {
   input.addEventListener("keydown", (e) => {
     if (e.key === "Enter") {
       const novoNome = input.value.trim();
-      if (novoNome) {
-        spanNome.textContent = novoNome;
+      if (!novoNome) {
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "O nome do grupo não pode ser vazio!",
+        });
+        input.focus();
+        return;
       }
-      grupo.removeChild(input);
-      spanNome.style.display = "inline";
+      if (novoNome.length > 20) {
+        Swal.fire({
+          icon: "warning",
+          title: "Oops...",
+          text: "O nome do grupo não pode ultrapassar 20 caracteres!",
+        });
+        input.focus();
+        return;
+      }
+
+      input.disabled = true;
+      console.log("Enviando ID do grupo:", idGrupo); // deve mostrar um número
+
+      fetch(`/grupos/editar/${idGrupo}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ nome: novoNome }),
+      })
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Erro ao editar grupo");
+          }
+          return response.json();
+        })
+        .then((data) => {
+          if (data.error) {
+            Swal.fire({
+              icon: "error",
+              title: "Erro",
+              text: data.error,
+            });
+          } else {
+            spanNome.textContent = novoNome;
+          }
+        })
+        .finally(() => {
+          grupo.removeChild(input);
+          spanNome.style.display = "inline";
+        });
     }
   });
 
