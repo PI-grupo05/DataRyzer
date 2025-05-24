@@ -49,7 +49,7 @@ function editarGrupo(req, res) {
   var idGrupo = req.params.idGrupo;
 
   if (!nome || !idGrupo) {
-    return res.status(400).json({ error: "Nome ou idUsuario não enviados" });
+    return res.status(400).json({ error: "Nome ou idGrupo não enviados" });
   }
 
   gruposModel
@@ -68,8 +68,27 @@ function editarGrupo(req, res) {
     });
 }
 
+function deletarGrupo(req, res) {
+  var idGrupo = req.params.idGrupo;
+
+  if (!idGrupo) {
+    return res.status(400).json({ error: "idGrupo não enviados" });
+  }
+
+  gruposModel
+    .deletarGrupo(idGrupo)
+    .then(() => {
+      res.json({ ok: true });
+    })
+    .catch((erro) => {
+      console.error(erro);
+      res.status(500).json({ error: "Erro ao deletar grupo" });
+    });
+}
+
 module.exports = {
   criarGrupo,
   listarPorUsuario,
   editarGrupo,
+  deletarGrupo,
 };

@@ -132,7 +132,7 @@ function carregarGruposDoUsuario() {
     .then((res) => res.json())
     .then((grupos) => {
       grupos.forEach((grupo) => {
-        criarGrupoNaTela(grupo.nome, grupo.id);
+        criarGrupoNaTela(grupo.nome, grupo.id_grupo);
       });
     })
     .catch((err) => {
@@ -148,17 +148,32 @@ function carregarGruposDoUsuario() {
 function excluirGrupo(grupo) {
   const listarGrupos = document.getElementById("list-groups");
   listarGrupos.removeChild(grupo);
+  const idGrupo = grupo.getAttribute("data-id");
+  console.log("idGrupo--", idGrupo);
   limiteGrupos--;
+
+  fetch(`grupos/deletar/${idGrupo}`, {
+    method: "DELETE",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  })
+    .then((resposta) => {
+      if (resposta.ok) {
+        console.log("Registro deletado com sucesso");
+      } else {
+        console.log("Erro ao deletar registro");
+      }
+    })
+    .catch((error) => {
+      console.error("Erro:", error);
+    });
 }
 
 function editarGrupo(grupo) {
   const spanNome = grupo.querySelector("span");
   const nomeAtual = spanNome.textContent;
   const idGrupo = grupo.getAttribute("data-id");
-  console.log("ID do grupo para edição:", idGrupo);
-  console.log(grupo);
-
-  console.log("ID do grupo para edição:", idGrupo);
 
   if (grupo.querySelector("input")) {
     console.log("ja exitse um input");
@@ -198,7 +213,6 @@ function editarGrupo(grupo) {
       }
 
       input.disabled = true;
-      console.log("Enviando ID do grupo:", idGrupo); // deve mostrar um número
 
       fetch(`/grupos/editar/${idGrupo}`, {
         method: "PUT",
