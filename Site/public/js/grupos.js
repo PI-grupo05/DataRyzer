@@ -97,8 +97,8 @@ function criarGrupoNaTela(nome, idGrupo) {
 
   const btnCidades = document.createElement("button");
   btnCidades.className = "btn-cidades";
-  btnCidades.textContent = "Gerenciar unidades";
-  btnCidades.addEventListener("click", () => gerenciarCidade());
+  btnCidades.textContent = "Gerenciar grupo";
+  btnCidades.addEventListener("click", () => abrirModalGerenciar(idGrupo));
 
   const btnEditar = document.createElement("button");
   btnEditar.className = "btn-editar";
@@ -246,4 +246,14 @@ function editarGrupo(grupo) {
   });
 
   input.focus();
+}
+/* Modal */
+function fecharModal() {
+  document.getElementById("modal-gerenciar").classList.add("hidden");
+}
+function abrirModalGerenciar(idGrupo) {
+  const modal = document.getElementById("modal-gerenciar");
+  modal.classList.remove("hidden");
+  const titulo = document.getElementById("titulo-modal-gerenciar");
+  titulo.textContent = `Gerenciar Grupo: ${idGrupo}`;
 }
