@@ -1,4 +1,4 @@
-// var ambiente_processo = 'producao';
+//var ambiente_processo = 'producao';
 var ambiente_processo = "desenvolvimento";
 
 var caminho_env = ambiente_processo === "producao" ? ".env" : ".env.dev";
@@ -31,7 +31,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var kpiRouter = require("./src/routes/kpiDashGeral");
 var historicoRouter = require("./src/routes/historico");
-
+var groupRouter = require("./src/routes/grupos");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -43,13 +43,8 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/historico", historicoRouter);
 app.use("/kpiDashGeral", kpiRouter);  // rota da kpi da dsh
+app.use("/grupos", groupRouter);
 
-
-
-app.get('/env.js', (req, res) => {
-  res.set('Content-Type', 'application/javascript');
-  res.send(`window.APP_HOST = "${HOST_APP}";`);
-});
 
 app.listen(PORTA_APP, function () {
   console.log(`

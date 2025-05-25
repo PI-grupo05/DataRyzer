@@ -4,16 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./css/login.css">
-    <link rel="shortcut icon" href="assets/imgs/favicon.png" type="image/x-icon">
-    
+    <link rel="stylesheet" href="./css/login.css" />
+    <link
+      rel="shortcut icon"
+      href="assets/imgs/favicon.png"
+      type="image/x-icon"
+    />
+
     <title>DataRyzer | Login</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="./js/sessao.js"></script>
     <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
-  />
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css"
+    />
 
     <link rel="stylesheet" href="css/loginCadastro.css" />
   </head>
@@ -22,30 +26,64 @@
     <div class="login-page">
       <div class="background">
         <div class="logo">
-          <img id="logo" src="./assets/imgs/logoData-White.png" alt="logo-DataRyzer">
+          <img
+            id="logo"
+            src="./assets/imgs/logoData-White.png"
+            alt="logo-DataRyzer"
+          />
         </div>
-        </div>
-        <span class="home"><a onclick="siteAngular()"><img src="./assets/imgs/homePNG.png" alt="" width="25px" height="25px"></a></span>
-        <div class="login">
-          <form class="container-form">
-            <h2 class="login-title">Login</h2>
-            <label for="email">E-mail</label>
-            <div class="input-email">
-              <input id="email_input" type="email" placeholder="Seu email" required>
-            </div>
-            <label for="senha">Senha</label>
-            <div class="input-senha" >
-              <input type="password" id="senha_input" placeholder="Sua senha"  required>
-              <img onclick="aparecerSenha()" id="icon_olho" class="input-icon" src="./assets/imgs/icons8-olho-64.png" width="20px" height="20px" alt="">
-            </div>
-            <span class="esqueceu-senha"><a href="redefinicaoSenha.html">Esqueceu sua senha?</a></span>
-      
-            <button type="button" class="button" id="button" onclick="entrar()">Entrar</button>
-            <hr>
-            <span class="cadastre-se">Não possui cadastro? <a href="cadastro.html">Cadastre-se</a></span>
-          </form>
-        </div>
-        
+      </div>
+      <span class="home"
+        ><a onclick="siteAngular()"
+          ><img
+            src="./assets/imgs/homePNG.png"
+            alt=""
+            width="25px"
+            height="25px" /></a
+      ></span>
+      <div class="login">
+        <form class="container-form">
+          <h2 class="login-title">Login</h2>
+          <label for="email">E-mail</label>
+          <div class="input-email">
+            <input
+              id="email_input"
+              type="email"
+              placeholder="Seu email"
+              required
+            />
+          </div>
+          <label for="senha">Senha</label>
+          <div class="input-senha">
+            <input
+              type="password"
+              id="senha_input"
+              placeholder="Sua senha"
+              required
+            />
+            <img
+              onclick="aparecerSenha()"
+              id="icon_olho"
+              class="input-icon"
+              src="./assets/imgs/icons8-olho-64.png"
+              width="20px"
+              height="20px"
+              alt=""
+            />
+          </div>
+          <span class="esqueceu-senha"
+            ><a href="redefinicaoSenha.html">Esqueceu sua senha?</a></span
+          >
+
+          <button type="button" class="button" id="button" onclick="entrar()">
+            Entrar
+          </button>
+          <hr />
+          <span class="cadastre-se"
+            >Não possui cadastro? <a href="cadastro.html">Cadastre-se</a></span
+          >
+        </form>
+      </div>
     </div>
   </body>
 </html>
@@ -66,11 +104,9 @@
         text: "Preencha todos os campos",
         color: "#070226",
         customClass: {
-          confirmButton: "custom-button", 
+          confirmButton: "custom-button",
         },
       });
-
-      
 
       return false;
     } else if (emailVar.indexOf("@") == -1) {
@@ -80,11 +116,11 @@
         text: "Email ou senha inválidos!",
         color: "#070226",
         customClass: {
-          confirmButton: "custom-button", 
+          confirmButton: "custom-button",
         },
       });
-      
-      return false
+
+      return false;
     }
 
     console.log("FORM LOGIN: ", emailVar);
@@ -132,15 +168,15 @@
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
           Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: "Email ou senha inválidos!",
-        color: "#070226",
-        customClass: {
-          confirmButton: "custom-button", 
-        },
-      });
-        
+            icon: "error",
+            title: "Oops...",
+            text: "Email ou senha inválidos!",
+            color: "#070226",
+            customClass: {
+              confirmButton: "custom-button",
+            },
+          });
+
           resposta.text().then((texto) => {
             console.error(texto);
           });
@@ -158,12 +194,10 @@
 
     if (senha.type === "password") {
       senha.type = "text";
-      olho.src =
-        "assets/imgs/icons8-olho-64.png";
+      olho.src = "assets/imgs/icons8-olho-64.png";
     } else {
-      senha.type = "password"; 
-      olho.src =
-        "assets/imgs/icons8-olho-fechado-24.png";
+      senha.type = "password";
+      olho.src = "assets/imgs/icons8-olho-fechado-24.png";
     }
   }
 
