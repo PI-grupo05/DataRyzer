@@ -2,11 +2,11 @@ var historicoModel = require("../models/historicoModel");
 
 function buscarHistorico(req, res) {
 
-    var idUnidadeConsumidora = req.params.distribuidora
+    var idDistribuidora = req.params.idDistribuidora
 
     console.log("Pegando as ultimas interrupções em controllers.")
 
-    historicoModel.buscarHistorico(idUnidadeConsumidora).then(function (resultado) {
+    historicoModel.buscarHistorico(idDistribuidora).then(function (resultado) {
         if (resultado.length > 0) {
             res.status(200).json(resultado);
         } else {
@@ -18,3 +18,8 @@ function buscarHistorico(req, res) {
         res.status(500).json(erro.sqlMessage);
     });
 }
+
+
+module.exports = {
+   buscarHistorico
+};
