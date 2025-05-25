@@ -4,7 +4,8 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="./css/historico.css" />
-		<title>Gerentes - Dataryzers</title>
+		<script src="./js/historico.js"></script>
+		<title>Hitorico - Interrupções</title>
 	</head>
 	<body>
 
@@ -53,16 +54,19 @@
 
 			<form class="filter" role="search" onsubmit="return false;">
 				<select aria-label="Campo de filtro">
-					<option>Id Distribuidora</option>
-					<option>Distribuidora</option>
-					<option>Unidade Consumidora</option>
+					<option value="">Unidade Consumidora</option>
+					<option value="">Data Início</option>
+					<option value="">Data Fim</option>
+					<option value="">Duração</option>
+					<option value="">Motivo</option>
 				</select>
 				<input
 					type="text"
 					placeholder="Buscar..."
 					aria-label="Buscar por campo selecionado"
 				/>
-				<button type="submit" aria-label="Pesquisar"><img class="lupinha" url="./assets/imgs/lupa.png" alt=""></button>
+				<button type="submit" aria-label="Pesquisar"><img class="lupinha" src="./assets/imgs/lupa.png" alt=""></button>
+				
 			</form>
 
 			<table>
@@ -73,36 +77,18 @@
 						<th>Unidade Consumidora</th>
 						<th>Data Início</th>
 						<th>Data Fim</th>
-						<th>Duração</th>
+						<th>Duração (min)</th>
 						<th>Motivo</th>
 					</tr>
 				</thead>
-				<tbody>
-					<tr>
-						<td>001</td>
-						<td>XPTO</td>
-						<td>123456</td>
-						<td>01/01/2025</td>
-						<td>02/01/2025</td>
-						<td>24h</td>
-						<td>Manutenção</td>
-					</tr>
-					<tr>
-						<td>002</td>
-						<td>XPTO</td>
-						<td>654321</td>
-						<td>05/01/2025</td>
-						<td>06/01/2025</td>
-						<td>12h</td>
-						<td>Obra</td>
-					</tr>
+				<tbody id="table_historico">
+					
 				</tbody>
 			</table>
 		</main>
 	</body>
 </html>
 <script src="/env.js"></script>
-<script src="./js/dashEspecifica.js"></script>
 <script>
 	function sair() {
 		sessionStorage.clear(); // Limpa toda a sessão do usuário
@@ -119,6 +105,21 @@
 		if (response.ok) {
 			response.json().then(function (resposta) {
 				console.log(`Dados recebidos de historico no front: ${JSON.stringify(resposta)}`);
+				var interrupcoes = resposta
+
+				for (let interrupcao of resposta) {
+				table_historico.innerHTML += `
+					<tr>
+						<td>${interrupcao.idDistribuidora}</td>
+						<td>${interrupcao.distribuidora}</td>
+						<td>${interrupcao.unidade_consumidora}</td>
+						<td>${new Date(interrupcao.data_inicio).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</td>
+						<td>${new Date(interrupcao.data_fim).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</td>
+						<td>${interrupcao.duracao}</td>
+						<td>${interrupcao.motivo}</td>
+					</tr>
+				`;
+				}
 			});
 		} else {
 			console.error('Nenhum dado encontrado ou erro na API');
@@ -127,6 +128,8 @@
 	.catch(function (error) {
         console.error(`Erro na obtenção dos dados p/ historico: ${error.message}`);
     });
+
+
 
 </script>
 

@@ -3,7 +3,6 @@ menuAberto = true;
 function abrirMenu(){
   const botaoMenu = document.getElementById('botaoMenu')
   const menuLateral = document.getElementById('menuLateral')
-  const containerConteudo = document.getElementById('containerConteudo')
 
   if(menuAberto == true){
     botaoMenu.style.transform = "scaleX(1)"
@@ -18,5 +17,8 @@ function abrirMenu(){
     menuAberto = true
   }
 }
+
+
+
 
 

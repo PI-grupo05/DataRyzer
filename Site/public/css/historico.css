@@ -106,6 +106,10 @@ aside.sidebar .logout a {
     gap: 10px;
 }
 
+#menuLateral img {
+	width: 50%;
+}
+
 #botaoSair, #botaoSair img{
     width: 30%;
 }
@@ -123,7 +127,7 @@ aside.sidebar .logout a {
 
 
 #botaoMenu{
-    transform: scaleX(1);
+    transform: scaleX(-1);
     width: 40px;
     height: 40px;
 }
@@ -145,7 +149,7 @@ aside.sidebar .logout a {
 }
 
 .lupinha {
-	height: 40px;
+	height: 30px;
 }
 
 main.main {
@@ -215,15 +219,19 @@ form.filter input {
 
 form.filter button {
 	width: 15%;
-	background-color: #3d5afe;
+	display: flex;
+	background:#321ec6;
+	align-items: center;
+	justify-content: center;
 	color: white;
 	border: none;
 	cursor: pointer;
+	
 	transition: background-color 0.2s ease;
 }
 
 form.filter button:hover {
-	background-color: #2b3bbf;
+	background-color: #202b8f;
 }
 
 table {
