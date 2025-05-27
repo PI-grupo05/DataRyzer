@@ -12,9 +12,33 @@ function validarSessao() {
     }
 }
 
-function limparSessao() {
+// Variáveis globais
+let APP_HOST, APP_PORT, AMBIENTE_PROCESSO;
+
+
+fetch("/config")
+    .then(res => res.json())
+    .then(config => {
+        APP_HOST = config.APP_HOST;
+        APP_PORT = config.APP_PORT;
+        AMBIENTE_PROCESSO = config.AMBIENTE_PROCESSO;
+
+        console.log("Configurações carregadas:");
+        console.log(APP_HOST, APP_PORT, AMBIENTE_PROCESSO);
+        
+    })
+    .catch(err => {
+        console.error("Erro ao buscar configurações:", err);
+    });
+
+function sair() {
+    if (!APP_HOST) {
+        alert("As configurações ainda não foram carregadas.");
+        return;
+    }
+
     sessionStorage.clear();
-    window.location = "../login.html";
+    window.location.href = `http://${APP_HOST}:${APP_PORT}/login.html`;
 }
 
 function verificarTipoUsuario(){

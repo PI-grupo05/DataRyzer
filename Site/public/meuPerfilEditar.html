@@ -7,6 +7,9 @@
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <Script src="./js/sessao.js"></Script>
+    <script src="./js/meuPerfil.js"></script>
     <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
     <!-- <link rel="stylesheet" href="./css/meuPerfilExcluir.css"> -->
     <link rel="stylesheet" href="./css/meuPerfilEditar.css">
@@ -39,7 +42,7 @@
                 <span>historico de interrupções</span>
             </a>
         </div>
-        <a id="botaoSair" onclick="siteAngular">
+        <a id="botaoSair" onclick="sair()">
             <img src="./assets/imgs/iconeSair.png" alt="">
             Sair
         </a>
@@ -67,46 +70,81 @@
                     <form action="#" method="post" class="profile-form">
                         <div class="form-group">
                             <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" placeholder="Nome" required minlength="3">
+                            <input type="text" id="id_nome" name="name" placeholder="Nome" required minlength="3">
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" placeholder="email@gmail.com" required>
+                            <input type="email" id="id_email" name="email" placeholder="email@gmail.com" required>
                         </div>
                         <div class="form-group">
                             <label for="password">Senha:</label>
-                            <input type="password" id="password" name="password" placeholder="********" required
-                                minlength="6">
+                            <input type="password" id="password" name="password" placeholder="********" disabled>
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefone:</label>
-                            <input type="tel" id="phone" name="phone" placeholder="11999999999" pattern="^\d{10,11,12,13}$"
-                                required title="O número deve conter 10 ou 11 dígitos. Exemplo: 11999999999">
+                            <input type="tel" id="id_telefone" name="phone" placeholder="11999999999" pattern="^\d{10,11,12,13}$"
+                                required title="O número deve conter 10 ou 11 dígitos. Exemplo: (11)99999-9999">
                         </div>
                         <div class="button-group">
                             <button onclick="window.location.href='./meuPerfilExcluir.html'" type="button" class="btn-edit">CANCELAR</button>
-                            <button type="submit" class="btn-delete">SALVAR</button>
+                            <button type="button" onclick="alterarDados()" class="btn-delete">SALVAR</button>
                         </div>
                     </form>
                 </div>
-
-
-
-
             </section>
         </section>
-
-
-
-
     </div>
 </body>
 
 </html>
-<script src="./js/dashEspecifica.js">
-    function sair() {
-        sessionStorage.clear(); // Limpa toda a sessão do usuário
-        window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
+<script src="./js/sidebar.js"></script>
+
+<script>
+
+   function alterarDados() {
+        var nome = document.getElementById("id_nome").value.trim();
+        var email = document.getElementById("id_email").value.trim();
+        var telefone = document.getElementById("id_telefone").value.trim();
+
+        if (nome === "" || email === "" || telefone === "") {
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: `Todos os campos devem ser preenchidos`,
+            });
+            return false;
+        } else if (nome.length > 20) {
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "O nome não pode ultrapassar 20 caracteres!",
+            });
+            return false;
+        } else if (telefone.length < 10 || telefone.length > 15) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "O telefone deve ter entre 10 e 15 dígitos",
+                color: "#f01f1a",
+                customClass: {
+                    confirmButton: "custom-button",
+                },
+            });
+            return false;
+        } else if (!email.includes("@") || !email.includes(".com")) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "O email deve conter '@' e '.com'",
+                color: "#f01f1a",
+                customClass: {
+                    confirmButton: "custom-button", 
+                },
+            });
+            return false;
+        }
+
+        console.log("Dados validados:", nome, email, telefone);
     }
 
 </script>

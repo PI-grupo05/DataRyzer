@@ -1,22 +1,35 @@
-menuAberto = true;
 
-function abrirMenu(){
-  const botaoMenu = document.getElementById('botaoMenu')
-  const menuLateral = document.getElementById('menuLateral')
+fetch(`/historico/buscarHistorico/${sessionStorage.FK_DISTRIBUIDORA}`, { 
+  method: 'GET',
+  cache: 'no-store'
+})
+.then(function (response) {
+  if (response.ok) {
+    response.json().then(function (resposta) {
+      console.log(`Dados recebidos de historico no front: ${JSON.stringify(resposta)}`);
 
-  if(menuAberto == true){
-    botaoMenu.style.transform = "scaleX(1)"
-    menuLateral.style.width = "0%"
-    menuLateral.style.fontSize = "0%"
-    menuAberto = false
+      for (let interrupcao of resposta) {
+      table_historico.innerHTML += `
+        <tr>
+          <td>${interrupcao.idDistribuidora}</td>
+          <td>${interrupcao.distribuidora}</td>
+          <td>${interrupcao.unidade_consumidora}</td>
+          <td>${new Date(interrupcao.data_inicio).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</td>
+          <td>${new Date(interrupcao.data_fim).toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" })}</td>
+          <td>${interrupcao.duracao}</td>
+          <td>${interrupcao.motivo}</td>
+        </tr>
+      `;
+      }
+    });
+  } else {
+    console.error('Nenhum dado encontrado ou erro na API');
   }
-  else{
-    botaoMenu.style.transform = "scaleX(-1)"
-    menuLateral.style.width = "20%"
-    menuLateral.style.fontSize = "100%"
-    menuAberto = true
-  }
-}
+  })
+.catch(function (error) {
+      console.error(`Erro na obtenção dos dados p/ historico: ${error.message}`);
+  });
+
 
 
 

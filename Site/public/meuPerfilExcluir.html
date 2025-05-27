@@ -7,6 +7,8 @@
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <Script src="./js/sessao.js"></Script>
+    <script src="./js/meuPerfil.js"></script>
     <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
     <link rel="stylesheet" href="./css/meuPerfilExcluir.css">
     <title>Perfil</title>
@@ -37,7 +39,7 @@
                 <span>historico de interrupções</span>
             </a>
         </div>
-        <a id="botaoSair" onclick="siteAngular">
+        <a id="botaoSair" onclick="sair()">
             <img src="./assets/imgs/iconeSair.png" alt="">
             Sair
         </a>
@@ -65,19 +67,19 @@
                     <form action="#" method="post" class="profile-form">
                         <div class="form-group">
                             <label for="name">Nome:</label>
-                            <input type="text" id="name" name="name" value="Nome" readonly>
+                            <input id="id_nome" type="text" name="name" readonly>
                         </div>
                         <div class="form-group">
                             <label for="email">Email:</label>
-                            <input type="email" id="email" name="email" value="email@gmail.com" readonly>
+                            <input id="id_email" type="email" name="email" readonly>
                         </div>
                         <div class="form-group">
                             <label for="password">Senha:</label>
-                            <input type="password" id="password" name="password" value="********" readonly>
+                            <input id="id_senha" type="password" name="password" value="********" readonly>
                         </div>
                         <div class="form-group">
                             <label for="phone">Telefone:</label>
-                            <input type="tel" id="phone" name="phone" value="(11) 99999-9999" readonly>
+                            <input id="id_telefone" type="tel" name="phone" readonly>
                         </div>
                         <div class="button-group">
                             
@@ -97,10 +99,5 @@
 </body>
 
 </html>
-<script src="./js/dashEspecifica.js">
-    function sair() {
-        sessionStorage.clear(); // Limpa toda a sessão do usuário
-        window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
-    }
+<script src="./js/sidebar.js"></script>
 
-</script>

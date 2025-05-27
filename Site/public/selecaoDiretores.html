@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <Script src="./js/sessao.js"></Script>
     <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
     <!-- <link rel="stylesheet" href="./css/meuPerfilExcluir.css"> -->
     <link rel="stylesheet" href="./css/selecaoDiretores.css">
@@ -30,12 +31,16 @@
                 <img src="./assets/imgs/iconeNotificacao.png" alt="">
                 <span>Notificações</span>
             </a>
-            <a href="">
+             <a href="">
                 <img src="./assets/imgs/iconeEmpresas.png" alt="">
-                <span>Empresas</span>
+                <span>Unidades Consumidoras</span>
+            </a>
+             <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="" />
+                <span>historico de interrupções</span>
             </a>
         </div>
-        <a id="botaoSair" onclick="siteAngular">
+        <a id="botaoSair" onclick="sair()">
             <img src="./assets/imgs/iconeSair.png" alt="">
             Sair
         </a>
@@ -131,12 +136,4 @@
 </body>
 
 </html>
-<script src="./js/dashEspecifica.js">
-    function sair() {
-        sessionStorage.clear(); // Limpa toda a sessão do usuário
-        window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
-       }
-
-
-
-</script>
+<script src="./js/sidebar.js"></script>

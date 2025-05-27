@@ -45,6 +45,13 @@ app.use("/historico", historicoRouter);
 app.use("/kpiDashGeral", kpiRouter);  // rota da kpi da dsh
 app.use("/grupos", groupRouter);
 
+app.get("/config", (req, res) => {
+    res.json({
+        APP_HOST: HOST_APP,
+        APP_PORT: PORTA_APP,
+        AMBIENTE_PROCESSO: ambiente_processo
+    });
+});
 
 app.listen(PORTA_APP, function () {
   console.log(`
