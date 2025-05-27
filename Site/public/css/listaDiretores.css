@@ -1,0 +1,64 @@
+#secaoDiretores{
+    margin-top: 5%;
+}
+
+form.filter {
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+form.filter select,
+form.filter input,
+form.filter button {
+	padding: 8px 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+form.filter select {
+	width: 15%;
+}
+
+form.filter input {
+	flex: 1;
+}
+
+form.filter button {
+	width: 15%;
+	background-color: #3d5afe;
+	color: white;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+form.filter button:hover {
+	background-color: #2b3bbf;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background: white;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+	text-align: left;
+	padding: 12px 15px;
+	border-bottom: 1px solid #eee;
+	font-size: 14px;
+    width: 20%;
+}
+
+#colunaBotao{
+    text-align: center;
+}
+
+th {
+	background-color: #f2f2f2;
+}

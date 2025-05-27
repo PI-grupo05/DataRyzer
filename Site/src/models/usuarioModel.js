@@ -1,14 +1,44 @@
 var database = require("../database/config")
 
-    
 
-function pegarDadosDiretor(){
-  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarDadosDiretor(): ")
+function exibirDiretoresRegionais(){
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function exibirDiretoresRegionais(): ")
     var instrucaoSql = `
-        select usuario.nome as diretor, email, distribuidora.nome as distribuidora, telefone from usuario
-		    join distribuidora
+        select id_usuario, usuario.nome as diretor,
+        distribuidora.nome as distribuidora,
+        unidade_consumidora.nome as unidade_consumidora
+        from usuario join distribuidora
         on fk_distribuidora = id_distribuidora
-        where fk_distribuidora = 1 and id_usuario = 2;
+        join unidade_consumidora
+        on fk_unidade_consumidora = id_unidade_consumidora
+        where tipo_usuario = 'REGIONAL' order by id_usuario;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function pegarDadosDiretor(id_usuario){
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function pegarDadosDiretor(): pegando dados do diretor com id = ", id_usuario)
+    var instrucaoSql = `
+        select usuario.nome as diretor, email, distribuidora.nome as distribuidora, telefone from usuario join distribuidora on fk_distribuidora = id_distribuidora where fk_distribuidora = 1 and id_usuario = ${id_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function atualizarDadosDiretor(id_usuario, nome, email, telefone){
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function atualizarDadosDiretor(): atualizando dados do diretor com id = ", id_usuario)
+    var instrucaoSql = `
+        update usuario set nome = '${nome}', email = '${email}', telefone = '${telefone}' where id_usuario = ${id_usuario};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucaoSql);
+    return database.executar(instrucaoSql);
+}
+
+function deletarDadosDiretor(id_usuario){
+  console.log("ACESSEI O USUARIO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletarDadosDiretor(): deletando dados do diretor com id = ", id_usuario)
+    var instrucaoSql = `
+        delete from usuario where id_usuario = ${id_usuario};
     `;
     console.log("Executando a instrução SQL: \n" + instrucaoSql);
     return database.executar(instrucaoSql);
@@ -69,5 +99,8 @@ function buscaCodigoDistribuidora(codigoAssociacao){
 module.exports = {
     autenticar,
     cadastrar,
-    
+    pegarDadosDiretor,
+    exibirDiretoresRegionais,
+    deletarDadosDiretor,
+    atualizarDadosDiretor,
 };
