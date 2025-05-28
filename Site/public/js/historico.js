@@ -10,7 +10,7 @@ fetch(`/historico/buscarHistorico/${sessionStorage.FK_DISTRIBUIDORA}`, {
 
       for (let interrupcao of resposta) {
       table_historico.innerHTML += `
-        <tr>
+        <tr id="">
           <td>${interrupcao.idDistribuidora}</td>
           <td>${interrupcao.distribuidora}</td>
           <td>${interrupcao.unidade_consumidora}</td>

@@ -24,11 +24,17 @@ function cadastrar(nome, email, senha, telefone, codigo_associacao_master, tipo_
         
         const fkDistribuidora = resultadoDistribuidora[0].id_distribuidora;
          
-        var instrucaoSql = `
-        INSERT INTO usuario (nome, tipo_usuario, telefone, email, senha, fk_unidade_consumidora, fk_distribuidora)
-        VALUES ('${nome}','${tipo_usuario}', '${telefone}', '${email}', '${senha}', ${fk_unidade_consumidora}, '${fkDistribuidora}');
-        `;
-    
+        if (fk_unidade_consumidora == '') {
+          var instrucaoSql = `
+            INSERT INTO usuario (nome, tipo_usuario, telefone, email, senha, fk_distribuidora)
+            VALUES ('${nome}','${tipo_usuario}', '${telefone}', '${email}', '${senha}', '${fkDistribuidora}');
+            `;
+        } else {
+          var instrucaoSql = `
+            INSERT INTO usuario (nome, tipo_usuario, telefone, email, senha, fk_unidade_consumidora, fk_distribuidora)
+            VALUES ('${nome}','${tipo_usuario}', '${telefone}', '${email}', '${senha}', ${fk_unidade_consumidora}, '${fkDistribuidora}');
+            `;
+        }
   
         console.log("Executando a instrução SQL: \n" + instrucaoSql);
         return database.executar(instrucaoSql);

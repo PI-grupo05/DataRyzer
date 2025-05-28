@@ -96,7 +96,7 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
       telefoneVar == "" ||
-      fkUnidadeConsumidoraVar == "" ||
+      // fkUnidadeConsumidoraVar == "" ||
       codigoAssociacaoVar == ""
     ) {
       Swal.fire({
@@ -249,6 +249,8 @@
       cardErro.style.display = "flex";
       mensagem_erro.innerHTML = "O código de associação deve ser preenchido";
     }
+
+
 
 
     // Enviando o valor da nova input

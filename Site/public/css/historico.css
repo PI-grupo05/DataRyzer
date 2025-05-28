@@ -256,3 +256,18 @@ th {
 .edit-icon {
 	cursor: pointer;
 }
+
+
+.tabela-container {
+	max-height: 500px; /* ajuste conforme o layout */
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+
+.tabela-container th {
+	position: sticky;
+	top: 0;
+	background-color: #f2f2f2; /* igual ao seu th atual */
+	z-index: 1;
+}
