@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+   padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  user-select: none;
+  font-family: "Montserrat", serif;
+  font-style: normal;
+  font-weight: normal;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  user-select: none;
+  background: linear-gradient(to bottom, #070226, #321ec6 );
+}
+
+.container-group{
+  display: flex;
+  flex-direction: column;
+  border: 2px solid transparent;
+  border-radius: 1vw;
+  width: 40vw;
+  height: 70vh;
+  background-color: #fff;
+  padding: 0 25px 0 25px;
+
+}
+.div-create-group{
+  display: flex;
+  width: 100%;
+  margin-top: 30px;
+  margin-bottom: 45px;
+}
+
+.nomeGrupo{
+  font-size: 1.2rem;
+  font-weight: 500;
+}
+
+.btn-excluir, .btn-editar {
+  background: transparent;
+  border: none;
+  outline: none;
+  box-shadow: none;   
+  cursor: pointer;   
+}
+
+
+.btn-excluir img, .btn-editar img{
+  display: block;
+  pointer-events: none; 
+}
+
+.div-btns{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50%;
+  margin-left: auto;
+  gap: 10px
+  ;
+}
+
+.btn-cidades{
+  width: 70%;
+  padding: 4px 6px;
+  background-color: transparent;
+  color: black;
+  font-size: 1rem;
+  font-weight: 500;
+  border: 1px solid black;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.4s ease-in;
+}
+
+.group {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: 15px;
+  border-radius: 7px;
+  margin-bottom: 35px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+
+.btn-group {
+  width: 60px;
+  height: auto;
+  background-color: #070226;
+  border: none;
+  border-radius: 15%;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.input-edit-name{
+  border: 1px solid black;
+  width: 40%;
+  padding: 0.125rem;
+  transition: border 0.4s ease;
+
+}
+
+#list-groups{
+  height: 100%;
+  width: 100%;
+}
+
+.btn-group:hover {
+  background-color: #1a0c4a;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+.btn-group:active {
+  background-color: #050168;
+  box-shadow: 0 2px 4px rgba(255, 255, 255, 0.4);
+  transform: scale(0.95);
+  transition: none;
+}
+
+
+.input-nome{
+  display: flex;
+  border: 1px solid black;
+  border-top-left-radius: 0.5vw;
+  border-top-right-radius: 0.5vw;
+  border-bottom: solid 3px black;
+  width: 50%;
+  padding: 0.125rem;
+  transition: border 0.4s ease;
+  margin-right: 25px;
+}
+
+#nome-grupo{
+  width: 100%;
+  border: 0;
+  padding: 0.5rem;  
+  background: none;
+  outline: none;
+  font-size: 0.8125rem;
+}
+input:focus{
+  border-top: 1px solid white;
+  border-left: 1px solid red ;
+  border-right:1px solid white ;
+}
+input::placeholder{
+  font-size: 0.6rem;
+}
+
+.grups{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h2{
+  text-align: center;
+  margin-top: 1.5rem;
+   font-size: 2.0rem;
+  font-weight: 500;
+  background: linear-gradient(to bottom, #070226, #321ec6 );
+  -webkit-background-clip: text; 
+  color: transparent; 
+}
+

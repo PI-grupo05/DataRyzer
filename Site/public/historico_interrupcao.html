@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+		<link rel="stylesheet" href="./css/historico.css" />
+		<script src="./js/historico.js"></script>
+		<Script src="./js/sessao.js"></Script>
+		<title>Hitorico - Interrupções</title>
+	</head>
+	<body>
+
+		<div id="menuLateral">
+			<img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+			<div id="menuLateralSecoes">
+				<a href="./dashGeral.html">
+					<img src="./assets/imgs/iconeDash.png" alt="">
+					<span>Dashboard</span>
+				</a>
+				<a href="./meuPerfilExcluir.html">
+					<img src="./assets/imgs/iconePerfil.png" alt="">
+					<span>Perfil</span>
+				</a>
+				<a href="">
+					<img src="./assets/imgs/iconeNotificacao.png" alt="">
+					<span>Notificações</span>                
+				</a>
+				<a href="./unidadeConsumidora.html">
+					<img src="./assets/imgs/iconeEmpresas.png" alt="">
+					<span>Unidades Consumidoras</span>
+				</a>
+				<a href="./historico_interrupcao.html">
+					<img src="./assets/imgs/historico_icon.png" alt="">
+					<span>historico de interrupções</span>
+				</a>
+			</div>
+			<a id="botaoSair" onclick="sair()">
+				<img src="./assets/imgs/iconeSair.png" alt="">
+				Sair
+			</a>
+		</div>
+
+		<main class="main">
+			<section class="header" role="banner">
+				<img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            	<div id="secaoUsuario">
+                	<img src="./assets/imgs/iconeUsuario.png" alt="">
+                	<div id="dadosUsuario">
+                    	<span>Usuario</span>
+                    	<span>Cargo</span>
+                </div>
+			</section>
+
+			<h1>Interrupções</h1>
+
+			<form class="filter" role="search" onsubmit="return false;">
+				<select aria-label="Campo de filtro">
+					<option value="">Unidade Consumidora</option>
+					<option value="">Data Início</option>
+					<option value="">Data Fim</option>
+					<option value="">Duração</option>
+					<option value="">Motivo</option>
+				</select>
+				<input
+					type="text"
+					placeholder="Buscar..."
+					aria-label="Buscar por campo selecionado"
+				/>
+				<button type="submit" aria-label="Pesquisar"><img class="lupinha" src="./assets/imgs/lupa.png" alt=""></button>
+				
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Id Distribuidora</th>
+						<th>Distribuidora</th>
+						<th>Unidade Consumidora</th>
+						<th>Data Início</th>
+						<th>Data Fim</th>
+						<th>Duração (min)</th>
+						<th>Motivo</th>
+					</tr>
+				</thead>
+				<tbody id="table_historico">
+					
+				</tbody>
+			</table>
+		</main>
+	</body>
+</html>
+<script src="/env.js"></script>
+<script src="./js/sidebar.js" ></script>
+<script>
+</script>
+
+

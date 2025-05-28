@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css" />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <Script src="./js/sessao.js"></Script>
+    <link rel="stylesheet" href="./css/unidadeConsumidora.css" />
+    <title>Unidade</title>
+  </head>
+
+  <body>
+    <div id="menuLateral">
+      <img id="logo" src="./assets/imgs/logoData-White.png" alt="" />
+      <div id="menuLateralSecoes">
+        <a href="./dashGeral.html">
+          <img src="./assets/imgs/iconeDash.png" alt="" />
+          <span>Dashboard</span>
+        </a>
+        <a href="./meuPerfilExcluir.html">
+          <img src="./assets/imgs/iconePerfil.png" alt="" />
+          <span>Perfil</span>
+        </a>
+        <a href="./">
+					<img src="./assets/imgs/iconeNotificacao.png" alt="">
+					<span>Notificações</span>                
+				</a>
+        <a href="./unidadeConsumidora.html">
+          <img src="./assets/imgs/iconeEmpresas.png" alt="" />
+          <span>Unidades Consumidoras</span>
+        </a>
+        <a href="./historico_interrupcao.html">
+          <img src="./assets/imgs/historico_icon.png" alt="" />
+          <span>historico de interrupções</span>
+        </a>
+      </div>
+      <a id="botaoSair" onclick="sair()">
+        <img src="./assets/imgs/iconeSair.png" alt="" />
+        Sair
+      </a>
+    </div>
+    <div id="containerConteudo">
+      <section id="cabecalho">
+        <img
+          style="transform: scaleX(-1)"
+          id="botaoMenu"
+          onclick="abrirMenu()"
+          src="./assets/imgs/iconeSeta.png"
+          alt=""
+        />
+        <div id="secaoUsuario">
+          <img src="./assets/imgs/iconeUsuario.png" alt="" />
+          <div id="dadosUsuario">
+            <span>Usuario</span>
+            <span>Cargo</span>
+          </div>
+        </div>
+      </section>
+      <h1></h1>
+      <!-- Aqui começa os codigo -->
+      <section id="metricas">
+        <section id="cartoes">
+          <div class="container">
+            <h1>Unidades Consumidoras</h1>
+            <form class="procurar">
+              <input
+                class="procura"
+                type="text"
+                name="search"
+                placeholder="Pesquisar unidade..."
+              />
+
+              <button class="procurarb" type="button">🔍</button>
+            </form>
+
+            <div class="cartao-container">
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 1" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 2" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 3" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 4" />
+              </div>
+            </div>
+
+            <div class="cartao-container">
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 1" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 2" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 3" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 4" />
+              </div>
+            </div>
+
+            <div class="cartao-container">
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 1" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 2" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 3" />
+              </div>
+              <div class="cartao drop-shadow">
+                <input class="empresaBotao" type="button" value="UNIDADE 4" />
+              </div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </div>
+  </body>
+</html>
+<script src="./js/sidebar.js"></script>
+

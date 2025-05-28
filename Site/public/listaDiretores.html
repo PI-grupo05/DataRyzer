@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
     <link rel="stylesheet" href="./css/listaDiretores.css">
+    <link rel="stylesheet" href="css/historico.css">
     <script src="./js/dashEspecifica.js"></script>
     <title>Diretores</title>
 </head>
@@ -12,11 +13,11 @@
     <div id="menuLateral">
         <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
         <div id="menuLateralSecoes">
-            <a href="">
+            <a href="./dashGeral.html">
                 <img src="./assets/imgs/iconeDash.png" alt="">
                 <span>Dashboard</span>
             </a>
-            <a href="">
+            <a href="./meuPerfilExcluir.html">
                 <img src="./assets/imgs/iconePerfil.png" alt="">
                 <span>Perfil</span>
             </a>
@@ -24,9 +25,13 @@
                 <img src="./assets/imgs/iconeNotificacao.png" alt="">
                 <span>Notificações</span>                
             </a>
-            <a href="">
+            <a href="./unidadeConsumidora.html">
                 <img src="./assets/imgs/iconeEmpresas.png" alt="">
-                <span>Empresas</span>
+                <span>Unidades Consumidoras</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="">
+                <span>historico de interrupções</span>
             </a>
         </div>
         <a id="botaoSair" onclick="siteAngular">
@@ -58,7 +63,9 @@
 					placeholder="Buscar..."
 					aria-label="Buscar por campo selecionado"
 				/>
-				<button onclick="filtrar()" type="submit" aria-label="Pesquisar">&#128269;</button>
+				<button onclick="filtrar()" type="submit" aria-label="Pesquisar">
+                    <img class="lupinha" src="./assets/imgs/lupa.png" alt="">
+                </button>
 			</form>
 
 			<table>
@@ -81,8 +88,10 @@
 					</tr> -->
 				</tbody>
 			</table>
-            <button id="botaoAnterior" onclick="anterior()">Anterior</button>
-            <button id="botaoProximo" onclick="proximo()">Próximo</button>
+            <div id="botoesAnteriorProximo">
+                <button id="botaoAnterior" onclick="anterior()">Anterior</button>
+                <button id="botaoProximo" onclick="proximo()">Próximo</button>
+            </div>
         </section>
     </div>
 </body>
@@ -90,7 +99,7 @@
 
 <script>
     var colunas = 0
-    var colunasFinal = 7;
+    var colunasFinal = 4;
     var listaRecebida = [];
     var tbody = document.getElementById("tabelaConteudo")
     var botaoAnterior = document.getElementById("botaoAnterior")
@@ -109,7 +118,7 @@
                 console.log(json);
                 console.log(JSON.stringify(json));
                 listaRecebida = json;
-                colunasFinal = 7;
+                colunasFinal = 4;
                 for(colunas = 0; colunas <= colunasFinal; colunas++){
                     tbody.innerHTML += `
                         <tr>
@@ -147,7 +156,7 @@
     function proximo(){
         var recarregouTabela = false
         botaoAnterior.style.display = ""
-        colunasFinal += 8;
+        colunasFinal += 5;
         // console.log("Coluna inicial: " + colunas)
         // console.log("Coluna final: " + colunasFinal)
         
@@ -186,8 +195,8 @@
 
     function anterior(){
         var recarregouTabela = false
-        colunasFinal -= 8;
-        colunas = colunasFinal - 7;
+        colunasFinal -= 5;
+        colunas = colunasFinal - 4;
         // console.log("Coluna inicial: " + colunas)
         // console.log("Coluna final: " + colunasFinal)
 
@@ -217,7 +226,7 @@
                 </tr>
             `
 
-            if(colunas == 7){
+            if(colunas == 4){
                 botaoAnterior.style.display = "none"
             }
             else{
@@ -269,7 +278,7 @@
             }
         }
         ativouFiltro = true;
-        colunasFinal = 7
+        colunasFinal = 4
         for(colunas = 0; colunas <= colunasFinal; colunas++){
             tbody.innerHTML += `
                 <tr>
@@ -283,7 +292,7 @@
                     </td>
                 </tr>
             `
-            if(colunasFinal == 7){
+            if(colunasFinal == 4){
                 botaoAnterior.style.display = "none"
                 botaoProximo.style.display = ""
             }

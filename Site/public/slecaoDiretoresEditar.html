@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <Script src="./js/sessao.js"></Script>
+    <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
+    <!-- <link rel="stylesheet" href="./css/meuPerfilExcluir.css"> -->
+    <!-- <link rel="stylesheet" href="./css/selecaoDiretores.css"> -->
+     <link rel="stylesheet" href="./css/selecaoDiretoresEdit.css">
+
+    <title>Editar Diretor</title>
+</head>
+
+<body>
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="./dashGeral.html">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="./meuPerfilExcluir.html">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Unidades Consumidoras</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="" />
+                <span>historico de interrupções</span>
+            </a>
+        </div>
+        <a id="botaoSair" onclick="sair()">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img style="transform: scaleX(-1);" id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png"
+                alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <h1>
+
+        </h1>
+        <!-- Aqui começa os codigo -->
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="profile-container">
+                    <h1>Editar Diretor</h1>
+                    <form action="#" method="post" class="profile-form">
+                        <div class="form-group">
+                            <label for="edit-name">Nome:</label>
+                            <input type="text" id="edit-name" name="name" placeholder="Nome" required minlength="3">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-email">Email:</label>
+                            <input type="email" id="edit-email" name="email" placeholder="email@gmail.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-phone">Telefone:</label>
+                            <input type="tel" id="edit-phone" name="phone" placeholder="11999999999"
+                                pattern="^\d{10,11}$" required title="O número deve conter 10 ou 11 dígitos.">
+                        </div>
+                        <div class="form-group">
+                            <label for="edit-details">Empresa:</label>
+                            <input type="text" id="edit-details" name="empresa" placeholder="Empresa"
+                                required>
+                        </div>
+                        <div class="button-group">
+                            <button type="button" class="btn-cancelar cancel">Cancelar</button>
+                            <button type="submit" class="btn-salvar save">Salvar</button>
+                        </div>
+                    </form>
+                </div>
+
+
+
+
+            </section>
+        </section>
+
+
+
+
+    </div>
+</body>
+
+</html>
+<script src="./js/sidebar.js"></script>

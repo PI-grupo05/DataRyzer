@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <Script src="./js/sessao.js"></Script>
+    <script src="./js/meuPerfil.js"></script>
+    <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
+    <link rel="stylesheet" href="./css/meuPerfilExcluir.css">
+    <title>Perfil</title>
+</head>
+
+<body>
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="./dashGeral.html">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="./meuPerfilExcluir.html">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>
+            </a>
+            <a href="./unidadeConsumidora.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Unidades Consumidoras</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="">
+                <span>historico de interrupções</span>
+            </a>
+        </div>
+        <a id="botaoSair" onclick="sair()">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img style="transform: scaleX(-1);" id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png"
+                alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <h1>
+
+        </h1>
+        <!-- Aqui começa os codigo -->
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="profile-container">
+                    <h1>Meu Perfil</h1> <button  onclick="window.location.href='./meuPerfilEditar.html'" type="submit" class="btn-edit">EDITAR</button>
+                    <form action="#" method="post" class="profile-form">
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input id="id_nome" type="text" name="name" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input id="id_email" type="email" name="email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha:</label>
+                            <input id="id_senha" type="password" name="password" value="********" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input id="id_telefone" type="tel" name="phone" readonly>
+                        </div>
+                        <div class="button-group">
+                            
+                            <button type="button" class="btn-delete">EXCLUIR CONTA</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </section>
+        </section>
+
+
+
+
+    </div>
+</body>
+
+</html>
+<script src="./js/sidebar.js"></script>
+

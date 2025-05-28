@@ -53,6 +53,10 @@
             <div class="input-confirmar-senha">
               <input type="tel" id="telefone_input" placeholder="XXXX-XXXX" required>
             </div>
+            <label for="unidade_consumidora">Código Unidade consumidora</label>
+            <div class="input-confirmar-senha">
+              <input type="password" id="unidade_consumidora_input" placeholder="Ex: 12" required>
+            </div>
             <label for="codigo_associacao">Codigo de associação</label>
             <div class="input-confirmar-senha">
               <input type="password" id="codigo_associacao_input" placeholder="Ex: 12324" required>
@@ -67,6 +71,7 @@
   </body>
 </html>
 
+<script src="/env.js"></script>
 <script>
   function cadastrar() {
     // aguardar();
@@ -80,6 +85,7 @@
     var telefoneVar = telefone_input.value;
     var codigoAssociacaoVar = codigo_associacao_input.value;
     var tipoUsuarioVar = 'MASTER';
+    var fkUnidadeConsumidoraVar = unidade_consumidora_input.value
 
     const numeros = /[0-9]/;
 
@@ -90,6 +96,7 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
       telefoneVar == "" ||
+      fkUnidadeConsumidoraVar == "" ||
       codigoAssociacaoVar == ""
     ) {
       Swal.fire({
@@ -255,6 +262,7 @@
       emailServer: emailVar,
       senhaServer: senhaVar,
       telefoneServer: telefoneVar,
+      fkUnidadeConsumidoraServer: fkUnidadeConsumidoraVar,
       codigoAssociacaoServer: codigoAssociacaoVar,
       tipoUsuarioServer: tipoUsuarioVar
     }),
@@ -305,7 +313,7 @@
   }
 
   function siteAngular() {
-    window.location.href = "http://34.202.174.0:4200";
+    window.location.href = `http://${window.APP_HOST}:4200`;
   }
 
 </script>

@@ -127,7 +127,8 @@ function autenticar(req, res)  {
                             tipo_usuario: resultadoAutenticar[0].tipo_usuario,
                             telefone: resultadoAutenticar[0].telefone,
                             email: resultadoAutenticar[0].email,
-                            fk_cidade: resultadoAutenticar[0].fk_cidade
+                            fk_unidade_consumidora: resultadoAutenticar[0].fk_unidade_consumidora,
+                            fk_distribuidora: resultadoAutenticar[0].fk_distribuidora
                         })
                         // id_usuario, nome, tipo_usuario, telefone, email, fk_cidade, fk_distribuidora
                     } else if (resultadoAutenticar.length == 0) {
@@ -154,7 +155,7 @@ function cadastrar(req, res) {
     var telefone = req.body.telefoneServer;
     var codigoAssociacao = req.body.codigoAssociacaoServer;
     var tipoUsuario = req.body.tipoUsuarioServer;
-
+    var fkUnidadeConsumidora = req.body.fkUnidadeConsumidoraServer;
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -172,7 +173,7 @@ function cadastrar(req, res) {
         
     
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, telefone, codigoAssociacao, tipoUsuario)
+        usuarioModel.cadastrar(nome, email, senha, telefone, codigoAssociacao, tipoUsuario, fkUnidadeConsumidora)
             .then(function (resultado) {
                 res.json(resultado);
             })

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DataRyzer | Grupos</title>
+    <link rel="stylesheet" href="./css/grupos.css" />
+    <script src="./js/grupos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link
+      rel="shortcut icon"
+      href="assets/imgs/favicon.png"
+      type="image/x-icon"
+    />
+  </head>
+  <body onload="carregarGruposDoUsuario()">
+    <div class="grups">
+      <div class="container-group">
+        <h2>Gerenciamento de grupos</h2>
+        <div class="div-create-group">
+          <div class="input-nome">
+            <input type="text" id="nome-grupo" placeholder="Criar novo grupo" />
+          </div>
+          <button class="btn-group" onclick="criarGrupo()">
+            <img
+              src="assets/imgs/icons8-adição-60.png"
+              width="25"
+              height="25px"
+            />
+          </button>
+        </div>
+        <div id="list-groups"></div>
+      </div>
+    </div>
+  </body>
+</html>

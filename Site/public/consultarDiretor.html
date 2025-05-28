@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/estiloDashEspecifica.css">
-    <link rel="stylesheet" href="css/deleteUsuario.css">
+    <link rel="stylesheet" href="css/consultarDiretor.css">
     <script src="js/dashEspecifica.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Deletar Usuário</title>
 </head>
 <body onload="pegarDadosDiretor()">
@@ -24,9 +25,13 @@
                 <img src="./assets/imgs/iconeNotificacao.png" alt="">
                 <span>Notificações</span>                
             </a>
-            <a href="">
+            <a href="./unidadeConsumidora.html">
                 <img src="./assets/imgs/iconeEmpresas.png" alt="">
-                <span>Empresas</span>
+                <span>Unidades Consumidoras</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="">
+                <span>historico de interrupções</span>
             </a>
         </div>
         <a id="botaoSair" onclick="siteAngular">
@@ -49,7 +54,7 @@
             <h1>INFORMAÇÕES USUÁRIO</h1>
             <div id="campos">
                 <div id="campoEsquerdo">
-                    <img src="./assets/imgs/fotoDiretor.png" alt="">
+                    <img src="./assets/imgs/do-utilizador-semFundo.png" alt="">
                     <label for="input_nome">Nome</label>
                     <input id="input_nome" type="text">
                 </div>
@@ -65,7 +70,7 @@
         </section>
         <div id="secaoBotoes">
             <button onclick="irParaTabelaDiretores()" id="botaoCancelar">VOLTAR</button>
-            <button onclick="atualizarDiretor()" id="botaoDeletar">ATUALIZAR</button>
+            <button onclick="atualizarDiretor()" id="botaoAtualizar">ATUALIZAR</button>
             <button onclick="deletarDiretor()" id="botaoDeletar">DELETAR</button>
         </div>
     </div>
@@ -119,6 +124,14 @@
             console.log("ESTOU NO THEN DO deletarDiretor()!");
             console.log(resposta)
             if (resposta.ok) {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Usuário atualizado!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    color: "#1ed619",
+                    heightAuto: false,
+                });
                 console.log(`Diretor de id = ${sessionStorage.DIRETOR_CONSULTADO} 
                 atualizado com sucesso`);
             } else {
