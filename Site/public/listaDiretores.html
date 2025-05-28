@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="./css/listaDiretores.css">
+    <link rel="stylesheet" href="css/historico.css">
+    <script src="./js/dashEspecifica.js"></script>
+    <title>Diretores</title>
+</head>
+<body onload="exibirDiretoresRegionais()">
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="./dashGeral.html">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="./meuPerfilExcluir.html">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>                
+            </a>
+            <a href="./unidadeConsumidora.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Unidades Consumidoras</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="">
+                <span>historico de interrupções</span>
+            </a>
+        </div>
+        <a id="botaoSair" onclick="siteAngular">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+         <section id="cabecalho">
+            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <section id="secaoDiretores">
+            <form class="filter" role="search" onsubmit="return false;">
+				<select id="tipoFiltro" aria-label="Campo de filtro">
+					<option value="id_diretor">Id Diretor</option>
+					<option value="diretor">Diretor</option>
+					<option value="distribuidora">Distribuidora</option>
+					<option value="unidade_consumidora">Unidade Consumidora</option>
+				</select>
+				<input id="valorFiltro"
+					type="text"
+					placeholder="Buscar..."
+					aria-label="Buscar por campo selecionado"
+				/>
+				<button onclick="filtrar()" type="submit" aria-label="Pesquisar">
+                    <img class="lupinha" src="./assets/imgs/lupa.png" alt="">
+                </button>
+			</form>
+
+			<table>
+				<thead>
+					<tr>
+						<th>Id Diretor</th>
+						<th>Diretor</th>
+						<th>Distribuidora</th>
+						<th>Unidade Consumidora</th>
+                        <th></th>
+					</tr>
+				</thead>
+				<tbody id="tabelaConteudo">
+					<!-- <tr>
+						<td>1</td>
+						<td>Fabio</td>
+						<td>ENEL SP</td>
+						<td>São Bernardo do Campo</td>
+						<td onclick="exibirDiretoresRegionais()" id="colunaBotao"><button>Consultar</button></td>
+					</tr> -->
+				</tbody>
+			</table>
+            <div id="botoesAnteriorProximo">
+                <button id="botaoAnterior" onclick="anterior()">Anterior</button>
+                <button id="botaoProximo" onclick="proximo()">Próximo</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
+
+<script>
+    var colunas = 0
+    var colunasFinal = 4;
+    var listaRecebida = [];
+    var tbody = document.getElementById("tabelaConteudo")
+    var botaoAnterior = document.getElementById("botaoAnterior")
+    var botaoProximo = document.getElementById("botaoProximo")
+    var listaAtual = []
+
+    function exibirDiretoresRegionais(){
+         fetch("/usuarios/listarDiretoresRegionais", {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarDadosDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                listaRecebida = json;
+                colunasFinal = 4;
+                for(colunas = 0; colunas <= colunasFinal; colunas++){
+                    tbody.innerHTML += `
+                        <tr>
+                            <td>${listaRecebida[colunas].id_usuario}</td>
+                            <td>${listaRecebida[colunas].diretor}</td>
+                            <td>${listaRecebida[colunas].distribuidora}</td>
+                            <td>${listaRecebida[colunas].unidade_consumidora}</td>
+                            <td onclick="consultarDiretor(${listaRecebida[colunas].id_usuario})" 
+                            id="colunaBotao">
+                                <button>Consultar</button>
+                            </td>
+                        </tr>
+                    `
+                    botaoAnterior.style.display = "none"
+                    if(colunas == listaRecebida.length - 1){
+                        botaoProximo.style.display = "none"
+                        break;
+                    }
+                }
+            });
+            } else {
+                console.log("Houve um erro ao tentar carregar a tabela");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    var chegouNoLimite = false;
+    function proximo(){
+        var recarregouTabela = false
+        botaoAnterior.style.display = ""
+        colunasFinal += 5;
+        // console.log("Coluna inicial: " + colunas)
+        // console.log("Coluna final: " + colunasFinal)
+        
+        for(colunas; colunas <= colunasFinal; colunas++){
+            if(recarregouTabela == false){
+                tbody.innerHTML = "";
+                recarregouTabela = true;
+            }
+            
+            if(ativouFiltro == true){
+                listaAtual = listaFiltrada
+            }
+            else{
+                listaAtual = listaRecebida
+            }
+
+            tbody.innerHTML += `
+                    <tr>
+                        <td>${listaAtual[colunas].id_usuario}</td>
+                        <td>${listaAtual[colunas].diretor}</td>
+                        <td>${listaAtual[colunas].distribuidora}</td>
+                        <td>${listaAtual[colunas].unidade_consumidora}</td>
+                        <td onclick="consultarDiretor(${listaAtual[colunas].id_usuario})" 
+                        id="colunaBotao">
+                            <button>Consultar</button>
+                        </td>
+                    </tr>
+                `
+
+            if(colunas == listaAtual.length - 1){
+                botaoProximo.style.display = "none"
+                break;
+            }
+        }
+    }
+
+    function anterior(){
+        var recarregouTabela = false
+        colunasFinal -= 5;
+        colunas = colunasFinal - 4;
+        // console.log("Coluna inicial: " + colunas)
+        // console.log("Coluna final: " + colunasFinal)
+
+        for(colunas; colunas <= colunasFinal; colunas++){
+            if(recarregouTabela == false){
+                tbody.innerHTML = "";
+                recarregouTabela = true;
+            }
+        
+            if(ativouFiltro == true){
+                listaAtual = listaFiltrada
+            }
+            else{
+                listaAtual = listaRecebida
+            }
+
+            tbody.innerHTML += `
+                <tr>
+                    <td>${listaAtual[colunas].id_usuario}</td>
+                    <td>${listaAtual[colunas].diretor}</td>
+                    <td>${listaAtual[colunas].distribuidora}</td>
+                    <td>${listaAtual[colunas].unidade_consumidora}</td>
+                    <td onclick="consultarDiretor(${listaAtual[colunas].id_usuario})" 
+                    id="colunaBotao">
+                        <button>Consultar</button>
+                    </td>
+                </tr>
+            `
+
+            if(colunas == 4){
+                botaoAnterior.style.display = "none"
+            }
+            else{
+                botaoAnterior.style.display = ""
+                botaoProximo.style.display = ""
+            }
+        }
+    }
+
+    function consultarDiretor(id_diretor){
+        window.location.href = "consultarDiretor.html"
+        sessionStorage.DIRETOR_CONSULTADO = id_diretor
+    }
+
+
+    var ativouFiltro = false
+    var listaFiltrada = [];
+    function filtrar(){
+        var recarregouTabela = false
+        var tipoFiltro = document.getElementById("tipoFiltro")
+        var valorFiltro = document.getElementById("valorFiltro")
+
+        for(colunas = 0; colunas < listaRecebida.length; colunas++){
+            if(recarregouTabela == false){
+                tbody.innerHTML = "";
+                recarregouTabela = true;
+                listaFiltrada = []
+            }
+            if(valorFiltro.value == ""){
+                ativouFiltro = false
+                exibirDiretoresRegionais()
+                return
+            }
+            else if(tipoFiltro.value == "id_diretor"  && 
+            String(listaRecebida[colunas].id_usuario).includes(valorFiltro.value)) {
+                listaFiltrada.push(listaRecebida[colunas])
+            }
+            else if(tipoFiltro.value == "diretor"  && 
+            listaRecebida[colunas].diretor.toLowerCase().includes(valorFiltro.value.toLowerCase())) {
+                listaFiltrada.push(listaRecebida[colunas])
+            }
+            else if(tipoFiltro.value == "distribuidora"  && 
+            listaRecebida[colunas].distribuidora.toLowerCase().includes(valorFiltro.value.toLowerCase())) {
+               listaFiltrada.push(listaRecebida[colunas])
+            }
+            else if(tipoFiltro.value == "unidade_consumidora"  && 
+            listaRecebida[colunas].unidade_consumidora.toLowerCase().includes(valorFiltro.value.toLowerCase())) {
+                listaFiltrada.push(listaRecebida[colunas])
+            }
+        }
+        ativouFiltro = true;
+        colunasFinal = 4
+        for(colunas = 0; colunas <= colunasFinal; colunas++){
+            tbody.innerHTML += `
+                <tr>
+                    <td>${listaFiltrada[colunas].id_usuario}</td>
+                    <td>${listaFiltrada[colunas].diretor}</td>
+                    <td>${listaFiltrada[colunas].distribuidora}</td>
+                    <td>${listaFiltrada[colunas].unidade_consumidora}</td>
+                    <td onclick="consultarDiretor(${listaFiltrada[colunas].id_usuario})" 
+                    id="colunaBotao">
+                        <button>Consultar</button>
+                    </td>
+                </tr>
+            `
+            if(colunasFinal == 4){
+                botaoAnterior.style.display = "none"
+                botaoProximo.style.display = ""
+            }
+            else{
+                botaoAnterior.style.display = ""
+            }
+
+            if(colunas == listaFiltrada.length - 1){
+                botaoProximo.style.display = "none"
+                break;
+            }
+        }
+    }
+</script>

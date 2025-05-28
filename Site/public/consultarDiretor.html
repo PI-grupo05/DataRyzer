@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="css/consultarDiretor.css">
+    <script src="js/dashEspecifica.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Deletar Usuário</title>
+</head>
+<body onload="pegarDadosDiretor()">
+     <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <a href="">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>                
+            </a>
+            <a href="./unidadeConsumidora.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Unidades Consumidoras</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="">
+                <span>historico de interrupções</span>
+            </a>
+        </div>
+        <a id="botaoSair" onclick="siteAngular">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            Sair
+        </a>
+    </div>
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <span>Usuario</span>
+                    <span>Cargo</span>
+                </div>
+            </div>
+        </section>
+        <section id="secaoInformacoes">
+            <h1>INFORMAÇÕES USUÁRIO</h1>
+            <div id="campos">
+                <div id="campoEsquerdo">
+                    <img src="./assets/imgs/do-utilizador-semFundo.png" alt="">
+                    <label for="input_nome">Nome</label>
+                    <input id="input_nome" type="text">
+                </div>
+                <div id="campoDireito">
+                    <label for="input_email">Email</label>
+                    <input id="input_email" type="text"><br><br>
+                    <label for="input_distribuidora">Distribuidora</label>
+                    <input readonly id="input_distribuidora" type="text"><br><br>
+                    <label for="input_telefone">Telefone</label>
+                    <input  id="input_telefone" type="text">
+                </div>
+            </div>
+        </section>
+        <div id="secaoBotoes">
+            <button onclick="irParaTabelaDiretores()" id="botaoCancelar">VOLTAR</button>
+            <button onclick="atualizarDiretor()" id="botaoAtualizar">ATUALIZAR</button>
+            <button onclick="deletarDiretor()" id="botaoDeletar">DELETAR</button>
+        </div>
+    </div>
+</body>
+</html>
+
+<script>
+    function pegarDadosDiretor(){
+        fetch(`/usuarios/pegarDadosDiretor/${sessionStorage.DIRETOR_CONSULTADO}`, {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarDadosDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                input_nome.value = json.diretor;
+                input_email.value = json.email;
+                input_distribuidora.value = json.distribuidora;
+                input_telefone.value = json.telefone;
+            });
+            } else {
+                console.log("Houve um erro ao tentar pegar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function atualizarDiretor(){
+        fetch(`/usuarios/atualizarDadosDiretor/${sessionStorage.DIRETOR_CONSULTADO}`, {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nome: input_nome.value ,
+                email: input_email.value ,
+                telefone: input_telefone.value ,
+            }),
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO deletarDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Usuário atualizado!",
+                    icon: "success",
+                    showConfirmButton: false,
+                    color: "#1ed619",
+                    heightAuto: false,
+                });
+                console.log(`Diretor de id = ${sessionStorage.DIRETOR_CONSULTADO} 
+                atualizado com sucesso`);
+            } else {
+                console.log("Houve um erro ao tentar atualizar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function deletarDiretor(){
+        fetch(`/usuarios/deletarDadosDiretor/${sessionStorage.DIRETOR_CONSULTADO}`, {
+            method: "DELETE",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO deletarDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+                console.log(`Diretor de id = ${sessionStorage.DIRETOR_CONSULTADO} 
+                deletado com sucesso`);
+                sessionStorage.removeItem("DIRETOR_CONSULTADO")
+                window.location.href = "listaDiretores.html"
+            } else {
+                console.log("Houve um erro ao tentar deletar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function irParaTabelaDiretores(){
+        window.location.href = "listaDiretores.html"
+    }
+</script>
