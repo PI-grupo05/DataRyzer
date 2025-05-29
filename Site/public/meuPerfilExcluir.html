@@ -83,7 +83,7 @@
                         </div>
                         <div class="button-group">
                             
-                            <button type="button" class="btn-delete">EXCLUIR CONTA</button>
+                            <button onclick="deletarDiretor()" type="button" class="btn-delete">EXCLUIR CONTA</button>
                         </div>
                     </form>
                 </div>
@@ -101,3 +101,30 @@
 </html>
 <script src="./js/sidebar.js"></script>
 
+
+<script>
+    function deletarDiretor(){
+        fetch(`/usuarios/deletarDadosDiretor/${sessionStorage.ID_USUARIO}`, {
+            method: "DELETE",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO deletarDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+                console.log(`Diretor de id = ${sessionStorage.ID_USUARIO} 
+                deletado com sucesso`);
+                sair()
+            } else {
+                console.log("Houve um erro ao tentar deletar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+</script>
