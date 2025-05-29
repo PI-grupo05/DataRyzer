@@ -42,7 +42,7 @@ function obterDadosGraficoLinha(req, res) {
 }
 
 function obterDadosGraficoBarra(req, res) {
-    var idCidade = req.params.idCidade; // Recebendo ID da cidade via parâmetro
+    var idCidade = req.params.idCidade; 
     kpiDashEspecificaModel.dadosGraficoBarra(idCidade)
         .then(resultado => res.json(resultado))
         .catch(erro => {
@@ -58,3 +58,7 @@ module.exports = {
     obterMaiorIndiceQuedas,
     obterMediaPorDia
 };
+
+
+
+

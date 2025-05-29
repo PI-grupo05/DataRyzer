@@ -59,7 +59,7 @@
                 <section id="cartoes">
                     <div class="cartao drop-shadow cidade-mais-afetada-quedas">
                         <div class="metricaTexto">
-                            <h2>Cidade mais afetada</h2>
+                            <h2>Unidade Consumidora mais afetada</h2>
                             <div class="kpi-value" id="cidade-mais-quedas">Carregando...</div>
                             <p class="metricaNegativa">
                                 +5
@@ -69,7 +69,7 @@
                     </div>
                     <div class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal">
                         <div class="metricaTexto">
-                            <h2>Cidade com maior tempo</h2>
+                            <h2>Unidade Consumidora com maior tempo</h2>
                             <div class="kpi-value" id="cidade-maior-tempo">Carregando...</div>
                             <p class="metricaPositiva">
                                 -15 min
@@ -94,7 +94,7 @@
                     <canvas id="graficoBarra1"></canvas>
                 </div>
                 <div class="grafico-barra drop-shadow">
-                    <canvas id="graficoBarra2"></canvas>
+                    <canvas id="graficoBarra2" height="180"></canvas>
                 </div>
             </section>
             <section class="secaoMotivosQuedas">
@@ -117,13 +117,11 @@
             <div class="info-card">
                 <div class="evening">
                    <h3>Motivos das quedas</h3><br><br>
-                 <img src="./caminho/para/sua/imagem.jpg" alt="Descrição da Imagem" class="imagem-arredondada">
-                    <div class="causas">Causas</div>
-                    <div class="_32">32%</div>
-                    <div class="causas">Causas</div>
-                    <div class="_32">32%</div>
-                    <div class="causas">Causas</div>
-                    <div class="_32">32%</div>
+
+                   <canvas id="graficoPizzaMotivos" width="550" height="550"></canvas>
+
+                
+        
                 </div>
             </div>
         </div>

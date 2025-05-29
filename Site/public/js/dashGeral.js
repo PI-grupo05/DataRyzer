@@ -4,26 +4,26 @@ function atualizarKPIs() {
         .then(data => {
             if (data.length > 0) {
                 document.querySelector('.cidade-mais-afetada-quedas').innerText = 
-                    `Cidade mais afetada: ${data[0].cidade} (${data[0].total_interrupcoes} quedas)`;
+                    `Unidade consumidora mais afetada: (${data[0].total_interrupcoes} quedas)`;
             } else {
                 document.querySelector('.cidade-mais-afetada-quedas').innerText = 
-                    'Cidade mais afetada: Nenhuma interrupção registrada.';
+                    'Unidade consumidora mais afetada: Nenhuma interrupção registrada.';
             }
         })
-        .catch(error => console.error('Erro ao obter cidade mais afetada:', error));
+        .catch(error => console.error('Erro ao obter unidade consumidora mais afetada:', error));
 
     fetch('/kpiDashGeral/cidade-maior-tempo-interrupcao') 
         .then(response => response.json())
         .then(data => {
             if (data.length > 0) {
                 document.querySelector('.cidade-com-maior-tempo-de-interrup-o-mensal').innerText = 
-                    `Cidade com maior tempo de interrupção: ${data[0].cidade} (${data[0].total_duracao} minutos)`;
+                    `Unidade consumidora com maior tempo de interrupção:  (${data[0].total_duracao} minutos)`;
             } else {
                 document.querySelector('.cidade-com-maior-tempo-de-interrup-o-mensal').innerText = 
-                    'Cidade com maior tempo de interrupção: Nenhuma interrupção registrada.';
+                    'Unidade consumidora com maior tempo de interrupção: Nenhuma interrupção registrada.';
             }
         })
-        .catch(error => console.error('Erro ao obter cidade com maior tempo de interrupção:', error));
+        .catch(error => console.error('Erro ao obter unidade consumidora com maior tempo de interrupção:', error));
 }
 
 function carregarGraficos() {
@@ -31,7 +31,8 @@ function carregarGraficos() {
     fetch('/kpiDashGeral/interrupcoes-por-cidade')
         .then(response => response.json())
         .then(data => {
-            const labels = data.map(item => item.cidade);
+            console.log(data); 
+            const labels = data.map(item => item.unidade_consumidora);
             const valores = data.map(item => item.total_interrupcoes);
 
             new Chart(document.getElementById('graficoBarra1'), {
@@ -51,7 +52,7 @@ function carregarGraficos() {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Comparação de quedas por cidade',
+                            text: 'Comparação de quedas por unidades consumidoras',
                             font: { size: 16 }
                         },
                         legend: { display: false },
@@ -68,20 +69,20 @@ function carregarGraficos() {
                             title: { display: true, text: 'Número de Interrupções' }
                         },
                         x: {
-                            title: { display: true, text: 'Cidades' }
+                            title: { display: true, text: 'Unidades consumidoras' }
                         }
                     }
                 },
                 plugins: [ChartDataLabels]
             });
         })
-        .catch(error => console.error('Erro ao carregar gráfico de interrupções por cidade:', error));
+        .catch(error => console.error('Erro ao carregar gráfico de interrupções por unidade consumidora:', error));
 
  
     fetch('/kpiDashGeral/duracao-media-por-cidade')
         .then(response => response.json())
         .then(data => {
-            const labels = data.map(item => item.cidade);
+            const labels = data.map(item => item.unidade_consumidora);
             const valores = data.map(item => item.media_duracao); 
 
             new Chart(document.getElementById('graficoBarra2'), {
@@ -101,7 +102,7 @@ function carregarGraficos() {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Tempo médio de quedas por cidade',
+                            text: 'Tempo médio de quedas por unidade consumidora',
                             font: { size: 16 }
                         },
                         legend: { display: false },
@@ -118,7 +119,7 @@ function carregarGraficos() {
                             title: { display: true, text: 'Duração (minutos)' }
                         },
                         x: {
-                            title: { display: true, text: 'Cidades' }
+                            title: { display: true, text: 'Unidades Consumidoras' }
                         }
                     }
                 },
@@ -181,7 +182,65 @@ fetch('/kpiDashGeral/volume-por-motivo')
     .catch(error => console.error('Erro ao carregar gráfico de linha:', error));
 
 
+        function carregarGraficoPizzaMotivos() {
+    fetch('/kpiDashGeral/porcentagem-por-motivo')
+        .then(response => response.json())
+        .then(data => {
+            const labels = data.map(item => item.motivo);
+            const valores = data.map(item => item.porcentagem);
+
+            new Chart(document.getElementById('graficoPizzaMotivos'), {
+                type: 'pie',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        data: valores,
+                        backgroundColor: [
+                            '#FF6384',
+                            '#36A2EB',
+                            '#FFCE56',
+                            '#9CCC65',
+                            '#BA68C8',
+                            '#4DB6AC'
+                        ]
+                    }]
+                },
+                options: {
+    responsive: true,
+    plugins: {
+        datalabels: {
+            formatter: (value) => `${value}%`,
+            color: '#fff',
+            font: { weight: 'bold', size: 18 }
+        },
+        title: {
+            display: true,
+            font: { size: 18 }
+        },
+        legend: {
+            position: 'bottom',
+            labels: {
+                font: {
+                    size: 14
+                },
+                padding: 20
+            }
+        }
+    }
+},
+                plugins: [ChartDataLabels]
+            });
+        })
+        .catch(error => console.error('Erro ao carregar gráfico de pizza:', error));
+}
+
+
+
+
+
+
 document.addEventListener('DOMContentLoaded', function () {
     atualizarKPIs();
     carregarGraficos();
+    carregarGraficoPizzaMotivos(); 
 });
