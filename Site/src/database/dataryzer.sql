@@ -20,14 +20,7 @@ CREATE TABLE grupo (
     nome        VARCHAR(20) NOT NULL
 );
 
-CREATE TABLE unidade_consumidora (
-    id_unidade_consumidora  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
-    nome                    VARCHAR(50) NOT NULL,
-    fk_distribuidora        INT,
-    fk_grupo                INT,
-    CONSTRAINT fk_distribuidora_unidade_consumidora FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora),
-    CONSTRAINT fk_grupo_unidade_consumidora FOREIGN KEY (fk_grupo) REFERENCES grupo(id_grupo)
-);
+    
 
 SELECT * FROM unidade_consumidora;
 

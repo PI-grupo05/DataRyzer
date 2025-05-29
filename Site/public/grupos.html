@@ -15,7 +15,12 @@
   </head>
   <body onload="carregarGruposDoUsuario()">
     <a id="setaVoltar" href="telaPosLogin.html">
-      <img src="assets/imgs/voltarSeta.png" alt="voltar" width="40px" height="40px" />
+      <img
+        src="assets/imgs/voltarSeta.png"
+        alt="voltar"
+        width="40px"
+        height="40px"
+      />
     </a>
     <div class="grups">
       <div class="container-group">
@@ -38,8 +43,8 @@
           <div class="modal-content">
             <h3>Unidades disponíveis:</h3>
             <div class="div-select">
-              <select id="selectUnidadesDisponiveis">
-                <option disabled>Selecione uma unidade</option>
+              <select id="select-unidade">
+                <option value="">Selecionar cidade</option>
                 <!-- Unidades disponíveis serão carregadas aqui -->
               </select>
               <button class="btn-modal-associar" onclick="associarUnidade()">
@@ -54,6 +59,7 @@
                 alt="Fechar"
               />
             </button>
+            <div id="list-unidades"></div>
           </div>
         </div>
       </div>

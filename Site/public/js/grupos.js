@@ -247,13 +247,112 @@ function editarGrupo(grupo) {
 
   input.focus();
 }
-/* Modal */
+/* Modal de unidades */
 function fecharModal() {
   document.getElementById("modal-gerenciar").classList.add("hidden");
 }
+
 function abrirModalGerenciar(idGrupo) {
   const modal = document.getElementById("modal-gerenciar");
   modal.classList.remove("hidden");
+
   const titulo = document.getElementById("titulo-modal-gerenciar");
-  titulo.textContent = `Gerenciar Grupo: ${idGrupo}`;
+  titulo.textContent = `Gerenciar Grupo`;
+
+  // Armazenar o id do grupo como data attribute no modal
+  modal.setAttribute("data-id-grupo", idGrupo);
+
+  carregarUnidadesDisponiveis(); // já pode chamar ao abrir
+}
+
+function associarUnidadeGrupoNaTela(nomeUnidade, idGrupo) {
+  const listaUnidades = document.getElementById("list-unidades");
+
+  //pai
+  const divUnidades = document.createElement("div");
+  divUnidades.className = "unidade";
+
+  //filhos
+  const spanUnidade = document.createElement("span");
+  spanUnidade.textContent = nomeUnidade;
+
+  const btnDesassociar = document.createElement("button");
+  btnDesassociar.className = "btn-desassociar";
+  btnDesassociar.innerHTML = `<img src="assets/imgs/icons8-lixeira-60.png" alt="Desassociar" width="25px" height="25px">`;
+  btnDesassociar.addEventListener("click", () =>
+    desassociarUnidade(spanUnidade, idGrupo)
+  );
+
+  //adicionando os filhos ao pai
+  divUnidades.appendChild(spanUnidade);
+  divUnidades.appendChild(btnDesassociar);
+
+  listaUnidades.appendChild(divUnidades);
+}
+
+function carregarUnidadesDisponiveis() {
+  const idUsuario = sessionStorage.ID_USUARIO;
+  fetch(`/grupos/unidades-disponiveis/${idUsuario}`)
+    .then((res) => res.json())
+    .then((unidades) => {
+      const select = document.getElementById("select-unidade");
+      select.innerHTML =
+        '<option disabled value="default">Selecione a Unidade</option>';
+
+      for (const unidade of unidades) {
+        const option = document.createElement("option");
+        option.textContent = unidade.name;
+        option.value = unidade.id_unidade_consumidora;
+        select.appendChild(option);
+      }
+    });
+}
+
+function associarUnidadeAoGrupo() {
+  const selectUnidade = document.getElementById("select-unidade");
+  const idUnidade = selectUnidade.value;
+
+  if (idUnidade === "default") {
+    Swal.fire({ icon: "warning", text: "Selecione uma unidade!" });
+    return;
+  }
+
+  const modal = document.getElementById("modal-gerenciar");
+  const idGrupo = modal.getAttribute("data-id-grupo");
+
+  fetch("/grupos/unidades/associar", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idUnidade, idGrupo }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.ok) {
+        associarUnidadeGrupoNaTela(data.nome, idGrupo);
+        carregarUnidadesDisponiveis();
+      } else {
+        Swal.fire({ icon: "error", text: "Erro ao associar unidade!" });
+      }
+    })
+    .catch((error) => {
+      console.error("Erro na associação:", error);
+      Swal.fire({ icon: "error", text: "Erro ao associar unidade!" });
+    });
+}
+
+function carregarUnidadesAssociadas(idGrupo) {
+  fetch(`/grupos/unidades-associadas/${idGrupo}`)
+    .then((res) => res.json())
+    .then((unidades) => {
+      const listaUnidades = document.getElementById("list-unidades");
+      listaUnidades.innerHTML = ""; //
+
+      unidades.forEach((unidade) => {
+        associarUnidadeGrupoNaTela(unidade.nome, idGrupo);
+      });
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar unidades associadas:", err);
+      Swal.fire({ icon: "error", text: "Erro ao carregar unidades do grupo!" });
+    });
 }

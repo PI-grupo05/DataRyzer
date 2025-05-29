@@ -37,9 +37,21 @@ function editarNomeGrupo(nome, idGrupo) {
   return database.executar(instrucaoSql);
 }
 
+function dessasociarUnidadesGrupo(idGrupo) {
+  console.log(
+    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function dessasociarUnidadesGrupo()"
+  );
+
+  var instrucaoSql = `
+    UPDATE unidade_consumidora SET fk_grupo = NULL WHERE fk_grupo = ${idGrupo};
+  `;
+
+  return database.executar(instrucaoSql);
+}
+
 function deletarGrupo(idGrupo) {
   console.log(
-    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function editarNomeGrupo()"
+    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function deletarGrupo()"
   );
 
   var instrucaoSql = `
@@ -67,4 +79,5 @@ module.exports = {
   contarGruposUsuario,
   editarNomeGrupo,
   deletarGrupo,
+  dessasociarUnidadesGrupo,
 };
