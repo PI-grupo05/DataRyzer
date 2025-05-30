@@ -20,26 +20,22 @@
     <div id="menuLateral">
         <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
         <div id="menuLateralSecoes">
-            <a href="./dashGeral.html">
-                <img src="./assets/imgs/iconeDash.png" alt="">
-                <span>Dashboard</span>
-            </a>
-            <a href="./meuPerfilExcluir.html">
+            <a href="">
                 <img src="./assets/imgs/iconePerfil.png" alt="">
                 <span>Perfil</span>
             </a>
-            <a href="">
+            <a href="./">
                 <img src="./assets/imgs/iconeNotificacao.png" alt="">
                 <span>Notificações</span>
             </a>
-        
-            <a href="./unidadeConsumidora.html">
-                <img src="./assets/imgs/iconeEmpresas.png" alt="">
-                <span>Unidades Consumidoras</span>
+            <a href="./listaDiretores.html">
+                <img src="./assets/imgs/usuarios.png" alt="">
+                <span>Usuarios Regionais</span>
             </a>
-            <a href="./historico_interrupcao.html">
-                <img src="./assets/imgs/historico_icon.png" alt="">
-                <span>historico de interrupções</span>
+        
+            <a href="./grupos.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Grupos</span>
             </a>
         </div>
         <a id="botaoSair" onclick="sair()">
@@ -191,5 +187,34 @@
         });
     }
 
+
+    function pegarDadosDiretor(){
+        fetch(`/usuarios/pegarDadosDiretor/${sessionStorage.ID_USUARIO}`, {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarDadosDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                document.getElementById("id_nome").value = json.diretor;
+                document.getElementById("id_email").value = json.email;
+                document.getElementById("id_telefone").value  = json.telefone;
+            });
+            } else {
+                console.log("Houve um erro ao tentar pegar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
 
 </script>

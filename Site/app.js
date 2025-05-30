@@ -42,7 +42,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/historico", historicoRouter);
-app.use("/kpiDashGeral", kpiRouter);  // rota da kpi da dsh
+app.use("/kpiDashGeral", kpiRouter); 
 app.use("/grupos", groupRouter);
 
 app.get("/config", (req, res) => {

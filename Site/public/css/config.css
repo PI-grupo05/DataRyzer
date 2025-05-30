@@ -1,0 +1,190 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+	display: flex;
+	height: 100vh;
+}
+
+aside.sidebar {
+	width: 220px;
+	background: white;
+	border-radius: 2%;
+	color: black;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	padding: 20px 0;
+	box-shadow: 3px 0 5px rgba(1, 0, 0, 0.2);
+}
+
+aside.sidebar header.logo {
+	text-align: center;
+	font-weight: bold;
+	font-size: 20px;
+	margin-bottom: 40px;
+	letter-spacing: 1px;
+}
+
+aside.sidebar nav {
+	display: flex;
+	flex-direction: column;
+	gap: 25px;
+	padding-left: 20px;
+}
+
+aside.sidebar nav a {
+	color: black;
+	text-decoration: none;
+	font-size: 15px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	position: relative; /* necessário para o ::after funcionar */
+}
+
+aside.sidebar nav a:hover::after {
+	width: 100%;
+}
+
+
+
+aside.sidebar nav a::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	bottom: -3px;
+	height: 2px;
+	width: 0%;
+	background-color: #2b3bbf;
+	transition: width 0.3s ease;
+}
+
+aside.sidebar nav a:hover {
+	color: #2b3bbf;
+	width: 50%;
+}
+
+.sidebar nav a.ativo {
+	color: #2b3bbf ;
+	width: 50%;
+}
+
+aside.sidebar .logout {
+	padding-left: 20px;
+	margin-top: auto;
+}
+
+aside.sidebar .logout a {
+	color: white;
+	text-decoration: none;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	font-size: 15px;
+}
+
+main.main {
+	flex: 1;
+	padding: 30px 40px;
+	position: relative;
+}
+
+main .header {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	gap: 10px;
+}
+
+main .header img {
+	width: 45px;
+	height: 45px;
+	border-radius: 50%;
+}
+
+main .user-info {
+	display: flex;
+	flex-direction: column;
+}
+
+main .user-info span:first-child {
+	font-weight: bold;
+	font-size: 14px;
+}
+
+main .user-info span:last-child {
+	font-size: 12px;
+	color: gray;
+}
+
+main h1 {
+	margin-top: 20px;
+	font-size: 22px;
+	margin-bottom: 25px;
+	color: #333;
+}
+
+form.filter {
+	display: flex;
+	width: 100%;
+	max-width: 100%;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+form.filter select,
+form.filter input,
+form.filter button {
+	padding: 8px 10px;
+	border-radius: 5px;
+	border: 1px solid #ccc;
+}
+
+form.filter select {
+	width: 15%;
+}
+
+form.filter input {
+	flex: 1;
+}
+
+form.filter button {
+	width: 15%;
+	background-color: #3d5afe;
+	color: white;
+	border: none;
+	cursor: pointer;
+	transition: background-color 0.2s ease;
+}
+
+form.filter button:hover {
+	background-color: #2b3bbf;
+}
+
+table {
+	width: 100%;
+	border-collapse: collapse;
+	background: white;
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+th,
+td {
+	text-align: left;
+	padding: 12px 15px;
+	border-bottom: 1px solid #eee;
+	font-size: 14px;
+}
+
+th {
+	background-color: #f2f2f2;
+}
+
+.edit-icon {
+	cursor: pointer;
+}
