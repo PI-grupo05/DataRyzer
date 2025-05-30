@@ -12,7 +12,7 @@ function abrirMenu(){
   }
   else{
     botaoMenu.style.transform = "scaleX(-1)"
-    menuLateral.style.width = "20%"
+    menuLateral.style.width = "300px"
     menuLateral.style.fontSize = "100%"
     menuAberto = true
   }

@@ -21,7 +21,6 @@
 
     <link rel="stylesheet" href="css/loginCadastro.css" />
   </head>
-
   <body>
     <div class="login-page">
       <div class="background">
@@ -162,7 +161,7 @@
 
             setTimeout(function () {
               console.log(resposta);
-              window.location = "./historico_interrupcao.html";
+              window.location = "./menu.html";
             }, 2000); // apenas para exibir o loading
           });
         } else {
@@ -188,6 +187,7 @@
 
     return false;
   }
+
   function aparecerSenha() {
     const senha = document.getElementById("senha_input");
     const olho = document.getElementById("icon_olho");
