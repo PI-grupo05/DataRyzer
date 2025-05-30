@@ -9,10 +9,9 @@
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <Script src="./js/sessao.js"></Script>
-    <script src="./js/meuPerfil.js"></script>
     <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
     <!-- <link rel="stylesheet" href="./css/meuPerfilExcluir.css"> -->
-    <link rel="stylesheet" href="./css/meuPerfilEditar.css">
+    <link rel="stylesheet" href="./css/notificacoes.css">
     <title>Editar Perfil</title>
 </head>
 
@@ -20,11 +19,11 @@
     <div id="menuLateral">
         <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
         <div id="menuLateralSecoes">
-            <a href="">
+            <a href="./meuPerfilExcluir.html">
                 <img src="./assets/imgs/iconePerfil.png" alt="">
                 <span>Perfil</span>
             </a>
-            <a href="./notificacoes.html">
+            <a href="">
                 <img src="./assets/imgs/iconeNotificacao.png" alt="">
                 <span>Notificações</span>
             </a>
@@ -32,7 +31,6 @@
                 <img src="./assets/imgs/usuarios.png" alt="">
                 <span>Usuarios Regionais</span>
             </a>
-        
             <a href="./grupos.html">
                 <img src="./assets/imgs/iconeEmpresas.png" alt="">
                 <span>Grupos</span>
@@ -62,29 +60,38 @@
         <section id="metricas">
             <section id="cartoes">
                 <div class="profile-container">
-                    <h1>Meu Perfil</h1>
+                    <h1>Notificações</h1>
                     <form action="#" method="post" class="profile-form">
                         <div class="form-group">
-                            <label for="name">Nome:</label>
-                            <input type="text" id="id_nome" name="name" placeholder="Nome" required minlength="3">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email:</label>
+                            <label for="email">input:</label>
                             <input type="email" id="id_email" name="email" placeholder="email@gmail.com" required>
                         </div>
                         <div class="form-group">
-                            <label for="password">Senha:</label>
+                            <label for="password">input:</label>
                             <input type="password" id="password" name="password" placeholder="********" disabled>
                         </div>
-                        <div class="form-group">
-                            <label for="phone">Telefone:</label>
-                            <input type="tel" id="id_telefone" name="phone" placeholder="11999999999" pattern="^\d{10,11,12,13}$"
-                                required title="O número deve conter 10 ou 11 dígitos. Exemplo: (11)99999-9999">
+                        <div class="configs">
+                            <div class="botoes">
+                                <label for="ativar">Ativar/Desativar Notificações</label>
+                                <label name="ativar"  class="switch">
+                                    <input type="checkbox">
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="botoes select">
+                                <label for="">Frequencia de Notificações</label>
+                                <select name="" id="">
+                                    <option value="">Diario</option>
+                                    <option value="">Semanal</option>
+                                    <option value="">Mensal</option>
+                                </select>
+                            </div>
                         </div>
+
                         <div class="button-group">
-                            <button onclick="window.location.href='./meuPerfilExcluir.html'" type="button" class="btn-edit">CANCELAR</button>
-                            <button type="button" onclick="alterarDados()" class="btn-delete">SALVAR</button>
+                            <button type="button" onclick="" class="btn-delete">SALVAR ALTERAÇÕES</button>
                         </div>
+                        
                     </form>
                 </div>
             </section>
@@ -95,7 +102,4 @@
 </html>
 <script src="./js/sidebar.js"></script>
 <script src="./js/meuPerfil.js"></script>
-
-<script>
-
-</script>
+ 
