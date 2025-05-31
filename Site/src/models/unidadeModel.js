@@ -35,6 +35,18 @@ function contarUnidadesPorGrupo(idGrupo) {
   return database.executar(instrucaoSql);
 }
 
+function carregarNomeGrupo(idGrupo) {
+  console.log(
+    "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function carregarNomeGrupo()"
+  );
+
+  var instrucaoSql = `
+    SELECT nome FROM grupo WHERE id_grupo = ${idGrupo};
+  `;
+
+  return database.executar(instrucaoSql);
+}
+
 function associarUnidade(idUnidade, idGrupo) {
   console.log(
     "ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarUnidades()"
@@ -65,4 +77,5 @@ module.exports = {
   dessasociarUnidade,
   carregarUnidades,
   contarUnidadesPorGrupo,
+  carregarNomeGrupo,
 };

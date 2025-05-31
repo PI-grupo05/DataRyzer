@@ -18,4 +18,8 @@ router.get("/unidades-associadas/:idGrupo", function (req, res) {
   unidadeController.carregarUnidades(req, res);
 });
 
+router.get("/carregarNomeGrupo/:idGrupo", function (req, res) {
+  unidadeController.carregarNomeGrupo(req, res);
+});
+
 module.exports = router;

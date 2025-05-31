@@ -57,6 +57,7 @@ function criarGrupo() {
         return;
       }
       if (data.ok) {
+        console.log("Grupo criado com sucesso:", data);
         criarGrupoNaTela(nome, data.idGrupo);
         console.log("idGrupo:", data.idGrupo);
         limiteGrupos++;
@@ -100,9 +101,7 @@ function criarGrupoNaTela(nomeGrupo, idGrupo) {
   const btnCidades = document.createElement("button");
   btnCidades.className = "btn-cidades";
   btnCidades.textContent = "Gerenciar grupo";
-  btnCidades.addEventListener("click", () =>
-    abrirModalGerenciar(idGrupo, nomeGrupo)
-  );
+  btnCidades.addEventListener("click", () => abrirModalGerenciar(idGrupo));
 
   const btnEditar = document.createElement("button");
   btnEditar.className = "btn-editar";
@@ -266,21 +265,37 @@ function fecharModal() {
   document.getElementById("modal-gerenciar").classList.add("hidden");
 }
 
-function abrirModalGerenciar(idGrupo, nomeGrupo) {
+function abrirModalGerenciar(idGrupo) {
   console.log("Abrindo modal para o grupo:", idGrupo);
-  const nomeGrupoModal = document.getElementById("nome-grupo-modal");
   const modal = document.getElementById("modal-gerenciar");
   modal.classList.remove("hidden");
-  nomeGrupoModal.textContent = nomeGrupo;
 
   // Armazenar o id do grupo como data attribute no modal
   modal.setAttribute("data-id-grupo", idGrupo);
 
-
+  carregarNomeGrupoModal(idGrupo);
   carregarUnidadesDisponiveis();
   carregarUnidadesAssociadas(idGrupo);
 }
 
+function carregarNomeGrupoModal(idGrupo) {
+  const nomeGrupoModal = document.getElementById("nome-grupo-modal");
+
+  fetch(`/unidade/carregarNomeGrupo/${idGrupo}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data && data.nome) {
+        nomeGrupoModal.textContent = data.nome;
+      } else {
+        nomeGrupoModal.textContent = "Grupo não encontrado";
+      }
+      console.log("Nome do grupo:", data);
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar nome do grupo:", err);
+      nomeGrupoModal.textContent = "Erro ao carregar nome do grupo";
+    });
+}
 
 function associarUnidadeGrupoNaTela(nomeUnidade, idUnidade) {
   const listaUnidades = document.getElementById("list-unidades");

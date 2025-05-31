@@ -53,6 +53,29 @@ function associarUnidade(req, res) {
     });
 }
 
+function carregarNomeGrupo(req, res) {
+  var idGrupo = req.params.idGrupo;
+
+  if (!idGrupo) {
+    console.error("idGrupo não enviado");
+    return res.status(400).json({ error: "idGrupo não enviado" });
+  }
+
+  unidadeModel
+    .carregarNomeGrupo(idGrupo)
+    .then((resultado) => {
+      if (resultado.length > 0) {
+        res.json(resultado[0]);
+      } else {
+        return res.status(404).json({ error: "Grupo não encontrado" });
+      }
+    })
+    .catch((erro) => {
+      console.error(erro);
+      res.status(500).json({ error: "Erro ao carregar nome do grupo" });
+    });
+}
+
 function dessasociarUnidade(req, res) {
   var idUnidade = req.params.idUnidade;
 
@@ -99,4 +122,5 @@ module.exports = {
   associarUnidade,
   dessasociarUnidade,
   carregarUnidades,
+  carregarNomeGrupo,
 };
