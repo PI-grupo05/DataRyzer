@@ -10,8 +10,12 @@ router.put("/associar", function (req, res) {
   unidadeController.associarUnidade(req, res);
 });
 
-router.pull("/desassociar/:idUnidade", function (req, res) {
-  unidadeController.desassociarUnidade(req, res);
+router.put("/desassociar/:idUnidade", function (req, res) {
+  unidadeController.dessasociarUnidade(req, res);
+});
+
+router.get("/unidades-associadas/:idGrupo", function (req, res) {
+  unidadeController.carregarUnidades(req, res);
 });
 
 module.exports = router;

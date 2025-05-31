@@ -94,10 +94,7 @@ function deletarGrupo(req, res) {
     });
 }
 
-function carregarUnidadesDisponiveis(idUsuario){
-  
-
-}
+function carregarUnidadesDisponiveis(idUsuario) {}
 
 module.exports = {
   criarGrupo,

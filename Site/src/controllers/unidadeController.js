@@ -28,17 +28,28 @@ function associarUnidade(req, res) {
   }
 
   unidadeModel
-    .associarUnidade(idUnidade, idGrupo)
-    .then((resultado) => {
-      if (resultado.affectedRows > 0) {
-        res.json({ ok: true });
-      } else {
-        return res.status(404).json({ error: "Unidade não encontrada" });
+    .contarUnidadesPorGrupo(idGrupo)
+    .then((resposta) => {
+      const qtd = resposta[0].total;
+      if (qtd >= 7) {
+        return res
+          .status(400)
+          .json({ error: "Limite de unidades atingido (7)" });
       }
+
+      return unidadeModel
+        .associarUnidade(idUnidade, idGrupo)
+        .then((resultado) => {
+          if (resultado.affectedRows > 0) {
+            res.json({ ok: true });
+          } else {
+            return res.status(404).json({ error: "Unidade não encontrada" });
+          }
+        });
     })
     .catch((erro) => {
       console.error(erro);
-      res.status(500).json({ error: "Erro ao associar unidade" });
+      res.status(500).json({ error: "Erro ao associar ou contar unidade" });
     });
 }
 
@@ -64,8 +75,28 @@ function dessasociarUnidade(req, res) {
     });
 }
 
+function carregarUnidades(req, res) {
+  var idGrupo = req.params.idGrupo;
+
+  if (!idGrupo) {
+    console.error("idGrupo não enviado");
+    return res.status(400).json({ error: "idGrupo não enviado" });
+  }
+
+  unidadeModel
+    .carregarUnidades(idGrupo)
+    .then((unidades) => {
+      res.json(unidades);
+    })
+    .catch((erro) => {
+      console.error(erro);
+      res.status(500).json({ error: "Erro ao carregar unidades" });
+    });
+}
+
 module.exports = {
   listarUnidades,
   associarUnidade,
-  dessasociarUnidade
+  dessasociarUnidade,
+  carregarUnidades,
 };

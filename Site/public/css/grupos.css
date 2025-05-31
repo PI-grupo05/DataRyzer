@@ -185,7 +185,7 @@ h2 {
   color: transparent;
 }
 
-/* Modal */
+/* <<<<<<<<<<<<<<<<<<<<<<<<Modal>>>>>>>>>>>>>>>>>>>>>>>>> */
 .modal.hidden {
   display: none;
 }
@@ -208,8 +208,8 @@ h2 {
   background-color: #fff;
   padding: 0 20px;
   border-radius: 1vw;
-  width: 400px;
-  height: 400px;
+  width: 380px;
+  height: 420px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
@@ -227,7 +227,7 @@ h3 {
 .btn-modal-fechar {
   position: relative;
   top: -70px;
-  left: 175px;
+  left: 165px;
 }
 
 .btn-modal-associar {
