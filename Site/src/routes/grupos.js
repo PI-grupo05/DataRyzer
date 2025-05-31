@@ -18,4 +18,5 @@ router.delete("/deletar/:idGrupo", function (req, res) {
   gruposController.deletarGrupo(req, res);
 });
 
+
 module.exports = router;

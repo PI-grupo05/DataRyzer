@@ -41,13 +41,15 @@
         <!-- Modal -->
         <div id="modal-gerenciar" class="modal hidden">
           <div class="modal-content">
-            <h3>Unidades disponíveis:</h3>
+            <h3>Unidades do grupo</h3>
             <div class="div-select">
               <select id="select-unidade">
-                <option value="">Selecionar cidade</option>
                 <!-- Unidades disponíveis serão carregadas aqui -->
               </select>
-              <button class="btn-modal-associar" onclick="associarUnidade()">
+              <button
+                class="btn-modal-associar"
+                onclick="associarUnidadeAoGrupo()"
+              >
                 Associar
               </button>
             </div>

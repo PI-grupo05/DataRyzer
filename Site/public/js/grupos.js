@@ -112,10 +112,10 @@ function criarGrupoNaTela(nome, idGrupo) {
 
   //adicionando os filhos ao pai
   grupo.appendChild(spanNome);
+  grupo.appendChild(btnDivGrupo);
   grupo.appendChild(btnCidades);
   grupo.appendChild(btnEditar);
   grupo.appendChild(btnExcluir);
-  grupo.appendChild(btnDivGrupo);
 
   btnDivGrupo.appendChild(btnCidades);
   btnDivGrupo.appendChild(btnEditar);
@@ -149,7 +149,6 @@ function excluirGrupo(grupo) {
   const listarGrupos = document.getElementById("list-groups");
   listarGrupos.removeChild(grupo);
   const idGrupo = grupo.getAttribute("data-id");
-  console.log("idGrupo--", idGrupo);
   limiteGrupos--;
 
   fetch(`grupos/deletar/${idGrupo}`, {
@@ -247,7 +246,8 @@ function editarGrupo(grupo) {
 
   input.focus();
 }
-/* Modal de unidades */
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MODAL DE GRUPOS  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
 function fecharModal() {
   document.getElementById("modal-gerenciar").classList.add("hidden");
 }
@@ -256,53 +256,52 @@ function abrirModalGerenciar(idGrupo) {
   const modal = document.getElementById("modal-gerenciar");
   modal.classList.remove("hidden");
 
-  const titulo = document.getElementById("titulo-modal-gerenciar");
-  titulo.textContent = `Gerenciar Grupo`;
-
   // Armazenar o id do grupo como data attribute no modal
   modal.setAttribute("data-id-grupo", idGrupo);
 
   carregarUnidadesDisponiveis(); // já pode chamar ao abrir
 }
 
-function associarUnidadeGrupoNaTela(nomeUnidade, idGrupo) {
+function associarUnidadeGrupoNaTela(nomeUnidade, idUnidade) {
   const listaUnidades = document.getElementById("list-unidades");
 
   //pai
-  const divUnidades = document.createElement("div");
-  divUnidades.className = "unidade";
+  const divUnidade = document.createElement("div");
+  divUnidade.className = "unidade";
 
   //filhos
   const spanUnidade = document.createElement("span");
   spanUnidade.textContent = nomeUnidade;
+  spanUnidade.className = "nomeUnidade";
 
   const btnDesassociar = document.createElement("button");
   btnDesassociar.className = "btn-desassociar";
-  btnDesassociar.innerHTML = `<img src="assets/imgs/icons8-lixeira-60.png" alt="Desassociar" width="25px" height="25px">`;
+  btnDesassociar.innerHTML = `<img src="assets/imgs/icons8-lixeira-60.png" alt="Desassociar" width="20px" height="20px">`;
   btnDesassociar.addEventListener("click", () =>
-    desassociarUnidade(spanUnidade, idGrupo)
+    desassociarUnidade(idUnidade, divUnidade)
   );
 
   //adicionando os filhos ao pai
-  divUnidades.appendChild(spanUnidade);
-  divUnidades.appendChild(btnDesassociar);
+  divUnidade.appendChild(spanUnidade);
+  divUnidade.appendChild(btnDesassociar);
 
-  listaUnidades.appendChild(divUnidades);
+  listaUnidades.appendChild(divUnidade);
 }
 
 function carregarUnidadesDisponiveis() {
-  const idUsuario = sessionStorage.ID_USUARIO;
-  fetch(`/grupos/unidades-disponiveis/${idUsuario}`)
+  const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
+  console.log("ID Distribuidora:", idDistribuidora);
+
+  fetch(`/unidade/unidades-disponiveis/${idDistribuidora}`)
     .then((res) => res.json())
     .then((unidades) => {
       const select = document.getElementById("select-unidade");
-      select.innerHTML =
-        '<option disabled value="default">Selecione a Unidade</option>';
+      select.innerHTML = '<option value="default">Selecione a Unidade</option>';
 
       for (const unidade of unidades) {
         const option = document.createElement("option");
-        option.textContent = unidade.name;
         option.value = unidade.id_unidade_consumidora;
+        option.textContent = unidade.nome;
         select.appendChild(option);
       }
     });
@@ -310,6 +309,8 @@ function carregarUnidadesDisponiveis() {
 
 function associarUnidadeAoGrupo() {
   const selectUnidade = document.getElementById("select-unidade");
+  const unidadeNomeSelecionada =
+    selectUnidade.options[selectUnidade.selectedIndex].text;
   const idUnidade = selectUnidade.value;
 
   if (idUnidade === "default") {
@@ -320,7 +321,7 @@ function associarUnidadeAoGrupo() {
   const modal = document.getElementById("modal-gerenciar");
   const idGrupo = modal.getAttribute("data-id-grupo");
 
-  fetch("/grupos/unidades/associar", {
+  fetch("/unidade/associar", {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ idUnidade, idGrupo }),
@@ -328,7 +329,7 @@ function associarUnidadeAoGrupo() {
     .then((res) => res.json())
     .then((data) => {
       if (data.ok) {
-        associarUnidadeGrupoNaTela(data.nome, idGrupo);
+        associarUnidadeGrupoNaTela(unidadeNomeSelecionada, idUnidade);
         carregarUnidadesDisponiveis();
       } else {
         Swal.fire({ icon: "error", text: "Erro ao associar unidade!" });
@@ -340,15 +341,44 @@ function associarUnidadeAoGrupo() {
     });
 }
 
+function desassociarUnidade(idUnidade, divUnidade) {
+  const listaUnidades = document.getElementById("list-unidades");
+
+  fetch(`/unidade/desassociar/${idUnidade}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.ok) {
+        listaUnidades.removeChild(divUnidade);
+        Swal.fire({
+          icon: "success",
+          text: "Unidade desassociada com sucesso!",
+        });
+        carregarUnidadesDisponiveis();
+      } else {
+        Swal.fire({ icon: "error", text: "Erro ao desassociar unidade!" });
+      }
+    })
+    .catch(() => {
+      Swal.fire({ icon: "error", text: "Erro ao desassociar unidade!" });
+    });
+}
+
 function carregarUnidadesAssociadas(idGrupo) {
-  fetch(`/grupos/unidades-associadas/${idGrupo}`)
+  fetch(`/unidade/unidades-associadas/${idGrupo}`)
     .then((res) => res.json())
     .then((unidades) => {
       const listaUnidades = document.getElementById("list-unidades");
-      listaUnidades.innerHTML = ""; //
+      listaUnidades.innerHTML = "";
 
       unidades.forEach((unidade) => {
-        associarUnidadeGrupoNaTela(unidade.nome, idGrupo);
+        associarUnidadeGrupoNaTela(
+          unidade.nome,
+          unidade.id_unidade_consumidora,
+          idGrupo
+        );
       });
     })
     .catch((err) => {
