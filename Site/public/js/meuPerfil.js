@@ -148,8 +148,9 @@
         });
     }
 
+    window.addEventListener('load', pegarDadosDiretor);
     
-    window.onload = pegarDadosDiretor;
+
 
 
 

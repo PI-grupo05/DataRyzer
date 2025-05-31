@@ -18,7 +18,6 @@ function abrirMenu(){
   }
 }
 
-
 window.onload = verificarTipoUsuario
 function verificarTipoUsuario() {
 
@@ -54,3 +53,4 @@ function verificarTipoUsuario() {
     </a>`
   }
 }
+

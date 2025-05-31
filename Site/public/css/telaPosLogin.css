@@ -32,6 +32,7 @@ body{
     align-items: center;
     gap: 10%;
     font-size: 1vw;
+    cursor: pointer;
 }
 
 #campoUsuario img{
