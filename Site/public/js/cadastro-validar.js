@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function() {
             const userRadio = document.getElementById('master');
-            const adminRadio = document.getElementById('diretor');
+            const adminRadio = document.getElementById('usuario');
             const unidadeInput = document.getElementById('unidade_consumidora_input');
 
             function toggleUnidadeInput() {
