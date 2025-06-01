@@ -40,7 +40,7 @@ function criarGrupo() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Erro ao criar grupo!",
+          text: response.error || "Erro ao criar grupo!",
         });
         throw new Error("Erro na resposta do servidor");
       }
@@ -367,7 +367,10 @@ function associarUnidadeAoGrupo() {
         associarUnidadeGrupoNaTela(unidadeNomeSelecionada, idUnidade);
         carregarUnidadesDisponiveis();
       } else {
-        Swal.fire({ icon: "error", text: "Erro ao associar unidade!" });
+        Swal.fire({
+          icon: "error",
+          text: data.error || "Erro ao associar unidade!",
+        });
       }
     })
     .catch((error) => {
