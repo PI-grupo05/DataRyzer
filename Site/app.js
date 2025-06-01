@@ -32,6 +32,7 @@ var usuarioRouter = require("./src/routes/usuarios");
 var kpiRouter = require("./src/routes/kpiDashGeral");
 var historicoRouter = require("./src/routes/historico");
 var groupRouter = require("./src/routes/grupos");
+var unidadeConsumidoraRouter = require("./src/routes/unidadeConsumidora")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -44,6 +45,7 @@ app.use("/usuarios", usuarioRouter);
 app.use("/historico", historicoRouter);
 app.use("/kpiDashGeral", kpiRouter);  // rota da kpi da dsh
 app.use("/grupos", groupRouter);
+app.use("/unidadeConsumidora", unidadeConsumidoraRouter);
 
 app.get("/config", (req, res) => {
     res.json({
