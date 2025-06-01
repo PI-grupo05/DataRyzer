@@ -39,27 +39,59 @@
             <div class="input-email">
               <input id="email_input" type="email" placeholder="Seu email" required>
             </div>
-
-            <label for="senha">Senha</label>
-            <div class="input-senha">
-              <input type="password" id="senha_input" placeholder="Sua senha" required>
-            </div>
-
-            <label for="confirmar_senha">Confirme sua senha</label>
-            <div class="input-confirmar-senha">
-              <input type="password" id="confirmar_senha_input" placeholder="Confirme sua senha" required>
-            </div>
             <label for="telefone">Telefone</label>
             <div class="input-confirmar-senha">
               <input type="tel" id="telefone_input" placeholder="XXXX-XXXX" required>
             </div>
-            <label for="unidade_consumidora">Código Unidade consumidora</label>
-            <div class="input-confirmar-senha">
-              <input type="password" id="unidade_consumidora_input" placeholder="Ex: 12" required>
+
+
+              <div class="senha-container">
+<div class="senha-lado-a-lado">
+
+  <div class="campo-senha">
+    <label for="senha_input">Senha</label>
+    <input type="password" id="senha_input" placeholder="Sua senha" required>
+  </div>
+
+  <div class="campo-confirmar-senha">
+    <label for="confirmar_senha_input">Confirme sua senha</label>
+    <input type="password" id="confirmar_senha_input" placeholder="Confirme sua senha" required>
+  </div>
+
+</div>
+
+
+<!-- ======================================================================= -->
+
+<!-- ... seu código HTML existente ... -->
+
+<div class="radio-group">
+    <label for="master" >
+        <input type="radio" id="master" name="role" value="master">
+        Master
+    </label>
+    <label for="diretor">
+        <input type="radio" id="diretor" name="role" value="diretor">
+        Diretor
+    </label>
+</div>
+
+
+<script src="js/cadastro-validar.js"></script>
+
+<!-- ... restante do código HTML ... -->
+
+<!-- ============================================================================= -->
+
+
+            
+            <label for="unidade_consumidora" id="unidadeLabel">Código Unidade consumidora</label>
+            <div class="input-confirmar-senha" id="unidadeDiv">
+              <input type="text" id="unidade_consumidora_input" placeholder="Ex: 12" required>
             </div>
             <label for="codigo_associacao">Codigo de associação</label>
             <div class="input-confirmar-senha">
-              <input type="password" id="codigo_associacao_input" placeholder="Ex: 12324" required>
+              <input type="text" id="codigo_associacao_input" placeholder="Ex: 12324" required>
             </div>
 
             <button type="button" class="button" id="button" onclick="cadastrar()">Cadastrar</button>
@@ -73,6 +105,7 @@
 
 <script src="/env.js"></script>
 <script>
+
   function cadastrar() {
     // aguardar();
 
