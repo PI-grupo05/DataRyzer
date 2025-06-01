@@ -14,6 +14,14 @@
     />
   </head>
   <body onload="carregarGruposDoUsuario()">
+    <a id="setaVoltar" href="telaPosLogin.html">
+      <img
+        src="assets/imgs/voltarSeta.png"
+        alt="voltar"
+        width="40px"
+        height="40px"
+      />
+    </a>
     <div class="grups">
       <div class="container-group">
         <h2>Gerenciamento de grupos</h2>
@@ -30,6 +38,32 @@
           </button>
         </div>
         <div id="list-groups"></div>
+        <!-- Modal -->
+        <div id="modal-gerenciar" class="modal hidden">
+          <div class="modal-content">
+            <h3 id="nome-grupo-modal"></h3>
+            <div class="div-select">
+              <select id="select-unidade">
+                <!-- Unidades disponíveis serão carregadas aqui -->
+              </select>
+              <button
+                class="btn-modal-associar"
+                onclick="associarUnidadeAoGrupo()"
+              >
+                Associar
+              </button>
+            </div>
+            <button class="btn-modal-fechar" onclick="fecharModal()">
+              <img
+                src="assets/imgs/iconFechar.png"
+                width="30px"
+                height="30px"
+                alt="Fechar"
+              />
+            </button>
+            <div id="list-unidades"></div>
+          </div>
+        </div>
       </div>
     </div>
   </body>

@@ -40,7 +40,7 @@ function criarGrupo() {
         Swal.fire({
           icon: "error",
           title: "Oops...",
-          text: "Erro ao criar grupo!",
+          text: response.error || "Erro ao criar grupo!",
         });
         throw new Error("Erro na resposta do servidor");
       }
@@ -57,7 +57,9 @@ function criarGrupo() {
         return;
       }
       if (data.ok) {
+        console.log("Grupo criado com sucesso:", data);
         criarGrupoNaTela(nome, data.idGrupo);
+        console.log("idGrupo:", data.idGrupo);
         limiteGrupos++;
       } else {
         Swal.fire({
@@ -78,7 +80,7 @@ function criarGrupo() {
   document.getElementById("nome-grupo").value = "";
 }
 
-function criarGrupoNaTela(nome, idGrupo) {
+function criarGrupoNaTela(nomeGrupo, idGrupo) {
   const listarGrupos = document.getElementById("list-groups");
 
   // criando elementos html que referenciam um grupo criado
@@ -86,10 +88,11 @@ function criarGrupoNaTela(nome, idGrupo) {
   const grupo = document.createElement("div");
   grupo.className = "group";
   grupo.setAttribute("data-id", idGrupo);
+  console.log("ID do grupo:", idGrupo);
 
   // filhos
   const spanNome = document.createElement("span");
-  spanNome.textContent = nome;
+  spanNome.textContent = nomeGrupo;
   spanNome.className = "nomeGrupo";
 
   const btnDivGrupo = document.createElement("div");
@@ -97,8 +100,8 @@ function criarGrupoNaTela(nome, idGrupo) {
 
   const btnCidades = document.createElement("button");
   btnCidades.className = "btn-cidades";
-  btnCidades.textContent = "Gerenciar unidades";
-  btnCidades.addEventListener("click", () => gerenciarCidade());
+  btnCidades.textContent = "Gerenciar grupo";
+  btnCidades.addEventListener("click", () => abrirModalGerenciar(idGrupo));
 
   const btnEditar = document.createElement("button");
   btnEditar.className = "btn-editar";
@@ -112,9 +115,6 @@ function criarGrupoNaTela(nome, idGrupo) {
 
   //adicionando os filhos ao pai
   grupo.appendChild(spanNome);
-  grupo.appendChild(btnCidades);
-  grupo.appendChild(btnEditar);
-  grupo.appendChild(btnExcluir);
   grupo.appendChild(btnDivGrupo);
 
   btnDivGrupo.appendChild(btnCidades);
@@ -145,12 +145,22 @@ function carregarGruposDoUsuario() {
     });
 }
 
-function excluirGrupo(grupo) {
+async function excluirGrupo(grupo) {
   const listarGrupos = document.getElementById("list-groups");
-  listarGrupos.removeChild(grupo);
   const idGrupo = grupo.getAttribute("data-id");
-  console.log("idGrupo--", idGrupo);
-  limiteGrupos--;
+
+  const result = await Swal.fire({
+    title: "Tem certeza?",
+    text: "Você realmente deseja excluir este grupo? Essa ação não pode ser desfeita!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#d33",
+    cancelButtonColor: "#3085d6",
+    confirmButtonText: "Sim, excluir",
+    cancelButtonText: "Cancelar",
+  });
+
+  if (!result.isConfirmed) return;
 
   fetch(`grupos/deletar/${idGrupo}`, {
     method: "DELETE",
@@ -160,6 +170,8 @@ function excluirGrupo(grupo) {
   })
     .then((resposta) => {
       if (resposta.ok) {
+        listarGrupos.removeChild(grupo);
+        limiteGrupos--;
         console.log("Registro deletado com sucesso");
       } else {
         console.log("Erro ao deletar registro");
@@ -246,4 +258,167 @@ function editarGrupo(grupo) {
   });
 
   input.focus();
+}
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< MODAL DE GRUPOS  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+function fecharModal() {
+  document.getElementById("modal-gerenciar").classList.add("hidden");
+}
+
+function abrirModalGerenciar(idGrupo) {
+  console.log("Abrindo modal para o grupo:", idGrupo);
+  const modal = document.getElementById("modal-gerenciar");
+  modal.classList.remove("hidden");
+
+  // Armazenar o id do grupo como data attribute no modal
+  modal.setAttribute("data-id-grupo", idGrupo);
+
+  carregarNomeGrupoModal(idGrupo);
+  carregarUnidadesDisponiveis();
+  carregarUnidadesAssociadas(idGrupo);
+}
+
+function carregarNomeGrupoModal(idGrupo) {
+  const nomeGrupoModal = document.getElementById("nome-grupo-modal");
+
+  fetch(`/unidade/carregarNomeGrupo/${idGrupo}`)
+    .then((res) => res.json())
+    .then((data) => {
+      if (data && data.nome) {
+        nomeGrupoModal.textContent = data.nome;
+      } else {
+        nomeGrupoModal.textContent = "Grupo não encontrado";
+      }
+      console.log("Nome do grupo:", data);
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar nome do grupo:", err);
+      nomeGrupoModal.textContent = "Erro ao carregar nome do grupo";
+    });
+}
+
+function associarUnidadeGrupoNaTela(nomeUnidade, idUnidade) {
+  const listaUnidades = document.getElementById("list-unidades");
+
+  //pai
+  const divUnidade = document.createElement("div");
+  divUnidade.className = "unidade";
+
+  //filhos
+  const spanUnidade = document.createElement("span");
+  spanUnidade.textContent = nomeUnidade;
+  spanUnidade.className = "nomeUnidade";
+
+  const btnDesassociar = document.createElement("button");
+  btnDesassociar.className = "btn-desassociar";
+  btnDesassociar.innerHTML = `<img src="assets/imgs/icons8-lixeira-60.png" alt="Desassociar" width="20px" height="20px">`;
+  btnDesassociar.addEventListener("click", () =>
+    desassociarUnidade(idUnidade, divUnidade)
+  );
+
+  //adicionando os filhos ao pai
+  divUnidade.appendChild(spanUnidade);
+  divUnidade.appendChild(btnDesassociar);
+
+  listaUnidades.appendChild(divUnidade);
+}
+
+function carregarUnidadesDisponiveis() {
+  const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
+  console.log("ID Distribuidora:", idDistribuidora);
+
+  fetch(`/unidade/unidades-disponiveis/${idDistribuidora}`)
+    .then((res) => res.json())
+    .then((unidades) => {
+      const select = document.getElementById("select-unidade");
+      select.innerHTML = '<option value="default">Selecione a Unidade</option>';
+
+      for (const unidade of unidades) {
+        const option = document.createElement("option");
+        option.value = unidade.id_unidade_consumidora;
+        option.textContent = unidade.nome;
+        select.appendChild(option);
+      }
+    });
+}
+
+function associarUnidadeAoGrupo() {
+  const selectUnidade = document.getElementById("select-unidade");
+  const unidadeNomeSelecionada =
+    selectUnidade.options[selectUnidade.selectedIndex].text;
+  const idUnidade = selectUnidade.value;
+
+  if (idUnidade === "default") {
+    Swal.fire({ icon: "warning", text: "Selecione uma unidade!" });
+    return;
+  }
+
+  const modal = document.getElementById("modal-gerenciar");
+  const idGrupo = modal.getAttribute("data-id-grupo");
+
+  fetch("/unidade/associar", {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ idUnidade, idGrupo }),
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.ok) {
+        associarUnidadeGrupoNaTela(unidadeNomeSelecionada, idUnidade);
+        carregarUnidadesDisponiveis();
+      } else {
+        Swal.fire({
+          icon: "error",
+          text: data.error || "Erro ao associar unidade!",
+        });
+      }
+    })
+    .catch((error) => {
+      console.error("Erro na associação:", error);
+      Swal.fire({ icon: "error", text: "Erro ao associar unidade!" });
+    });
+}
+
+function desassociarUnidade(idUnidade, divUnidade) {
+  const listaUnidades = document.getElementById("list-unidades");
+
+  fetch(`/unidade/desassociar/${idUnidade}`, {
+    method: "PUT",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((res) => res.json())
+    .then((data) => {
+      if (data.ok) {
+        listaUnidades.removeChild(divUnidade);
+        Swal.fire({
+          icon: "success",
+          text: "Unidade desassociada com sucesso!",
+        });
+        carregarUnidadesDisponiveis();
+      } else {
+        Swal.fire({ icon: "error", text: "Erro ao desassociar unidade!" });
+      }
+    })
+    .catch(() => {
+      Swal.fire({ icon: "error", text: "Erro ao desassociar unidade!" });
+    });
+}
+
+function carregarUnidadesAssociadas(idGrupo) {
+  const listaUnidades = document.getElementById("list-unidades");
+  listaUnidades.innerHTML = "";
+  fetch(`/unidade/unidades-associadas/${idGrupo}`)
+    .then((res) => res.json())
+    .then((unidades) => {
+      unidades.forEach((unidade) => {
+        associarUnidadeGrupoNaTela(
+          unidade.nome,
+          unidade.id_unidade_consumidora
+        );
+      });
+    })
+    .catch((err) => {
+      console.error("Erro ao carregar unidades associadas:", err);
+      Swal.fire({ icon: "error", text: "Erro ao carregar unidades do grupo!" });
+    });
 }

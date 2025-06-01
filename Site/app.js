@@ -33,6 +33,8 @@ var kpiRouter = require("./src/routes/kpiDashGeral");
 var historicoRouter = require("./src/routes/historico");
 var groupRouter = require("./src/routes/grupos");
 var notificacoesRouter = require("./src/routes/notificacoes");
+var unidadeRouter = require("./src/routes/unidade");
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -45,6 +47,7 @@ app.use("/historico", historicoRouter);
 app.use("/kpiDashGeral", kpiRouter); 
 app.use("/grupos", groupRouter);
 app.use("/notificacoes", notificacoesRouter);
+app.use("/unidade", unidadeRouter);
 
 app.get("/config", (req, res) => {
     res.json({
@@ -53,6 +56,7 @@ app.get("/config", (req, res) => {
         AMBIENTE_PROCESSO: ambiente_processo
     });
 });
+
 
 app.listen(PORTA_APP, function () {
   console.log(`

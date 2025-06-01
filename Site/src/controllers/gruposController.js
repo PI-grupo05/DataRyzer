@@ -76,15 +76,25 @@ function deletarGrupo(req, res) {
   }
 
   gruposModel
-    .deletarGrupo(idGrupo)
+    .dessasociarUnidadesGrupo(idGrupo)
     .then(() => {
-      res.json({ ok: true });
+      gruposModel
+        .deletarGrupo(idGrupo)
+        .then(() => {
+          res.json({ ok: true });
+        })
+        .catch((erro) => {
+          console.error(erro);
+          res.status(500).json({ error: "Erro ao deletar grupo" });
+        });
     })
     .catch((erro) => {
       console.error(erro);
       res.status(500).json({ error: "Erro ao deletar grupo" });
     });
 }
+
+function carregarUnidadesDisponiveis(idUsuario) {}
 
 module.exports = {
   criarGrupo,
