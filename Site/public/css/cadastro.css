@@ -276,6 +276,10 @@ hr{
     opacity: 0.7; 
 }
 
+.senha-container{
+  display: grid;
+}
+
 
 
 /* Fim do botaoo */
