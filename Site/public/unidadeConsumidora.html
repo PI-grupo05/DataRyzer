@@ -77,8 +77,8 @@
             
     
             <div id="containerUnidadesConsumidoras">
-              <!-- <div class="linha">
-                <div class="cartao">
+              <div class="linha">
+                <div  onclick="acessarUnidadeConsumidora()" class="cartao">
                   <input class="empresaBotao" type="button" value="UNIDADE 1" />
                 </div>
                 <div class="cartao">
@@ -87,7 +87,7 @@
                 <div class="cartao">
                   <input class="empresaBotao" type="button" value="UNIDADE 3" />
                 </div>
-              </div> -->
+              </div>
             </div>
 
       </section>
@@ -136,7 +136,7 @@
         }
         if(lista[colunaAtual].unidadeConsumidora != null){
           conteudo += `
-              <div class="cartao">
+              <div onclick="acessarUnidadeConsumidora(${colunaAtual + 1})" id="${colunaAtual + 1}" class="cartao">
                 <input class="empresaBotao" type="button" value="${lista[colunaAtual].unidadeConsumidora}" />
               </div>
           `
@@ -151,5 +151,11 @@
         }
       }
       containerUnidadesConsumidoras.innerHTML = conteudo
+
     }
-</script>
+
+    function acessarUnidadeConsumidora(id){
+      window.location = "dashEspecifica.html"
+      sessionStorage.FK_UNIDADE_CONSUMIDORA = id
+    }
+  </script>
