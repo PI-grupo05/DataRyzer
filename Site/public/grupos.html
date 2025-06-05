@@ -6,6 +6,7 @@
     <title>DataRyzer | Grupos</title>
     <link rel="stylesheet" href="./css/grupos.css" />
     <script src="./js/grupos.js"></script>
+    <script src="./js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <link
       rel="shortcut icon"
@@ -13,7 +14,7 @@
       type="image/x-icon"
     />
   </head>
-  <body onload="carregarGruposDoUsuario()">
+  <body onload="carregarGruposDoUsuario(), validarSessao()">
     <a id="setaVoltar" href="telaPosLogin.html">
       <img
         src="assets/imgs/voltarSeta.png"

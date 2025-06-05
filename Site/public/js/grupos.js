@@ -308,6 +308,9 @@ function associarUnidadeGrupoNaTela(nomeUnidade, idUnidade) {
   const spanUnidade = document.createElement("span");
   spanUnidade.textContent = nomeUnidade;
   spanUnidade.className = "nomeUnidade";
+  spanUnidade.addEventListener("click", () =>
+    direcionarDashEspecifica(idUnidade)
+  );
 
   const btnDesassociar = document.createElement("button");
   btnDesassociar.className = "btn-desassociar";
@@ -421,4 +424,9 @@ function carregarUnidadesAssociadas(idGrupo) {
       console.error("Erro ao carregar unidades associadas:", err);
       Swal.fire({ icon: "error", text: "Erro ao carregar unidades do grupo!" });
     });
+}
+
+function direcionarDashEspecifica(idUnidade) {
+  sessionStorage.FK_UNIDADE_CONSUMIDORA = idUnidade;
+  window.location.href = `dashEspecifica.html`;
 }
