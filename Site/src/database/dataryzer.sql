@@ -80,18 +80,6 @@ CREATE TABLE interrupcao (
 
 SELECT * FROM interrupcao;
 
-CREATE TABLE notificacao (
-    id_notificacao          INT NOT NULL,
-    data_hora               DATETIME NOT NULL,
-    tipo                    VARCHAR(45) NOT NULL,
-    mensagem                VARCHAR(45) NOT NULL,
-    fk_unidade_consumidora  INT NOT NULL,
-    fk_distribuidora        INT NOT NULL,
-    CONSTRAINT pk_notificacao PRIMARY KEY(id_notificacao, fk_unidade_consumidora, fk_distribuidora),
-    CONSTRAINT fk_unidade_consumidora_notificacao FOREIGN KEY (fk_unidade_consumidora) REFERENCES unidade_consumidora(id_unidade_consumidora),
-    CONSTRAINT fk_distribuidora_notificacao FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora)
-);
-
 CREATE TABLE log (
     id_log          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
     data_hora       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
@@ -99,3 +87,23 @@ CREATE TABLE log (
     mensagem        VARCHAR(255) NOT NULL,
     mensagem_log    VARCHAR(255) NOT NULL
 );
+
+
+select * from distribuidora;
+
+update distribuidora
+set codigo_associacao_master = 123
+where id_distribuidora =1;
+
+select * from usuario;
+
+CREATE TABLE parametrizacao(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(200),
+    receber_notificacao BOOLEAN,
+    frequencia_notificacao VARCHAR(45),
+    proxima_notificaco DATE,
+    fk_distribuidora INT,
+    CONSTRAINT fk_distribuidora_parametrizacao FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora)
+    );
+    
