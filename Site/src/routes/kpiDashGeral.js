@@ -13,6 +13,7 @@ router.get("/duracao-media-interrupcoes", kpiDashGeralController.obterDuracaoMed
 
 router.get("/volume-por-motivo", kpiDashGeralController.obterVolumeInterrupcoesPorMotivo);
 router.get("/duracao-media-por-cidade", kpiDashGeralController.obterDuracaoMediaPorCidade);
+router.get("/porcentagem-por-motivo", kpiDashGeralController.obterPorcentagemPorMotivo); // grafico de pizza
 
 
 module.exports = router;

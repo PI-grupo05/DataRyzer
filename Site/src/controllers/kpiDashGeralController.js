@@ -63,6 +63,15 @@ function obterDuracaoMediaPorCidade(req, res) {
         });
 }
 
+function obterPorcentagemPorMotivo(req, res) {
+    kpiDashGeralModel.porcentagemPorMotivo()
+        .then(resultado => res.json(resultado))
+        .catch(erro => {
+            console.log(erro);
+            res.status(500).json(erro.sqlMessage);
+        });
+}
+
 
 module.exports = {
     obterCidadeMaisAfetada,
@@ -70,5 +79,6 @@ module.exports = {
     obterInterrupcoesPorCidade,
     obterDuracaoMediaInterrupcoes,
     obterVolumeInterrupcoesPorMotivo,
-    obterDuracaoMediaPorCidade
+    obterDuracaoMediaPorCidade,
+    obterPorcentagemPorMotivo
 };

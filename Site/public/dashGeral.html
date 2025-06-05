@@ -3,12 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="./css/estiloDashGeral.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    <script src="./js/sessao.js"></script>
+    <Script src="./js/sessao.js"></Script>
+    <script src="/env.js"></script>
+    <script src="./js/dashGeral.js"></script>
     <script src="./js/sidebar.js"></script>
-    <title>Dashboard de Interrupções</title>
+
+    <title>Dashboard de Interrupções te</title>
 </head>
 <body>
     <div id="menuLateral">
@@ -52,7 +55,7 @@
                 <section id="cartoes">
                     <div class="cartao drop-shadow cidade-mais-afetada-quedas">
                         <div class="metricaTexto">
-                            <h2>Cidade mais afetada</h2>
+                            <h2>Unidade Consumidora mais afetada</h2>
                             <div class="kpi-value" id="cidade-mais-quedas">Carregando...</div>
                             <p class="metricaNegativa">
                                 +5
@@ -62,7 +65,7 @@
                     </div>
                     <div class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal">
                         <div class="metricaTexto">
-                            <h2>Cidade com maior tempo</h2>
+                            <h2>Unidade Consumidora com maior tempo</h2>
                             <div class="kpi-value" id="cidade-maior-tempo">Carregando...</div>
                             <p class="metricaPositiva">
                                 -15 min
@@ -87,7 +90,7 @@
                     <canvas id="graficoBarra1"></canvas>
                 </div>
                 <div class="grafico-barra drop-shadow">
-                    <canvas id="graficoBarra2"></canvas>
+                    <canvas id="graficoBarra2" height="180"></canvas>
                 </div>
             </section>
             <section class="secaoMotivosQuedas">
@@ -110,18 +113,15 @@
             <div class="info-card">
                 <div class="evening">
                    <h3>Motivos das quedas</h3><br><br>
-                 <img src="./caminho/para/sua/imagem.jpg" alt="Descrição da Imagem" class="imagem-arredondada">
-                    <div class="causas">Causas</div>
-                    <div class="_32">32%</div>
-                    <div class="causas">Causas</div>
-                    <div class="_32">32%</div>
-                    <div class="causas">Causas</div>
-                    <div class="_32">32%</div>
+
+                   <canvas id="graficoPizzaMotivos" width="550" height="550"></canvas>
+
+                
+        
                 </div>
             </div>
         </div>
     </div>
-
 
 </body>
 </html>
@@ -129,512 +129,7 @@
  
 
 
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
 
-    html{
-        height: 100%;
-        width: 100%;
-    }
-
-    body{
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        display: flex;
-        background-color: #E9E9E9;
-        font-family: "Mohave";
-        position: relative;
-    }
-
-    #menuLateral{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
-        padding-top: 2%;
-        padding-bottom: 2%;
-        width: 20%;
-        background: linear-gradient(to bottom, #070226, #321ec6 );
-        border-top-right-radius: 20px;
-        border-bottom-right-radius: 20px;
-        transition: 0.5s;
-        z-index: 2;
-    }
-
-    #logo{
-        width: 80%;
-    }
-
-    #menuLateralSecoes{
-        display: flex;
-        flex-direction: column;
-        align-items: start;
-        gap: 50px;
-    }
-
-    #menuLateralSecoes, #menuLateral a, #menuLateralSecoes img{
-        width: 50%;
-    }
-
-    #menuLateral a{
-        display: flex;
-        font-weight: 500;
-        align-items: center;
-        text-decoration: none;
-        color: white;
-        gap: 10px;
-    }
-
-    #botaoSair, #botaoSair img{
-        width: 30%;
-    }
-
-    #containerConteudo{
-        margin: 1%;
-        margin-inline: 5%;
-        width: 60%;
-        transition: 0.5s;
-        flex-grow: 1;
-    }
-
-    #conteudoPrincipal {
-        width: 100%;
-    }
-
-    #containerConteudo h1{
-        margin-top: 0;
-    }
-
-    #cabecalho{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
-
-    #botaoMenu{
-        transform: scaleX(1);
-        width: 40px;
-        height: 40px;
-    }
-
-   
-
-
-#botaoData {
-    background-color: white; 
-    color: rgb(0, 0, 0); 
-    padding: 10px 15px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    text-align: center; 
-    width: fit-content; 
- 
-}
-
-#botaoData:hover {
-    background-color: #070226; 
-}
-
-
-
-  #lateralDireita #secaoUsuario {
-    display: flex; 
-    flex-direction: row; 
-    align-items: center; 
-    gap: 10px; 
-    margin-bottom: 30px;
-    width: 100%;
-}
-#lateralDireita #secaoUsuario img {
-    width: 80px;
-    height: 80px; 
-}
-#lateralDireita #dadosUsuario {
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
-}
-
-   
-    .card-status {
-       
-    height: 500px;
-    width: 140px;
-    padding: 20px;
-    /* border-radius: 10px; */
-    background-color: #f5f5f5;
-    text-align: center;
-
-    }
-
-    .card-status h3 {
-        margin: 0;
-        color: #070226;
-        font-size: 18px;
-    }
-
-    .card-status p {
-        margin: 10px 0 0;
-        color: #321ec6;
-        font-weight: bold;
-        font-size: 16px;
-    }
-
-    #metricas{
-        margin-bottom: 2%;
-    }
-
-    .metricaNegativa{
-        color: red;
-        margin: 0;
-    }
-
-    .metricaPositiva{
-        color: green;
-        margin: 0;
-    }
-
-    h2{
-        margin-top: 0;
-        text-align: center;
-    }
-
-    #cartoes{
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .drop-shadow{
-        background-color: white;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.10);
-    }
-
-    section#graficos{
-        width: 100%;
-    }
-
-    .cartao{
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 30%;
-        height: 100px;
-    }
-
-    .cartao img{
-        width: 5%;
-    }
-
-    .metricaTexto{
-        text-align: center;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-
-    .metricaTexto h2{
-        color: #7F7F7F;
-        font-size: 1.8vw;
-        margin: 0
-    }
-
-    .metricaTexto b{
-        font-size: 2vw;
-    }
-
-    #secaoGraficos{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    .grafico{
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
-    .grafico-linha{
-        width: 100%;
-        height: 180px;
-    }
-
-    #graficoLinha, #graficoBarra1, #graficoBarra2 {
-        width: 100%;
-        height: 250px;
-    }
-
-    /* Estilo para a seção dos gráficos de barras */
-    #secaoGraficosBarra {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        margin-top: 20px;
-        gap: 20px;
-    }
-
-    .grafico-barra {
-        width: 48%;
-        display: flex;
-        justify-content: center;
-        padding: 15px;
-        box-sizing: border-box;
-    }
-
-    #perfilCard {
-        width: 20%;
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
-    }
-
-    #perfilImagem {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
-
-    #dadosPerfil {
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    #secaoDash {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        gap: 30px;
-    }
-
-    #secaoMotivos {
-        display: flex;
-        flex-direction: column;
-        width: 300px;   
-    }
-
-    #secaoMotivosQuedas .box{
-        display: flex;
-        width: 400px;
-        height: 200px;
-        background-color: #070226;
-    }
-
-
-    .imagem-arredondada {
-    width: 80px; 
-    height: 80px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    margin-bottom: 10px; 
-}
-
-</style>
-
-<script src="/env.js"></script>
-<script src="./js/sidebar.js"></script>
-
-<script>
-function atualizarKPIs() {
-    fetch('/kpiDashGeral/cidade-mais-afetada') 
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                document.querySelector('.cidade-mais-afetada-quedas').innerText = 
-                    `Cidade mais afetada: ${data[0].cidade} (${data[0].total_interrupcoes} quedas)`;
-            } else {
-                document.querySelector('.cidade-mais-afetada-quedas').innerText = 
-                    'Cidade mais afetada: Nenhuma interrupção registrada.';
-            }
-        })
-        .catch(error => console.error('Erro ao obter cidade mais afetada:', error));
-
-    fetch('/kpiDashGeral/cidade-maior-tempo-interrupcao') 
-        .then(response => response.json())
-        .then(data => {
-            if (data.length > 0) {
-                document.querySelector('.cidade-com-maior-tempo-de-interrup-o-mensal').innerText = 
-                    `Cidade com maior tempo de interrupção: ${data[0].cidade} (${data[0].total_duracao} minutos)`;
-            } else {
-                document.querySelector('.cidade-com-maior-tempo-de-interrup-o-mensal').innerText = 
-                    'Cidade com maior tempo de interrupção: Nenhuma interrupção registrada.';
-            }
-        })
-        .catch(error => console.error('Erro ao obter cidade com maior tempo de interrupção:', error));
-}
-
-function carregarGraficos() {
- 
-    fetch('/kpiDashGeral/interrupcoes-por-cidade')
-        .then(response => response.json())
-        .then(data => {
-            const labels = data.map(item => item.cidade);
-            const valores = data.map(item => item.total_interrupcoes);
-
-            new Chart(document.getElementById('graficoBarra1'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Número de Interrupções',
-                        data: valores,
-                        backgroundColor: 'rgba(54, 162, 235, 0.7)',
-                        borderColor: 'rgba(54, 162, 235, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Comparação de quedas por cidade',
-                            font: { size: 16 }
-                        },
-                        legend: { display: false },
-                        datalabels: {
-                            anchor: 'end',
-                            align: 'top',
-                            formatter: (value) => value,
-                            font: { weight: 'bold' }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Número de Interrupções' }
-                        },
-                        x: {
-                            title: { display: true, text: 'Cidades' }
-                        }
-                    }
-                },
-                plugins: [ChartDataLabels]
-            });
-        })
-        .catch(error => console.error('Erro ao carregar gráfico de interrupções por cidade:', error));
-
- 
-    fetch('/kpiDashGeral/duracao-media-por-cidade')
-        .then(response => response.json())
-        .then(data => {
-            const labels = data.map(item => item.cidade);
-            const valores = data.map(item => item.media_duracao); 
-
-            new Chart(document.getElementById('graficoBarra2'), {
-                type: 'bar',
-                data: {
-                    labels: labels,
-                    datasets: [{
-                        label: 'Duração (minutos)',
-                        data: valores,
-                        backgroundColor: 'rgba(255, 99, 132, 0.7)',
-                        borderColor: 'rgba(255, 99, 132, 1)',
-                        borderWidth: 1
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    plugins: {
-                        title: {
-                            display: true,
-                            text: 'Tempo médio de quedas por cidade',
-                            font: { size: 16 }
-                        },
-                        legend: { display: false },
-                        datalabels: {
-                            anchor: 'end',
-                            align: 'top',
-                            formatter: (value) => value + ' min',
-                            font: { weight: 'bold' }
-                        }
-                    },
-                    scales: {
-                        y: {
-                            beginAtZero: true,
-                            title: { display: true, text: 'Duração (minutos)' }
-                        },
-                        x: {
-                            title: { display: true, text: 'Cidades' }
-                        }
-                    }
-                },
-                plugins: [ChartDataLabels]
-            });
-        })
-        .catch(error => console.error('Erro ao carregar gráfico de duração média:', error));
-}
-
-
-fetch('/kpiDashGeral/volume-por-motivo')
-    .then(response => response.json())
-    .then(data => {
-        const labels = data.map(item => item.motivo);
-        const valores = data.map(item => item.total); 
-
-        new Chart(document.getElementById('graficoLinha'), {
-            type: 'line',
-            data: {
-                labels: labels,
-                datasets: [{
-                    label: 'Volume de Quedas por Motivo',
-                    data: valores,
-                    fill: false,
-                    borderColor: 'rgba(75, 192, 192, 1)',
-                    tension: 0.1
-                }]
-            },
-            options: {
-                responsive: true,
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'Volume de Quedas por Motivo',
-                        font: { size: 16 }
-                    },
-                    legend: {
-                        display: true
-                    },
-                    datalabels: {
-                        anchor: 'end',
-                        align: 'top',
-                        formatter: value => value,
-                        font: { weight: 'bold' }
-                    }
-                },
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: { display: true, text: 'Quedas' }
-                    },
-                    x: {
-                        title: { display: true, text: 'Motivos' }
-                    }
-                }
-            },
-            plugins: [ChartDataLabels]
-        });
-    })
-    .catch(error => console.error('Erro ao carregar gráfico de linha:', error));
-
-
-document.addEventListener('DOMContentLoaded', function () {
-    atualizarKPIs();
-    carregarGraficos();
-});
-</script>
 
 
 
