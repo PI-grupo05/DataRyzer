@@ -1,11 +1,11 @@
     @import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
 
-    html{
+    html {
         height: 100%;
         width: 100%;
     }
 
-    body{
+    body {
         width: 100%;
         height: 100%;
         margin: 0;
@@ -15,7 +15,7 @@
         position: relative;
     }
 
-    #menuLateral{
+    #menuLateral {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -23,29 +23,31 @@
         padding-top: 2%;
         padding-bottom: 2%;
         width: 20%;
-        background: linear-gradient(to bottom, #070226, #321ec6 );
+        background: linear-gradient(to bottom, #070226, #321ec6);
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
         transition: 0.5s;
         z-index: 2;
     }
 
-    #logo{
+    #logo {
         width: 80%;
     }
 
-    #menuLateralSecoes{
+    #menuLateralSecoes {
         display: flex;
         flex-direction: column;
         align-items: start;
         gap: 50px;
     }
 
-    #menuLateralSecoes, #menuLateral a, #menuLateralSecoes img{
+    #menuLateralSecoes,
+    #menuLateral a,
+    #menuLateralSecoes img {
         width: 50%;
     }
 
-    #menuLateral a{
+    #menuLateral a {
         display: flex;
         font-weight: 500;
         align-items: center;
@@ -54,11 +56,12 @@
         gap: 10px;
     }
 
-    #botaoSair, #botaoSair img{
+    #botaoSair,
+    #botaoSair img {
         width: 30%;
     }
 
-    #containerConteudo{
+    #containerConteudo {
         margin: 1%;
         margin-inline: 5%;
         width: 60%;
@@ -70,70 +73,72 @@
         width: 100%;
     }
 
-    #containerConteudo h1{
+    #containerConteudo h1 {
         margin-top: 0;
     }
 
-    #cabecalho{
+    #cabecalho {
         display: flex;
         justify-content: space-between;
         align-items: center;
     }
 
-    #botaoMenu{
+    #botaoMenu {
         transform: scaleX(1);
         width: 40px;
         height: 40px;
     }
 
-   
-
-
-#botaoData {
-    background-color: white; 
-    color: rgb(0, 0, 0); 
-    padding: 10px 15px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    text-align: center; 
-    width: fit-content; 
- 
-}
-
-#botaoData:hover {
-    background-color: #070226; 
-}
 
 
 
-  #lateralDireita #secaoUsuario {
-    display: flex; 
-    flex-direction: row; 
-    align-items: center; 
-    gap: 10px; 
-    margin-bottom: 30px;
-    width: 100%;
-}
-#lateralDireita #secaoUsuario img {
-    width: 80px;
-    height: 80px; 
-}
-#lateralDireita #dadosUsuario {
-    display: flex; 
-    flex-direction: column; 
-    align-items: flex-start; 
-    text-align: left; 
-}
+    #botaoData {
+        background-color: white;
+        color: rgb(0, 0, 0);
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+        text-align: center;
+        width: fit-content;
 
-   
+    }
+
+    #botaoData:hover {
+        background-color: #070226;
+    }
+
+
+
+    #lateralDireita #secaoUsuario {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 10px;
+        margin-bottom: 30px;
+        width: 100%;
+    }
+
+    #lateralDireita #secaoUsuario img {
+        width: 80px;
+        height: 80px;
+    }
+
+    #lateralDireita #dadosUsuario {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+
     .card-status {
-       
-    height: 500px;
-    width: 140px;
-    padding: 20px;
-    /* border-radius: 10px; */
-    background-color: #f5f5f5;
-    text-align: center;
+
+        height: 500px;
+        width: 140px;
+        padding: 20px;
+        /* border-radius: 10px; */
+        background-color: #f5f5f5;
+        text-align: center;
 
     }
 
@@ -150,40 +155,40 @@
         font-size: 16px;
     }
 
-    #metricas{
+    #metricas {
         margin-bottom: 2%;
     }
 
-    .metricaNegativa{
+    .metricaNegativa {
         color: red;
         margin: 0;
     }
 
-    .metricaPositiva{
+    .metricaPositiva {
         color: green;
         margin: 0;
     }
 
-    h2{
+    h2 {
         margin-top: 0;
         text-align: center;
     }
 
-    #cartoes{
+    #cartoes {
         display: flex;
         justify-content: space-between;
     }
 
-    .drop-shadow{
+    .drop-shadow {
         background-color: white;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
     }
 
-    section#graficos{
+    section#graficos {
         width: 100%;
     }
 
-    .cartao{
+    .cartao {
         display: flex;
         justify-content: space-around;
         align-items: center;
@@ -191,11 +196,11 @@
         height: 100px;
     }
 
-    .cartao img{
+    .cartao img {
         width: 5%;
     }
 
-    .metricaTexto{
+    .metricaTexto {
         text-align: center;
         height: 100%;
         display: flex;
@@ -203,36 +208,38 @@
         justify-content: space-evenly;
     }
 
-    .metricaTexto h2{
+    .metricaTexto h4 {
         color: #7F7F7F;
-        font-size: 1.8vw;
+        font-size: 1.2rem;
         margin: 0
     }
 
-    .metricaTexto b{
+    .metricaTexto b {
         font-size: 2vw;
     }
 
-    #secaoGraficos{
+    #secaoGraficos {
         display: flex;
         align-items: center;
         justify-content: space-between;
         width: 100%;
     }
 
-    .grafico{
+    .grafico {
         width: 100%;
         display: flex;
         justify-content: center;
         margin-bottom: 20px;
     }
 
-    .grafico-linha{
+    .grafico-linha {
         width: 100%;
         height: 180px;
     }
 
-    #graficoLinha, #graficoBarra1, #graficoBarra2 {
+    #graficoLinha,
+    #graficoBarra1,
+    #graficoBarra2 {
         width: 100%;
         height: 250px;
     }
@@ -290,10 +297,10 @@
     #secaoMotivos {
         display: flex;
         flex-direction: column;
-        width: 300px;   
+        width: 300px;
     }
 
-    #secaoMotivosQuedas .box{
+    #secaoMotivosQuedas .box {
         display: flex;
         width: 400px;
         height: 200px;
@@ -302,9 +309,9 @@
 
 
     .imagem-arredondada {
-    width: 80px; 
-    height: 80px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    margin-bottom: 10px; 
-}
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 10px;
+    }

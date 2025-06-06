@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estiloDashGeral.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estiloDashGeral.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    <Script src="./js/sessao.js"></Script>
+    <script src="./js/sessao.js"></script>
     <script src="/env.js"></script>
     <script src="./js/dashGeral.js"></script>
     <script src="./js/sidebar.js"></script>
 
     <title>Dashboard de Interrupções te</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="menuLateral">
-        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
-        <div id="menuLateralSecoes">
-            <!-- <a href="./menu.html">
+      <img id="logo" src="./assets/imgs/logoData-White.png" alt="" />
+      <div id="menuLateralSecoes">
+        <!-- <a href="./menu.html">
                 <img src="./assets/imgs/iconeDash.png" alt="">
                 <span>Menu inicial</span>
             </a>
@@ -33,104 +33,94 @@
                 <img src="./assets/imgs/historico_icon.png" alt="" />
                 <span>historico de interrupções</span>
             </a> -->
-        </div>
-        <a id="botaoSair" onclick="sair()">
-            <img src="./assets/imgs/iconeSair.png" alt="">
-            Sair
-        </a>
+      </div>
+      <a id="botaoSair" onclick="sair()">
+        <img src="./assets/imgs/iconeSair.png" alt="" />
+        Sair
+      </a>
     </div>
-    
-    <div id="containerConteudo">
-        <section id="cabecalho">
-    <div id="botaoData" onclick="toggleDatePicker()">
-        Data
-    </div>
-    <input type="date" id="seletorData" style="display: none;" onchange="filtrarPorData()">
-</section>
 
-        
-        <div id="conteudoPrincipal">
-           
-            <section id="metricas">
-                <section id="cartoes">
-                    <div class="cartao drop-shadow cidade-mais-afetada-quedas">
-                        <div class="metricaTexto">
-                            <h2>Unidade Consumidora mais afetada</h2>
-                            <div class="kpi-value" id="cidade-mais-quedas">Carregando...</div>
-                            <p class="metricaNegativa">
-                                +5
-                                <img src="./assets/imgs/trianguloNegativo.png" alt="">
-                            </p>
-                        </div>
-                    </div>
-                    <div class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal">
-                        <div class="metricaTexto">
-                            <h2>Unidade Consumidora com maior tempo</h2>
-                            <div class="kpi-value" id="cidade-maior-tempo">Carregando...</div>
-                            <p class="metricaPositiva">
+    <div id="containerConteudo">
+      <section id="cabecalho">
+        <div id="botaoData" onclick="toggleDatePicker()">Data</div>
+        <input
+          type="date"
+          id="seletorData"
+          style="display: none"
+          onchange="filtrarPorData()"
+        />
+      </section>
+
+      <div id="conteudoPrincipal">
+        <section id="metricas">
+          <section id="cartoes">
+            <div class="cartao drop-shadow cidade-mais-afetada-quedas">
+              <div class="metricaTexto">
+                <h4>Unidade Consumidora mais afetada</h4>
+                <div class="kpi-value" id="cidade-mais-quedas">
+                  Carregando...
+                </div>
+                <!-- <p class="metricaNegativa">
+                  +5
+                  <img src="./assets/imgs/trianguloNegativo.png" alt="" />
+                </p> -->
+              </div>
+            </div>
+            <div
+              class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal"
+            >
+              <div class="metricaTexto">
+                <h4>Unidade Consumidora com maior tempo</h4>
+                <div class="kpi-value" id="cidade-maior-tempo">
+                  Carregando...
+                </div>
+                <!--   <p class="metricaPositiva">
                                 -15 min
                                 <img src="./assets/imgs/trianguloPositivo.png" alt="">
-                            </p>
-                        </div>
-                    </div>
-                    <div class="cartao drop-shadow">
-                        <div class="metricaTexto">
-                            
-                        </div>
-                    </div>
-                </section>
-            </section>
-            <section id="secaoGraficos">
-                <div class="grafico drop-shadow">
-                    <canvas id="graficoLinha" height="180"></canvas>
-                </div>
-            </section>
-            <section id="secaoGraficosBarra">
-                <div class="grafico-barra drop-shadow">
-                    <canvas id="graficoBarra1"></canvas>
-                </div>
-                <div class="grafico-barra drop-shadow">
-                    <canvas id="graficoBarra2" height="180"></canvas>
-                </div>
-            </section>
-            <section class="secaoMotivosQuedas">
-                
-            </section>
-        </div>
+                            </p> -->
+              </div>
+            </div>
+            <div class="cartao drop-shadow">
+              <div class="metricaTexto"></div>
+            </div>
+          </section>
+        </section>
+        <section id="secaoGraficos">
+          <div class="grafico drop-shadow">
+            <canvas id="graficoLinha" height="180"></canvas>
+          </div>
+        </section>
+        <section id="secaoGraficosBarra">
+          <div class="grafico-barra drop-shadow">
+            <canvas id="graficoBarra1"></canvas>
+          </div>
+          <div class="grafico-barra drop-shadow">
+            <canvas id="graficoBarra2" height="180"></canvas>
+          </div>
+        </section>
+        <section class="secaoMotivosQuedas"></section>
+      </div>
     </div>
-    
-  
+
     <div id="lateralDireita">
-        <div id="secaoUsuario">
-            <img src="./assets/imgs/iconeUsuario.png" alt="">
-            <div id="dadosUsuario">
-                <span>Usuario</span>
-                <span>Cargo</span>
-            </div>
+      <div id="secaoUsuario">
+        <img src="./assets/imgs/iconeUsuario.png" alt="" />
+        <div id="dadosUsuario">
+          <span>Usuario</span>
+          <span>Cargo</span>
         </div>
-        
-        <div class="card-status drop-shadow">
-            <div class="info-card">
-                <div class="evening">
-                   <h3>Motivos das quedas</h3><br><br>
+      </div>
 
-                   <canvas id="graficoPizzaMotivos" width="550" height="550"></canvas>
+      <div class="card-status drop-shadow">
+        <div class="info-card">
+          <div class="evening">
+            <h3>Motivos das quedas</h3>
+            <br /><br />
 
-                
-        
-                </div>
-            </div>
+            <canvas id="graficoPizzaMotivos" width="550" height="550"></canvas>
+          </div>
         </div>
+      </div>
     </div>
-
-</body>
+  </body>
 </html>
-    
- 
-
-
-
-
-
-
-
