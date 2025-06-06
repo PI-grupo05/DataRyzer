@@ -8,7 +8,7 @@ function carregarGraficoLinha() {
     fetch('/kpiDashEspecifica/grafico-linha')
         .then(res => res.json())
         .then(data => {
-            const labels = data.map(d => d.data);
+            const labels = data.map(d => d.data.split('T')[0]);
             const valores = data.map(d => d.total_quedas);
 
             const ctx = document.getElementById('graficoLinha').getContext('2d');
@@ -36,7 +36,7 @@ function carregarGraficoLinha() {
                     },
                     scales: {
                         y: { beginAtZero: true },
-                        x: { title: { display: true, text: 'Data' } }
+                        x: { title: { display: true, text: '' } }
                     }
                 }
             });
@@ -75,7 +75,7 @@ function carregarGraficoBarra() {
                     },
                     scales: {
                         y: { beginAtZero: true },
-                        x: { title: { display: true, text: 'Motivo' } }
+                        x: { title: { display: true, text: "" } }
                     }
                 }
             });
@@ -94,14 +94,14 @@ function atualizarKPIs() {
     fetch('/kpiDashEspecifica/maior-indice-quedas')
         .then(res => res.json())
         .then(data => {
-            document.querySelector('.kpi-maior-indice-quedas').innerText = ` ${data[0].data}`;
+            document.querySelector('.kpi-maior-indice-quedas').innerText = ` ${data[0].data.split('T')[0]}`;
         })
         .catch(err => console.error('Erro KPI maior índice quedas:', err));
 
     fetch('/kpiDashEspecifica/media-por-dia')
         .then(res => res.json())
         .then(data => {
-            document.querySelector('.kpi-media-por-dia').innerText = `${data[0].media_quedas_dia} quedas/dia`;
+            document.querySelector('.kpi-media-por-dia').innerText = `${data[0].media_quedas_dia.split('.')[0]} quedas/dia`;
         })
         .catch(err => console.error('Erro KPI média por dia:', err));
 }
