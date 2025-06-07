@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="./css/estiloDashEspecifica.css" />
+  <script src="./js/sidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
   <title>Dashboard Específica</title>
@@ -67,8 +68,10 @@
       <div id="secaoUsuario">
         <img src="./assets/imgs/iconeUsuario.png" alt="" />
         <div id="dadosUsuario">
-          <span>Usuario</span>
-          <span>Cargo</span>
+          <!-- <span>Usuario</span> -->
+          <label id="nomeUsuarioLabel"></label>
+          <label id="cargoLabel"></label>
+          <!-- <span>Cargo</span> -->
         </div>
       </div>
     </section>
@@ -125,7 +128,6 @@
 
 
   <script src="./js/dashEspecifica.js"></script>
-  <script src="./js/sidebarConfig.js"></script>
 </body>
 </html>
 

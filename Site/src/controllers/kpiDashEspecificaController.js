@@ -1,7 +1,10 @@
 var kpiDashEspecificaModel = require("../models/kpiDashEspecificaModel");
 
 function obterDuracaoMedia(req, res) {
-    kpiDashEspecificaModel.duracaoMedia()
+    var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
+    var fk_distribuidora = req.params.fk_distribuidora;
+
+    kpiDashEspecificaModel.duracaoMedia(fk_unidade_consumidora, fk_distribuidora)
         .then(resultado => res.json(resultado))
         .catch(erro => {
             console.log(erro);
@@ -10,7 +13,10 @@ function obterDuracaoMedia(req, res) {
 }
 
 function obterMaiorIndiceQuedas(req, res) {
-    kpiDashEspecificaModel.maiorIndiceQuedas()
+    var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
+    var fk_distribuidora = req.params.fk_distribuidora;
+
+    kpiDashEspecificaModel.maiorIndiceQuedas(fk_unidade_consumidora, fk_distribuidora)
         .then(resultado => res.json(resultado))
         .catch(erro => {
             console.log(erro);
@@ -19,7 +25,10 @@ function obterMaiorIndiceQuedas(req, res) {
 }
 
 function obterMediaPorDia(req, res) {
-    kpiDashEspecificaModel.mediaPorDia()
+    var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
+    var fk_distribuidora = req.params.fk_distribuidora;
+
+    kpiDashEspecificaModel.mediaPorDia(fk_unidade_consumidora, fk_distribuidora)
         .then(resultado => res.json(resultado))
         .catch(erro => {
             console.log(erro);
@@ -27,13 +36,11 @@ function obterMediaPorDia(req, res) {
         });
 }
 
-
-
-var kpiDashEspecificaModel = require("../models/kpiDashEspecificaModel");
-
 function obterDadosGraficoLinha(req, res) {
-    var idCidade = req.params.idCidade; // Recebendo ID da cidade via parâmetro
-    kpiDashEspecificaModel.dadosGraficoLinha(idCidade)
+    var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
+    var fk_distribuidora = req.params.fk_distribuidora;
+
+    kpiDashEspecificaModel.dadosGraficoLinha(fk_unidade_consumidora, fk_distribuidora)
         .then(resultado => res.json(resultado))
         .catch(erro => {
             console.log(erro);
@@ -42,8 +49,10 @@ function obterDadosGraficoLinha(req, res) {
 }
 
 function obterDadosGraficoBarra(req, res) {
-    var idCidade = req.params.idCidade; 
-    kpiDashEspecificaModel.dadosGraficoBarra(idCidade)
+    var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
+    var fk_distribuidora = req.params.fk_distribuidora;
+
+    kpiDashEspecificaModel.dadosGraficoBarra(fk_unidade_consumidora, fk_distribuidora)
         .then(resultado => res.json(resultado))
         .catch(erro => {
             console.log(erro);
@@ -58,7 +67,3 @@ module.exports = {
     obterMaiorIndiceQuedas,
     obterMediaPorDia
 };
-
-
-
-
