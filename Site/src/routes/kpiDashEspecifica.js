@@ -2,7 +2,6 @@ var express = require("express");
 var router = express.Router();
 var kpiDashEspecificaController = require("../controllers/kpiDashEspecificaController");
 
-// Rotas com dois parâmetros
 router.get(
     "/duracao-media/:fk_unidade_consumidora/:fk_distribuidora",
     kpiDashEspecificaController.obterDuracaoMedia
