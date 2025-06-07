@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Filtro com Modal</title>
+<link rel="stylesheet" href="./css/filtro.css">
+</head>
+<body>
+
+<button class="btn-open-modal" id="openFilterBtn">Abrir filtro</button>
+
+<!-- Modal -->
+<div class="modal" id="filterModal">
+  <div class="modal-content">
+    <h2>Filtrar dados</h2>
+    <form id="filterForm">
+      <label for="nameFilter">Nome</label>
+      <input type="text" id="nameFilter" name="name" placeholder="Digite o nome..." />
+
+      <label for="startDate">Data Início</label>
+      <input type="date" id="startDate" name="startDate" />
+
+      <label for="endDate">Data Final</label>
+      <input type="date" id="endDate" name="endDate" />
+
+      <div class="modal-buttons">
+        <button type="button" class="btn-cancel" id="cancelBtn">Cancelar</button>
+        <button type="submit" class="btn-submit">Aplicar filtro</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="./js/filtro.js"></script>
+
+</body>
+</html>

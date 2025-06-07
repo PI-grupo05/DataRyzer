@@ -7,6 +7,8 @@
   <script src="./js/sidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+
+  <script src="./js/sessao.js"></script>
   <title>Dashboard Específica</title>
 </head>
 <body>
@@ -16,10 +18,14 @@
         <div id="menuLateralSecoes">
             
         </div>
-        <a id="botaoSair" onclick="sair()">
+        <!-- <a id="botaoSair" onclick="sair()">
             <img src="./assets/imgs/iconeSair.png" alt="">
             Sair
-        </a>
+        </a> -->
+         <div id="botaoSair">
+            <img src="./assets/imgs/iconeSair.png" alt="">
+            <span onclick="sair()">Sair</span>
+        </div>
     </div>
 
   <div id="containerConteudo">
@@ -93,11 +99,11 @@
 
 
 <script src="/env.js"></script>
-<script src="./js/dashEspecifica.js">
-  function sair() {
-      sessionStorage.clear(); // Limpa toda a sessão do usuário
-      window.location.href = `http://${window.APP_HOST}:8080/login.html`; // Redireciona para a tela de login
-  }
+<!-- <script src="./js/dashEspecifica.js">
+  // function sair() {
+  //     sessionStorage.clear(); // Limpa toda a sessão do usuário
+  //     window.location.href = `http://${window.APP_HOST}:8080/login.html`; // Redireciona para a tela de login
+  // }
 
  
-</script>  
+</script>   -->
