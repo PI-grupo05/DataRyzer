@@ -41,16 +41,6 @@
     </div>
 
     <div id="containerConteudo">
-      <section id="cabecalho">
-        <div id="botaoData" onclick="toggleDatePicker()">Data</div>
-        <input
-          type="date"
-          id="seletorData"
-          style="display: none"
-          onchange="filtrarPorData()"
-        />
-      </section>
-
       <div id="conteudoPrincipal">
         <section id="metricas">
           <section id="cartoes">
@@ -80,22 +70,19 @@
                             </p> -->
               </div>
             </div>
-            <div class="cartao drop-shadow">
-              <div class="metricaTexto"></div>
-            </div>
           </section>
         </section>
         <section id="secaoGraficos">
           <div class="grafico drop-shadow">
-            <canvas id="graficoLinha" width="600" height="100"></canvas>
+            <canvas id="graficoLinha" width="600" height="140"></canvas>
           </div>
         </section>
         <section id="secaoGraficosBarra">
           <div class="grafico-barra drop-shadow">
-            <canvas id="graficoBarra1" width="600" height="350"></canvas>
+            <canvas id="graficoBarra1" width="600" height="230"></canvas>
           </div>
           <div class="grafico-barra drop-shadow">
-            <canvas id="graficoBarra2" width="600" height="350"></canvas>
+            <canvas id="graficoBarra2" width="600" height="230"></canvas>
           </div>
         </section>
         <section class="secaoMotivosQuedas"></section>

@@ -42,7 +42,7 @@ function atualizarKPIs() {
 function carregarGraficos() {
   const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
   console.log(idDistribuidora);
-  fetch("/kpiDashGeral/interrupcoes-por-cidade")
+  fetch(`/kpiDashGeral/interrupcoes-por-unidade/${idDistribuidora}`)
     .then((response) => response.json())
     .then((data) => {
       console.log(data);
@@ -68,7 +68,7 @@ function carregarGraficos() {
           plugins: {
             title: {
               display: true,
-              text: "Comparação de quedas por unidades consumidoras",
+              text: "Comparação de quedas por unidades",
               font: { size: 16 },
             },
             legend: { display: false },
@@ -124,14 +124,14 @@ function carregarGraficos() {
           plugins: {
             title: {
               display: true,
-              text: "Tempo médio de quedas por unidade consumidora",
+              text: "Tempo médio de quedas por unidade",
               font: { size: 16 },
             },
             legend: { display: false },
             datalabels: {
               anchor: "end",
               align: "top",
-              formatter: (value) => value + " min",
+              formatter: (value) => value + " hr",
               font: { weight: "bold" },
             },
           },
@@ -151,60 +151,77 @@ function carregarGraficos() {
     .catch((error) =>
       console.error("Erro ao carregar gráfico de duração média:", error)
     );
+
+  fetch(`/kpiDashGeral/volume-interrupcoes-motivo/${idDistribuidora}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const meses = [...new Set(data.map((item) => item.mes))];
+      const motivosUnicos = [...new Set(data.map((item) => item.motivo))];
+
+      const datasets = motivosUnicos.map((motivo) => {
+        const dadosPorMotivo = meses.map((mes) => {
+          const registro = data.find(
+            (item) => item.motivo === motivo && item.mes === mes
+          );
+          return registro ? registro.total_ocorrencias : 0;
+        });
+
+        return {
+          label: motivo,
+          data: dadosPorMotivo,
+          fill: false,
+          borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+          tension: 0.1,
+        };
+      });
+
+      new Chart(document.getElementById("graficoLinha"), {
+        type: "line",
+        data: {
+          labels: meses,
+          datasets: datasets,
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: "Volume de Quedas por Motivo (últimos 6 meses)",
+              font: { size: 16 },
+            },
+            legend: {
+              display: true,
+            },
+            datalabels: {
+              anchor: "end",
+              align: "top",
+              formatter: (value) => value,
+              font: { weight: "bold" },
+            },
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: "Quantidade de Quedas",
+              },
+            },
+            x: {
+              title: {
+                display: true,
+                text: "Mês",
+              },
+            },
+          },
+        },
+        plugins: [ChartDataLabels],
+      });
+    })
+    .catch((error) =>
+      console.error("Erro ao carregar gráfico de linha:", error)
+    );
 }
-
-fetch("/kpiDashGeral/volume-por-motivo")
-  .then((response) => response.json())
-  .then((data) => {
-    const labels = data.map((item) => item.motivo);
-    const valores = data.map((item) => item.total);
-
-    new Chart(document.getElementById("graficoLinha"), {
-      type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Volume de Quedas por Motivo",
-            data: valores,
-            fill: false,
-            borderColor: "rgba(75, 192, 192, 1)",
-            tension: 0.1,
-          },
-        ],
-      },
-      options: {
-        responsive: true,
-        plugins: {
-          title: {
-            display: true,
-            text: "Volume de Quedas por Motivo",
-            font: { size: 16 },
-          },
-          legend: {
-            display: true,
-          },
-          datalabels: {
-            anchor: "end",
-            align: "top",
-            formatter: (value) => value,
-            font: { weight: "bold" },
-          },
-        },
-        scales: {
-          y: {
-            beginAtZero: true,
-            title: { display: true, text: "Quedas" },
-          },
-          x: {
-            title: { display: true, text: "Motivos" },
-          },
-        },
-      },
-      plugins: [ChartDataLabels],
-    });
-  })
-  .catch((error) => console.error("Erro ao carregar gráfico de linha:", error));
 
 function carregarGraficoPizzaMotivos() {
   fetch("/kpiDashGeral/porcentagem-por-motivo")

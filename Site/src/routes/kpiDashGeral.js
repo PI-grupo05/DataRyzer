@@ -13,19 +13,18 @@ router.get("/unidade-mais-afetada/:idDistribuidora", function (req, res) {
 });
 
 // Rotas para Gráficos
-router.get(
-  "/interrupcoes-por-cidade",
-  kpiDashGeralController.obterInterrupcoesPorCidade
-);
+router.get("/interrupcoes-por-unidade/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterInterrupcoesPorUnidade(req, res);
+});
 
 router.get("/duracao-media-por-unidade/:idDistribuidora", function (req, res) {
   kpiDashGeralController.obterDuracaoMediaInterrupcoes(req, res);
 });
 
-router.get(
-  "/volume-por-motivo",
-  kpiDashGeralController.obterVolumeInterrupcoesPorMotivo
-);
+router.get("/volume-interrupcoes-motivo/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterVolumeInterrupcoesPorMotivo(req, res);
+});
+
 router.get(
   "/duracao-media-por-cidade",
   kpiDashGeralController.obterDuracaoMediaPorCidade
