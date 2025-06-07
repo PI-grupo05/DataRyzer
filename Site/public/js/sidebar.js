@@ -1,21 +1,25 @@
-menuAberto = true;
+let menuAberto = true;
 
-function abrirMenu(){
-  const botaoMenu = document.getElementById('botaoMenu')
-  const menuLateral = document.getElementById('menuLateral')
+function abrirMenu() {
+    const botaoMenu = document.getElementById('botaoMenu');
+    const menuLateral = document.getElementById('menuLateral');
+    const conteudoPrincipal = document.getElementById('conteudoPrincipal');
 
-  if(menuAberto == true){
-    botaoMenu.style.transform = "scaleX(1)"
-    menuLateral.style.width = "0%"
-    menuLateral.style.fontSize = "0%"
-    menuAberto = false
-  }
-  else{
-    botaoMenu.style.transform = "scaleX(-1)"
-    menuLateral.style.width = "300px"
-    menuLateral.style.fontSize = "100%"
-    menuAberto = true
-  }
+    if (menuAberto) {
+        // Fecha o menu
+        botaoMenu.style.transform = "scaleX(1)"; // Mantém sua lógica original
+        botaoMenu.textContent = "☰ Abrir";
+        menuLateral.classList.add('fechado');
+        conteudoPrincipal.classList.add('sidebar-fechada');
+        menuAberto = false;
+    } else {
+        // Abre o menu
+        botaoMenu.style.transform = "scaleX(-1)"; // Mantém sua lógica original
+        botaoMenu.textContent = "☰ Menu";
+        menuLateral.classList.remove('fechado');
+        conteudoPrincipal.classList.remove('sidebar-fechada');
+        menuAberto = true;
+    }
 }
 
 window.onload = verificarTipoUsuario
@@ -25,7 +29,7 @@ function verificarTipoUsuario() {
   var tipoUsuario = sessionStorage.TIPO_USUARIO
   if(tipoUsuario == "MASTER") {
     sidebar.innerHTML = `<a href="./menu.html">
-    <img src="./assets/imgs/iconeDash.png" alt="">
+    <img src="./assets/imgs/house_icon.svg" alt="">
     <span>Menu incial</span>
   </a>
   <a href="./dashGeral.html">
@@ -33,14 +37,17 @@ function verificarTipoUsuario() {
     <span>Dashboard</span>
   </a>
   <a href="./unidadeConsumidora.html">
-    <img src="./assets/imgs/iconeEmpresas.png" alt="">
+    <img src="./assets/imgs/unidade_consumidora_icon.svg" alt="">
     <span>Unidades Consumidoras</span>
   </a>
   <a href="./historico_interrupcao.html">
-    <img src="./assets/imgs/historico_icon.png" alt="">
+    <img src="./assets/imgs/historico_sidebar.svg" alt="">
     <span>historico de interrupções</span>
-  </a> `
-  console.log("Inseri essa merda")
+  </a>
+  <a href="./grupos.html">
+      <img src="./assets/imgs/grupos_icon.svg" alt="">
+      <span>Grupos</span>
+  </a>`
   } else {
     sidebar.innerHTML =
     `<a href="./menu.html">
@@ -50,6 +57,10 @@ function verificarTipoUsuario() {
     <a href="./dashEspecifica.html">
       <img src="./assets/imgs/icon_grafico.svg" alt="">
       <span>Dashboard</span>
+    </a>
+    <a href="./grupos.html">
+        <img src="./assets/imgs/iconeEmpresas.png" alt="">
+        <span>Grupos</span>
     </a>`
   }
 }

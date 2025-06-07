@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="css/sidebar.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="./js/sessao.js"></script>
@@ -35,11 +36,13 @@
                 <span>Grupos</span>
             </a> -->
         </div>
-        <a id="botaoSair" onclick="sair()">
-            <img src="./assets/imgs/iconeSair.png" alt="">
-            Sair
-        </a>
+        <div class="inferior_sidebar">
+            <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+			<img style="cursor: pointer;"  onclick="window.location = '../meuPerfilEditar.html'" src="./assets/imgs/person-gear.svg" alt="">
+        </div>
     </div>
+
+    <div class="conteudo-principal" id="conteudoPrincipal">
     <div id="containerConteudo">
         <section id="cabecalho">
             <img style="transform: scaleX(-1);" id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png"
@@ -92,6 +95,7 @@
 
 
 
+    </div>
     </div>
 </body>
 

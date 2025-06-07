@@ -6,12 +6,13 @@
     <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
     <link rel="stylesheet" href="./css/listaDiretores.css">
     <link rel="stylesheet" href="css/historico.css">
+
     <script src="./js/dashEspecifica.js"></script>
     <script src="./js/sidebarConfig.js"></script>
     <title>Diretores</title>
 </head>
 <body onload="exibirDiretoresRegionais()">
-    <div id="menuLateral">
+    <div class="menuLateral" id="menuLateral">
         <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
         <div id="menuLateralSecoes">
             <!-- <a href="./meuPerfilExcluir.html">
@@ -31,22 +32,24 @@
                 <span>Grupos</span>
             </a> -->
         </div>
-        <a id="botaoSair" onclick="siteAngular">
-            <img src="./assets/imgs/iconeSair.png" alt="">
-            Sair
-        </a>
+        <div class="inferior_sidebar">
+            <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+			<img style="cursor: pointer;" onclick="window.location = '../meuPerfilEditar.html'" src="./assets/imgs/person-gear.svg" alt="">
+        </div>
     </div>
+
+    <div class="conteudo-principal" id="conteudoPrincipal">
+        <section id="cabecalho">
+      <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="" />
+      <div id="secaoUsuario">
+        <img src="./assets/imgs/iconeUsuario.png" alt="" />
+        <div id="dadosUsuario">
+          <span>Usuario</span>
+          <span>Cargo</span>
+        </div>
+      </div>
+    </section>
     <div id="containerConteudo">
-         <section id="cabecalho">
-            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
-            <div id="secaoUsuario">
-                <img src="./assets/imgs/iconeUsuario.png" alt="">
-                <div id="dadosUsuario">
-                    <span>Usuario</span>
-                    <span>Cargo</span>
-                </div>
-            </div>
-        </section>
         <section id="secaoDiretores">
             <form class="filter" role="search" onsubmit="return false;">
 				<select id="tipoFiltro" aria-label="Campo de filtro">
@@ -90,6 +93,7 @@
                 <button id="botaoProximo" onclick="proximo()">Próximo</button>
             </div>
         </section>
+    </div>
     </div>
 </body>
 </html>

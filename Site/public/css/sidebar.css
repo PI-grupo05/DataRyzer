@@ -1,57 +1,3 @@
-#secaoDiretores{
-    margin-top: 5%;
-}
-
-/* form em historico.css */
-
-table {
-	width: 100%;
-	border-collapse: collapse;
-	background: white;
-	box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
-}
-
-th,
-td {
-	text-align: left;
-	padding: 12px 15px;
-	border-bottom: 1px solid #eee;
-	font-size: 14px;
-    width: 20%;
-}
-
-#colunaBotao{
-    text-align: center;
-}
-
-#colunaBotao button, #botaoAnterior, #botaoProximo{
-	cursor: pointer;
-    padding: 0.8rem 1rem;
-    font-size: 1rem;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-	background-color: #edecec;
-}
-
-#colunaBotao button:hover, #botaoAnterior:hover, #botaoProximo:hover{
-	 background-color: rgb(168, 166, 166);
-}
-
-th {
-	background-color: #f2f2f2;
-}
-
-#botoesAnteriorProximo{
-	display: flex;
-	width: 100%;
-	margin-top: 1%;
-	gap: 5%;
-	justify-content: center;
-}
-
-
 .inferior_sidebar{
     display: flex;
     flex-direction: row;
@@ -73,7 +19,7 @@ th {
         padding-bottom: 2%;
         width: 300px;
         min-width: 300px; /* Garante tamanho consistente */
-        background: #5a6268;
+        background: linear-gradient(to bottom, #070226, #321ec6);
         border-top-right-radius: 20px;
         border-bottom-right-radius: 20px;
         transition: transform 0.8s ease;

@@ -5,6 +5,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link rel="stylesheet" href="./css/estiloDashEspecifica.css">
 		<link rel="stylesheet" href="./css/historico.css" />
+		<link rel="stylesheet" href="css/sidebar.css">
+
 		<script src="./js/historico.js"></script>
 		<Script src="./js/sessao.js"></Script>
 		<script src="./js/sidebar.js"></script>
@@ -32,23 +34,26 @@
 					<span>historico de interrupções</span>
 				</a> -->
 			</div>
-			<a id="botaoSair" onclick="sair()">
-				<img src="./assets/imgs/iconeSair.png" alt="">
-				Sair
-			</a>
+			<div class="inferior_sidebar">
+				<img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+				<img style="cursor: pointer;" onclick="window.location = '../meuPerfilEditar.html'" src="./assets/imgs/person-gear.svg" alt="">
+            </div>
+        </div>
 		</div>
-
-		<main class="main">
-			<section class="header" role="banner">
+		<div class="conteudo-principal" id="conteudoPrincipal">
+			<section id="cabecalho">
 				<img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
-            	<div id="secaoUsuario">
-                	<img src="./assets/imgs/iconeUsuario.png" alt="">
-                	<div id="dadosUsuario">
-                    	<span>Usuario</span>
-                    	<span>Cargo</span>
-                </div>
+				<div id="secaoUsuario">
+					<img src="./assets/imgs/iconeUsuario.png" alt="">
+					<div id="dadosUsuario">
+						<span>Usuario</span>
+						<span>Cargo</span>
+					</div>
+				</div>
 			</section>
 
+		<main class="main">
+		
 			<h1>Interrupções</h1>
 
 			<form class="filter" role="search" onsubmit="return false;">
@@ -87,8 +92,12 @@
 			</div>
 
 		</main>
+
+		</div>
 	</body>
 </html>
+
+
 <script src="/env.js"></script>
 <script src="./js/sidebar.js" ></script>
 <script>
