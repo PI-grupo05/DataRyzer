@@ -87,19 +87,15 @@ function obterVolumeInterrupcoesPorMotivo(req, res) {
     });
 }
 
-function obterDuracaoMediaPorCidade(req, res) {
-  kpiDashGeralModel
-    .duracaoMediaPorCidade()
-    .then((resultado) => res.json(resultado))
-    .catch((erro) => {
-      console.log(erro);
-      res.status(500).json(erro.sqlMessage);
-    });
-}
-
 function obterPorcentagemPorMotivo(req, res) {
+  var idDistribuidora = req.params.idDistribuidora;
+
+  if (!idDistribuidora) {
+    return res.status(400).json({ error: "idDistribuidora não enviado" });
+  }
+
   kpiDashGeralModel
-    .porcentagemPorMotivo()
+    .porcentagemPorMotivo(idDistribuidora)
     .then((resultado) => res.json(resultado))
     .catch((erro) => {
       console.log(erro);
@@ -113,6 +109,5 @@ module.exports = {
   obterInterrupcoesPorUnidade,
   obterDuracaoMediaInterrupcoes,
   obterVolumeInterrupcoesPorMotivo,
-  obterDuracaoMediaPorCidade,
   obterPorcentagemPorMotivo,
 };

@@ -39,9 +39,8 @@ function atualizarKPIs() {
     );
 }
 
+const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
 function carregarGraficos() {
-  const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
-  console.log(idDistribuidora);
   fetch(`/kpiDashGeral/interrupcoes-por-unidade/${idDistribuidora}`)
     .then((response) => response.json())
     .then((data) => {
@@ -222,13 +221,12 @@ function carregarGraficos() {
       console.error("Erro ao carregar gráfico de linha:", error)
     );
 }
-
 function carregarGraficoPizzaMotivos() {
-  fetch("/kpiDashGeral/porcentagem-por-motivo")
+  fetch(`/kpiDashGeral/porcentagem-por-motivo/${idDistribuidora}`)
     .then((response) => response.json())
     .then((data) => {
       const labels = data.map((item) => item.motivo);
-      const valores = data.map((item) => item.porcentagem);
+      const valores = data.map((item) => item.percentual); // corrigido aqui
 
       new Chart(document.getElementById("graficoPizzaMotivos"), {
         type: "pie",
@@ -243,7 +241,6 @@ function carregarGraficoPizzaMotivos() {
                 "#FFCE56",
                 "#9CCC65",
                 "#BA68C8",
-                "#4DB6AC",
               ],
             },
           ],
@@ -258,6 +255,7 @@ function carregarGraficoPizzaMotivos() {
             },
             title: {
               display: true,
+              text: "5 Principais Motivos de Quedas (%)",
               font: { size: 18 },
             },
             legend: {

@@ -25,13 +25,8 @@ router.get("/volume-interrupcoes-motivo/:idDistribuidora", function (req, res) {
   kpiDashGeralController.obterVolumeInterrupcoesPorMotivo(req, res);
 });
 
-router.get(
-  "/duracao-media-por-cidade",
-  kpiDashGeralController.obterDuracaoMediaPorCidade
-);
-router.get(
-  "/porcentagem-por-motivo",
-  kpiDashGeralController.obterPorcentagemPorMotivo
-); // grafico de pizza
+router.get("/porcentagem-por-motivo/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterPorcentagemPorMotivo(req, res);
+});
 
 module.exports = router;
