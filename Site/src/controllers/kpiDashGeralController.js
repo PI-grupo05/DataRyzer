@@ -36,9 +36,14 @@ function obterUnidadeMaiorTempoInterrupcao(req, res) {
     });
 }
 // grafics
-function obterInterrupcoesPorCidade(req, res) {
+function obterInterrupcoesPorUnidade(req, res) {
+  var idDistribuidora = req.params.idDistribuidora;
+
+  if (!idDistribuidora) {
+    return res.status(400).json({ error: "idDistribuidora não enviado" });
+  }
   kpiDashGeralModel
-    .interrupcoesPorCidade()
+    .interrupcoesPorUnidade(idDistribuidora)
     .then((resultado) => {
       res.json(resultado);
     })
@@ -67,8 +72,14 @@ function obterDuracaoMediaInterrupcoes(req, res) {
 }
 
 function obterVolumeInterrupcoesPorMotivo(req, res) {
+  var idDistribuidora = req.params.idDistribuidora;
+
+  if (!idDistribuidora) {
+    return res.status(400).json({ error: "idDistribuidora não enviado" });
+  }
+
   kpiDashGeralModel
-    .volumeInterrupcoesPorMotivo()
+    .volumeInterrupcoesPorMotivo(idDistribuidora)
     .then((resultado) => res.json(resultado))
     .catch((erro) => {
       console.log(erro);
@@ -99,7 +110,7 @@ function obterPorcentagemPorMotivo(req, res) {
 module.exports = {
   obterUnidadeMaisAfetada,
   obterUnidadeMaiorTempoInterrupcao,
-  obterInterrupcoesPorCidade,
+  obterInterrupcoesPorUnidade,
   obterDuracaoMediaInterrupcoes,
   obterVolumeInterrupcoesPorMotivo,
   obterDuracaoMediaPorCidade,

@@ -30,37 +30,57 @@ function unidadeMaiorTempoInterrupcao(idDistribuidora) {
   return database.executar(instrucaoSql);
 }
 
-function interrupcoesPorCidade() {
+function interrupcoesPorUnidade(idDistribuidora) {
   const instrucaoSql = `
-        SELECT c.nome AS unidade_consumidora, COUNT(i.id_interrupcao) AS total_interrupcoes
-        FROM interrupcao i
-        JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
-        GROUP BY c.nome
-        ORDER BY total_interrupcoes DESC
-        LIMIT 5;
+    SELECT c.nome AS unidade_consumidora, COUNT(i.id_interrupcao) AS total_interrupcoes FROM interrupcao i
+    JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
+    WHERE c.fk_distribuidora = ${idDistribuidora}  
+    GROUP BY c.id_unidade_consumidora, c.nome  -- Garante unidades únicas
+    ORDER BY total_interrupcoes DESC
+    LIMIT 5;
     `;
   return database.executar(instrucaoSql);
 }
 
 function duracaoMediaInterrupcoes(idDistribuidora) {
   const instrucaoSql = `
-        SELECT c.nome AS unidade_consumidora,  ROUND(AVG(i.duracao), 2) AS duracao_media_minutos
+        SELECT c.nome AS unidade_consumidora,  ROUND(AVG(i.duracao)/60, 2) AS duracao_media_minutos
         FROM interrupcao i JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
         WHERE c.fk_distribuidora = ${idDistribuidora} 
         GROUP BY c.id_unidade_consumidora, c.nome
         ORDER BY duracao_media_minutos DESC
-        LIMIT 7;
+        LIMIT 5;
     `;
   return database.executar(instrucaoSql);
 }
 
-function volumeInterrupcoesPorMotivo() {
+function volumeInterrupcoesPorMotivo(idDistribuidora) {
   const instrucaoSql = `
-        SELECT m.nome AS motivo, COUNT(i.id_interrupcao) AS total
-        FROM interrupcao i
-        JOIN motivo m ON i.fk_motivo = m.id_motivo
-        GROUP BY m.id_motivo;
-         
+  SELECT 
+  m.nome AS motivo, 
+  DATE_FORMAT(i.dt_inicio, '%Y-%m') AS mes,
+  COUNT(i.id_interrupcao) AS total_ocorrencias
+FROM interrupcao i
+JOIN motivo m ON i.fk_motivo = m.id_motivo
+JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
+WHERE c.fk_distribuidora = ${idDistribuidora}
+  AND i.dt_inicio >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
+  AND m.nome IN (
+    SELECT motivo_mais_comum.nome FROM (
+      SELECT m.nome, COUNT(*) AS total
+      FROM interrupcao i
+      JOIN motivo m ON i.fk_motivo = m.id_motivo
+      JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
+      WHERE c.fk_distribuidora = ${idDistribuidora}
+        AND i.dt_inicio >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
+      GROUP BY m.nome
+      ORDER BY total DESC
+      LIMIT 5
+    ) AS motivo_mais_comum
+  )
+GROUP BY m.nome, mes
+ORDER BY mes ASC, motivo ASC;
+
     `;
   return database.executar(instrucaoSql);
 }
@@ -93,7 +113,7 @@ function porcentagemPorMotivo() {
 module.exports = {
   unidadeMaisAfetada,
   unidadeMaiorTempoInterrupcao,
-  interrupcoesPorCidade,
+  interrupcoesPorUnidade,
   duracaoMediaInterrupcoes,
   volumeInterrupcoesPorMotivo,
   duracaoMediaPorCidade,
