@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estiloDashGeral.css">
-    <link rel="stylesheet" href="css/sidebar.css">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estiloDashGeral.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="./js/sessao.js"></script>
@@ -12,7 +12,7 @@
     <script src="./js/dashGeral.js"></script>
     <script src="./js/sidebar.js"></script>
 
-    <title>Dashboard de Interrupções te</title>
+    <title>Dashboard</title>
   </head>
   <body>
     <div id="menuLateral">
@@ -34,93 +34,108 @@
                 <img src="./assets/imgs/historico_icon.png" alt="" />
                 <span>historico de interrupções</span>
             </a> -->
-        </div>
-        <div class="inferior_sidebar">
-            <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
-			<img style="cursor: pointer;" onclick="window.location = '../meuPerfilEditar.html'" src="./assets/imgs/person-gear.svg" alt="">
-        </div>
+      </div>
+      <div class="inferior_sidebar">
+        <img
+          style="cursor: pointer"
+          onclick="sair()"
+          class="botao_sair"
+          src="./assets/imgs/botao_sair.svg"
+          alt=""
+        />
+        <img
+          style="cursor: pointer"
+          onclick="window.location = '../meuPerfilEditar.html'"
+          src="./assets/imgs/person-gear.svg"
+          alt=""
+        />
+      </div>
     </div>
-    
+
     <div class="conteudo-principal" id="conteudoPrincipal">
-        <section id="cabecalho">
-            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="" />
-            <div id="secaoUsuario">
-                <img class="imagem_usuario" src="./assets/imgs/iconeUsuario.png" alt="" />
-                <div id="dadosUsuario">
-                <span>Usuario</span>
-                <span>Cargo</span>
-                </div>
-            </div>
-        </section>
-    <div id="containerConteudo">
-      
-      <div id="conteudoDash">
-        <section id="metricas">
-          <section id="cartoes">
-            <div class="cartao drop-shadow cidade-mais-afetada-quedas">
-              <div class="metricaTexto">
-                <h4>Unidade Consumidora mais afetada</h4>
-                <div class="kpi-value" id="cidade-mais-quedas">
-                  Carregando...
-                </div>
-                <!-- <p class="metricaNegativa">
+      <section id="cabecalho">
+        <img
+          id="botaoMenu"
+          onclick="abrirMenu()"
+          src="./assets/imgs/iconeSeta.png"
+          alt=""
+        />
+        <div id="secaoUsuario">
+          <img
+            class="imagem_usuario"
+            src="./assets/imgs/iconeUsuario.png"
+            alt=""
+          />
+          <div id="dadosUsuario">
+            <span>Usuario</span>
+            <span>Cargo</span>
+          </div>
+        </div>
+      </section>
+      <div id="containerConteudo">
+        <div id="conteudoDash">
+          <section id="metricas">
+            <section id="cartoes">
+              <div class="cartao drop-shadow cidade-mais-afetada-quedas">
+                <div class="metricaTexto">
+                  <h4>Unidade Consumidora mais afetada</h4>
+                  <div class="kpi-value" id="cidade-mais-quedas">
+                    Carregando...
+                  </div>
+                  <!-- <p class="metricaNegativa">
                   +5
                   <img src="./assets/imgs/trianguloNegativo.png" alt="" />
                 </p> -->
-              </div>
-            </div>
-            <div
-              class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal"
-            >
-              <div class="metricaTexto">
-                <h4>Unidade Consumidora com maior tempo</h4>
-                <div class="kpi-value" id="cidade-maior-tempo">
-                  Carregando...
                 </div>
-                <!--   <p class="metricaPositiva">
+              </div>
+              <div
+                class="cartao drop-shadow cidade-com-maior-tempo-de-interrup-o-mensal"
+              >
+                <div class="metricaTexto">
+                  <h4>Unidade Consumidora com maior tempo</h4>
+                  <div class="kpi-value" id="cidade-maior-tempo">
+                    Carregando...
+                  </div>
+                  <!--   <p class="metricaPositiva">
                                 -15 min
                                 <img src="./assets/imgs/trianguloPositivo.png" alt="">
                             </p> -->
+                </div>
               </div>
-            </div>
-            <div class="cartao drop-shadow">
-              <div class="metricaTexto"></div>
+              <div class="cartao drop-shadow">
+                <div class="metricaTexto"></div>
+              </div>
+            </section>
+          </section>
+          <section id="secaoGraficos">
+            <div class="grafico drop-shadow">
+              <canvas id="graficoLinha" width="600" height="120"></canvas>
             </div>
           </section>
-        </section>
-        <section id="secaoGraficos">
-          <div class="grafico drop-shadow">
-            <canvas id="graficoLinha" width="600" height="100"></canvas>
-          </div>
-        </section>
-        <section id="secaoGraficosBarra">
-          <div class="grafico-barra drop-shadow">
-            <canvas id="graficoBarra1" width="600" height="350"></canvas>
-          </div>
-          <div class="grafico-barra drop-shadow">
-            <canvas id="graficoBarra2" width="600" height="350"></canvas>
-          </div>
-        </section>
-        <section class="secaoMotivosQuedas"></section>
-      </div>
+          <section id="secaoGraficosBarra">
+            <div class="grafico-barra drop-shadow">
+              <canvas id="graficoBarra1" width="600" height="320"></canvas>
+            </div>
+            <div class="grafico-barra drop-shadow">
+              <canvas id="graficoBarra2" width="600" height="320"></canvas>
+            </div>
+          </section>
+          <section class="secaoMotivosQuedas"></section>
+        </div>
 
-      
+<div id="sidebarGrafico" class="recolhida">
+  <button id="toggleSidebar">
+    <img id="botaoSide" src="./assets/imgs/graficoPizza.png" width="40" height="40" />
+  </button>
+  <div class="conteudoGrafico">
+    <h3>Motivos de Quedas</h3>
+    <canvas id="graficoPizzaMotivos"></canvas>
+  </div>
+</div>
 
-      <div id="lateralDireita">
-      <div class="card-status drop-shadow">
-        <div class="info-card">
-          <div class="evening">
-            <h3>Motivos das quedas</h3>
-            <br /><br />
 
-            <canvas id="graficoPizzaMotivos" width="100" height="50"></canvas>
-          </div>
         </div>
       </div>
     </div>
-
-    </div>
-
-    </div>
-</body>
+  </body>
 </html>

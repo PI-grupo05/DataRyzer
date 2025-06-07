@@ -1,280 +1,233 @@
-    @import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-    /* html{
-        height: 100%;
-        width: 100%;
-    }
-
-    body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        display: flex;
-        background-color: #E9E9E9;
-        font-family: "Mohave";
-        position: relative;
-    } */
-
-    
-    html, body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden; /* impede scroll vertical e horizontal */
-        }
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Mohave";
-        font-style: normal;
-    }
-
-    body {
-        display: flex;
-        width: 100%;
-        height: 100vh;
-        background-color: #f9f9f9;
-        font-family: "Mohave";
-        font-style: normal;
-        overflow: hidden; /* impede scroll vertical e horizontal */
-    }
-
-
-
-    #containerConteudo {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin-top: 20px ;
-        /* margin-inline: 10px; */
-        width: 90%;
-        transition: 0.5s;
-        flex-grow: 1;
-    }
-
-
-
-   #containerPrincipal {
+html,
+body {
     width: 100%;
-    height: 100%;   
-    display: flex; /* ou grid */
-    flex-direction: row; /* ou column, conforme o layout */
-    }
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    text-decoration: none;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+
+}
+
+body {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    background-color: #f9f9f9;
+    font-style: normal;
+    overflow: hidden;
+    /* impede scroll vertical e horizontal */
+}
+
+#containerConteudo {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 20px;
+    width: 80%;
+    transition: 0.5s;
+    flex-grow: 1;
+}
+
+#containerPrincipal {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    /* ou grid */
+    flex-direction: row;
+    /* ou column, conforme o layout */
+}
 
 
-    #containerConteudo h1{
-        margin-top: 0;
-    }
+#containerConteudo h1 {
+    margin-top: 0;
+}
 
-    #botaoMenu{
-        transform: scaleX(1);
-        width: 40px;
-        height: 40px;
-    }
+#botaoMenu {
+    transform: scaleX(1);
+    width: 40px;
+    height: 40px;
+}
 
-   
+
 
 #botaoData {
-    background-color: white; 
-    color: rgb(0, 0, 0); 
-    padding: 10px 15px; 
-    border-radius: 5px; 
-    cursor: pointer; 
-    text-align: center; 
-    width: fit-content; 
- 
+    background-color: white;
+    color: rgb(0, 0, 0);
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+    width: fit-content;
+
 }
 
 #botaoData:hover {
-    background-color: #070226; 
+    background-color: #070226;
 }
 
 
 
-   
-.card-status {
-height: 90%;
-width: 100%;
-padding: 10px;
-/* border-radius: 10px; */
-background-color: #f5f5f5;
-text-align: center;
-
+#metricas {
+    margin-bottom: 15px
 }
 
-    .card-status h3 {
-        margin: 0;
-        color: #070226;
-        font-size: 18px;
-    }
 
-    .card-status p {
-        margin: 10px 0 0;
-        color: #321ec6;
-        font-weight: bold;
-        font-size: 16px;
-    }
-
-    #metricas {
-        margin-bottom: 2%;
-    }
-
-    .metricaNegativa {
-        color: red;
-        margin: 0;
-    }
-
-    .metricaPositiva {
-        color: green;
-        margin: 0;
-    }
-
-    h2 {
-        margin-top: 0;
-        text-align: center;
-    }
-
-    #cartoes {
-        display: flex;
-        justify-content: space-between;
-    }
-
-    .drop-shadow {
-        background-color: white;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
-    }
-
-    section#graficos {
-        width: 100%;
-        height: 100%;
-    }
-
-    .cartao {
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
-        width: 30%;
-        height: 100px;
-    }
-
-    .cartao img {
-        width: 5%;
-    }
-
-    .metricaTexto {
-        text-align: center;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-evenly;
-    }
-
-    .metricaTexto h4 {
-        color: #7F7F7F;
-        font-size: 1.2rem;
-        margin: 0
-    }
-
-    .metricaTexto b {
-        font-size: 2vw;
-    }
-
-    #secaoGraficos {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-    }
-
-    .grafico {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        margin-bottom: 20px;
-    }
-
-    #graficoLinha {
-        width: 100%;
-        height: 120px;
-    }
-
-
-    /* Estilo para a seção dos gráficos de barras */
-    #secaoGraficosBarra {
-        display: flex;
-        justify-content: space-between;
-        width: 100%;
-        gap: 10px;
-        margin-top: 10px;
-    }
-
-    .grafico-barra {
-        width: 50%;
-        height: 265px;
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-        box-sizing: border-box;
-    }
-
-    #perfilCard {
-        width: 20%;
-        background-color: white;
-        border-radius: 10px;
-        padding: 20px;
-        position: fixed;
-        right: 0;
-        bottom: 0;
-        margin: 20px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
-    }
-
-    #perfilImagem {
-        width: 80px;
-        height: 80px;
-        border-radius: 50%;
-    }
-
-    #dadosPerfil {
-        text-align: center;
-        margin-top: 10px;
-    }
-
-    #secaoDash {
-        display: flex;
-        width: 100%;
-        justify-content: space-between;
-        gap: 20px;
-    }
-
-    #secaoMotivos {
-        display: flex;
-        flex-direction: column;
-        width: 300px;
-    }
-
-    #secaoMotivosQuedas .box {
-        display: flex;
-        width: 400px;
-        height: 200px;
-        background-color: #070226;
-    }
-
-
-    .imagem-arredondada {
-    width: 80px; 
-    height: 80px; 
-    border-radius: 50%; 
-    object-fit: cover; 
-    margin-bottom: 10px; 
+h2 {
+    margin-top: 0;
+    text-align: center;
 }
 
-.inferior_sidebar{
+#cartoes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.drop-shadow {
+    background-color: white;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+}
+
+
+
+section#graficos {
+    width: 100%;
+    height: 100%;
+}
+
+.cartao {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 30%;
+    height: 100px;
+}
+
+.cartao img {
+    width: 5%;
+}
+
+.metricaTexto {
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.metricaTexto h4 {
+    color: #7F7F7F;
+    font-size: 1rem;
+}
+
+.metricaTexto b {
+    font-size: 2vw;
+}
+
+#secaoGraficos {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.grafico {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#graficoLinha {
+    width: 100%;
+    height: 120px;
+}
+
+
+/* Estilo para a seção dos gráficos de barras */
+#secaoGraficosBarra {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.grafico-barra {
+    width: 50%;
+    height: 230px;
+    display: flex;
+    justify-content: center;
+    box-sizing: border-box;
+    margin-top: 10px;
+}
+
+#perfilCard {
+    width: 20%;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
+}
+
+#perfilImagem {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+
+#dadosPerfil {
+    text-align: center;
+    margin-top: 10px;
+}
+
+#secaoDash {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+#secaoMotivos {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+#secaoMotivosQuedas .box {
+    display: flex;
+    width: 400px;
+    height: 200px;
+    background-color: #070226;
+}
+
+
+.imagem-arredondada {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+}
+
+.inferior_sidebar {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -282,18 +235,19 @@ text-align: center;
     width: 100%;
 }
 
-.botao_sair{
+.botao_sair {
     width: 30px;
 }
 
 .secaoInterna {
-  flex: 1;
-  overflow: hidden; /* impede que o conteúdo estoure */
-  max-width: 100%;
-  max-height: 100%;
+    flex: 1;
+    overflow: hidden;
+    /* impede que o conteúdo estoure */
+    max-width: 100%;
+    max-height: 100%;
 }
 
-#secaoUsuario img{
+#secaoUsuario img {
     width: 60px;
     height: 60px;
 }
@@ -302,12 +256,65 @@ text-align: center;
     flex-direction: row;
 }
 
-#conteudoDash{
+#conteudoDash {
     width: 100%;
     height: 500px;
 }
 
-#lateralDireita{
+
+
+#sidebarGrafico {
+    position: fixed;
+    top: 0;
+    right: 0;
     height: 100%;
-    width: 20%;
+    width: 50px;
+    overflow: hidden;
+    background-color: #ffffff;
+    box-shadow: -2px 0 5px rgba(0, 0, 0, 0.1);
+    transition: width 0.3s ease;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#sidebarGrafico.expandida {
+    width: 450px;
+}
+
+#sidebarGrafico h3 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 30px;
+    color: #7F7F7F;
+
+}
+
+#sidebarGrafico .conteudoGrafico {
+    display: none;
+    margin-top: 120px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+#sidebarGrafico.expandida .conteudoGrafico {
+    display: block;
+}
+
+#sidebarGrafico canvas {
+    width: 100% !important;
+    max-height: 400px;
+}
+
+#toggleSidebar {
+    position: absolute;
+    top: 300px;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+#sidebarGrafico.expandida #toggleSidebar {
+    left: 5px;
 }
