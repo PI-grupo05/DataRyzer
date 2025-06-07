@@ -4,16 +4,35 @@ var router = express.Router();
 var kpiDashGeralController = require("../controllers/kpiDashGeralController");
 
 // Rotas para KPIs
-router.get("/cidade-mais-afetada", kpiDashGeralController.obterCidadeMaisAfetada);
-router.get("/cidade-maior-tempo-interrupcao", kpiDashGeralController.obterCidadeMaiorTempoInterrupcao);
+router.get("/unidade-maior-tempo/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterUnidadeMaiorTempoInterrupcao(req, res);
+});
+
+router.get("/unidade-mais-afetada/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterUnidadeMaisAfetada(req, res);
+});
 
 // Rotas para Gráficos
-router.get("/interrupcoes-por-cidade", kpiDashGeralController.obterInterrupcoesPorCidade);
-router.get("/duracao-media-interrupcoes", kpiDashGeralController.obterDuracaoMediaInterrupcoes);
+router.get(
+  "/interrupcoes-por-cidade",
+  kpiDashGeralController.obterInterrupcoesPorCidade
+);
 
-router.get("/volume-por-motivo", kpiDashGeralController.obterVolumeInterrupcoesPorMotivo);
-router.get("/duracao-media-por-cidade", kpiDashGeralController.obterDuracaoMediaPorCidade);
-router.get("/porcentagem-por-motivo", kpiDashGeralController.obterPorcentagemPorMotivo); // grafico de pizza
+router.get("/duracao-media-por-unidade/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterDuracaoMediaInterrupcoes(req, res);
+});
 
+router.get(
+  "/volume-por-motivo",
+  kpiDashGeralController.obterVolumeInterrupcoesPorMotivo
+);
+router.get(
+  "/duracao-media-por-cidade",
+  kpiDashGeralController.obterDuracaoMediaPorCidade
+);
+router.get(
+  "/porcentagem-por-motivo",
+  kpiDashGeralController.obterPorcentagemPorMotivo
+); // grafico de pizza
 
 module.exports = router;

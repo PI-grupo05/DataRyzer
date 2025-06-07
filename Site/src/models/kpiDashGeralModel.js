@@ -1,31 +1,37 @@
 var database = require("../database/config");
 
-function cidadeMaisAfetada() {
-    var instrucaoSql = `
-        SELECT c.nome AS unidade_consumidora, COUNT(i.id_interrupcao) AS total_interrupcoes
-        FROM interrupcao i
-        JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
-        GROUP BY c.id_unidade_consumidora
-        ORDER BY total_interrupcoes DESC
-        LIMIT 1;
+function unidadeMaisAfetada(idDistribuidora) {
+  var instrucaoSql = `
+    SELECT 
+    c.nome AS unidade_consumidora, 
+    COUNT(i.id_interrupcao) AS total_interrupcoes FROM interrupcao i 
+    JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
+    JOIN distribuidora d ON c.fk_distribuidora = d.id_distribuidora
+    WHERE d.id_distribuidora = ${idDistribuidora}  
+    GROUP BY c.id_unidade_consumidora, c.nome
+    ORDER BY total_interrupcoes DESC
+    LIMIT 1;
     `;
-    return database.executar(instrucaoSql);
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
-function cidadeMaiorTempoInterrupcao() {
-    var instrucaoSql = `
-        SELECT c.nome AS unidade_consumidora, SUM(i.duracao) AS total_duracao
-        FROM interrupcao i
-        JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
-        GROUP BY c.id_unidade_consumidora
-        ORDER BY total_duracao DESC
-        LIMIT 1;
+function unidadeMaiorTempoInterrupcao(idDistribuidora) {
+  var instrucaoSql = `
+    SELECT uc.nome AS unidade_consumidora, SUM(i.duracao) AS tempo_total_minutos FROM 
+    interrupcao i 
+    JOIN unidade_consumidora uc ON i.fk_unidade_consumidora = uc.id_unidade_consumidora
+    JOIN distribuidora d ON uc.fk_distribuidora = d.id_distribuidora WHERE d.id_distribuidora = ${idDistribuidora} 
+    GROUP BY uc.id_unidade_consumidora, uc.nome 
+    ORDER BY tempo_total_minutos 
+    DESC LIMIT 1;
     `;
-    return database.executar(instrucaoSql);
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
 function interrupcoesPorCidade() {
-    const instrucaoSql = `
+  const instrucaoSql = `
         SELECT c.nome AS unidade_consumidora, COUNT(i.id_interrupcao) AS total_interrupcoes
         FROM interrupcao i
         JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
@@ -33,35 +39,34 @@ function interrupcoesPorCidade() {
         ORDER BY total_interrupcoes DESC
         LIMIT 5;
     `;
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
-function duracaoMediaInterrupcoes() {
-    const instrucaoSql = `
-        SELECT c.nome AS unidade_consumidora, AVG(i.duracao) AS duracao_media
-        FROM interrupcao i
-        JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
-        GROUP BY c.nome
-        ORDER BY duracao_media DESC
-        LIMIT 5;
+function duracaoMediaInterrupcoes(idDistribuidora) {
+  const instrucaoSql = `
+        SELECT c.nome AS unidade_consumidora,  ROUND(AVG(i.duracao), 2) AS duracao_media_minutos
+        FROM interrupcao i JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
+        WHERE c.fk_distribuidora = ${idDistribuidora} 
+        GROUP BY c.id_unidade_consumidora, c.nome
+        ORDER BY duracao_media_minutos DESC
+        LIMIT 7;
     `;
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
 }
-
 
 function volumeInterrupcoesPorMotivo() {
-    const instrucaoSql = `
+  const instrucaoSql = `
         SELECT m.nome AS motivo, COUNT(i.id_interrupcao) AS total
         FROM interrupcao i
         JOIN motivo m ON i.fk_motivo = m.id_motivo
         GROUP BY m.id_motivo;
          
     `;
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
 function duracaoMediaPorCidade() {
-    const instrucaoSql = `
+  const instrucaoSql = `
         SELECT c.nome AS unidade_consumidora, ROUND(AVG(i.duracao), 2) AS media_duracao
         FROM interrupcao i
         JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
@@ -69,11 +74,11 @@ function duracaoMediaPorCidade() {
         LIMIT 5;
          
     `;
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
 function porcentagemPorMotivo() {
-    const instrucaoSql = `
+  const instrucaoSql = `
         SELECT 
             m.nome AS motivo,
             ROUND((COUNT(i.id_interrupcao) * 100.0 / 
@@ -82,17 +87,15 @@ function porcentagemPorMotivo() {
         JOIN motivo m ON i.fk_motivo = m.id_motivo
         GROUP BY m.nome;
     `;
-    return database.executar(instrucaoSql);
+  return database.executar(instrucaoSql);
 }
 
-
-
 module.exports = {
-    cidadeMaisAfetada,
-    cidadeMaiorTempoInterrupcao,
-    interrupcoesPorCidade,
-    duracaoMediaInterrupcoes,
-    volumeInterrupcoesPorMotivo,
-    duracaoMediaPorCidade,
-    porcentagemPorMotivo
+  unidadeMaisAfetada,
+  unidadeMaiorTempoInterrupcao,
+  interrupcoesPorCidade,
+  duracaoMediaInterrupcoes,
+  volumeInterrupcoesPorMotivo,
+  duracaoMediaPorCidade,
+  porcentagemPorMotivo,
 };

@@ -29,7 +29,7 @@ var app = express();
 
 var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
-var kpiRouter = require("./src/routes/kpiDashGeral");
+var dashGeralRouter = require("./src/routes/kpiDashGeral");
 var historicoRouter = require("./src/routes/historico");
 var groupRouter = require("./src/routes/grupos");
 var notificacoesRouter = require("./src/routes/notificacoes");
@@ -45,7 +45,7 @@ app.use(cors());
 app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/historico", historicoRouter);
-app.use("/kpiDashGeral", kpiRouter); 
+app.use("/kpiDashGeral", dashGeralRouter); 
 app.use("/grupos", groupRouter);
 app.use("/notificacoes", notificacoesRouter);
 app.use("/unidade", unidadeRouter);
