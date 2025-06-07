@@ -35,7 +35,7 @@ function obterUnidadeMaiorTempoInterrupcao(req, res) {
       res.status(500).json(erro.sqlMessage);
     });
 }
-
+// grafics
 function obterInterrupcoesPorCidade(req, res) {
   kpiDashGeralModel
     .interrupcoesPorCidade()

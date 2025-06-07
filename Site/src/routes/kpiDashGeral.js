@@ -17,10 +17,10 @@ router.get(
   "/interrupcoes-por-cidade",
   kpiDashGeralController.obterInterrupcoesPorCidade
 );
-router.get(
-  "/duracao-media-interrupcoes",
-  kpiDashGeralController.obterDuracaoMediaInterrupcoes
-);
+
+router.get("/duracao-media-por-unidade/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterDuracaoMediaInterrupcoes(req, res);
+});
 
 router.get(
   "/volume-por-motivo",

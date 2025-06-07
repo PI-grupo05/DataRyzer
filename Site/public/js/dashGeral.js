@@ -40,6 +40,8 @@ function atualizarKPIs() {
 }
 
 function carregarGraficos() {
+  const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
+  console.log(idDistribuidora);
   fetch("/kpiDashGeral/interrupcoes-por-cidade")
     .then((response) => response.json())
     .then((data) => {
@@ -97,11 +99,11 @@ function carregarGraficos() {
       )
     );
 
-  fetch("/kpiDashGeral/duracao-media-por-cidade")
+  fetch(`/kpiDashGeral/duracao-media-por-unidade/${idDistribuidora}`)
     .then((response) => response.json())
     .then((data) => {
       const labels = data.map((item) => item.unidade_consumidora);
-      const valores = data.map((item) => item.media_duracao);
+      const valores = data.map((item) => item.duracao_media_minutos);
 
       new Chart(document.getElementById("graficoBarra2"), {
         type: "bar",
