@@ -96,16 +96,115 @@ button{
     background-color: #d11a1a;
 }
 
-#menuLateral{
+#botoesAnteriorProximo{
+	display: flex;
+	width: 100%;
+	margin-top: 1%;
+	gap: 5%;
+	justify-content: center;
+}
+
+
+.inferior_sidebar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.botao_sair{
+    width: 30px;
+}
+
+#menuLateral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        width: 300px;
+        min-width: 300px; /* Garante tamanho consistente */
+        background: #5a6268;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        transition: transform 0.8s ease;
+        z-index: 2;
+        overflow: hidden;
+        position: fixed; /* Fixo para consistência entre telas */
+        left: 0;
+        top: 0;
+        height: 100vh;
+        transform: translateX(0); /* aberto por padrão */
+    }
+
+    /* Quando o menu estiver fechado, desloca ele para a esquerda */
+    #menuLateral.fechado {
+        transform: translateX(-100%);
+    }
+
+
+    #logo{
+    width: 80%;
+}
+
+#menuLateralSecoes{
     display: flex;
     flex-direction: column;
+    align-items: start;
+    gap: 50px;
+}
+
+#menuLateralSecoes, #menuLateral a, #menuLateralSecoes img{
+    width: 50%;
+}
+
+#menuLateral a{
+    display: flex;
+    font-weight: 500;
     align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 10px;
+}
+
+#botaoSair, #botaoSair img{
+    width: 30%;
+}
+
+    /* Conteúdo principal */
+.conteudo-principal {
+    margin-top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content:start;
+    margin-left: 300px; /* Espaço para a sidebar */
+    transition: margin-left 0.8s ease;
+}
+
+/* Quando sidebar está fechada */
+.conteudo-principal.sidebar-fechada {
+    margin-left: 0;
+    align-items: center;
+    justify-content: start;
+}
+
+
+
+#cabecalho{
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
     justify-content: space-between;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    width: 20%;
-    background: #5a6268;
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    transition: 0.5s;
+}
+
+
+#secaoUsuario{
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }

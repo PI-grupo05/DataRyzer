@@ -52,3 +52,13 @@ function verificarTipoUsuario() {
     `
   }
 }
+
+
+function voltarParaDash(){
+    var tipoUsuario = sessionStorage.TIPO_USUARIO
+    if(tipoUsuario == "MASTER") {
+        window.location.href = `./dashGeral.html`
+    }else{
+        window.location.href = `./dashEspecifica.html`
+    } 
+}
