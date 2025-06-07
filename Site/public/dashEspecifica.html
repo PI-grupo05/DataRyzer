@@ -68,10 +68,40 @@
         </div>
 
         <div class="cartao drop-shadow">
-          <div class="metricaTexto">
-            <h2>Selecionar data</h2>
-            <img id="iconeCalendario" src="./assets/imgs/iconeCalendario.png" alt="Calendário" />
-          </div>
+    
+<div class="metricaTexto">
+  <h2>Selecionar data</h2>
+  <button id="btnAbrirModal" class="btnCalendario">
+    <img id="iconeCalendario" src="./assets/imgs/iconeCalendario.png" alt="Calendário" />
+  </button>
+</div>
+
+<!-- modal filtro -->
+<div id="modalData" class="modal">
+  <div class="modal-conteudo">
+    <div class="modal-cabecalho">
+      <h3>Filtros de Data</h3>
+      <button id="btnFecharModal" class="fechar">&times;</button>
+    </div>
+    <div class="modal-corpo">
+      <div id="listaFiltros">
+
+      </div>
+      <div class="adicionar-filtro">
+        <label for="dataInicio">Data Início:</label>
+        <input type="date" id="dataInicio" name="dataInicio" required />
+        <label for="dataFim">Data Fim:</label>
+        <input type="date" id="dataFim" name="dataFim" required />
+        <button id="btnAdicionarFiltro" class="btnAdicionar">Adicionar Filtro</button>
+      </div>
+    </div>
+    <div class="modal-rodape">
+      <button id="btnSalvarFiltros" class="btnSalvar">Salvar Filtros</button>
+      <button id="btnCancelar" class="btnCancelar">Cancelar</button>
+    </div>
+  </div>
+</div>
+
         </div>
       </section>
     </section>

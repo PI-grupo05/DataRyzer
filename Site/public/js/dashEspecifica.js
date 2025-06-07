@@ -136,3 +136,94 @@ function atualizarKPIs(idUnidadeConsumidora, idDistribuidora) {
         })
         .catch(err => console.error('Erro KPI média por dia:', err));
 }
+
+
+// script modal filtro:::
+
+document.addEventListener('DOMContentLoaded', () => {
+  const btnAbrirModal = document.getElementById('btnAbrirModal');
+  const modalData = document.getElementById('modalData');
+  const btnFecharModal = document.getElementById('btnFecharModal');
+  const btnCancelar = document.getElementById('btnCancelar');
+  const btnAdicionarFiltro = document.getElementById('btnAdicionarFiltro');
+  const btnSalvarFiltros = document.getElementById('btnSalvarFiltros');
+  const listaFiltros = document.getElementById('listaFiltros');
+  const dataInicioInput = document.getElementById('dataInicio');
+  const dataFimInput = document.getElementById('dataFim');
+
+  let filtros = [];
+
+
+  btnAbrirModal.addEventListener('click', () => {
+    modalData.style.display = 'flex';
+  });
+
+
+  btnFecharModal.addEventListener('click', () => {
+    modalData.style.display = 'none';
+  });
+
+
+  btnCancelar.addEventListener('click', () => {
+    modalData.style.display = 'none';
+  });
+
+
+  btnAdicionarFiltro.addEventListener('click', () => {
+    const dataInicio = dataInicioInput.value;
+    const dataFim = dataFimInput.value;
+
+    if (dataInicio && dataFim) {
+      const filtro = { dataInicio, dataFim };
+      filtros.push(filtro);
+      atualizarListaFiltros();
+      dataInicioInput.value = '';
+      dataFimInput.value = '';
+    } else {
+      alert('Por favor, preencha ambas as datas.');
+    }
+  });
+
+
+  function atualizarListaFiltros() {
+    listaFiltros.innerHTML = '';
+    filtros.forEach((filtro, index) => {
+      const itemFiltro = document.createElement('div');
+      itemFiltro.classList.add('filtro-item');
+      itemFiltro.innerHTML = `
+        <span>De: ${filtro.dataInicio} Até: ${filtro.dataFim}</span>
+        <div>
+          <button class="editar" data-index="${index}">Editar</button>
+          <button class="excluir" data-index="${index}">Excluir</button>
+        </div>
+      `;
+      listaFiltros.appendChild(itemFiltro);
+    });
+
+
+    document.querySelectorAll('.editar').forEach(botao => {
+      botao.addEventListener('click', (e) => {
+        const index = e.target.getAttribute('data-index');
+        const filtro = filtros[index];
+        dataInicioInput.value = filtro.dataInicio;
+        dataFimInput.value = filtro.dataFim;
+        filtros.splice(index, 1); 
+        atualizarListaFiltros();
+      });
+    });
+
+    document.querySelectorAll('.excluir').forEach(botao => {
+      botao.addEventListener('click', (e) => {
+        const index = e.target.getAttribute('data-index');
+        filtros.splice(index, 1); 
+        atualizarListaFiltros();
+      });
+    });
+  }
+
+
+  btnSalvarFiltros.addEventListener('click', () => {
+    console.log('Filtros salvos:', filtros);
+    modalData.style.display = 'none';
+  });
+});
