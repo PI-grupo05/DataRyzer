@@ -20,6 +20,27 @@ function buscarHistorico(req, res) {
 }
 
 
+function buscarHistoricoPorfiltro(req, res) {
+    var idDistribuidora = req.params.idDistribuidora
+    var pesquisa = req.params.pesquisa
+    var tipo = req.params.tipo
+
+    console.log(`Pegando as interrupções pesquisando por ${tipo} em controllers. Valor da pesquisa: ${pesquisa}`)
+
+    historicoModel.buscarHistoricoPorfiltro(pesquisa, tipo, idDistribuidora).then(function (resultado) {
+         res.status(200).json(resultado);
+        
+    }).catch(function (erro) {
+        console.log(erro);
+        console.log("Houve um erro ao buscar o historico de interrupções com a pesquisa.", erro.sqlMessage);
+        res.status(500).json(erro.sqlMessage);
+    });
+
+}
+
+
+
 module.exports = {
-   buscarHistorico
+   buscarHistorico,
+   buscarHistoricoPorfiltro
 };

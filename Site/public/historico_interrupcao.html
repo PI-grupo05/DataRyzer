@@ -57,20 +57,19 @@
 			<h1>Interrupções</h1>
 
 			<form class="filter" role="search" onsubmit="return false;">
-				<select aria-label="Campo de filtro">
-					<option value="">Unidade Consumidora</option>
-					<option value="">Data Início</option>
-					<option value="">Data Fim</option>
-					<option value="">Duração</option>
-					<option value="">Motivo</option>
-				</select>
+				<select id="tipo_pesquisa" aria-label="Campo de filtro">
+					<option value="uc.nome">Unidade Consumidora</option>
+					<option value="i.dt_inicio">Data Início</option>
+					<option value="i.dt_fim">Data Fim</option>
+					<option value="i.duracao">Duração</option>
+					<option value="m.nome">Motivo</option>
+				</select>	
 				<input
 					type="text"
 					placeholder="Buscar..."
 					aria-label="Buscar por campo selecionado"
-				/>
-				<button type="submit" aria-label="Pesquisar"><img class="lupinha" src="./assets/imgs/lupa.png" alt=""></button>
-				
+					id="input_pesquisar"
+					onkeyup="buscarHistoricoPorfiltro()"/>
 			</form>
 			<div class="tabela-container" >
 				<table>
