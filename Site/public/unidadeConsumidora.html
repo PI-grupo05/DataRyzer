@@ -12,7 +12,7 @@
     <title>Unidade</title>
   </head>
 
-  <body>
+  <body onload="exibirUnidadesConsumidoras()">
     <div id="menuLateral">
       <img id="logo" src="./assets/imgs/logoData-White.png" alt="" />
       <div id="menuLateralSecoes">
@@ -60,67 +60,36 @@
     
       <h1></h1>
       <!-- Aqui começa os codigo -->
-      <section id="metricas">
-        <section id="cartoes">
-          <div class="container">
+      <section id="secaoUnidadeConsumidora">
             <h1>Unidades Consumidoras</h1>
             <form class="procurar">
               <input
-                class="procura"
+                id="valorFiltro"
                 type="text"
                 name="search"
                 placeholder="Pesquisar unidade..."
               />
 
-              <button class="procurarb" type="button">🔍</button>
+              <button onclick="exibirUnidadesConsumidoras()" class="procurarb" type="button">
+                <img class="lupinha" src="./assets/imgs/lupa.png" alt="">
+              </button>
             </form>
-
-            <div class="cartao-container">
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 1" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 2" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 3" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 4" />
-              </div>
-            </div>
-
-            <div class="cartao-container">
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 1" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 2" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 3" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 4" />
+            
+    
+            <div id="containerUnidadesConsumidoras">
+              <div class="linha">
+                <div  onclick="acessarUnidadeConsumidora()" class="cartao">
+                  <input class="empresaBotao" type="button" value="UNIDADE 1" />
+                </div>
+                <div class="cartao">
+                  <input class="empresaBotao" type="button" value="UNIDADE 2" />
+                </div>
+                <div class="cartao">
+                  <input class="empresaBotao" type="button" value="UNIDADE 3" />
+                </div>
               </div>
             </div>
 
-            <div class="cartao-container">
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 1" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 2" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 3" />
-              </div>
-              <div class="cartao drop-shadow">
-                <input class="empresaBotao" type="button" value="UNIDADE 4" />
-              </div>
-            </div>
-          </div>
-        </section>
       </section>
     </div>
 
@@ -128,4 +97,72 @@
   </body>
 </html>
 <script src="./js/sidebar.js"></script>
+<script>
+  window.addEventListener('load', function () {
+  console.log("Página carregada");
+  exibirUnidadesConsumidoras();
+  });
 
+  function exibirUnidadesConsumidoras(){
+         fetch(`/unidadeConsumidora/exibirUnidadesConsumidoras/${valorFiltro.value}`, {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO exibirUnidadesConsumidoras()!");
+            console.log(resposta)
+            if (resposta.ok) {
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                lista = json
+                carregarUnidadesConsumidoras()
+              });
+            } else {
+                console.log("Houve um erro ao tentar carregar a tabela");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+    
+    function carregarUnidadesConsumidoras(){
+      containerUnidadesConsumidoras.innerHTML = ""
+      var conteudo = ""
+      var quantidadeVisivel = 0
+                
+      for(var colunaAtual = 0; colunaAtual <= lista.length - 1; colunaAtual++){
+        if(quantidadeVisivel == 0){
+          conteudo += `
+            <div class="linha">\n
+          `
+        }
+        if(lista[colunaAtual].unidadeConsumidora != null){
+          conteudo += `
+              <div onclick="acessarUnidadeConsumidora(${colunaAtual + 1})" id="${colunaAtual + 1}" class="cartao">
+                <input class="empresaBotao" type="button" value="${lista[colunaAtual].unidadeConsumidora}" />
+              </div>
+          `
+          quantidadeVisivel++
+        }
+
+        if(quantidadeVisivel == 3){
+          conteudo += `\n
+            </div>
+          `
+          quantidadeVisivel = 0
+        }
+      }
+      containerUnidadesConsumidoras.innerHTML = conteudo
+
+    }
+
+    function acessarUnidadeConsumidora(id){
+      window.location = "dashEspecifica.html"
+      sessionStorage.FK_UNIDADE_CONSUMIDORA = id
+    }
+  </script>

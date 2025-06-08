@@ -29,6 +29,17 @@ CREATE TABLE unidade_consumidora (
     CONSTRAINT fk_grupo_unidade_consumidora FOREIGN KEY (fk_grupo) REFERENCES grupo(id_grupo)
 );
 
+INSERT INTO unidade_consumidora (nome) VALUES
+('Residencial Alpha'),
+('Comercial Beta'),
+('Industrial Gamma'),
+('Agrícola Delta'),
+('Residencial Épsilon'),
+('Comercial Zeta'),
+('Industrial Eta'),
+('Agrícola Theta'),
+('Residencial Iota');
+
 SELECT * FROM unidade_consumidora;
 
 CREATE TABLE filtro (
