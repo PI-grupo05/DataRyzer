@@ -9,6 +9,8 @@
 
     <title>DataRyzer | Cadastro</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+
     <script src="./js/sessao.js"></script>
     <link
     rel="stylesheet"
@@ -309,16 +311,20 @@
     if (resposta.ok) {
       Swal.fire({
         title: "Sucesso!",
-        text: "Usuário cadastrado!",
+        text: "Cadastro realizado! Redirecionando para o login...",
         icon: "success",
+        timer: 3000,  // 3 segundos
         showConfirmButton: false,
-        color: "#f01f1a",
-      });
-
-
-      setTimeout(function () {
+        color: "#1ed619",
+        heightAuto: false,
+        timerProgressBar: true,  // Mostra barra de progresso
+        allowOutsideClick: false,  // Impede fechar clicando fora
+        allowEscapeKey: false     // Impede fechar com ESC
+    }).then(() => {
+        // Executa após o timer ou quando fechar
         window.location = "login.html";
-      }, 2000);
+    });
+
     } else {
       throw "Houve um erro ao tentar realizar o cadastro!";
     }

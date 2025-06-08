@@ -141,11 +141,30 @@
         if (resposta.ok) {
           Swal.fire({
             title: "Sucesso!",
-            text: "Login autenticado!",
+            text: "Cadastro realizado! Redirecionando para o login...",
             icon: "success",
+            timer: 2000,  // 3 segundos
             showConfirmButton: false,
-            color: "#32CD32",
+            color: "#1ed619",
+            heightAuto: false,
+            timerProgressBar: true,  // Mostra barra de progresso
+            allowOutsideClick: false,  // Impede fechar clicando fora
+            allowEscapeKey: false     // Impede fechar com ESC
+        }).then(() => {
+            resposta.json().then((json) => {
+            console.log(json);
+            console.log(JSON.stringify(json));
+            sessionStorage.EMAIL_USUARIO = json.email;
+            sessionStorage.NOME_USUARIO = json.nome;
+            sessionStorage.ID_USUARIO = json.id_usuario;
+            sessionStorage.TIPO_USUARIO = json.tipo_usuario;
+            sessionStorage.TELEFONE = json.telefone;
+            sessionStorage.FK_UNIDADE_CONSUMIDORA = json.fk_unidade_consumidora;
+            sessionStorage.FK_DISTRIBUIDORA = json.fk_distribuidora;
           });
+            // Executa após o timer ou quando fechar
+            window.location = "menu.html";
+        });
           console.log(resposta);
 
           resposta.json().then((json) => {
@@ -158,11 +177,6 @@
             sessionStorage.TELEFONE = json.telefone;
             sessionStorage.FK_UNIDADE_CONSUMIDORA = json.fk_unidade_consumidora;
             sessionStorage.FK_DISTRIBUIDORA = json.fk_distribuidora;
-
-            setTimeout(function () {
-              console.log(resposta);
-              window.location = "./menu.html";
-            }, 2000); // apenas para exibir o loading
           });
         } else {
           console.log("Houve um erro ao tentar realizar o login!");
