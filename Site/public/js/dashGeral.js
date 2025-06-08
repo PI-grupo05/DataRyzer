@@ -39,9 +39,8 @@ function atualizarKPIs() {
     );
 }
 
+const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
 function carregarGraficos() {
-  const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
-  console.log(idDistribuidora);
   fetch(`/kpiDashGeral/interrupcoes-por-unidade/${idDistribuidora}`)
     .then((response) => response.json())
     .then((data) => {
@@ -57,8 +56,8 @@ function carregarGraficos() {
             {
               label: "Número de Interrupções",
               data: valores,
-              backgroundColor: "rgba(54, 162, 235, 0.7)",
-              borderColor: "rgba(54, 162, 235, 1)",
+              backgroundColor: "#070226",
+              borderColor: "#070226",
               borderWidth: 1,
             },
           ],
@@ -113,8 +112,8 @@ function carregarGraficos() {
             {
               label: "Duração (minutos)",
               data: valores,
-              backgroundColor: "rgba(255, 99, 132, 0.7)",
-              borderColor: "rgba(255, 99, 132, 1)",
+              backgroundColor: "#321ec6",
+              borderColor: "#321ec6",
               borderWidth: 1,
             },
           ],
@@ -222,13 +221,12 @@ function carregarGraficos() {
       console.error("Erro ao carregar gráfico de linha:", error)
     );
 }
-
 function carregarGraficoPizzaMotivos() {
-  fetch("/kpiDashGeral/porcentagem-por-motivo")
+  fetch(`/kpiDashGeral/porcentagem-por-motivo/${idDistribuidora}`)
     .then((response) => response.json())
     .then((data) => {
       const labels = data.map((item) => item.motivo);
-      const valores = data.map((item) => item.porcentagem);
+      const valores = data.map((item) => item.percentual);
 
       new Chart(document.getElementById("graficoPizzaMotivos"), {
         type: "pie",
@@ -243,7 +241,6 @@ function carregarGraficoPizzaMotivos() {
                 "#FFCE56",
                 "#9CCC65",
                 "#BA68C8",
-                "#4DB6AC",
               ],
             },
           ],
@@ -254,10 +251,11 @@ function carregarGraficoPizzaMotivos() {
             datalabels: {
               formatter: (value) => `${value}%`,
               color: "#fff",
-              font: { weight: "bold", size: 18 },
+              font: { weight: "bold", size: 20 },
             },
             title: {
               display: true,
+              text: "5 Principais Motivos de Quedas (%)",
               font: { size: 18 },
             },
             legend: {
@@ -281,6 +279,14 @@ function carregarGraficoPizzaMotivos() {
 
 // carregar funções quando a pagina carregar
 document.addEventListener("DOMContentLoaded", function () {
+  const sidebar = document.getElementById("sidebarGrafico");
+  const toggleBtn = document.getElementById("toggleSidebar");
+
+  if (sidebar && toggleBtn) {
+    toggleBtn.addEventListener("click", () => {
+      sidebar.classList.toggle("expandida");
+    });
+  }
   atualizarKPIs();
   carregarGraficos();
   carregarGraficoPizzaMotivos();

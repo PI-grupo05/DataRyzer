@@ -85,27 +85,23 @@ ORDER BY mes ASC, motivo ASC;
   return database.executar(instrucaoSql);
 }
 
-function duracaoMediaPorCidade() {
-  const instrucaoSql = `
-        SELECT c.nome AS unidade_consumidora, ROUND(AVG(i.duracao), 2) AS media_duracao
-        FROM interrupcao i
-        JOIN unidade_consumidora c ON i.fk_unidade_consumidora = c.id_unidade_consumidora
-        GROUP BY c.id_unidade_consumidora
-        LIMIT 5;
-         
-    `;
-  return database.executar(instrucaoSql);
-}
-
-function porcentagemPorMotivo() {
+function porcentagemPorMotivo(idDistribuidora) {
   const instrucaoSql = `
         SELECT 
-            m.nome AS motivo,
-            ROUND((COUNT(i.id_interrupcao) * 100.0 / 
-                (SELECT COUNT(*) FROM interrupcao)), 1) AS porcentagem
-        FROM interrupcao i
-        JOIN motivo m ON i.fk_motivo = m.id_motivo
-        GROUP BY m.nome;
+  m.nome AS motivo,
+  ROUND((COUNT(i.id_interrupcao) / total.total_interrupcoes) * 100, 2) AS percentual
+  FROM interrupcao i
+  JOIN motivo m ON i.fk_motivo = m.id_motivo
+  JOIN unidade_consumidora uc ON i.fk_unidade_consumidora = uc.id_unidade_consumidora
+  JOIN (
+  SELECT COUNT(*) AS total_interrupcoes
+  FROM interrupcao i
+  JOIN unidade_consumidora uc ON i.fk_unidade_consumidora = uc.id_unidade_consumidora
+  WHERE uc.fk_distribuidora = 1) AS total
+  WHERE uc.fk_distribuidora = ${idDistribuidora}
+  GROUP BY m.nome, total.total_interrupcoes
+  ORDER BY percentual DESC
+  LIMIT 5;
     `;
   return database.executar(instrucaoSql);
 }
@@ -116,6 +112,5 @@ module.exports = {
   interrupcoesPorUnidade,
   duracaoMediaInterrupcoes,
   volumeInterrupcoesPorMotivo,
-  duracaoMediaPorCidade,
   porcentagemPorMotivo,
 };

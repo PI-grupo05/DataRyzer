@@ -1,18 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 * {
-	margin: 0;
-	padding: 0;
 	box-sizing: border-box;
-    font-family: "Mohave";
-	font-style: normal;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+	font-family: "Montserrat", sans-serif;
+	font-optical-sizing: auto;
+
 }
 
 body {
 	display: flex;
 	height: 100vh;
 	background-color: #f9f9f9;
-	font-family: "Mohave";
 	font-style: normal;
 }
 
@@ -143,13 +145,13 @@ form.filter input {
 form.filter button {
 	width: 15%;
 	display: flex;
-	background:#321ec6;
+	background: #321ec6;
 	align-items: center;
 	justify-content: center;
 	color: white;
 	border: none;
 	cursor: pointer;
-	
+
 	transition: background-color 0.2s ease;
 }
 
@@ -182,7 +184,8 @@ th {
 
 
 .tabela-container {
-	max-height: 430px; /* ajuste conforme o layout */
+	max-height: 430px;
+	/* ajuste conforme o layout */
 	overflow-y: auto;
 	overflow-x: hidden;
 }
@@ -191,7 +194,7 @@ th {
 .tabela-container th {
 	position: sticky;
 	top: 0;
-	background-color: #f2f2f2; /* igual ao seu th atual */
+	background-color: #f2f2f2;
+	/* igual ao seu th atual */
 	z-index: 1;
 }
-
