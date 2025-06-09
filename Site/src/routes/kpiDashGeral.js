@@ -12,6 +12,10 @@ router.get("/unidade-mais-afetada/:idDistribuidora", function (req, res) {
   kpiDashGeralController.obterUnidadeMaisAfetada(req, res);
 });
 
+router.get("/motivo-mais-reccorente/:idDistribuidora", function (req, res) {
+  kpiDashGeralController.obterMotivoMaisRecorrente(req, res);
+});
+
 // Rotas para Gráficos
 router.get("/interrupcoes-por-unidade/:idDistribuidora", function (req, res) {
   kpiDashGeralController.obterInterrupcoesPorUnidade(req, res);

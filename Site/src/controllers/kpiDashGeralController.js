@@ -18,6 +18,24 @@ function obterUnidadeMaisAfetada(req, res) {
     });
 }
 
+function obterMotivoMaisRecorrente(req, res) {
+  var idDistribuidora = req.params.idDistribuidora;
+
+  if (!idDistribuidora) {
+    return res.status(400).json({ error: "idDistribuidora não enviado" });
+  }
+
+  kpiDashGeralModel
+    .motivoMaisRecorrente(idDistribuidora)
+    .then((resultado) => {
+      res.json(resultado);
+    })
+    .catch((erro) => {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 function obterUnidadeMaiorTempoInterrupcao(req, res) {
   var idDistribuidora = req.params.idDistribuidora;
 
@@ -110,4 +128,5 @@ module.exports = {
   obterDuracaoMediaInterrupcoes,
   obterVolumeInterrupcoesPorMotivo,
   obterPorcentagemPorMotivo,
+  obterMotivoMaisRecorrente,
 };

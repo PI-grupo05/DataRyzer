@@ -37,6 +37,24 @@ function atualizarKPIs() {
         error
       )
     );
+
+  fetch(`/kpiDashGeral/motivo-mais-reccorente/${idDistribuidora}`)
+    .then((response) => response.json())
+    .then((data) => {
+      const motivoMaisRecorrente = document.getElementById(
+        "motivo-mais-reccorente"
+      );
+      if (data && data.length > 0) {
+        const motivo = data[0].motivo_mais_frequente;
+        const total = data[0].total_interrupcoes;
+        motivoMaisRecorrente.textContent = `${motivo} - ${total} quedas`;
+      } else {
+        motivoMaisRecorrente.textContent = "Nenhuma informação disponível";
+      }
+    })
+    .catch((error) =>
+      console.error("Erro ao obter motivo mais reccorente:", error)
+    );
 }
 
 const idDistribuidora = sessionStorage.FK_DISTRIBUIDORA;
@@ -157,6 +175,14 @@ function carregarGraficos() {
       const meses = [...new Set(data.map((item) => item.mes))];
       const motivosUnicos = [...new Set(data.map((item) => item.motivo))];
 
+      const coresFixas = {
+        "Arvore ou Vegetacao": "#FF6384",
+        "Descarga Atmosferica": "#36A2EB",
+        "Falha de material ou equipamento": "#FFCE56",
+        "Para Melhoria": "#9CCC65",
+        "Vento": "#BA68C8"
+      };
+
       const datasets = motivosUnicos.map((motivo) => {
         const dadosPorMotivo = meses.map((mes) => {
           const registro = data.find(
@@ -169,7 +195,7 @@ function carregarGraficos() {
           label: motivo,
           data: dadosPorMotivo,
           fill: false,
-          borderColor: `#${Math.floor(Math.random() * 16777215).toString(16)}`,
+          borderColor: coresFixas[motivo] || `#000000`,
           tension: 0.1,
         };
       });
@@ -236,11 +262,11 @@ function carregarGraficoPizzaMotivos() {
             {
               data: valores,
               backgroundColor: [
-                "#FF6384",
-                "#36A2EB",
-                "#FFCE56",
-                "#9CCC65",
-                "#BA68C8",
+                "#321ec6",
+                "#130569",
+                "#000000",
+                "#1d93e8",
+                "#a0a6aa",
               ],
             },
           ],

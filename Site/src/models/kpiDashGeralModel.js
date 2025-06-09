@@ -16,6 +16,24 @@ function unidadeMaisAfetada(idDistribuidora) {
   return database.executar(instrucaoSql);
 }
 
+function motivoMaisRecorrente(idDistribuidora) {
+  var instrucaoSql = `
+   SELECT 
+  m.nome AS motivo_mais_frequente,
+  COUNT(i.id_interrupcao) AS total_interrupcoes
+  FROM interrupcao i
+  JOIN motivo m ON i.fk_motivo = m.id_motivo
+  JOIN unidade_consumidora uc ON i.fk_unidade_consumidora = uc.id_unidade_consumidora
+  WHERE i.dt_inicio >= DATE_SUB(NOW(), INTERVAL 6 MONTH)
+  AND uc.fk_distribuidora = ${idDistribuidora}
+  GROUP BY m.nome
+  ORDER BY total_interrupcoes DESC
+  LIMIT 1;
+    `;
+  console.log("Executando a instrução SQL: \n" + instrucaoSql);
+  return database.executar(instrucaoSql);
+}
+
 function unidadeMaiorTempoInterrupcao(idDistribuidora) {
   var instrucaoSql = `
     SELECT uc.nome AS unidade_consumidora, SUM(i.duracao) AS tempo_total_minutos FROM 
@@ -113,4 +131,5 @@ module.exports = {
   duracaoMediaInterrupcoes,
   volumeInterrupcoesPorMotivo,
   porcentagemPorMotivo,
+  motivoMaisRecorrente,
 };
