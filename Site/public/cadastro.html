@@ -120,8 +120,16 @@
     var confirmacaoSenhaVar = confirmar_senha_input.value;
     var telefoneVar = telefone_input.value;
     var codigoAssociacaoVar = codigo_associacao_input.value;
-    var tipoUsuarioVar = 'MASTER';
+    
     var fkUnidadeConsumidoraVar = unidade_consumidora_input.value
+
+
+    if(document.getElementById("master").checked){
+      var tipoUsuarioVar = "MASTER"
+    }else if(document.getElementById("usuario").checked){
+       var tipoUsuarioVar = "REGIONAL"
+    }
+
 
     const numeros = /[0-9]/;
 

@@ -9,6 +9,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/notificacoes.js"></script>
     <script src="./js/sessao.js"></script>
     <script src="./js/sidebarConfig.js"></script>
     <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
@@ -66,35 +67,32 @@
                     <h1>Notificações</h1>
                     <form action="#" method="post" class="profile-form">
                         <div class="form-group">
-                            <label for="email">input:</label>
-                            <input type="email" id="credenciais" name="email" placeholder="email@gmail.com" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="password">input:</label>
-                            <input type="password" id="password" name="password" placeholder="********" disabled>
+                            <label for="email">URL:</label>
+                            <input type="text" id="url" placeholder="email@gmail.com" required disabled>
                         </div>
                         <div class="configs">
                             <div class="botoes">
                                 <label for="ativar">Ativar/Desativar Notificações</label>
                                 <label name="ativar"  class="switch">
-                                    <input id="acao_notificar" type="checkbox">
+                                    <input  id="receberNotificacao" type="checkbox" disabled>
                                     <span class="slider"></span>
                                 </label>
                             </div>
                             <div class="botoes select">
                                 <label for="">Frequencia de Notificações</label>
-                                <select name="" id="frequencia_notificacao">
-                                    <option value="">Diario</option>
-                                    <option value="">Semanal</option>
-                                    <option value="">Mensal</option>
+                                <select id="frequencia" disabled>
+                                    <option value="diario">Diario</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="mensal">Mensal</option>
                                 </select>
                             </div>
                         </div>
 
-                        <div class="button-group">
-                            <button type="button" onclick="" class="btn-delete">SALVAR ALTERAÇÕES</button>
-                        </div>
-                        
+                        <div id="div_botoes" class="button-group">
+                            <button id="botaoCancelar" type="button" onclick="cancelarAlteracoes()" style="background-color: #6c757d;" class="btn-delete">CANCELAR</button>
+                            <button id="botaoEditar" type="button" onclick="parametrizarNotificacoes()" class="btn-delete">EDITAR</button>
+                            
+                        </div>  
                     </form>
                 </div>
             </section>

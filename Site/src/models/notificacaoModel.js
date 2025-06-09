@@ -1,28 +1,31 @@
 var database = require("../database/config");
 
-function consultarParametrizacao(idUsuario) {
+function consultarParametrizacao(fkDistribuidora) {
     var instrucao = `
-        SELECT * FROM ParametrizacaoNotificacao WHERE fkUsuario = ${idUsuario};
+        SELECT * FROM parametrizacao WHERE fk_distribuidora = ${fkDistribuidora};
     `;
+    console.log(`executando ${instrucao}`)
     return database.executar(instrucao);
 }
 
-function criarParametrizacao(idUsuario, credencial, acaoNotificar, frequencia) {
+function criarParametrizacao(fkDistribuidora, url, receberNotificacao, frequencia) {
     var instrucao = `
-        INSERT INTO ParametrizacaoNotificacao (fkUsuario, credencial, acaoNotificar, frequenciaNotificacao)
-        VALUES (${idUsuario}, '${credencial}', '${acaoNotificar}', '${frequencia}');
+        INSERT INTO parametrizacao (fk_distribuidora, url, receber_notificacao, frequencia_notificacao)
+        VALUES (${fkDistribuidora}, '${url}', ${receberNotificacao}, '${frequencia}');
     `;
+    console.log(`executando ${instrucao}`)
     return database.executar(instrucao);
 }
 
-function atualizarParametrizacao(idUsuario, credencial, acaoNotificar, frequencia) {
+function atualizarParametrizacao(fkDistribuidora, url, receberNotificacao, frequencia) {
     var instrucao = `
-        UPDATE ParametrizacaoNotificacao
-        SET credencial = '${credencial}',
-            acaoNotificar = '${acaoNotificar}',
-            frequenciaNotificacao = '${frequencia}'
-        WHERE fkUsuario = ${idUsuario};
+        UPDATE parametrizacao
+        SET url = '${url}',
+            receber_notificacao = ${receberNotificacao},
+            frequencia_notificacao = '${frequencia}'
+        WHERE fk_distribuidora = ${fkDistribuidora};
     `;
+    console.log(`executando ${instrucao}`)
     return database.executar(instrucao);
 }
 

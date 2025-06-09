@@ -32,7 +32,7 @@ function verificarTipoUsuario(){
                             <img src="./assets/imgs/iconeDashboard.png" alt="">
                             <h2>Dashboard Especifico</h2>
                         </div>
-                        <div onclick="window.location = '../unidadeConsumidora.html'" id="opcao">
+                        <div onclick="window.location = '../historico_interrupcao.html'" id="opcao">
                             <img  src="./assets/imgs/iconeHistorico.png" alt="">
                             <h2>Histórico</h2>
                         </div>
