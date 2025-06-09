@@ -60,6 +60,7 @@ function alternarEdicao() {
     var labels = document.querySelectorAll("label"); 
 
     if (botao.innerText == "EDITAR") {
+
         botao.innerText = "SALVAR";
         url.disabled = false;
         receberNotificacao.disabled = false;
@@ -70,6 +71,7 @@ function alternarEdicao() {
         url.style.color = "#000";
         labels.forEach(label => label.style.color = "#000");
         receberNotificacao.parentElement.style.opacity = "1";
+        
     } else {
         botao.style.backgroundColor = "#007BFF";
         botao.innerText = "EDITAR";
