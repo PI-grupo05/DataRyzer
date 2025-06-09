@@ -39,7 +39,7 @@ function ultimaParametrizacao() {
                 document.getElementById("url").value = resposta.url;
                 document.getElementById("receberNotificacao").checked = resposta.receberNotificacao; 
                 document.getElementById("frequencia").value = resposta.frequencia;
-
+                document.getElementById("proxima_notificacao").textContent += resposta.proxima_notificacao;
             })
         } else {
             console.error('Nenhum dado encontrado ou erro na API');

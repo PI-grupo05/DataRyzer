@@ -9,7 +9,8 @@ function ultimaParametrizacao(req, res) {
             console.log(`\nResultados encontrados: ${resultado.length}`);
             console.log(`Resultados: ${JSON.stringify(resultado)}`); 
             res.json({
-                fkDistribuidora: fk_distribuidora ,
+                fkDistribuidora: fk_distribuidora,
+                proxima_notificacao: resultado[0].proxima_notificaco,
                 url: resultado[0].url,
                 receberNotificacao: resultado[0].receber_notificacao,
                 frequencia: resultado[0].frequencia_notificacao,
