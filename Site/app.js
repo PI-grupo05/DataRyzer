@@ -36,6 +36,11 @@ var notificacoesRouter = require("./src/routes/notificacoes");
 var unidadeRouter = require("./src/routes/unidade");
 var kpiDashEspecificaRouter = require("./src/routes/kpiDashEspecifica");
 
+
+var filtroRouter = require("./src/routes/filtroRoutes"); 
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -50,6 +55,8 @@ app.use("/grupos", groupRouter);
 app.use("/notificacoes", notificacoesRouter);
 app.use("/unidade", unidadeRouter);
 app.use("/kpiDashEspecifica", kpiDashEspecificaRouter);
+
+app.use("/filtros", filtroRouter);
 
 
 app.get("/config", (req, res) => {

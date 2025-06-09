@@ -129,6 +129,8 @@ function autenticar(req, res)  {
                             email: resultadoAutenticar[0].email,
                             fk_unidade_consumidora: resultadoAutenticar[0].fk_unidade_consumidora,
                             fk_distribuidora: resultadoAutenticar[0].fk_distribuidora
+
+                           // fk_filtro: resultadoAutenticar[0].fk_filtro
                         })
                         // id_usuario, nome, tipo_usuario, telefone, email, fk_cidade, fk_distribuidora
                     } else if (resultadoAutenticar.length == 0) {
