@@ -22,7 +22,9 @@ function abrirMenu() {
     }
 }
 
-window.onload = verificarTipoUsuario
+window.addEventListener("load", function() {
+    verificarTipoUsuario()
+});
 function verificarTipoUsuario() {
 
   var sidebar = document.getElementById("menuLateralSecoes")

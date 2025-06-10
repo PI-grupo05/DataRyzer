@@ -32,7 +32,7 @@ td {
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
-	background-color: #edecec;
+    background-color: #f0f0f0;
 }
 
 #colunaBotao button:hover, #botaoAnterior:hover, #botaoProximo:hover{
