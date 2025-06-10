@@ -1,34 +1,36 @@
 services:
   mysql:
     container_name: container-mysql
-    image: felipelim4/mysql-dataryzer:latest
+    image: felipelim4/mysql-dataryzer:v2
     environment:
       MYSQL_ROOT_PASSWORD: 41465490Fe*
       MYSQL_DATABASE: dataryzer
     ports:
       - "3306:3306"
-    healthcheck:
-      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-      interval: 10s
-      retries: 5
-      start_period: 5s
+    network:
+     - dataryzer
   node:
     container_name: container-node
-    image: felipelim4/node-dataryzer:latest
+    image: felipelim4/node-dataryzer:v1
     environment:
       DB_PASSWORD: 41465490Fe*
     ports:
       - "80:8080"
+    networks:
+      - dataryzer
   angular:
     container_name: container-angular
-    image: felipelim4/angular-dataryzer:latest
+    image: felipelim4/angular-dataryzer:v1
     ports:
       - "4200:4200"
+    networks:
+      - dataryzer
   java:
     container_name: container-java
-    image: felipelim4/java-dataryzer:latest
-    depends_on:
-      mysql:
-        condition: service_healthy
+    image: felipelim4/java-dataryzer:v3
+    networks:
+      - dataryzer
 
+networks:
+  dataryzer:
 
