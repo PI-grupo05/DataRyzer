@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 * {
   padding: 0;
   margin: 0;
@@ -15,13 +16,19 @@ body {
   justify-content: center;
   align-items: center;
   user-select: none;
-  background: linear-gradient(to bottom, #070226, #321ec6);
+  background-color: #f0f0f0;
 }
 
 #setaVoltar {
   position: absolute;
   top: 20px;
   left: 20px;
+}
+
+#botaoMenu {
+    transform: scaleX(1);
+    width: 40px;
+    height: 40px;
 }
 
 .container-group {
@@ -33,7 +40,9 @@ body {
   height: 70vh;
   background-color: #fff;
   padding: 0 25px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
+
 .div-create-group {
   display: flex;
   width: 100%;
@@ -56,6 +65,7 @@ body {
   box-shadow: none;
   cursor: pointer;
 }
+
 .btn-desassociar {
   margin-left: auto;
 }
@@ -122,6 +132,7 @@ body {
   height: 100%;
   width: 100%;
 }
+
 #list-unidades {
   margin-bottom: 1rem;
 }
@@ -159,20 +170,26 @@ body {
   outline: none;
   font-size: 0.8125rem;
 }
+
 input:focus {
   border-top: 1px solid white;
   border-left: 1px solid red;
   border-right: 1px solid white;
 }
+
 input::placeholder {
   font-size: 0.6rem;
 }
 
-.grups {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
+#secaoUsuario {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#secaoUsuario img {
+    width: 60px;
+    height: 60px;
 }
 
 h2 {
@@ -193,7 +210,7 @@ h2 {
 .modal {
   position: fixed;
   top: 0;
-  left: 0;
+  left: 140px;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.5);
@@ -201,6 +218,7 @@ h2 {
   justify-content: center;
   align-items: center;
 }
+
 .modal-content {
   display: flex;
   flex-direction: column;

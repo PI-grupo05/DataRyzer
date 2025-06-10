@@ -5,9 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>DataRyzer | Grupos</title>
     <link rel="stylesheet" href="./css/grupos.css" />
+    <link rel="stylesheet" href="css/sidebar.css" />
     <script src="./js/grupos.js"></script>
     <script src="./js/sessao.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/sidebar.js"></script>
     <link
       rel="shortcut icon"
       href="assets/imgs/favicon.png"
@@ -15,54 +17,103 @@
     />
   </head>
   <body onload="carregarGruposDoUsuario(), validarSessao()">
-    <a id="setaVoltar" href="telaPosLogin.html">
-      <img
-        src="assets/imgs/voltarSeta.png"
-        alt="voltar"
-        width="40px"
-        height="40px"
-      />
-    </a>
-    <div class="grups">
-      <div class="container-group">
-        <h2>Gerenciamento de grupos</h2>
-        <div class="div-create-group">
-          <div class="input-nome">
-            <input type="text" id="nome-grupo" placeholder="Criar novo grupo" />
+  <div id="menuLateral">
+      <img id="logo" src="./assets/imgs/logoData-White.png" alt="" />
+      <div id="menuLateralSecoes">
+        <!-- <a href="./menu.html">
+                <img src="./assets/imgs/iconeDash.png" alt="">
+                <span>Menu inicial</span>
+            </a>
+            <a href="./dashGeral.html">
+                <img src="./assets/imgs/icon_grafico.svg" alt="">
+                <span>Dashboard</span>
+            </a>
+            <a href="./unidadeConsumidora.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Unidade Consumidora</span>
+            </a>
+            <a href="./historico_interrupcao.html">
+                <img src="./assets/imgs/historico_icon.png" alt="" />
+                <span>historico de interrupções</span>
+            </a> -->
+      </div>
+      <div class="inferior_sidebar">
+        <img
+          style="cursor: pointer"
+          onclick="sair()"
+          class="botao_sair"
+          src="./assets/imgs/botao_sair.svg"
+          alt=""
+        />
+        <img
+          style="cursor: pointer"
+          onclick="window.location = '../meuPerfilEditar.html'"
+          src="./assets/imgs/person-gear.svg"
+          alt=""
+        />
+      </div>
+    </div>
+    <div  class="conteudo-principal" id="conteudoPrincipal">
+       <section id="cabecalho">
+        <img
+          id="botaoMenu"
+          onclick="abrirMenu()"
+          src="./assets/imgs/iconeSeta.png"
+          alt=""
+        />
+        <div id="secaoUsuario">
+          <img
+            class="imagem_usuario"
+            src="./assets/imgs/iconeUsuario.png"
+            alt=""
+          />
+          <div id="dadosUsuario">
+            <span>Usuario</span>
+            <span>Cargo</span>
           </div>
-          <button class="btn-group" onclick="criarGrupo()">
-            <img
-              src="assets/imgs/icons8-adição-60.png"
-              width="25"
-              height="25px"
-            />
-          </button>
         </div>
-        <div id="list-groups"></div>
-        <!-- Modal -->
-        <div id="modal-gerenciar" class="modal hidden">
-          <div class="modal-content">
-            <h3 id="nome-grupo-modal"></h3>
-            <div class="div-select">
-              <select id="select-unidade">
-                <!-- Unidades disponíveis serão carregadas aqui -->
-              </select>
-              <button
-                class="btn-modal-associar"
-                onclick="associarUnidadeAoGrupo()"
-              >
-                Associar
-              </button>
+      </section>
+      <div class="grups">
+        <div class="container-group">
+          <h2>Gerenciamento de grupos</h2>
+          <div class="div-create-group">
+            <div class="input-nome">
+              <input type="text" id="nome-grupo" placeholder="Criar novo grupo" />
             </div>
-            <button class="btn-modal-fechar" onclick="fecharModal()">
+            <button class="btn-group" onclick="criarGrupo()">
               <img
-                src="assets/imgs/iconFechar.png"
-                width="30px"
-                height="30px"
-                alt="Fechar"
+                src="assets/imgs/icons8-adição-60.png"
+                width="25"
+                height="25px"
               />
             </button>
-            <div id="list-unidades"></div>
+          </div>
+          <div id="list-groups"></div>
+          <!-- Modal -->
+          <div id="modal-gerenciar" class="modal hidden">
+            <div class="modal-content">
+              <h3 id="nome-grupo-modal"></h3>
+              <div class="div-select">
+                <select id="select-unidade">
+                  <!-- Unidades disponíveis serão carregadas aqui -->
+                </select>
+                <button
+                  class="btn-modal-associar"
+                  onclick="associarUnidadeAoGrupo()"
+                >
+                  Associar
+                </button>
+              </div>
+              <button class="btn-modal-fechar" onclick="fecharModal()">
+                <img
+                  src="assets/imgs/iconFechar.png"
+                  width="30px"
+                  height="30px"
+                  alt="Fechar"
+                />
+              </button>
+              <div id="list-unidades"></div>
+            </div>
           </div>
         </div>
       </div>
