@@ -1,3 +1,68 @@
+// document.getElementById("filtros_select").addEventListener("change", function () {
+//     const filtroId = this.value;
+
+//     if (!filtroId) return;
+
+//     fetch(`/filtros/detalhes/${filtroId}`)
+//         .then(res => res.json())
+//         .then(detalhes => {
+//             console.log("Filtro carregado:", detalhes);
+
+//             // Atualizar a dashboard com as datas recebidas do banco
+//             atualizarDashboard(detalhes.data_inicio, detalhes.data_fim);
+//         })
+//         .catch(error => {
+//             console.error("Erro ao buscar detalhes do filtro:", error);
+//             alert("Erro ao carregar os detalhes do filtro.");
+//         });
+// });
+
+
+function formatarDataISO(dataISO) {
+    if (!dataISO || typeof dataISO !== "string") {
+        console.error("Erro: Data inválida recebida", dataISO);
+        return null; // Retorna null em vez de "Data inválida"
+    }
+
+    const date = new Date(dataISO);
+    
+    if (isNaN(date.getTime())) { // Se a data for inválida, retorna null
+        console.error("Erro ao converter data:", dataISO);
+        return null;
+    }
+
+    return date.toISOString().split("T")[0]; // Retorna "YYYY-MM-DD"
+}
+
+
+document.getElementById("filtros_select").addEventListener("change", function () {
+    const filtroId = this.value;
+
+    fetch(`/filtros/detalhes/${filtroId}`)
+        .then(res => res.json())
+        .then(detalhes => {
+            console.log("Filtro carregado:", detalhes);
+
+            const dataInicioFormatada = formatarDataISO(detalhes.data_inicio);
+            const dataFimFormatada = formatarDataISO(detalhes.data_fim);
+
+            if (!dataInicioFormatada || !dataFimFormatada) {
+                console.error("Erro: datas inválidas, não enviando requisição");
+                return;
+            }
+
+            atualizarDashboard(dataInicioFormatada, dataFimFormatada);
+        })
+        .catch(error => {
+            console.error("Erro ao buscar detalhes do filtro:", error);
+            alert("Erro ao carregar os detalhes do filtro.");
+        });
+});
+
+
+
+
+//================================================================
 const filtrosDetalhes = {}; // Objeto para armazenar os detalhes dos filtros
 
 function listarNomesParaSelect() {
@@ -13,8 +78,8 @@ function listarNomesParaSelect() {
                 // Armazena os detalhes no objeto
                 filtrosDetalhes[filtro.id_filtro] = {
                     nome: filtro.nome,
-                    data_inicio: filtro.data_inicio,
-                    data_fim: filtro.data_fim,
+                    data_inicio: filtro.data_inicio.split("T")[0],
+                    data_fim: filtro.data_fim.split("T")[0],
                 };
 
                 // Adiciona a opção ao select
@@ -30,7 +95,7 @@ function listarNomesParaSelect() {
                 const detalhes = filtrosDetalhes[filtroId];
                 if (detalhes) {
                     console.log(`Filtro selecionado:`, detalhes);
-                    usarDatas(detalhes.data_inicio, detalhes.data_fim);
+                    usarDatas(detalhes.data_inicio.split("T")[0], detalhes.data_fim.split("T")[0]);
                 }
             });
         })
@@ -42,7 +107,7 @@ function listarNomesParaSelect() {
 
 function usarDatas(dataInicio, dataFim) {
     // Faça o que precisar com as datas
-    console.log(`Data início: ${dataInicio}, Data fim: ${dataFim}`);
+    console.log(`Data início: ${dataInicio.split("T")[0]}, Data fim: ${dataFim.split("T")[0]}`);
 }
 
 // function listarNomesParaSelect() {
@@ -86,10 +151,10 @@ function listarFiltros() {
                 nomeCell.textContent = filtro.nome;
 
                 const inicioCell = document.createElement("td");
-                inicioCell.textContent = filtro.data_inicio;
+                inicioCell.textContent = filtro.data_inicio.split("T")[0];
 
                 const fimCell = document.createElement("td");
-                fimCell.textContent = filtro.data_fim;
+                fimCell.textContent = filtro.data_fim.split("T")[0];
 
                 const actionsCell = document.createElement("td");
 
@@ -361,6 +426,10 @@ document.getElementById("calendario").addEventListener("change", function () {
 });
 
 
+function formatarData(dataISO) {
+    const date = new Date(dataISO);
+    return date.toISOString().split("T")[0]; // Retorna apenas "YYYY-MM-DD"
+}
 
 
 //=====================================================================

@@ -133,9 +133,14 @@ h2{
 }
 
 .cartao img{
-    width: 5%;
+    width: 15%;
+    cursor: pointer;
+    
 }
-
+.cartao img:hover{
+     transform: scale(1.2); 
+      transition: transform 0.3s ease-in-out;
+}
 .metricaTexto{
     text-align: center;
     height: 100%;
@@ -155,7 +160,7 @@ h2{
     font-size: 2vw;
 }
 
-#iconeCalendario{
+.iconeCalendario{
     width: 50%;
 }
 

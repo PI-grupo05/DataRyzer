@@ -1,6 +1,28 @@
 var filtroModel = require("../models/filtroModel");
 
 // controllers/filtroController.js
+function obterDetalhesFiltro(req, res) {
+    var idFiltro = req.params.idFiltro;
+
+    filtroModel.obterDetalhes(idFiltro)
+        .then(resultado => {
+            if (!resultado || resultado.length === 0) {
+                return res.status(404).json({ error: "Filtro não encontrado" });
+            }
+
+            console.log("Dados retornados pelo banco:", resultado[0]); // Log para depuração
+            res.json(resultado[0]); // Enviar resposta JSON corretamente
+        })
+        .catch(erro => {
+            console.error("Erro ao obter detalhes do filtro:", erro);
+            res.status(500).json({ error: "Erro ao buscar detalhes do filtro" });
+        });
+}
+
+
+
+
+//===========================================================
 
 function listarDatasInicio(req, res) {
   filtroModel
@@ -114,4 +136,5 @@ module.exports = {
   listarFiltros,
   deletarFiltro,
   atualizarFiltro,
+  obterDetalhesFiltro, // <- adicionado recete
 };

@@ -23,7 +23,9 @@ router.get("/listar/:idUsuario", filtroController.listarFiltros);
 
 router.delete("/deletar/:id", function(req,res){
     filtroController.deletarFiltro(req,res);
-})
+});
+
+router.get("/detalhes/:idFiltro", filtroController.obterDetalhesFiltro);
 
 
 module.exports = router;

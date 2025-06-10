@@ -48,6 +48,21 @@ function atualizarFiltro(id_filtro, nome, data_inicio, data_fim) {
   return database.executar(instrucaoSql);
 }
 
+function obterDetalhes(idFiltro) {
+    var instrucaoSql = `
+        SELECT DATE_FORMAT(data_inicio, '%Y/%m/%d') AS data_inicio, 
+               DATE_FORMAT(data_fim, '%Y/%m/%d') AS data_fim 
+        FROM filtro 
+        WHERE id_filtro = ${idFiltro};
+    `;
+   
+    return database.executar(instrucaoSql); // Certifique-se de que `idFiltro` está correto
+}
+
+
+
+
+
 module.exports = {
   listarDatasInicio,
   listarDatasFim,
@@ -55,4 +70,6 @@ module.exports = {
   listarFiltros,
   deletarFiltro,
   atualizarFiltro,
+
+  obterDetalhes, // <- novos arecente
 };
