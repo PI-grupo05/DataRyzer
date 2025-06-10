@@ -1,21 +1,3 @@
-// document.getElementById("filtros_select").addEventListener("change", function () {
-//     const filtroId = this.value;
-
-//     if (!filtroId) return;
-
-//     fetch(`/filtros/detalhes/${filtroId}`)
-//         .then(res => res.json())
-//         .then(detalhes => {
-//             console.log("Filtro carregado:", detalhes);
-
-//             // Atualizar a dashboard com as datas recebidas do banco
-//             atualizarDashboard(detalhes.data_inicio, detalhes.data_fim);
-//         })
-//         .catch(error => {
-//             console.error("Erro ao buscar detalhes do filtro:", error);
-//             alert("Erro ao carregar os detalhes do filtro.");
-//         });
-// });
 
 
 function formatarDataISO(dataISO) {
@@ -26,12 +8,12 @@ function formatarDataISO(dataISO) {
 
     const date = new Date(dataISO);
     
-    if (isNaN(date.getTime())) { // Se a data for inválida, retorna null
+    if (isNaN(date.getTime())) { 
         console.error("Erro ao converter data:", dataISO);
         return null;
     }
 
-    return date.toISOString().split("T")[0]; // Retorna "YYYY-MM-DD"
+    return date.toISOString().split("T")[0]; 
 }
 
 
@@ -110,28 +92,6 @@ function usarDatas(dataInicio, dataFim) {
     console.log(`Data início: ${dataInicio.split("T")[0]}, Data fim: ${dataFim.split("T")[0]}`);
 }
 
-// function listarNomesParaSelect() {
-//     const idUsuario = sessionStorage.getItem("ID_USUARIO");
-
-//     fetch(`/filtros/listar/${idUsuario}`)
-//         .then((res) => res.json())
-//         .then((filtros) => {
-//             const select = document.getElementById("filtros_select");
-//             select.innerHTML = `<option value="">Selecione um filtro</option>`; 
-
-//             filtros.forEach((filtro) => {
-//                 const option = document.createElement("option");
-//                 option.value = filtro.id_filtro; 
-//                 option.textContent = filtro.nome; 
-//                 select.appendChild(option);
-//             });
-//         })
-//         .catch((error) => {
-//             console.error("Erro ao listar nomes dos filtros:", error);
-//             alert("Erro ao carregar os nomes dos filtros!");
-//         });
-// }
-
 
 
 function listarFiltros() {
@@ -189,12 +149,13 @@ function listarFiltros() {
 }
 
 
-function salvarFiltro() {
+
+
+async function salvarFiltro() {
     const nomeFiltro = document.getElementById("nome_filtro").value;
     const dataInicio = document.getElementById("calendario").value;
     const dataFim = document.getElementById("calendario_fim").value;
     const idUsuarioS = sessionStorage.getItem("ID_USUARIO");
-
 
     console.log("Nome do Filtro:", nomeFiltro);
     console.log("Data Início:", dataInicio);
@@ -202,7 +163,14 @@ function salvarFiltro() {
     console.log("ID Usuário:", idUsuarioS);
 
     if (!nomeFiltro || !dataInicio || !dataFim || !idUsuarioS) {
-        alert("Preencha todos os campos corretamente!");
+        await Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Preencha todos os campos!",
+            confirmButtonText: "OK",
+            heightAuto: false,
+            scrollbarPadding: false,
+        });
         return;
     }
 
@@ -215,35 +183,60 @@ function salvarFiltro() {
 
     console.log("Dados enviados ao backend:", filtroData);
 
-    fetch(`/filtros/criar`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(filtroData),
-    })
-        .then((resposta) => {
-            console.log("Resposta do servidor:", resposta);
-            if (resposta.ok) {
-                listarFiltros();
-                console.log("Filtro criado com sucesso!");
-                alert("Filtro criado com sucesso!");
-                limparCoisas();
-                bloaquearDatafim();
-                 
-        listarNomesParaSelect();
-               
-            } else {
-                return resposta.text().then((texto) => {
-                    console.error("Erro no backend:", texto);
-                    alert("Erro ao salvar o filtro.");
-                });
-            }
-        })
-        .catch((error) => {
-            console.error("Erro na comunicação com o servidor:", error);
-            alert("Erro ao salvar filtro!");
+    try {
+        const resposta = await fetch(`/filtros/criar`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(filtroData),
         });
-}
 
+        console.log("Resposta do servidor:", resposta);
+
+        if (resposta.ok) {
+            listarFiltros();
+            console.log("Filtro criado com sucesso!");
+            
+            // Sucesso
+            await Swal.fire({
+                title: "Sucesso!",
+                text: "Filtro criado com sucesso!",
+                icon: "success",
+                confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+            });
+            
+            limparCoisas();
+            bloaquearDatafim();
+            listarNomesParaSelect();
+        } else {
+            const texto = await resposta.text();
+            console.error("Erro no backend:", texto);
+            
+            // Erro do backend
+            await Swal.fire({
+                title: "Erro!",
+                text: "Erro ao salvar o filtro.",
+                icon: "error",
+                confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+            });
+        }
+    } catch (error) {
+        console.error("Erro na comunicação com o servidor:", error);
+        
+        // Erro de comunicação
+        await Swal.fire({
+            title: "Erro!",
+            text: "Erro ao salvar filtro!",
+            icon: "error",
+            confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+        });
+    }
+}
 
 function preencherFormularioParaEdicao(filtro) {
     
@@ -269,38 +262,65 @@ document.getElementById("calendario").addEventListener("change", function () {
 });
 }
 
-function atualizarFiltro() {
+
+async function atualizarFiltro() {
     const nomeFiltro = document.getElementById("nome_filtro").value;
     const dataInicio = document.getElementById("calendario").value;
     const dataFim = document.getElementById("calendario_fim").value;
 
     if (!nomeFiltro || !dataInicio || !dataFim) {
-        alert("Preencha todos os campos!");
+        await Swal.fire({
+            title: "Atenção!",
+            text: "Preencha todos os campos!",
+            icon: "warning",
+            confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+        });
         return;
     }
 
     const filtro = { nome: nomeFiltro, data_inicio: dataInicio, data_fim: dataFim };
 
-    fetch(`filtros/editar/${idFiltroAtual}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(filtro),
-    })
-        .then((res) => {
-            if (!res.ok) throw new Error("Erro ao atualizar o filtro!");
-            return res.json();
-        })
-        .then(() => {
-            alert("Filtro atualizado com sucesso!");
-            listarFiltros();
-            limparCoisas();
-        listarNomesParaSelect();
-            bloaquearDatafim();
-        })
-        .catch((error) => {
-            console.error("Erro ao atualizar filtro:", error);
-            alert("Erro ao atualizar o filtro!");
+    try {
+        const res = await fetch(`filtros/editar/${idFiltroAtual}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(filtro),
         });
+
+        if (!res.ok) throw new Error("Erro ao atualizar o filtro!");
+
+        const data = await res.json();
+
+        // Sucesso
+        await Swal.fire({
+            title: "Sucesso!",
+            text: "Filtro atualizado com sucesso!",
+            icon: "success",
+            confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+        });
+
+        listarFiltros();
+        limparCoisas();
+        listarNomesParaSelect();
+        bloaquearDatafim();
+
+    } catch (error) {
+        console.error("Erro ao atualizar filtro:", error);
+        
+        // Erro
+        await Swal.fire({
+            title: "Erro!",
+            text: "Erro ao atualizar o filtro!",
+            icon: "error",
+            confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+        });
+    }
 }
 
 
@@ -310,11 +330,33 @@ async function excluirFiltro(botao) {
 
     if (!idFiltro) {
         console.error("Erro: ID do filtro inválido!");
-        alert("Erro: O filtro não possui um ID válido.");
+        await Swal.fire({
+            title: "Erro!",
+            text: "O filtro não possui um ID válido.",
+            icon: "error",
+            confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+        });
         return;
     }
 
-    if (!confirm("Tem certeza que deseja excluir este filtro? Essa ação não pode ser desfeita!")) return;
+    // Confirmação de exclusão
+    const confirmResult = await Swal.fire({
+        title: "Tem certeza?",
+        text: "Você realmente deseja excluir este filtro? Essa ação não pode ser desfeita!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#d33",
+        cancelButtonColor: "#3085d6",
+        confirmButtonText: "Sim, excluir",
+        cancelButtonText: "Cancelar",
+                heightAuto: false,
+            scrollbarPadding: false,
+    });
+
+    // Se o usuário cancelou, sair da função
+    if (!confirmResult.isConfirmed) return;
 
     try {
         const resposta = await fetch(`filtros/deletar/${idFiltro}`, {
@@ -327,23 +369,48 @@ async function excluirFiltro(botao) {
         if (resposta.ok) {
             botao.parentElement.remove(); 
             console.log("Filtro deletado com sucesso!");
-            alert("Filtro deletado com sucesso!");
-             listarFiltros();
-     listarNomesParaSelect();
-     limparCoisas();
-   
-     
-    
+            
+            // Sucesso
+            await Swal.fire({
+                title: "Sucesso!",
+                text: "Filtro deletado com sucesso!",
+                icon: "success",
+                confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+            });
+            
+            listarFiltros();
+            listarNomesParaSelect();
+            limparCoisas();
         } else {
             console.error("Erro ao deletar filtro!");
-            alert("Erro ao deletar filtro.");
-             listarFiltros();
-     listarNomesParaSelect();
-     
+            
+            // Erro na resposta
+            await Swal.fire({
+                title: "Erro!",
+                text: "Erro ao deletar filtro.",
+                icon: "error",
+                confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+            });
+            
+            listarFiltros();
+            listarNomesParaSelect();
         }
     } catch (error) {
         console.error("Erro ao tentar excluir o filtro:", error);
-        alert("Erro ao excluir o filtro!");
+        
+        // Erro de conexão/exceção
+        await Swal.fire({
+            title: "Erro!",
+            text: "Erro ao excluir o filtro!",
+            icon: "error",
+            confirmButtonText: "OK",
+                heightAuto: false,
+            scrollbarPadding: false,
+        });
     }
 }
 
@@ -397,10 +464,6 @@ document.getElementById("calendario").addEventListener("change", function () {
 
 }
 
-
-
-
-     
 document.getElementById("calendario").addEventListener("change", function () {
     const dataInicio = this.value; 
     const calendarioFim = document.getElementById("calendario_fim");

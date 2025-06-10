@@ -7,6 +7,7 @@
   <script src="./js/sidebar.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- modall -->
 
@@ -113,9 +114,9 @@
       <span class="modal-close">&times;</span>
 
       <h1>Filtros</h1>
-
-      <label for="nome_filtro">Nome do Filtro:</label>
-      <input type="text" id="nome_filtro" placeholder="Digite o nome do filtro" />
+<div id="deixar-lado-lado" >
+      <label for="nome_filtro">Nome:</label>
+      <input type="text" id="nome_filtro" placeholder="Digite o nome" />
 
       <label for="calendario">Data Início:</label>
       <input type="date" id="calendario" />
@@ -123,9 +124,9 @@
       <label for="calendario_fim">Data Fim:</label>
       <input type="date" id="calendario_fim" />
 
-      <button id="salvar_filtro">Salvar Filtro</button>
-      <button id="atualizar_filtro" style="display: none;">Atualizar Filtro</button>
-
+      <button id="salvar_filtro">Salvar</button>
+      <button id="atualizar_filtro" style="display: none;">Atualizar</button>
+</div>
       <h2>Filtros Cadastrados</h2>
       <table>
         <thead>
