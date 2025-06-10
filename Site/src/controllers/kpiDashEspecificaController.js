@@ -27,22 +27,22 @@ var kpiDashEspecificaModel = require("../models/kpiDashEspecificaModel");
 function formatarDataISO(dataISO) {
     if (!dataISO || typeof dataISO !== "string") {
         console.error("Erro: Data inválida recebida", dataISO);
-        return null; // Retorna null em vez de "Data inválida"
+        return null; 
     }
 
     const date = new Date(dataISO);
     
-    if (isNaN(date.getTime())) { // Se a data for inválida, retorna null
+    if (isNaN(date.getTime())) { 
         console.error("Erro ao converter data:", dataISO);
         return null;
     }
 
-    return date.toISOString().split("T")[0]; // Retorna "YYYY-MM-DD"
+    return date.toISOString().split("T")[0]; 
 }
 
 function obterDuracaoMedia(req, res) {
     var { fk_unidade_consumidora, fk_distribuidora } = req.params;
-    var { data_inicio, data_fim } = req.query; // Captura os parâmetros da URL
+    var { data_inicio, data_fim } = req.query; 
 
     console.log("Parâmetros recebidos:", { fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim });
 
@@ -86,7 +86,7 @@ function obterDuracaoMedia(req, res) {
 
 function obterMaiorIndiceQuedas(req, res) {
     var { fk_unidade_consumidora, fk_distribuidora } = req.params;
-    var { data_inicio, data_fim } = req.query; // Captura os parâmetros da URL
+    var { data_inicio, data_fim } = req.query; 
 
     console.log("Parâmetros recebidos:", { fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim });
 
@@ -104,7 +104,7 @@ function obterMaiorIndiceQuedas(req, res) {
 
 function obterMediaPorDia(req, res) {
      var { fk_unidade_consumidora, fk_distribuidora } = req.params;
-    var { data_inicio, data_fim } = req.query; // Captura os parâmetros da URL
+    var { data_inicio, data_fim } = req.query; 
 
     console.log("Parâmetros recebidos:", { fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim });
 
@@ -133,7 +133,7 @@ function obterMediaPorDia(req, res) {
 // }
 function obterDadosGraficoLinha(req, res) {
     var { fk_unidade_consumidora, fk_distribuidora } = req.params;
-    var { data_inicio, data_fim } = req.query; // Captura os parâmetros da URL
+    var { data_inicio, data_fim } = req.query; 
 
     console.log("Parâmetros recebidos para gráfico de linha:", { fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim });
 
@@ -164,7 +164,7 @@ function obterDadosGraficoLinha(req, res) {
 
 function obterDadosGraficoBarra(req, res) {
     var { fk_unidade_consumidora, fk_distribuidora } = req.params;
-    var { data_inicio, data_fim } = req.query; // Captura os parâmetros da URL
+    var { data_inicio, data_fim } = req.query; 
 
     console.log("Parâmetros recebidos para gráfico de barra:", { fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim });
 
