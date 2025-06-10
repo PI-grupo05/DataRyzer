@@ -150,17 +150,37 @@ function obterDadosGraficoLinha(req, res) {
 }
 
 
-function obterDadosGraficoBarra(req, res) {
-    var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
-    var fk_distribuidora = req.params.fk_distribuidora;
+// function obterDadosGraficoBarra(req, res) {
+//     var fk_unidade_consumidora = req.params.fk_unidade_consumidora;
+//     var fk_distribuidora = req.params.fk_distribuidora;
 
-    kpiDashEspecificaModel.dadosGraficoBarra(fk_unidade_consumidora, fk_distribuidora)
+//     kpiDashEspecificaModel.dadosGraficoBarra(fk_unidade_consumidora, fk_distribuidora)
+//         .then(resultado => res.json(resultado))
+//         .catch(erro => {
+//             console.log(erro);
+//             res.status(500).json(erro.sqlMessage);
+//         });
+// }
+
+function obterDadosGraficoBarra(req, res) {
+    var { fk_unidade_consumidora, fk_distribuidora } = req.params;
+    var { data_inicio, data_fim } = req.query; // Captura os parâmetros da URL
+
+    console.log("Parâmetros recebidos para gráfico de barra:", { fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim });
+
+    if (!data_inicio || !data_fim) {
+        return res.status(400).json({ error: "Datas inválidas fornecidas" });
+    }
+
+    kpiDashEspecificaModel.dadosGraficoBarra(fk_unidade_consumidora, fk_distribuidora, data_inicio, data_fim)
         .then(resultado => res.json(resultado))
         .catch(erro => {
-            console.log(erro);
-            res.status(500).json(erro.sqlMessage);
+            console.error("Erro ao buscar dados para gráfico de barra:", erro);
+            res.status(500).json({ error: "Erro ao buscar dados no banco" });
         });
 }
+
+
 
 module.exports = {
     obterDadosGraficoLinha,

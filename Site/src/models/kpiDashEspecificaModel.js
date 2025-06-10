@@ -125,18 +125,38 @@ function dadosGraficoLinha(fk_unidade_consumidora, id_distribuidora, data_inicio
 
 
 
-function dadosGraficoBarra(fk_unidade_consumidora, fk_distribuidora) {
+// function dadosGraficoBarra(fk_unidade_consumidora, fk_distribuidora) {
+//     var instrucaoSql = `
+//         SELECT m.nome AS motivo, COUNT(*) AS total
+//         FROM interrupcao i
+//         JOIN motivo m ON i.fk_motivo = m.id_motivo
+//         JOIN unidade_consumidora uc ON i.fk_unidade_consumidora = uc.id_unidade_consumidora
+//         WHERE i.fk_unidade_consumidora = ${fk_unidade_consumidora} AND uc.fk_distribuidora = ${fk_distribuidora}
+//         GROUP BY motivo
+//         ORDER BY total desc limit 5;
+//     `;
+//     return database.executar(instrucaoSql, [fk_unidade_consumidora, fk_distribuidora]);
+// }
+
+function dadosGraficoBarra(fk_unidade_consumidora, id_distribuidora, data_inicio, data_fim) {
     var instrucaoSql = `
         SELECT m.nome AS motivo, COUNT(*) AS total
         FROM interrupcao i
         JOIN motivo m ON i.fk_motivo = m.id_motivo
         JOIN unidade_consumidora uc ON i.fk_unidade_consumidora = uc.id_unidade_consumidora
-        WHERE i.fk_unidade_consumidora = ${fk_unidade_consumidora} AND uc.fk_distribuidora = ${fk_distribuidora}
+        WHERE i.fk_unidade_consumidora = ${fk_unidade_consumidora}
+        AND uc.fk_distribuidora = ${id_distribuidora}
+        AND i.dt_inicio >= '${data_inicio}'
+        AND i.dt_fim <= '${data_fim}'
         GROUP BY motivo
-        ORDER BY total desc limit 5;
+        ORDER BY total DESC
+        LIMIT 5;
     `;
-    return database.executar(instrucaoSql, [fk_unidade_consumidora, fk_distribuidora]);
+
+    return database.executar(instrucaoSql, [fk_unidade_consumidora, id_distribuidora, data_inicio, data_fim]);
 }
+
+
 
 module.exports = {
     duracaoMedia,
