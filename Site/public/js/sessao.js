@@ -38,7 +38,7 @@ function sair() {
     }
 
     sessionStorage.clear();
-    window.location.href = `http://${APP_HOST}:${APP_PORT}/login.html`;
+    window.location.href = `./login.html`;
 }
 
 function verificarTipoUsuario(){

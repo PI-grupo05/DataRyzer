@@ -10,6 +10,7 @@ body{
     font-weight: bold;
     font-family: "Montserrat";
     margin: 1%;
+    height: 100vh;
 }
 
 #cabecalho{
