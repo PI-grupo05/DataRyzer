@@ -37,6 +37,11 @@ var unidadeRouter = require("./src/routes/unidade");
 var kpiDashEspecificaRouter = require("./src/routes/kpiDashEspecifica");
 var unidadeConsumidoraRouter = require("./src/routes/unidadeConsumidora")
 
+
+var filtroRouter = require("./src/routes/filtroRoutes"); 
+
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -53,6 +58,8 @@ app.use("/unidade", unidadeRouter);
 app.use("/kpiDashEspecifica", kpiDashEspecificaRouter);
 
 app.use("/unidadeConsumidora", unidadeConsumidoraRouter);
+app.use("/filtros", filtroRouter);
+
 
 app.get("/config", (req, res) => {
     res.json({

@@ -98,16 +98,21 @@ h2 {
     height: 150px;
 }
 
-.cartao img {
-    width: 5%;
+.cartao img{
+    width: 15%;
+    cursor: pointer;
+    
 }
-
-.metricaTexto {
+.cartao img:hover{
+    transform: scale(1.2); 
+    transition: transform 0.3s ease-in-out;
+}
+.metricaTexto{
     text-align: center;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
@@ -121,8 +126,11 @@ h2 {
     font-size: 2vw;
 }
 
-#iconeCalendario {
+.iconeCalendario{
     width: 50%;
+}
+.iconeCalendario:hover{
+    width: 16%;
 }
 
 #secaoGraficos {
