@@ -101,7 +101,7 @@ CREATE TABLE parametrizacao(
     url VARCHAR(200),
     receber_notificacao BOOLEAN,
     frequencia_notificacao VARCHAR(45),
-    proxima_notificaco DATE,
+    proxima_notificacao DATE,
     fk_distribuidora INT,
     CONSTRAINT fk_distribuidora_parametrizacao FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora)
     );
