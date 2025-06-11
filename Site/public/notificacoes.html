@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="./js/notificacoes.js"></script>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/sidebarConfig.js"></script>
+    <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
+    <!-- <link rel="stylesheet" href="./css/meuPerfilExcluir.css"> -->
+    <link rel="stylesheet" href="./css/notificacoes.css">
+    <title>Editar Perfil</title>
+</head>
+
+<body>
+    <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <!-- <a href="./meuPerfilExcluir.html">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>
+            </a>
+            <a href="./listaDiretores.html">
+                <img src="./assets/imgs/usuarios.png" alt="">
+                <span>Usuarios Regionais</span>
+            </a>
+            <a href="./grupos.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Grupos</span>
+            </a> -->
+        </div>
+        <div class="inferior_sidebar">
+            <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+			<img style="cursor: pointer; width: 29px;" onclick="voltarParaDash()" src="./assets/imgs/icon_grafico.svg" alt="">
+        </div>
+    </div>
+    <div class="conteudo-principal" id="conteudoPrincipal">
+
+    <section id="cabecalho">
+        <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="" />
+        <div id="secaoUsuario">
+            <img src="./assets/imgs/iconeUsuario.png" alt="" />
+            <div id="dadosUsuario">
+            <label id="nomeUsuarioLabel"></label>
+            <label id="cargoLabel"></label>
+            </div>
+        </div>
+    </section>
+    <div id="containerConteudo">
+        <h1>
+
+        </h1>
+        <!-- Aqui começa os codigo -->
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="profile-container">
+                    <h1>Notificações</h1>
+                    <form action="#" method="post" class="profile-form">
+                        <div class="form-group">
+                            <label for="email">URL:</label>
+                            <input type="text" id="url" placeholder="email@gmail.com" required disabled>
+                        </div>
+                        <div class="configs">
+                            <div class="botoes">
+                                <label for="ativar">Ativar/Desativar Notificações</label>
+                                <label name="ativar"  class="switch">
+                                    <input  id="receberNotificacao" type="checkbox" disabled>
+                                    <span class="slider"></span>
+                                </label>
+                            </div>
+                            <div class="botoes select">
+                                <label for="">Frequencia de Notificações</label>
+                                <select id="frequencia" disabled>
+                                    <option value="diario">Diario</option>
+                                    <option value="semanal">Semanal</option>
+                                    <option value="mensal">Mensal</option>
+                                </select>
+                            </div>
+
+                        </div>
+                        <p id="proxima_notificacao" style="color: #6c757d; font-size: 14px; margin-top: 4px;">Proxima notificação: </p>
+                        <div id="div_botoes" class="button-group">
+                            <button id="botaoCancelar" type="button" onclick="cancelarAlteracoes()" style="background-color: #6c757d;" class="btn-delete">CANCELAR</button>
+                            <button id="botaoEditar" type="button" onclick="parametrizarNotificacoes()" class="btn-delete">EDITAR</button>
+                            
+                        </div>
+                        <div class="link-container">
+                            <a target="_blank" href="https://api.slack.com/messaging/webhooks" class="discrete-link">
+                                <svg class="icon" viewBox="0 0 24 24">
+                                    <path d="M14,3V5H17.59L7.76,14.83L9.17,16.24L19,6.41V10H21V3M19,19H5V5H12V3H5C3.89,3 3,3.9 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V12H19V19Z"/>
+                                </svg>
+                                Instruções para Slack
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </section>
+    </div>
+    </div>
+</body>
+
+</html>
+ 

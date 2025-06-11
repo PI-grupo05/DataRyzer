@@ -1,0 +1,339 @@
+
+.profile-container {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    position: relative;
+}
+
+h1 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 1.5rem;
+    text-align: center;
+    position: relative;
+}
+
+.btn-edit {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-edit:hover {
+    background-color: #0056b3;
+}
+
+.profile-form .form-group {
+    margin-bottom: 1rem;
+}
+
+.profile-form label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #555;
+}
+
+.profile-form input {
+    width: 98%;
+    padding: 0.8rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    outline: none;
+}
+
+.profile-form input[readonly] {
+    background-color: #f0f0f0;
+    cursor: not-allowed;
+}
+
+.button-group {
+    margin-top: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+#botaoCancelar{
+    display: none;
+}
+
+.btn-delete {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    background-color: #007BFF;
+    color: white;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-delete:hover {
+    background-color: #0168d6;
+}
+
+.inferior_sidebar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+}
+
+.botao_sair{
+    width: 30px;
+}
+
+#menuLateral {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        width:250px;
+        min-width: 250px; /* Garante tamanho consistente */
+        background: #5a6268;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        transition: transform 0.8s ease;
+        z-index: 2;
+        overflow: hidden;
+        position: fixed; /* Fixo para consistência entre telas */
+        left: 0;
+        top: 0;
+        height: 100vh;
+        transform: translateX(0); /* aberto por padrão */
+    }
+
+    /* Quando o menu estiver fechado, desloca ele para a esquerda */
+    #menuLateral.fechado {
+        transform: translateX(-100%);
+    }
+
+
+    #logo{
+    width: 80%;
+}
+
+#menuLateralSecoes{
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 50px;
+}
+
+#menuLateralSecoes, #menuLateral a, #menuLateralSecoes img{
+    width: 50%;
+}
+
+#menuLateral a{
+    display: flex;
+    font-weight: 500;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    gap: 10px;
+}
+
+#botaoSair, #botaoSair img{
+    width: 30%;
+}
+
+    /* Conteúdo principal */
+.conteudo-principal {
+    margin-top: 0;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content:start;
+    margin-left: 300px; /* Espaço para a sidebar */
+    transition: margin-left 0.8s ease;
+}
+
+/* Quando sidebar está fechada */
+.conteudo-principal.sidebar-fechada {
+    margin-left: 0;
+    align-items: center;
+    justify-content: start;
+}
+
+
+
+#cabecalho{
+    margin-top: 30px;
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+}
+
+
+#secaoUsuario{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.configs {
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: start;
+}
+
+.botoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+
+.botoes input {
+    width: initial;
+}
+
+.botoes label {
+    margin: 0px;
+}
+
+.checkbox {
+    width: 18px;
+    height: 18px;
+    accent-color: #007bff; 
+    margin-right: 6px;
+    cursor: pointer;
+}
+
+.select {
+    gap: 20px;
+}
+
+select {
+    appearance: none; /* Remove estilo padrão */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px 20px;
+    padding-right: 30px;
+    font-size: 16px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg width='10' height='5' viewBox='0 0 10 5' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0l5 5 5-5z' fill='%23666'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 10px;
+    cursor: pointer;
+    transition: border-color 0.2s ease;
+}
+
+select:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 23px;
+}
+
+.switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: .4s;
+    border-radius: 34px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: .4s;
+    border-radius: 50%;
+}
+
+input:checked + .slider {
+    background-color: #4CAF50;
+}
+
+input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+.link-container {
+    background-color: white;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+    max-width: 250px;
+    margin: 0 auto;
+}
+
+.discrete-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #495057;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    padding: 0;
+}
+
+.discrete-link:hover {
+    color: #007bff;
+}
+
+.discrete-link:hover .icon {
+    transform: translateX(2px);
+}
+
+.icon {
+    width: 14px;
+    height: 14px;
+    fill: currentColor;
+    transition: transform 0.2s ease;
+    opacity: 0.7;
+}
+
+.discrete-link:hover .icon {
+    opacity: 1;
+}

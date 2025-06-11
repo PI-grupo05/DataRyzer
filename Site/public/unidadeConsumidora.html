@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css" />
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <Script src="./js/sessao.js"></Script>
+    <link rel="stylesheet" href="./css/unidadeConsumidora.css" />
+    <title>Unidade</title>
+  </head>
+
+  <body onload="exibirUnidadesConsumidoras()">
+    <div id="menuLateral">
+      <img id="logo" src="./assets/imgs/logoData-White.png" alt="" />
+      <div id="menuLateralSecoes">
+        <a href="./menu.html">
+          <img src="./assets/imgs/iconeDash.png" alt="">
+          <span>Menu inicial</span>
+        </a>
+        <a href="./dashGeral.html">
+          <img src="./assets/imgs/icon_grafico.svg" alt="">
+          <span>Dashboard</span>
+        </a>
+        <a href="./unidadeConsumidora.html">
+          <img src="./assets/imgs/iconeEmpresas.png" alt="" />
+          <span>Unidades Consumidoras</span>
+        </a>
+        <a href="./historico_interrupcao.html">
+          <img src="./assets/imgs/historico_icon.png" alt="" />
+          <span>historico de interrupções</span>
+        </a>
+      </div>
+      <div class="inferior_sidebar">
+				<img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+				<img style="cursor: pointer;" onclick="window.location = '../meuPerfilExcluir.html'" src="./assets/imgs/person-gear.svg" alt="">
+      </div>
+    </div>
+
+    <div class="conteudo-principal" id="conteudoPrincipal">
+      <section id="cabecalho">
+          <img
+            style="transform: scaleX(-1)"
+            id="botaoMenu"
+            onclick="abrirMenu()"
+            src="./assets/imgs/iconeSeta.png"
+            alt=""
+          />
+          <div id="secaoUsuario">
+            <img src="./assets/imgs/iconeUsuario.png" alt="" />
+            <div id="dadosUsuario">
+            <label id="nomeUsuarioLabel"></label>
+            <label id="cargoLabel"></label>
+            </div>
+          </div>
+        </section>
+    <div id="containerConteudo">
+    
+      <h1></h1>
+      <!-- Aqui começa os codigo -->
+      <section id="secaoUnidadeConsumidora">
+            <h1>Unidades Consumidoras</h1>
+            <form class="procurar">
+              <input
+                id="valorFiltro"
+                type="text"
+                name="search"
+                placeholder="Pesquisar unidade..."
+              />
+
+              <button onclick="exibirUnidadesConsumidoras()" class="procurarb" type="button">
+                <img class="lupinha" src="./assets/imgs/lupa.png" alt="">
+              </button>
+            </form>
+            
+    
+            <div id="containerUnidadesConsumidoras">
+              <div class="linha">
+                <div  onclick="acessarUnidadeConsumidora()" class="cartao">
+                  <input class="empresaBotao" type="button" value="UNIDADE 1" />
+                </div>
+                <div class="cartao">
+                  <input class="empresaBotao" type="button" value="UNIDADE 2" />
+                </div>
+                <div class="cartao">
+                  <input class="empresaBotao" type="button" value="UNIDADE 3" />
+                </div>
+              </div>
+            </div>
+
+      </section>
+    </div>
+
+    </div>
+  </body>
+</html>
+<script src="./js/sidebar.js"></script>
+<script>
+  window.addEventListener('load', function () {
+  console.log("Página carregada");
+  exibirUnidadesConsumidoras();
+  });
+
+  function exibirUnidadesConsumidoras(){
+         fetch(`/unidadeConsumidora/exibirUnidadesConsumidoras/${valorFiltro.value}`, {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO exibirUnidadesConsumidoras()!");
+            console.log(resposta)
+            if (resposta.ok) {
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                lista = json
+                carregarUnidadesConsumidoras()
+              });
+            } else {
+                console.log("Houve um erro ao tentar carregar a tabela");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+    
+    function carregarUnidadesConsumidoras(){
+      containerUnidadesConsumidoras.innerHTML = ""
+      var conteudo = ""
+      var quantidadeVisivel = 0
+                
+      for(var colunaAtual = 0; colunaAtual <= lista.length - 1; colunaAtual++){
+        if(quantidadeVisivel == 0){
+          conteudo += `
+            <div class="linha">\n
+          `
+        }
+        if(lista[colunaAtual].unidadeConsumidora != null){
+          conteudo += `
+              <div onclick="acessarUnidadeConsumidora(${colunaAtual + 1})" id="${colunaAtual + 1}" class="cartao">
+                <input class="empresaBotao" type="button" value="${lista[colunaAtual].unidadeConsumidora}" />
+              </div>
+          `
+          quantidadeVisivel++
+        }
+
+        if(quantidadeVisivel == 3){
+          conteudo += `\n
+            </div>
+          `
+          quantidadeVisivel = 0
+        }
+      }
+      containerUnidadesConsumidoras.innerHTML = conteudo
+
+    }
+
+    function acessarUnidadeConsumidora(id){
+      window.location = "dashEspecifica.html"
+      sessionStorage.FK_UNIDADE_CONSUMIDORA = id
+    }
+  </script>

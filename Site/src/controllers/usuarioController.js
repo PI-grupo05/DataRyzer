@@ -1,5 +1,106 @@
 var usuarioModel = require("../models/usuarioModel");
 
+function exibirDiretoresRegionais(res){
+    usuarioModel.exibirDiretoresRegionais()
+       .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`); 
+                if (resultado.length > 0) {
+                       res.json(resultado.map(diretor => ({
+                            id_usuario: diretor.id_usuario,
+                            diretor: diretor.diretor,
+                            distribuidora: diretor.distribuidora,
+                            unidade_consumidora: diretor.unidade_consumidora
+                        })));
+                } else {
+                    res.status(403).send("Lista não encontrada");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar ao carregar os diretores! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function pegarDadosDiretor(req, res){
+    var id_usuario = req.params.id_usuario
+    usuarioModel.pegarDadosDiretor(id_usuario)
+       .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`);
+
+                if (resultado.length == 1) {
+                    console.log(resultado);
+                    
+                    res.json({
+                        diretor: resultado[0].diretor,
+                        email: resultado[0].email,
+                        distribuidora: resultado[0].distribuidora,
+                        telefone: resultado[0].telefone,
+                    })
+                } else {
+                    res.status(403).send("Diretor não encontrado");
+                }
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar ao pegar os dados do diretor! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function atualizarDadosDiretor(req, res){
+    var id_usuario = req.params.id_usuario
+    var nome = req.body.nome
+    var email = req.body.email
+    var telefone = req.body.telefone
+    usuarioModel.atualizarDadosDiretor(id_usuario, nome, email, telefone)
+       .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`);
+
+                res.status(200).send("Diretor atualizado com sucesso")
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar ao pegar os dados do diretor! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
+
+function deletarDadosDiretor(req,res){
+    var id_usuario = req.params.id_usuario
+    usuarioModel.deletarDadosDiretor(id_usuario)
+       .then(
+            function (resultado) {
+                console.log(`\nResultados encontrados: ${resultado.length}`);
+                console.log(`Resultados: ${JSON.stringify(resultado)}`);
+
+                res.status(200).send("Diretor excluído com sucesso")
+
+            }
+        )
+        .catch(
+            function (erro) {
+                console.log(erro);
+                console.log("\nHouve um erro ao realizar ao deletar os dados do diretor! Erro: ", erro.sqlMessage);
+                res.status(500).json(erro.sqlMessage);
+            }
+        );
+}
 
 function autenticar(req, res)  {
     var email = req.body.emailServer;
@@ -26,7 +127,10 @@ function autenticar(req, res)  {
                             tipo_usuario: resultadoAutenticar[0].tipo_usuario,
                             telefone: resultadoAutenticar[0].telefone,
                             email: resultadoAutenticar[0].email,
-                            fk_cidade: resultadoAutenticar[0].fk_cidade
+                            fk_unidade_consumidora: resultadoAutenticar[0].fk_unidade_consumidora,
+                            fk_distribuidora: resultadoAutenticar[0].fk_distribuidora
+
+                           // fk_filtro: resultadoAutenticar[0].fk_filtro
                         })
                         // id_usuario, nome, tipo_usuario, telefone, email, fk_cidade, fk_distribuidora
                     } else if (resultadoAutenticar.length == 0) {
@@ -53,7 +157,7 @@ function cadastrar(req, res) {
     var telefone = req.body.telefoneServer;
     var codigoAssociacao = req.body.codigoAssociacaoServer;
     var tipoUsuario = req.body.tipoUsuarioServer;
-
+    var fkUnidadeConsumidora = req.body.fkUnidadeConsumidoraServer;
     // Faça as validações dos valores
     if (nome == undefined) {
         res.status(400).send("Seu nome está undefined!");
@@ -71,7 +175,7 @@ function cadastrar(req, res) {
         
     
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, telefone, codigoAssociacao, tipoUsuario)
+        usuarioModel.cadastrar(nome, email, senha, telefone, codigoAssociacao, tipoUsuario, fkUnidadeConsumidora)
             .then(function (resultado) {
                 res.json(resultado);
             })
@@ -92,5 +196,8 @@ function cadastrar(req, res) {
 module.exports = {
     autenticar,
     cadastrar,
-    
+    pegarDadosDiretor,
+    exibirDiretoresRegionais,
+    deletarDadosDiretor,
+    atualizarDadosDiretor,
 }

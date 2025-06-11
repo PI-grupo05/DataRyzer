@@ -1,0 +1,115 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500&display=swap");
+
+
+body{
+    background-image: url(../assets/imgs/fundoPosLogin.png);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    color: white;
+    font-weight: bold;
+    font-family: "Montserrat";
+    margin: 1%;
+    height: 100vh;
+}
+
+#cabecalho{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#logoEmpresa{
+    width: 20%;
+}
+
+#campoUsuario{
+    width: 15%;
+    display: flex;
+    align-items: center;
+    gap: 10%;
+    font-size: 1vw;
+    cursor: pointer;
+}
+
+#campoUsuario img{
+    width: 30%;
+}
+
+#nomeUsuario{
+    font-size: 1.5vw;
+}
+
+#conteudo{
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+#conteudo h1{
+    font-size: 2.5vw;
+}
+
+#imgPosLogin{
+    width: 50%;
+    height: 100%;
+}
+
+#opcoes{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 40%;
+    gap: 20px;
+}
+
+#opcao{
+    background-color: rgba(26,36,75, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    gap: 3%;
+    width: 80%;
+    height: 10vh;
+    transition: 0.5s;
+    cursor: pointer;
+    margin-left: -20%;
+}
+
+#opcao:hover{
+    width: 85%;
+    height: 13vh;
+}
+
+#opcao img{
+    margin-left: 3%;
+    width: 50px;
+    height: 50px;
+}
+
+footer{
+    position: absolute;
+    bottom: 5%;
+    display: flex;
+    align-items: end;
+    gap: 1%;
+    margin-top: 2%;
+    margin-left: 8%;
+}
+
+footer img{
+    width: 45%;
+}
+
+#botaoSair{
+    cursor: pointer;
+    transition: 1s;
+}
+
+#botaoSair:hover{
+    font-size: 1.5vw;
+}
+
+

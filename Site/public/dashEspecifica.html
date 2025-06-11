@@ -1,102 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
-    <title>Document</title>
+<head>        
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="./css/estiloDashEspecifica.css" />  
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/dashEspecifica.js"></script>
+  <link rel="stylesheet" href="css/filtro.css">
+  <script src="./js/sessao.js"></script>
+  <link rel="stylesheet" href="css/sidebar.css">
+  <script src="./js/sidebar.js"></script>
+  <title>Dashboard Específica</title>
 </head>
 <body>
-    <div id="menuLateral">
-        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
-        <div id="menuLateralSecoes">
-            <a href="">
-                <img src="./assets/imgs/iconeDash.png" alt="">
-                <span>Dashboard</span>
-            </a>
-            <a href="">
-                <img src="./assets/imgs/iconePerfil.png" alt="">
-                <span>Perfil</span>
-            </a>
-            <a href="">
-                <img src="./assets/imgs/iconeNotificacao.png" alt="">
-                <span>Notificações</span>                
-            </a>
-            <a href="">
-                <img src="./assets/imgs/iconeEmpresas.png" alt="">
-                <span>Empresas</span>
-            </a>
+  <div id="menuLateral">
+    <img id="logo" src="./assets/imgs/logoData-White.png" alt="Logo" />
+    <div id="menuLateralSecoes">
+    </div>
+    <div class="inferior_sidebar">
+        <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+				<img style="cursor: pointer;" onclick="window.location = '../meuPerfilExcluir.html'" src="./assets/imgs/person-gear.svg" alt="">
+      </div>
+  </div>
+
+  <div class="conteudo-principal" id="conteudoPrincipal">
+    <section id="cabecalho">
+      <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="" />
+      <div id="secaoUsuario">
+        <img src="./assets/imgs/iconeUsuario.png" alt="" />
+        <div id="dadosUsuario">
+          <!-- <span>Usuario</span> -->
+          <label id="nomeUsuarioLabel"></label>
+          <label id="cargoLabel"></label>
+          <!-- <span>Cargo</span> -->
         </div>
-        <a id="botaoSair" onclick="siteAngular">
-            <img src="./assets/imgs/iconeSair.png" alt="">
-            Sair
-        </a>
+      </div>
+    </section>
+  <div id="containerConteudo">
+    <h1>Interrupções do Mês</h1>
+    <section id="metricas">
+      <section id="cartoes">
+        <div class="cartao drop-shadow">
+          <div class="metricaTexto">
+            <h2>Maior índice de quedas</h2>
+            <b class="kpi-maior-indice-quedas">Selecione um filtro</b>
+            <!-- <p class="metricaNegativa">
+            </p> -->
+          </div>
+        </div>
+
+        <div class="cartao drop-shadow">
+          <div class="metricaTexto">
+            <h2>Duração média</h2>
+            <b class="kpi-duracao-media-cidade">Selecione um filtro</b>
+            <!-- <p class="metricaPositiva">
+              
+            </p> -->
+          </div>
+        </div>
+
+        <div class="cartao drop-shadow">
+          <div class="metricaTexto">
+            <h2>Média de quedas</h2>
+            <b class="kpi-media-por-dia">Selecione um filtro</b>
+          </div>
+        </div>
+
+        <div class="cartao drop-shadow">
+          <div class="metricaTexto">
+            <h2>Selecionar data</h2>
+            
+            <!-- <button id="abrirModalBtn"></button> -->
+            <img id="abrirModalBtn" class="iconeCalendario" src="./assets/imgs/iconeCalendario.png" alt="Calendário" /><label for="filtros_select">Escolha um filtro:</label>
+      <select id="filtros_select">
+        <option value="">Selecione um filtro</option>
+      </select>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section id="secaoGraficos">
+      <div class="grafico drop-shadow">
+        <canvas id="graficoLinha"></canvas>
+      </div>
+      <div class="grafico drop-shadow">
+        <canvas id="graficoBarra"></canvas>
+      </div>
+    </section>
+  </div>
+  
+  <!-- modal abaioxoo -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+
+      <h1>Filtros</h1>
+<div id="deixar-lado-lado" >
+      <label for="nome_filtro">Nome:</label>
+      <input type="text" id="nome_filtro" placeholder="Digite o nome" />
+
+      <label for="calendario">Data Início:</label>
+      <input type="date" id="calendario" />
+
+      <label for="calendario_fim">Data Fim:</label>
+      <input type="date" id="calendario_fim" />
+
+      <button id="salvar_filtro">Salvar</button>
+      <button id="atualizar_filtro" style="display: none;">Atualizar</button>
+</div>
+      <h2>Filtros Cadastrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista_filtros"></tbody>
+      </table>
+
+      
     </div>
-    <div id="containerConteudo">
-        <section id="cabecalho">
-            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
-            <div id="secaoUsuario">
-                <img src="./assets/imgs/iconeUsuario.png" alt="">
-                <div id="dadosUsuario">
-                    <span>Usuario</span>
-                    <span>Cargo</span>
-                </div>
-            </div>
-        </section>
-        <h1>Interrupções do Mês</h1>
-        <section id="metricas">
-            <section id="cartoes">
-                <div class="cartao drop-shadow">
-                    <div class="metricaTexto">
-                        <h2>Maior índice de quedas</h2>
-                        <b>10 | 03/04</b>
-                        <p class="metricaNegativa">
-                            +5
-                            <img src="./assets/imgs/trianguloNegativo.png" alt="">
-                        </p>
-                    </div>
-                </div>
-                <div class="cartao drop-shadow">
-                    <div class="metricaTexto">
-                        <h2>Duração média</h2>
-                        <b>45 min</b>
-                        <p class="metricaPositiva">
-                            -15 min
-                            <img src="./assets/imgs/trianguloPositivo.png" alt="">
-                        </p>
-                    </div>
-                </div>
-                <div class="cartao drop-shadow">
-                    <div class="metricaTexto">
-                        <h2>Média de quedas</h2>
-                        <b>5</b>
-                    </div>
-                </div>
-                <div class="cartao drop-shadow">
-                    <div class="metricaTexto">
-                        <h2>Selecionar data</h2>
-                        <img id="iconeCalendario" src="./assets/imgs/iconeCalendario.png" alt="">
-                    </div>
-                </div>
-            </section>
-        </section>
-        <section id="secaoGraficos">
-            <div class="grafico drop-shadow">
-                <canvas id="graficoLinha"></canvas>
-            </div>
-            <div class="grafico drop-shadow">
-                <canvas id="graficoBarra"></canvas>
-            </div>
-        </section>
-    </div>
+  </div>
+ 
+<script src="./js/filtro.js" defer></script>
+  </div>
+ 
 </body>
 </html>
-<script src="./js/dashEspecifica.js">
-   function sair() {
-    sessionStorage.clear(); // Limpa toda a sessão do usuário
-    window.location.href = "http://34.202.174.0:8080/login.html"; // Redireciona para a tela de login
-    }
 
-</script>
+

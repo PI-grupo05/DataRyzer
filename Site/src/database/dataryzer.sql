@@ -1,103 +1,108 @@
+DROP DATABASE IF EXISTS dataryzer;
+CREATE DATABASE dataryzer;
+/* Script para criação do banco de dados DataRyzer atualizada com a relação de grupos */
+/* A ordem da criação das tabelas foi alterada para facilitar o relacionamento entre elas */
+
+USE dataryzer;
+
+CREATE TABLE distribuidora (
+    id_distribuidora            INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    cnpj                        VARCHAR(50) NOT NULL,
+    nome                        VARCHAR(100) NOT NULL,
+    sigla                       VARCHAR(10) NOT NULL,
+    codigo_associacao_master    VARCHAR(10)
+);
+
+SELECT * FROM distribuidora;
+
+CREATE TABLE grupo (
+    id_grupo    INT PRIMARY KEY AUTO_INCREMENT,
+    nome        VARCHAR(20) NOT NULL
+);
+
+CREATE TABLE unidade_consumidora (
+    id_unidade_consumidora  INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome                    VARCHAR(50) NOT NULL,
+    fk_distribuidora        INT,
+    fk_grupo                INT,
+    CONSTRAINT fk_distribuidora_unidade_consumidora FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora),
+    CONSTRAINT fk_grupo_unidade_consumidora FOREIGN KEY (fk_grupo) REFERENCES grupo(id_grupo)
+);
+
+SELECT * FROM unidade_consumidora;
+
+CREATE TABLE usuario (
+    id_usuario              INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    nome                    VARCHAR(50) NOT NULL,
+    tipo_usuario            VARCHAR(50) NOT NULL,
+    telefone                VARCHAR(15) NOT NULL,
+    email                   VARCHAR(50) NOT NULL,
+    senha                   VARCHAR(50) NOT NULL,
+    fk_unidade_consumidora  INT,
+    fk_distribuidora        INT NOT NULL,
+    fk_filtro               INT,
+    CONSTRAINT fk_unidade_consumidora_usuario FOREIGN KEY (fk_unidade_consumidora) REFERENCES unidade_consumidora(id_unidade_consumidora),
+    CONSTRAINT fk_distribuidora_usuario FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora)
+);
+
+CREATE TABLE filtro (
+    id_filtro       INT PRIMARY KEY AUTO_INCREMENT,
+    nome            VARCHAR(30) NOT NULL,
+    data_inicio     DATE NOT NULL,
+    data_fim        DATE NOT NULL,
+    fk_usuario      INT,
+    CONSTRAINT fk_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id_usuario)
+);
 
 
-	
-	use dataryzer;
+SELECT * FROM usuario;
 
-	-- MODELAGEM BASICA, SEM RELACIONAMENTO COM AS TABELAS 
-	create table distribuidora (
-	id_distribuidora	int primary key auto_increment not null,
-	cnpj				varchar(50) not null,
-	nome				varchar(100) not null,
-	sigla				varchar(10) not null,
-	codigo_associacao_master 	varchar(10) 
-	);
+ALTER TABLE grupo ADD COLUMN fk_usuario INT;
+ALTER TABLE grupo ADD CONSTRAINT fk_usuario_grupo FOREIGN KEY (fk_usuario) REFERENCES usuario(id_usuario);
+select * FROM grupo;
 
-    INSERT INTO distribuidora (cnpj, nome, sigla, codigo_associacao_master)
-        VALUES ('11111', 'ieba', 'tl', '123');
+CREATE TABLE motivo (
+    id_motivo   INT PRIMARY KEY AUTO_INCREMENT,
+    nome        VARCHAR(100)
+);
 
-	select * from distribuidora;
+SELECT * FROM motivo;
 
-	create table grupo (
-	id_grupo            int primary key auto_increment,
-	nome                varchar (10) not null
-	);
+CREATE TABLE interrupcao (
+    id_interrupcao          INT NOT NULL,
+    dt_inicio               DATETIME NOT NULL,
+    dt_fim                  DATETIME NOT NULL,
+    duracao                 INT GENERATED ALWAYS AS (TIMESTAMPDIFF(MINUTE, dt_inicio, dt_fim)) STORED,
+    fk_unidade_consumidora  INT NOT NULL,
+    fk_motivo               INT NOT NULL,
+    CONSTRAINT pk_interrupcao PRIMARY KEY(id_interrupcao, fk_unidade_consumidora, fk_motivo),
+    CONSTRAINT fk_unidade_consumidora_interrupcao FOREIGN KEY (fk_unidade_consumidora) REFERENCES unidade_consumidora(id_unidade_consumidora),
+    CONSTRAINT fk_motivo_interrupcao FOREIGN KEY (fk_motivo) REFERENCES motivo(id_motivo)
+);
 
+SELECT * FROM interrupcao;
 
-	create table cidade(
-	id_cidade			int primary key auto_increment not null,
-	nome				varchar(50) not null,
-	fk_distribuidora    int,
-	fk_grupo            int,
-	constraint fk_distribuidora_cidade foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
-	constraint fk_grupo_cidade foreign key (fk_grupo) references grupo(id_grupo)
-	);
-
-	select * from cidade;
-
-
-	create table filtro(
-	id_filtro           int primary key auto_increment,
-	nome                varchar (10) not null,
-	data_inicio         date not null,
-	data_fim            date not null
-	);
-
-	create table usuario(
-	id_usuario			int primary key auto_increment not null,
-	nome 				varchar(50) not null,
-	tipo_usuario		varchar(50) not null, 
-	telefone			varchar(15) not null,
-	email				varchar(50) not null,
-	senha				varchar(50) not null,
-	fk_cidade 			int,
-	fk_distribuidora 	int not null,
-	fk_filtro           int,
-	constraint fk_cidade_usuario foreign key (fk_cidade) references cidade(id_cidade),
-	constraint fk_distribuidora_usuario foreign key (fk_distribuidora) references distribuidora(id_distribuidora),
-	constraint fk_filtro_usuario foreign key (fk_filtro) references filtro(id_filtro)
-	);
+CREATE TABLE log (
+    id_log          INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
+    data_hora       TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    nivel           VARCHAR(15) NOT NULL,
+    mensagem        VARCHAR(255) NOT NULL,
+    mensagem_log    VARCHAR(255) NOT NULL
+);
 
 
-	create table motivo(
-	id_motivo			int primary key auto_increment,
-	nome				varchar(100)
-	);
-
-	select * from motivo;
-
-	create table interrupcao(
-	id_interrupcao		int not null,
-	dt_inicio			datetime not null,
-	dt_fim				datetime not null,
-	duracao INT GENERATED ALWAYS AS (TIMESTAMPDIFF(MINUTE, dt_inicio, dt_fim)) STORED,
-	fk_cidade 			int not null,
-	fk_motivo 			int not null,
-	constraint pk_interrupcao primary key(id_interrupcao, fk_cidade, fk_motivo),
-	constraint fk_cidade_interrupcao foreign key (fk_cidade) references cidade(id_cidade),
-	constraint fk_motivo_interrupcao foreign key (fk_motivo) references motivo(id_motivo)
-	);
-
-	select * from interrupcao;
-
-	create table notificacao(
-	id_notificacao		int not null,
-	data_hora 			datetime not null,
-	tipo 				varchar(45) not null,
-	mensagem			varchar(45) not null,
-	fk_cidade			int not null,
-	fk_distribuidora	int not null,
-	constraint pk_notificacao primary key(id_notificacao, fk_cidade, fk_distribuidora),
-	constraint fk_cidade_notificacao foreign key (fk_cidade) references cidade(id_cidade),
-	constraint fk_distribuidora_cidade_notificacao foreign key (fk_distribuidora) references distribuidora(id_distribuidora)
-	);
+select * from distribuidora;
 
 
--- TAbela log atualizada
-	create table log(
-    id_log 				int primary key auto_increment not null,
-    data_hora 			timestamp default current_timestamp,
-    nivel				varchar(15) not null,
-    mensagem			varchar(255) not null,
-    mensagem_log		varchar(255) not null
+select * from usuario;
+
+CREATE TABLE parametrizacao(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    url VARCHAR(200),
+    receber_notificacao BOOLEAN,
+    frequencia_notificacao VARCHAR(45),
+    proxima_notificaco DATE,
+    fk_distribuidora INT,
+    CONSTRAINT fk_distribuidora_parametrizacao FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora)
     );
-     -- fim tabela log
+    

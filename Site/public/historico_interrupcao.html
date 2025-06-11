@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+		<link rel="stylesheet" href="./css/historico.css" />
+		<link rel="stylesheet" href="css/sidebar.css">
+
+		<script src="./js/historico.js"></script>
+		<Script src="./js/sessao.js"></Script>
+		<script src="./js/sidebar.js"></script>
+		<title>Hitorico - Interrupções</title>
+	</head>
+	<body>
+
+		<div id="menuLateral">
+			<img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+			<div id="menuLateralSecoes">
+				<!-- <a href="./menu.html">
+					<img src="./assets/imgs/iconeDash.png" alt="">
+					<span>Menu incial</span>
+				</a>
+				<a href="./dashGeral.html">
+					<img src="./assets/imgs/icon_grafico.svg" alt="">
+					<span>Dashboard</span>
+				</a>
+				<a href="./unidadeConsumidora.html">
+					<img src="./assets/imgs/iconeEmpresas.png" alt="">
+					<span>Unidades Consumidoras</span>
+				</a>
+				<a href="./historico_interrupcao.html">
+					<img src="./assets/imgs/historico_icon.png" alt="">
+					<span>historico de interrupções</span>
+				</a> -->
+			</div>
+			<div class="inferior_sidebar">
+				<img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+				<img style="cursor: pointer;" onclick="window.location = '../meuPerfilExcluir.html'" src="./assets/imgs/person-gear.svg" alt="">
+            </div>
+        </div>
+		</div>
+		<div class="conteudo-principal" id="conteudoPrincipal">
+			<section id="cabecalho">
+				<img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+				<div id="secaoUsuario">
+					<img src="./assets/imgs/iconeUsuario.png" alt="">
+					<div id="dadosUsuario">
+						<label id="nomeUsuarioLabel"></label>
+                    	<label id="cargoLabel"></label>
+					</div>
+				</div>
+			</section>
+
+		<main class="main">
+		
+			<h1>Interrupções</h1>
+
+			<form class="filter" role="search" onsubmit="return false;">
+				<select id="tipo_pesquisa" aria-label="Campo de filtro">
+					<option value="uc.nome">Unidade Consumidora</option>
+					<option value="i.dt_inicio">Data Início</option>
+					<option value="i.dt_fim">Data Fim</option>
+					<option value="i.duracao">Duração</option>
+					<option value="m.nome">Motivo</option>
+				</select>	
+				<input
+					type="text"
+					placeholder="Buscar..."
+					aria-label="Buscar por campo selecionado"
+					id="input_pesquisar"
+					onkeyup="buscarHistoricoPorfiltro()"/>
+			</form>
+			<div class="tabela-container" >
+				<table>
+					<thead>
+						<tr>
+							<th>Id Distribuidora</th>
+							<th>Distribuidora</th>
+							<th>Unidade Consumidora</th>
+							<th>Data Início</th>
+							<th>Data Fim</th>
+							<th>Duração (min)</th>
+							<th>Motivo</th>
+						</tr>
+					</thead>
+					<tbody id="table_historico">
+						
+					</tbody>
+				</table>
+			</div>
+
+		</main>
+
+		</div>
+	</body>
+</html>
+
+
+<script src="/env.js"></script>
+<script src="./js/sidebar.js" ></script>
+<script>
+</script>
+
+

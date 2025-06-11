@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="css/consultarDiretor.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="./js/sidebarConfig.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+
+    <title>Deletar Usuário</title>
+</head>
+<body onload="pegarDadosDiretor()">
+      <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <!-- <a href="./meuPerfilExcluir.html">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="./meuPerfilExcluir.html">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>
+            </a>
+            <a href="">
+                <img src="./assets/imgs/usuarios.png" alt="">
+                <span>Usuarios Regionais</span>
+            </a>
+            <a href="./grupos.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Grupos</span>
+            </a> -->
+        </div>
+        <div class="inferior_sidebar">
+            <div class="inferior_sidebar">
+            <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+			<img class="graph_config" style="cursor: pointer; width: 29px;"onclick="voltarParaDash()" src="./assets/imgs/icon_grafico.svg" alt="">
+            </div>
+        </div>
+    </div>
+    <div class="conteudo-principal" id="conteudoPrincipal">
+    <div id="containerConteudo">
+        <section id="cabecalho">
+            <img id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png" alt="">
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <label id="nomeUsuarioLabel"></label>
+                    <label id="cargoLabel"></label>
+                </div>
+            </div>
+        </section>
+        <section id="secaoInformacoes">
+            <h1>INFORMAÇÕES USUÁRIO</h1>
+            <div id="campos">
+                <div id="campoEsquerdo">
+                    <img src="./assets/imgs/do-utilizador-semFundo.png" alt="">
+                    <label for="input_nome">Nome</label>
+                    <input id="input_nome" type="text">
+                </div>
+                <div id="campoDireito">
+                    <label for="input_email">Email</label>
+                    <input id="input_email" type="text"><br><br>
+                    <label for="input_distribuidora">Distribuidora</label>
+                    <input readonly id="input_distribuidora" type="text"><br><br>
+                    <label for="input_telefone">Telefone</label>
+                    <input  id="input_telefone" type="text">
+                </div>
+            </div>
+        </section>
+        <div id="secaoBotoes">
+            <button onclick="irParaTabelaDiretores()" id="botaoCancelar">VOLTAR</button>
+            <button onclick="alterarDados()" id="botaoAtualizar">ATUALIZAR</button>
+            <button onclick="validarExclusao()" id="botaoDeletar">DELETAR</button>
+        </div>
+    </div>
+
+    </div>
+</body>
+</html>
+
+<script>
+    function pegarDadosDiretor(){
+        fetch(`/usuarios/pegarDadosDiretor/${sessionStorage.DIRETOR_CONSULTADO}`, {
+            method: "GET",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO pegarDadosDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+
+            resposta.json().then((json) => {
+                console.log(json);
+                console.log(JSON.stringify(json));
+                input_nome.value = json.diretor;
+                input_email.value = json.email;
+                input_distribuidora.value = json.distribuidora;
+                input_telefone.value = json.telefone;
+            });
+            } else {
+                console.log("Houve um erro ao tentar pegar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+   function validarExclusao(){
+        Swal.fire({
+            title: "Excluir Usuário",
+            text: "Tem certeza que deseja excluir seu usuário? Esta ação não pode ser desfeita!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#d33",  // Vermelho para ação perigosa
+            cancelButtonColor: "#3085d6",  // Azul padrão para cancelar
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Sim, excluir!",
+            reverseButtons: true,
+            // Propriedades extras para melhor UX:
+            allowOutsideClick: false,  // Impede fechar clicando fora
+            allowEscapeKey: false,     // Impede fechar com ESC
+            focusCancel: true          // Foca no botão cancelar por segurança
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Usuário confirmou - executar a exclusão
+                deletarDiretor();
+            } else if (result.dismiss === Swal.DismissReason.cancel) {
+                // Opcional: feedback quando cancela
+                Swal.fire({
+                    title: "Cancelado",
+                    text: "Seu usuário não foi excluído.",
+                    icon: "info",
+                    timer: 2000,
+                    showConfirmButton: false
+                });
+            }
+        });
+    }
+
+
+
+    function alterarDados() {
+        var nome = document.getElementById("input_nome").value.trim();
+        var email = document.getElementById("input_email").value.trim();
+        var telefone = document.getElementById("input_telefone").value.trim();
+        
+        // Validações usando SweetAlert2
+        if (nome === "" || email === "" || telefone === "") {
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "Todos os campos devem ser preenchidos",
+                confirmButtonText: "OK"
+            });
+            return false;
+        } else if (nome.length > 20) {
+            Swal.fire({
+                icon: "warning",
+                title: "Oops...",
+                text: "O nome não pode ultrapassar 20 caracteres!",
+                confirmButtonText: "OK"
+            });
+            return false;
+        } else if (telefone.length < 10 || telefone.length > 15) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "O telefone deve ter entre 10 e 15 dígitos",
+                confirmButtonText: "OK"
+            });
+            return false;
+        } else if (!email.includes("@") || !email.includes(".com")) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "O email deve conter '@' e '.com'",
+                confirmButtonText: "OK"
+            });
+            return false;
+        }
+        
+        // Confirmação usando SweetAlert2
+        Swal.fire({
+            title: "Confirmar Alterações",
+            text: "Tem certeza que deseja atualizar os dados de usuário?",
+            icon: "warning",
+            showCancelButton: true,
+            
+            confirmButtonColor: "#4CAF50",
+            cancelButtonColor: "#545454",
+            cancelButtonText: "Cancelar",
+            confirmButtonText: "Confirmar",
+            reverseButtons: true 
+            
+        }).then((result) => {
+            if (result.isConfirmed) {
+                // Usuário confirmou - executar a atualização
+                atualizarDiretor();
+            }
+        });
+        
+        console.log("Dados validados:", nome, email, telefone);
+    }
+
+
+    function atualizarDiretor(){
+        fetch(`/usuarios/atualizarDadosDiretor/${sessionStorage.DIRETOR_CONSULTADO}`, {
+            method: "PUT",
+            headers: {
+            "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                nome: input_nome.value ,
+                email: input_email.value ,
+                telefone: input_telefone.value ,
+            }),
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO deletarDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Usuário atualizado! Redirecionando",
+                    icon: "success",
+                    timer: 3000,  // 3 segundos
+                    showConfirmButton: false,
+                    color: "#1ed619",
+                    heightAuto: false,
+                    timerProgressBar: true,  // Mostra barra de progresso
+                    allowOutsideClick: false,  // Impede fechar clicando fora
+                    allowEscapeKey: false     // Impede fechar com ESC
+                }).then(() => {
+                    // Executa após o timer ou quando fechar
+                    window.location.href = "listaDiretores.html";
+                });
+                console.log(`Diretor de id = ${sessionStorage.DIRETOR_CONSULTADO} 
+                atualizado com sucesso`);
+            } else {
+                console.log("Houve um erro ao tentar atualizar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function deletarDiretor(){
+        fetch(`/usuarios/deletarDadosDiretor/${sessionStorage.DIRETOR_CONSULTADO}`, {
+            method: "DELETE",
+        })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO deletarDiretor()!");
+            console.log(resposta)
+            if (resposta.ok) {
+                console.log(`Diretor de id = ${sessionStorage.DIRETOR_CONSULTADO} 
+                deletado com sucesso`);
+                sessionStorage.removeItem("DIRETOR_CONSULTADO") 
+                Swal.fire({
+                    title: "Sucesso!",
+                    text: "Usuário excluido! Redirecionando",
+                    icon: "success",
+                    timer: 3000,  // 3 segundos
+                    showConfirmButton: false,
+                    color: "#1ed619",
+                    heightAuto: false,
+                    timerProgressBar: true,  // Mostra barra de progresso
+                    allowOutsideClick: false,  // Impede fechar clicando fora
+                    allowEscapeKey: false     // Impede fechar com ESC
+                }).then(() => {
+                    window.location.href = "listaDiretores.html"
+                });
+                
+            } else {
+                console.log("Houve um erro ao tentar deletar os dados do diretor!");
+                
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+    }
+
+    function irParaTabelaDiretores(){
+        window.location.href = "listaDiretores.html"
+    }
+</script>

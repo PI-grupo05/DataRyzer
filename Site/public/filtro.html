@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Gerenciar Filtros</title>
+<link rel="stylesheet" href="css/filtro.css">
+
+</head>
+
+<body>
+    
+  <button id="abrirModalBtn">Gerenciar Filtros</button>
+
+  <!-- Modal com formulário -->
+  <div id="modal" class="modal">
+    <div class="modal-content">
+      <span class="modal-close">&times;</span>
+
+      <h1>Gerenciar Filtros</h1>
+
+      <label for="nome_filtro">Nome do Filtro:</label>
+      <input type="text" id="nome_filtro" placeholder="Digite o nome do filtro" />
+
+      <label for="calendario">Data Início:</label>
+      <input type="date" id="calendario" />
+
+      <label for="calendario_fim">Data Fim:</label>
+      <input type="date" id="calendario_fim" />
+
+      <button id="salvar_filtro">Salvar Filtro</button>
+      <button id="atualizar_filtro" style="display: none;">Atualizar Filtro</button>
+
+      <h2>Filtros Cadastrados</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Nome</th>
+            <th>Data Início</th>
+            <th>Data Fim</th>
+            <th>Ações</th>
+          </tr>
+        </thead>
+        <tbody id="lista_filtros"></tbody>
+      </table>
+
+      <label for="filtros_select">Escolha um filtro:</label>
+      <select id="filtros_select">
+        <option value="">Selecione um filtro</option>
+      </select>
+    </div>
+  </div>
+ 
+    <script src="./js/filtro.js" defer></script>
+
+ 
+    <script>
+   
+    </script>
+</body>
+
+</html>

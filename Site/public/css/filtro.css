@@ -1,0 +1,433 @@
+/* Modal CSS */
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(4px);
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 3% auto;
+  padding: 30px;
+  border-radius: 12px;
+  max-width: 800px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  position: relative;
+  animation: slideIn 0.3s ease-out;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 20px;
+  font-size: 28px;
+  cursor: pointer;
+  color: #666;
+  transition: color 0.2s ease;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background-color: transparent;
+}
+
+.modal-close:hover {
+  color: #333;
+  background-color: #f5f5f5;
+}
+
+/* Typography */
+.modal h1 {
+  margin-top: 0;
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 28px;
+  font-weight: 600;
+  border-bottom: 2px solid #e0e0e0;
+  padding-bottom: 10px;
+}
+
+.modal h2 {
+  margin-top: 30px;
+  margin-bottom: 20px;
+  color: #444;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+/* Form Layout */
+#deixar-lado-lado {
+         display: inline-flex;
+    grid-template-columns: 2fr 1.2fr 1.2fr auto;
+    gap: 7px;
+    width: 100%;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+#deixar-lado-lado > div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Form Elements */
+.modal label {
+  display: block;
+  margin-top: 0;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+  font-size: 14px;
+}
+
+/* CSS para fazer o calendário abrir clicando em qualquer lugar dos seus inputs */
+#calendario,
+#calendario_fim {
+    position: relative;
+    cursor: pointer;
+}
+
+#calendario::-webkit-calendar-picker-indicator,
+#calendario_fim::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Estilos opcionais para melhorar a aparência */
+#calendario,
+#calendario_fim {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#calendario:focus,
+#calendario_fim:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0,123,255,0.3);
+}
+.modal input[type="text"],
+.modal input[type="date"],
+.modal select {
+  width: 100%;
+  padding: 8px 12px;
+  margin-top: 4px;
+  box-sizing: border-box;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  background-color: #fafafa;
+}
+
+.modal input[type="text"]:focus,
+.modal input[type="date"]:focus,
+.modal select:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
+  background-color: #fff;
+}
+
+.modal input[type="text"]:hover,
+.modal input[type="date"]:hover,
+.modal select:hover {
+  border-color: #ccc;
+}
+
+/* Buttons */
+.modal button {
+  margin-top: 0;
+    margin-right: 0;
+    padding: 12px 24px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 40px;
+    white-space: nowrap;
+}
+
+.modal #salvar_filtro {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.modal #salvar_filtro:hover {
+  background-color: #45a049;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(76, 175, 80, 0.3);
+}
+
+.modal #atualizar_filtro {
+  background-color: #1b7ccb;
+  color: white;
+}
+
+.modal #atualizar_filtro:hover {
+  background-color: #13589d;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
+}
+
+.modal button:active {
+  transform: translateY(0);
+}
+
+/* Table */
+.modal table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.modal th {
+  background-color: #f8f9fa;
+  color: #333;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-size: 12px;
+  padding: 16px 12px;
+  text-align: center;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.modal td {
+  padding: 12px;
+  border-bottom: 1px solid #e8e8e8;
+  color: #555;
+  font-size: 14px;
+  text-align: center;
+}
+
+.modal tbody tr {
+  transition: background-color 0.2s ease;
+}
+
+.modal tbody tr:hover {
+  background-color: #f8f9fa;
+}
+
+.modal tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Action buttons in table */
+.modal table button {
+  margin: 0 4px;
+  padding: 6px 12px;
+  font-size: 12px;
+  border-radius: 6px;
+  margin-top: 0;
+}
+
+.modal table .btn-edit {
+  background-color: #FF9800;
+  color: white;
+}
+
+.modal table .btn-edit:hover {
+  background-color: #F57C00;
+  transform: none;
+  box-shadow: none;
+}
+
+.modal table .btn-delete {
+  background-color: #f44336;
+  color: white;
+}
+
+.modal table .btn-delete:hover {
+  background-color: #d32f2f;
+  transform: none;
+  box-shadow: none;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(-50px);
+  }
+  to { 
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  /* Form layout responsive - tablets */
+  #deixar-lado-lado {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 15px;
+  }
+  
+  #deixar-lado-lado button {
+    grid-column: 1 / -1;
+    justify-self: center;
+    width: auto;
+    min-width: 200px;
+  }
+}
+
+@media (max-width: 768px) {
+  .modal-content {
+    margin: 5% auto;
+    padding: 20px;
+    width: 95%;
+    max-height: 85vh;
+  }
+  
+  .modal h1 {
+    font-size: 24px;
+  }
+  
+  /* Form layout responsive - mobile */
+  #deixar-lado-lado {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    align-items: stretch;
+  }
+  
+  .modal button {
+    width: 100%;
+    margin-bottom: 10px;
+    height: auto;
+    padding: 15px;
+  }
+  
+  .modal table {
+    font-size: 12px;
+  }
+  
+  .modal th,
+  .modal td {
+    padding: 8px 6px;
+  }
+}
+
+
+#filtros_select {
+  /* Dimensões e espaçamento */
+  width: 75%;
+ 
+  padding: 8px 12px;
+  padding-right: 33px; /* Espaço para a seta */
+  
+  /* Tipografia */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  
+  /* Aparência */
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  
+  /* Bordas e sombras */
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  /* Transições */
+  transition: all 0.3s ease;
+  
+  /* Remove aparência padrão */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Cursor */
+  cursor: pointer;
+}
+
+/* Estado de foco */
+#filtros_select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Estado de hover */
+#filtros_select:hover {
+  border-color: #c6d0db;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado desabilitado */
+#filtros_select:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Estilo das opções */
+#filtros_select option {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #ffffff;
+}
+
+/* Opção selecionada */
+#filtros_select option:checked {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Versão alternativa com gradiente */
+.select-gradient #filtros_select {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+}
+
+.select-gradient #filtros_select option {
+  background-color: white;
+  color: #333;
+}

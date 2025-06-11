@@ -9,6 +9,8 @@
 
     <title>DataRyzer | Cadastro</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+
     <script src="./js/sessao.js"></script>
     <link
     rel="stylesheet"
@@ -39,23 +41,60 @@
             <div class="input-email">
               <input id="email_input" type="email" placeholder="Seu email" required>
             </div>
-
-            <label for="senha">Senha</label>
-            <div class="input-senha">
-              <input type="password" id="senha_input" placeholder="Sua senha" required>
-            </div>
-
-            <label for="confirmar_senha">Confirme sua senha</label>
-            <div class="input-confirmar-senha">
-              <input type="password" id="confirmar_senha_input" placeholder="Confirme sua senha" required>
-            </div>
             <label for="telefone">Telefone</label>
             <div class="input-confirmar-senha">
               <input type="tel" id="telefone_input" placeholder="XXXX-XXXX" required>
             </div>
-            <label for="codigo_associacao">Codigo de associação</label>
-            <div class="input-confirmar-senha">
-              <input type="password" id="codigo_associacao_input" placeholder="Ex: 12324" required>
+
+
+              <div class="senha-container">
+<div class="senha-lado-a-lado">
+
+  <div class="campo-senha">
+    <label for="senha_input">Senha</label>
+    <input type="password" id="senha_input" placeholder="Sua senha" required>
+  </div>
+
+  <div class="campo-confirmar-senha">
+    <label for="confirmar_senha_input">Confirme sua senha</label>
+    <input type="password" id="confirmar_senha_input" placeholder="Confirme sua senha" required>
+  </div>
+
+</div>
+
+
+<!-- ======================================================================= -->
+
+<!-- ... seu código HTML existente ... -->
+
+<div class="radio-group">
+    <label for="master" >
+        <input type="radio" id="master" name="role" value="master">
+        Master
+    </label>
+    <label for="diretor">
+        <input type="radio" id="usuario" name="role" value="usuario">
+        Usuário
+    </label>
+</div>
+
+
+<script src="js/cadastro-validar.js"></script>
+
+<!-- ... restante do código HTML ... -->
+
+<!-- ============================================================================= -->
+
+
+            
+            <label for="unidade_consumidora" >Código Unidade consumidora</label>
+            <div class="input-confirmar-senha" >
+              <input type="text" id="unidade_consumidora_input" placeholder="Ex: 12" required>
+            </div>
+            
+            <label for="codigo_associacao" id="unidadeLabel">Codigo de associação</label>
+            <div class="input-confirmar-senha" id="unidadeDiv">
+              <input type="text" id="codigo_associacao_input" placeholder="Ex: 12324" required>
             </div>
 
             <button type="button" class="button" id="button" onclick="cadastrar()">Cadastrar</button>
@@ -67,7 +106,9 @@
   </body>
 </html>
 
+<script src="/env.js"></script>
 <script>
+
   function cadastrar() {
     // aguardar();
 
@@ -79,7 +120,16 @@
     var confirmacaoSenhaVar = confirmar_senha_input.value;
     var telefoneVar = telefone_input.value;
     var codigoAssociacaoVar = codigo_associacao_input.value;
-    var tipoUsuarioVar = 'MASTER';
+    
+    var fkUnidadeConsumidoraVar = unidade_consumidora_input.value
+
+
+    if(document.getElementById("master").checked){
+      var tipoUsuarioVar = "MASTER"
+    }else if(document.getElementById("usuario").checked){
+       var tipoUsuarioVar = "REGIONAL"
+    }
+
 
     const numeros = /[0-9]/;
 
@@ -90,6 +140,7 @@
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
       telefoneVar == "" ||
+      // fkUnidadeConsumidoraVar == "" ||
       codigoAssociacaoVar == ""
     ) {
       Swal.fire({
@@ -244,6 +295,8 @@
     }
 
 
+
+
     // Enviando o valor da nova input
   fetch("/usuarios/cadastrar", {
     method: "POST",
@@ -255,6 +308,7 @@
       emailServer: emailVar,
       senhaServer: senhaVar,
       telefoneServer: telefoneVar,
+      fkUnidadeConsumidoraServer: fkUnidadeConsumidoraVar,
       codigoAssociacaoServer: codigoAssociacaoVar,
       tipoUsuarioServer: tipoUsuarioVar
     }),
@@ -265,16 +319,20 @@
     if (resposta.ok) {
       Swal.fire({
         title: "Sucesso!",
-        text: "Usuário cadastrado!",
+        text: "Cadastro realizado! Redirecionando para o login...",
         icon: "success",
+        timer: 3000,  // 3 segundos
         showConfirmButton: false,
-        color: "#f01f1a",
-      });
-
-
-      setTimeout(function () {
+        color: "#1ed619",
+        heightAuto: false,
+        timerProgressBar: true,  // Mostra barra de progresso
+        allowOutsideClick: false,  // Impede fechar clicando fora
+        allowEscapeKey: false     // Impede fechar com ESC
+    }).then(() => {
+        // Executa após o timer ou quando fechar
         window.location = "login.html";
-      }, 2000);
+    });
+
     } else {
       throw "Houve um erro ao tentar realizar o cadastro!";
     }
@@ -305,7 +363,7 @@
   }
 
   function siteAngular() {
-    window.location.href = "http://34.202.174.0:4200";
+    window.location.href = `http://${window.APP_HOST}:4200`;
   }
 
 </script>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/estiloDashEspecifica.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.7.32/sweetalert2.all.min.js"></script>
+    <script src="./js/sessao.js"></script>
+    <script src="./js/meuPerfil.js"></script>
+    <!-- <link rel="stylesheet" href="./css/unidadeConsumidora.css"> -->
+    <link rel="stylesheet" href="./css/meuPerfilExcluir.css">
+    <title>Perfil</title>
+</head>
+
+<body>
+     <div id="menuLateral">
+        <img id="logo" src="./assets/imgs/logoData-White.png" alt="">
+        <div id="menuLateralSecoes">
+            <!-- <a href="">
+                <img src="./assets/imgs/iconePerfil.png" alt="">
+                <span>Perfil</span>
+            </a>
+            <a href="./notificacoes.html">
+                <img src="./assets/imgs/iconeNotificacao.png" alt="">
+                <span>Notificações</span>
+            </a>
+            <a href="./listaDiretores.html">
+                <img src="./assets/imgs/usuarios.png" alt="">
+                <span>Usuarios Regionais</span>
+            </a>
+            <a href="./grupos.html">
+                <img src="./assets/imgs/iconeEmpresas.png" alt="">
+                <span>Grupos</span>
+            </a> -->
+        </div>
+        <div class="inferior_sidebar">
+            <img style="cursor: pointer;" onclick="sair()" class="botao_sair" src="./assets/imgs/botao_sair.svg" alt="">
+			<img style="cursor: pointer; width: 29px;" onclick="voltarParaDash()" src="./assets/imgs/icon_grafico.svg" alt="">
+        </div>
+    </div>
+
+    <div class="conteudo-principal" id="conteudoPrincipal">
+        <section id="cabecalho">
+            <img style="transform: scaleX(-1);" id="botaoMenu" onclick="abrirMenu()" src="./assets/imgs/iconeSeta.png"
+                alt="">
+
+            <div id="secaoUsuario">
+                <img src="./assets/imgs/iconeUsuario.png" alt="">
+                <div id="dadosUsuario">
+                    <label id="nomeUsuarioLabel"></label>
+                    <label id="cargoLabel"></label>
+                </div>
+            </div>
+        </section>
+    <div id="containerConteudo">
+        
+        <h1>
+
+        </h1>
+        <!-- Aqui começa os codigo -->
+        <section id="metricas">
+            <section id="cartoes">
+                <div class="profile-container">
+                    <h1>Meu Perfil</h1> <button  onclick="window.location.href='./meuPerfilEditar.html'" class="btn-edit">EDITAR</button>
+                    <form action="#" method="post" class="profile-form">
+                        <div class="form-group">
+                            <label for="name">Nome:</label>
+                            <input id="id_nome" type="text" name="name" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email:</label>
+                            <input id="id_email" type="email" name="email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Senha:</label>
+                            <input id="id_senha" type="password" name="password" value="********" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Telefone:</label>
+                            <input id="id_telefone" type="tel" name="phone" readonly>
+                        </div>
+                        <div class="button-group">
+                            
+                            <button onclick="validarExclusao()" type="button" class="btn-delete">EXCLUIR CONTA</button>
+                        </div>
+                    </form>
+                </div>
+
+
+            </section>
+        </section>
+
+
+
+
+    </div>
+    </div>
+</body>
+
+</html>
+<script src="./js/sidebarConfig.js"></script>
+
+
+<script>
+   
+</script>

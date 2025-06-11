@@ -1,130 +1,96 @@
-@import url('https://fonts.googleapis.com/css2?family=Mohave:ital,wght@0,300..700;1,300..700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
-html{
-    height: 100%;
-    width: 100%;
-}
 
-body{
-    width: 100%;
-    height: 100%;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
     margin: 0;
-    display: flex;
-    background-color: #E9E9E9;
-    font-family: "Mohave";
-}
-
-#menuLateral{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 2%;
-    padding-bottom: 2%;
-    width: 20%;
-    background: linear-gradient(to bottom, #070226, #321ec6 );
-    border-top-right-radius: 20px;
-    border-bottom-right-radius: 20px;
-    transition: 0.5s;
-}
-
-#logo{
-    width: 80%;
-}
-
-#menuLateralSecoes{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    gap: 50px;
-}
-
-#menuLateralSecoes, #menuLateral a, #menuLateralSecoes img{
-    width: 50%;
-}
-
-#menuLateral a{
-    display: flex;
-    font-weight: 500;
-    align-items: center;
+    list-style: none;
     text-decoration: none;
-    color: white;
-    gap: 10px;
+    font-family: "Montserrat", sans-serif;
+    font-optical-sizing: auto;
+
 }
 
-#botaoSair, #botaoSair img{
-    width: 30%;
+body {
+    display: flex;
+    height: 100vh;
+    background-color: #f0f0f0;;
+    font-style: normal;
 }
 
-#containerConteudo{
+
+#containerConteudo {
     margin: 1%;
     margin-inline: 5%;
-    width: 80%;
+    width: 93%;
     transition: 0.5s;
 }
 
-#containerConteudo h1{
+#containerConteudo h1 {
     margin-top: 0;
 }
 
-#cabecalho{
+#cabecalho {
+    width: 90%;
     display: flex;
     justify-content: space-between;
 }
 
-#botaoMenu{
-    transform: scaleX(1);
+#botaoMenu {
+    transform: scaleX(-1);
     width: 40px;
     height: 40px;
 }
 
-#secaoUsuario{
+#secaoUsuario {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-#secaoUsuario img{
+#secaoUsuario img {
     width: 60px;
     height: 60px;
 }
 
-#dadosUsuario{
+#dadosUsuario {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-#metricas{
+#metricas {
     margin-bottom: 2%;
 }
 
-.metricaNegativa{
+.metricaNegativa {
     color: red;
     margin: 0;
 }
 
-.metricaPositiva{
+.metricaPositiva {
     color: green;
     margin: 0;
 }
 
-h2{
+h2 {
     margin-top: 0;
     text-align: center;
 }
 
-#cartoes{
+#cartoes {
     display: flex;
     justify-content: space-between;
 }
 
-.drop-shadow{
+.drop-shadow {
     background-color: white;
-    box-shadow: 0 10px 20px rgba(0,0,0,0.10);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.10);
 }
 
-.cartao{
+.cartao {
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -133,46 +99,57 @@ h2{
 }
 
 .cartao img{
-    width: 5%;
+    width: 15%;
+    cursor: pointer;
+    
 }
-
+.cartao img:hover{
+    transform: scale(1.2); 
+    transition: transform 0.3s ease-in-out;
+}
 .metricaTexto{
     text-align: center;
     height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: center;
     align-items: center;
 }
 
-.metricaTexto h2{
+.metricaTexto h2 {
     color: #7F7F7F;
-    font-size: 1.8vw;
+    font-size: 20px;
     margin: 0
 }
 
-.metricaTexto b{
-    font-size: 2vw;
+.metricaTexto b {
+    margin-top: 13px;
+    font-size: 19px;
 }
 
-#iconeCalendario{
+.iconeCalendario{
     width: 50%;
 }
+.iconeCalendario:hover{
+    width: 16%;
+}
 
-#secaoGraficos{
+#secaoGraficos {
     display: flex;
     align-items: center;
     justify-content: space-between;
     width: 100%;
 }
 
-.grafico{
+.grafico {
     width: 48%;
     display: flex;
     justify-content: center;
 }
 
-#graficoLinha, #graficoBarra{
+
+#graficoLinha,
+#graficoBarra {
     width: 100%;
     height: 250px;
 }
