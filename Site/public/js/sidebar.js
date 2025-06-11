@@ -22,6 +22,30 @@ function abrirMenu() {
     }
 }
 
+document.addEventListener('DOMContentLoaded', () => {
+    const nomeUsuario = sessionStorage.getItem('NOME_USUARIO');
+
+    if (nomeUsuario) {
+        document.getElementById('nomeUsuarioLabel').innerText =  nomeUsuario;
+    } else {
+        console.error("Nome do usuário não encontrado na sessão.");
+    }
+});
+
+document.addEventListener('DOMContentLoaded',()=>{
+    const cargo = sessionStorage.TIPO_USUARIO;
+
+    if(cargo){
+        document.getElementById('cargoLabel').innerText = cargo;
+    }
+    else{
+        console.error("Cargo não encontrado.");
+    }
+});
+
+
+
+
 window.addEventListener("load", function() {
     verificarTipoUsuario()
 });

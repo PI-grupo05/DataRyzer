@@ -118,12 +118,13 @@ h2 {
 
 .metricaTexto h2 {
     color: #7F7F7F;
-    font-size: 1.8vw;
+    font-size: 20px;
     margin: 0
 }
 
 .metricaTexto b {
-    font-size: 2vw;
+    margin-top: 13px;
+    font-size: 19px;
 }
 
 .iconeCalendario{

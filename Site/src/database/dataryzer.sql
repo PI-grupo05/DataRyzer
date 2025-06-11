@@ -29,25 +29,7 @@ CREATE TABLE unidade_consumidora (
     CONSTRAINT fk_grupo_unidade_consumidora FOREIGN KEY (fk_grupo) REFERENCES grupo(id_grupo)
 );
 
-INSERT INTO unidade_consumidora (nome) VALUES
-('Residencial Alpha'),
-('Comercial Beta'),
-('Industrial Gamma'),
-('Agrícola Delta'),
-('Residencial Épsilon'),
-('Comercial Zeta'),
-('Industrial Eta'),
-('Agrícola Theta'),
-('Residencial Iota');
-
 SELECT * FROM unidade_consumidora;
-
-CREATE TABLE filtro (
-    id_filtro       INT PRIMARY KEY AUTO_INCREMENT,
-    nome            VARCHAR(10) NOT NULL,
-    data_inicio     DATE NOT NULL,
-    data_fim        DATE NOT NULL
-);
 
 CREATE TABLE usuario (
     id_usuario              INT PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -60,9 +42,18 @@ CREATE TABLE usuario (
     fk_distribuidora        INT NOT NULL,
     fk_filtro               INT,
     CONSTRAINT fk_unidade_consumidora_usuario FOREIGN KEY (fk_unidade_consumidora) REFERENCES unidade_consumidora(id_unidade_consumidora),
-    CONSTRAINT fk_distribuidora_usuario FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora),
-    CONSTRAINT fk_filtro_usuario FOREIGN KEY (fk_filtro) REFERENCES filtro(id_filtro)
+    CONSTRAINT fk_distribuidora_usuario FOREIGN KEY (fk_distribuidora) REFERENCES distribuidora(id_distribuidora)
 );
+
+CREATE TABLE filtro (
+    id_filtro       INT PRIMARY KEY AUTO_INCREMENT,
+    nome            VARCHAR(10) NOT NULL,
+    data_inicio     DATE NOT NULL,
+    data_fim        DATE NOT NULL,
+    fk_usuario      INT,
+    CONSTRAINT fk_usuario FOREIGN KEY (fk_usuario) REFERENCES usuario(id_usuario)
+);
+
 
 SELECT * FROM usuario;
 
@@ -102,9 +93,6 @@ CREATE TABLE log (
 
 select * from distribuidora;
 
-update distribuidora
-set codigo_associacao_master = 123
-where id_distribuidora =1;
 
 select * from usuario;
 
