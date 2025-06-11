@@ -16,7 +16,7 @@ export class HeaderComponent {
 
     abrirLogin(){
       // Se quiser testar local descomente esse:
-      window.location.href = "http://localhost:3333/login.html";
+      window.location.href = "http://34.202.174.0:3333/login.html";
       //window.location.href = "http://plataforma.dataryzer.ddnsfree.com";
     }
 }

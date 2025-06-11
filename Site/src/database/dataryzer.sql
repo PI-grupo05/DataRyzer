@@ -47,7 +47,7 @@ CREATE TABLE usuario (
 
 CREATE TABLE filtro (
     id_filtro       INT PRIMARY KEY AUTO_INCREMENT,
-    nome            VARCHAR(10) NOT NULL,
+    nome            VARCHAR(30) NOT NULL,
     data_inicio     DATE NOT NULL,
     data_fim        DATE NOT NULL,
     fk_usuario      INT,

@@ -84,10 +84,6 @@ function verificarTipoUsuario() {
       <img src="./assets/imgs/icon_grafico.svg" alt="">
       <span>Dashboard</span>
     </a>
-    <a href="./historico_interrupcao.html">
-      <img src="./assets/imgs/historico_sidebar.svg" alt="">
-      <span>historico de interrupções</span>
-    </a>
     `
   }
 }

@@ -147,9 +147,9 @@
 
 
     function alterarDados() {
-        var nome = document.getElementById("id_nome").value.trim();
-        var email = document.getElementById("id_email").value.trim();
-        var telefone = document.getElementById("id_telefone").value.trim();
+        var nome = document.getElementById("input_nome").value.trim();
+        var email = document.getElementById("input_email").value.trim();
+        var telefone = document.getElementById("input_telefone").value.trim();
         
         // Validações usando SweetAlert2
         if (nome === "" || email === "" || telefone === "") {
@@ -239,7 +239,7 @@
                     allowEscapeKey: false     // Impede fechar com ESC
                 }).then(() => {
                     // Executa após o timer ou quando fechar
-                    window.location.href = "meuPerfilExcluir.html";
+                    window.location.href = "listaDiretores.html";
                 });
                 console.log(`Diretor de id = ${sessionStorage.DIRETOR_CONSULTADO} 
                 atualizado com sucesso`);
