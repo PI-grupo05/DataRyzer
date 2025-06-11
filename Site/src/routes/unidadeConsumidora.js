@@ -3,7 +3,7 @@ var router = express.Router();
 
 var unidadeConsumidoraController = require("../controllers/unidadeConsumidoraController");
 
-router.get("/exibirUnidadesConsumidoras/:valorFiltro?", function (req, res) {
+router.get("/exibirUnidadesConsumidoras/:fk_distribuidora/:valorFiltro?", function (req, res) {
     unidadeConsumidoraController.exibirUnidadesConsumidoras(req, res);
 })
 

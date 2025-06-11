@@ -1,7 +1,9 @@
 var unidadeConsumidoraModel = require("../models/unidadeConsumidoraModel");
 
 function exibirUnidadesConsumidoras(req, res){
-        unidadeConsumidoraModel.exibirUnidadesConsumidoras(req.params.valorFiltro)
+        var valorFiltro = req.params.valorFiltro
+        var fk_distribuidora = req.params.fk_distribuidora
+        unidadeConsumidoraModel.exibirUnidadesConsumidoras(fk_distribuidora, valorFiltro)
            .then(
             function (resultado) {
                 console.log(`\nResultados encontrados: ${resultado.length}`);

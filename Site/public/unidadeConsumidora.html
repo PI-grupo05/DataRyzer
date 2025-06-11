@@ -104,7 +104,7 @@
   });
 
   function exibirUnidadesConsumidoras(){
-         fetch(`/unidadeConsumidora/exibirUnidadesConsumidoras/${valorFiltro.value}`, {
+         fetch(`/unidadeConsumidora/exibirUnidadesConsumidoras/${sessionStorage.FK_DISTRIBUIDORA}/${valorFiltro.value}`, {
             method: "GET",
         })
         .then(function (resposta) {
