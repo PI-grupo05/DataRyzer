@@ -1,4 +1,5 @@
 /* Modal CSS */
+
 .modal {
   display: none;
   position: fixed;
@@ -93,11 +94,47 @@
   font-size: 14px;
 }
 
+/* CSS para fazer o calendário abrir clicando em qualquer lugar dos seus inputs */
+#calendario,
+#calendario_fim {
+    position: relative;
+    cursor: pointer;
+}
+
+#calendario::-webkit-calendar-picker-indicator,
+#calendario_fim::-webkit-calendar-picker-indicator {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: auto;
+    height: auto;
+    color: transparent;
+    background: transparent;
+    cursor: pointer;
+}
+
+/* Estilos opcionais para melhorar a aparência */
+#calendario,
+#calendario_fim {
+    padding: 8px 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+#calendario:focus,
+#calendario_fim:focus {
+    outline: none;
+    border-color: #007bff;
+    box-shadow: 0 0 3px rgba(0,123,255,0.3);
+}
 .modal input[type="text"],
 .modal input[type="date"],
 .modal select {
   width: 100%;
-  padding: 12px 16px;
+  padding: 8px 12px;
   margin-top: 4px;
   box-sizing: border-box;
   border: 2px solid #e0e0e0;
@@ -125,18 +162,18 @@
 /* Buttons */
 .modal button {
   margin-top: 0;
-  margin-right: 0;
-  padding: 12px 24px;
-  cursor: pointer;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  height: 50px;
-  white-space: nowrap;
+    margin-right: 0;
+    padding: 12px 24px;
+    cursor: pointer;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    height: 40px;
+    white-space: nowrap;
 }
 
 .modal #salvar_filtro {
@@ -151,12 +188,12 @@
 }
 
 .modal #atualizar_filtro {
-  background-color: #2196F3;
+  background-color: #1b7ccb;
   color: white;
 }
 
 .modal #atualizar_filtro:hover {
-  background-color: #1976D2;
+  background-color: #13589d;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);
 }
@@ -307,4 +344,90 @@
   .modal td {
     padding: 8px 6px;
   }
+}
+
+
+#filtros_select {
+  /* Dimensões e espaçamento */
+  width: 75%;
+ 
+  padding: 8px 12px;
+  padding-right: 33px; /* Espaço para a seta */
+  
+  /* Tipografia */
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+  
+  /* Aparência */
+  background-color: #ffffff;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23666' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 20px;
+  
+  /* Bordas e sombras */
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  
+  /* Transições */
+  transition: all 0.3s ease;
+  
+  /* Remove aparência padrão */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  
+  /* Cursor */
+  cursor: pointer;
+}
+
+/* Estado de foco */
+#filtros_select:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+/* Estado de hover */
+#filtros_select:hover {
+  border-color: #c6d0db;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Estado desabilitado */
+#filtros_select:disabled {
+  background-color: #f8f9fa;
+  color: #6c757d;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Estilo das opções */
+#filtros_select option {
+  padding: 10px;
+  font-size: 16px;
+  color: #333;
+  background-color: #ffffff;
+}
+
+/* Opção selecionada */
+#filtros_select option:checked {
+  background-color: #007bff;
+  color: white;
+}
+
+/* Versão alternativa com gradiente */
+.select-gradient #filtros_select {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+}
+
+.select-gradient #filtros_select option {
+  background-color: white;
+  color: #333;
 }
