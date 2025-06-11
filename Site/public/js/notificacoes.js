@@ -41,7 +41,7 @@ function ultimaParametrizacao() {
                 document.getElementById("frequencia").value = resposta.frequencia;
                 document.getElementById("proxima_notificacao").textContent = "Próxima notificação: "
                 if(resposta.proxima_notificacao != null){
-                    document.getElementById("proxima_notificacao").textContent += resposta.proxima_notificacao;    
+                    document.getElementById("proxima_notificacao").textContent += resposta.proxima_notificacao.split("T"[0]);
                 }else {
                     document.getElementById("proxima_notificacao").textContent += "Não definida";
                 }
